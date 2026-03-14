@@ -1,0 +1,4506 @@
+{
+  "chapter": "Chapter 6 - Working with Streams and Lambda Expressions",
+  "totalQuestions": 150,
+  "questions": [
+    {
+      "id": 1,
+      "question": "The following figure represents a stream pipeline. Given this, what would the boxes X, Y, Z\nbest represent?\nX Y Z",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Origin, intermediate operation, and final operation"
+        },
+        {
+          "letter": "B",
+          "text": "Origin, intermediate operation, and sink"
+        },
+        {
+          "letter": "C",
+          "text": "Origin, intermediate operation, and terminal operation"
+        },
+        {
+          "letter": "D",
+          "text": "Source, intermediate operation, and final operation"
+        },
+        {
+          "letter": "E",
+          "text": "Source, intermediate operation, and sink"
+        },
+        {
+          "letter": "F",
+          "text": "Source, intermediate operation, and terminal operation"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The source is the first operation, and the terminal operation comes last, making option F\nthe answer. You need to know this terminology."
+    },
+    {
+      "id": 2,
+      "question": "Which of the following is required for all valid lambda expressions?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "()"
+        },
+        {
+          "letter": "B",
+          "text": "->"
+        },
+        {
+          "letter": "C",
+          "text": "{}"
+        },
+        {
+          "letter": "D",
+          "text": "Parameter data type(s)"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The lambda expression s -> true is valid, making options A, C, and D incorrect. Parentheses, (), are not required on the left side if there is only one variable. Braces, {}, are not\nrequired if the right side is a single expression. Parameter data types are only required if the\ndata type for at least one parameter is specified; otherwise, none are required. The remaining\nchoice, the arrow operator, ->, is required for all lambda expressions, making option B the\ncorrect answer."
+    },
+    {
+      "id": 3,
+      "question": "Fill in the blanks: The functional interface does not take any inputs, while\nthe functional interface does not return any data.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "IntConsumer, LongSupplier"
+        },
+        {
+          "letter": "B",
+          "text": "IntSupplier, Function"
+        },
+        {
+          "letter": "C",
+          "text": "Supplier, DoubleConsumer"
+        },
+        {
+          "letter": "D",
+          "text": "UnaryOperator, Consumer"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The Supplier functional interface does not take any inputs, while the Consumer\nfunctional interface does not return any data. This behavior extends to the primitive versions of the functional interfaces, making option C the correct answer. Option A is incorrect\nbecause IntConsumer takes a value, while LongSupplier returns a value. Options B and\nD are incorrect because Function and UnaryOperator both take an input and produce\na value."
+    },
+    {
+      "id": 4,
+      "question": "A lambda expression for which of the following functional interfaces could be used to return\na Double value? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "UnaryOperator"
+        },
+        {
+          "letter": "B",
+          "text": "BiPredicate"
+        },
+        {
+          "letter": "C",
+          "text": "BiOperator"
+        },
+        {
+          "letter": "D",
+          "text": "BiConsumer"
+        },
+        {
+          "letter": "E",
+          "text": "BiFunction"
+        },
+        {
+          "letter": "F",
+          "text": "BiSupplier"
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "The UnaryOperator and BiFunction return a generic argument, such as Double,\nmaking options A and E correct. Option B is incorrect because all predicate functions return\nboolean. Option C is incorrect because BiOperator does not exist in the java.util.\nfunction package. The correct name is BinaryOperator. Option D is incorrect because\nall consumer functions return void. Finally, option F is incorrect because BiSupplier does\nnot exist in the java.util.function package. Supplier functions return values, and\nJava does not support methods with more than one return type."
+    },
+    {
+      "id": 5,
+      "question": "What does the following output?\nvar list = List.of(\"Austin\", \"Boston\",\n\"San Francisco\");\nvar c = list.stream()\n.filter(a -> a.length() > 10) // line x\n.count();\nSystem.out.println(c + \" \" + list.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1 1"
+        },
+        {
+          "letter": "B",
+          "text": "1 3"
+        },
+        {
+          "letter": "C",
+          "text": "2 3"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line x."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The stream pipeline is correct and filters all values out that are ten characters or smaller.\nOnly San Francisco is long enough, so c is 1. The stream() call creates a new object,\nso stream operations do not affect the original list. Since the original list is still three elements, option B is correct."
+    },
+    {
+      "id": 6,
+      "question": "Identify the correct functional interfaces to fill in this table correctly. (Choose three.)\nFunctional interface Possible return type\nInterface X Boolean\nInterface Y int\nInterface Z void",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Interface X is Predicate."
+        },
+        {
+          "letter": "B",
+          "text": "Interface X is Supplier."
+        },
+        {
+          "letter": "C",
+          "text": "Interface Y is Comparator."
+        },
+        {
+          "letter": "D",
+          "text": "Interface Y is Supplier."
+        },
+        {
+          "letter": "E",
+          "text": "Interface Z is Consumer."
+        },
+        {
+          "letter": "F",
+          "text": "Interface Z is Supplier."
+        }
+      ],
+      "correct": "B,C,E",
+      "explanation": "Interface X is tricky. If it returned a boolean primitive, option A would be\ncorrect, as Predicate returns a boolean. However, it returns a wrapper object, so it\nhas to be a Supplier, making option B the answer instead. We can tell interface Y is a\nComparator because it returns a primitive int, not an object like Integer, and interface Z is a Consumer because it returns void. This makes options C and E the final two\nanswers."
+    },
+    {
+      "id": 7,
+      "question": "What is the most likely reason for a stream pipeline not to run?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The source doesn’t generate any items."
+        },
+        {
+          "letter": "B",
+          "text": "There are no intermediate operations."
+        },
+        {
+          "letter": "C",
+          "text": "The terminal operation is missing."
+        },
+        {
+          "letter": "D",
+          "text": "The version of Java is too old."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option A is incorrect because a pipeline still runs if the source doesn’t generate any items\nand the rest of the pipeline is correct. Granted, some of the operations have nothing to do,\nbut control still passes to the terminal operation. Option B is incorrect because intermediate\noperations are optional. Option C is the answer. The terminal operation triggers the pipeline\nto run. Option D is incorrect because the code would not compile at all if the version of Java\nwere too old."
+    },
+    {
+      "id": 8,
+      "question": "Which functional interface takes a long value as an input argument and has an\naccept() method?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "LongConsumer"
+        },
+        {
+          "letter": "B",
+          "text": "LongFunction"
+        },
+        {
+          "letter": "C",
+          "text": "LongPredicate"
+        },
+        {
+          "letter": "D",
+          "text": "LongSupplier"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The LongSupplier interface does not take any input, making option D incorrect. It also\nuses the method name getAsLong(). The rest of the functional interfaces all take a long\nvalue but vary on the name of the abstract method they use. LongFunction contains\napply() and LongPredicate contains test(), making options B and C, respectively,\nincorrect. That leaves us with LongConsumer, which contains accept(), making option A\nthe correct answer."
+    },
+    {
+      "id": 9,
+      "question": "Given a parallel Stream<T>, which method would you use to obtain an equivalent serial\nStream<T>?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "unordered()"
+        },
+        {
+          "letter": "B",
+          "text": "reduce()"
+        },
+        {
+          "letter": "C",
+          "text": "concat()"
+        },
+        {
+          "letter": "D",
+          "text": "stream()"
+        },
+        {
+          "letter": "E",
+          "text": "boxed()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The correct method to obtain an equivalent sequential stream of an existing stream is\nsequential(), which is inherited by any class that implements BaseStream<T>. Since\nthis isn’t an option, option F is correct. Note that unordered() creates a stream that can be\nevaluated in any order, but it can still be processed in a sequential or parallel stream."
+    },
+    {
+      "id": 10,
+      "question": "What is the output of the following code?\nvar odds = IntStream.iterate(1, a -> a+2);\nvar evens = IntStream.iterate(2, a -> a+2);\nvar sum = IntStream.concat(odds, evens).limit(3).sum();\nSystem.out.print(sum);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "8"
+        },
+        {
+          "letter": "C",
+          "text": "9"
+        },
+        {
+          "letter": "D",
+          "text": "12"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The program does not terminate."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Since we are concatenating two infinite streams, concat() creates an infinite stream.\nThe limit() method turns it into a finite stream by ignoring all but the first three values of\nodd. Adding 1, 3, and 5 gives us 9, making option C the answer."
+    },
+    {
+      "id": 11,
+      "question": "Which of the following is a valid lambda expression?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "r -> {return 1==2}"
+        },
+        {
+          "letter": "B",
+          "text": "(q) -> true"
+        },
+        {
+          "letter": "C",
+          "text": "(x,y) -> {int test; return test>0;}"
+        },
+        {
+          "letter": "D",
+          "text": "a,b -> true"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Option A is incorrect because the lambda expression is missing a semicolon (;) at the\nend of the return statement. Option C is incorrect because the local variable test is used\nwithout being initialized. Option D is also incorrect. The parentheses are required on the left\nside of the lambda expression when there is more than one value or a data type is specified.\nOption B is the correct answer and the only valid lambda expression."
+    },
+    {
+      "id": 12,
+      "question": "Which are true of running these lines independently of each other? (Choose two.)\nvar empty = Optional.empty();\nvar param = Optional.of(null);\nvar method = Optional.ofNullable(null);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "All of these will run without error."
+        },
+        {
+          "letter": "B",
+          "text": "Exactly one line fails to compile or throws an exception."
+        },
+        {
+          "letter": "C",
+          "text": "Exactly two lines fail to compile or throw an exception."
+        },
+        {
+          "letter": "D",
+          "text": "None of these returns true when calling opt.isPresent()."
+        },
+        {
+          "letter": "E",
+          "text": "One of these returns true when calling opt.isPresent()."
+        },
+        {
+          "letter": "F",
+          "text": "Two of these return true when calling opt.isPresent()."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "The second line throws a NullPointerException when you pass a null reference\nto the of() method. The others compile and run successfully, making option B correct. The\nfirst and third lines return false because they represent an empty Optional. This makes\noption D the other answer."
+    },
+    {
+      "id": 13,
+      "question": "Which of the following statements about DoubleSupplier and Supplier<Double> is\nnot true?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both are functional interfaces."
+        },
+        {
+          "letter": "B",
+          "text": "Both take zero parameters."
+        },
+        {
+          "letter": "C",
+          "text": "Lambdas for both can return a double value."
+        },
+        {
+          "letter": "D",
+          "text": "Lambdas for both can return a null value."
+        },
+        {
+          "letter": "E",
+          "text": "One supports a generic type; the other does not."
+        },
+        {
+          "letter": "F",
+          "text": "All of these are true."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Both are functional interfaces in the java.util.function package, making option\nA true. Additionally, both lack parameters, making option B true. The major difference between the two is that Supplier<Double> takes the generic type Double, while the other\ndoes not take any generic type and instead uses the primitive double. For this reason,\noptions C and E are true statements. For Supplier<Double> in option C, remember that\nthe returned double value can be implicitly autoboxed to Double. Option D is the correct\nanswer. Lambdas for Supplier<Double> can return a null value since Double is an\nobject type, while lambdas for DoubleSupplier cannot; they can only return primitive\ndouble values."
+    },
+    {
+      "id": 14,
+      "question": "Fill in the blank with the functional interface from java.util.function that allows the\ncode to compile and print 3 at runtime.\ntransformer = x -> x;\nvar prime = List.of(3,1,4,1,5,9)\n.stream()\n.limit(1)\n.peek(s -> {})\n.mapToInt(transformer)\n.peek(s -> {})\n.sum();\nSystem.out.println(prime);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Function<Integer,Integer>"
+        },
+        {
+          "letter": "B",
+          "text": "UnaryOperator<Integer>"
+        },
+        {
+          "letter": "C",
+          "text": "ToIntFunction<Integer>"
+        },
+        {
+          "letter": "D",
+          "text": "IntUnaryOperator"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile regardless of what functional interface is placed in the blank."
+        },
+        {
+          "letter": "F",
+          "text": "The code is capable of compiling, but since prime is an OptionalInt value, it cannot be 3 at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The first line that contains the lambda expression will actually compile with any of the\nfunctional interfaces listed in the options. The stream operation, though, will compile only\nif ToIntFunction<Integer> is used. It requires this functional interface, which takes a\ngeneric argument and returns int. For this reason, option C is correct. Option F is incorrect\nbecause sum() on an IntStream returns an int, not an OptionalInt. Note that the\npeek() operations in this stream have no effect."
+    },
+    {
+      "id": 15,
+      "question": "Which fills in the blank so the code is guaranteed to print 1?\nvar stream = Stream.of(1, 2, 3);\nSystem.out.print(stream. );",
+      "options": [
+        {
+          "letter": "A",
+          "text": "anyMatch()"
+        },
+        {
+          "letter": "B",
+          "text": "findAny()"
+        },
+        {
+          "letter": "C",
+          "text": "first()"
+        },
+        {
+          "letter": "D",
+          "text": "min()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Option A is incorrect because anyMatch() takes a Predicate and returns a boolean.\nOption B is incorrect because findAny() returns an Optional, not a primitive. Option C\nis incorrect because there is no first() method available as a terminal operation. Option D\nis tempting because there is a min() method. However, since we are working with a Stream\n(not a primitive stream like IntStream), this method requires a Comparator as a parameter. Therefore, option E is the answer."
+    },
+    {
+      "id": 16,
+      "question": "What is the result of the following?\n6: var list = new ArrayList<String>();\n7: list.add(\"Monday\");\n8: list.add(String::new);\n9: list.add(\"Tuesday\");\n10: list.remove(0);\n11: System.out.println(list.get(0));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "null"
+        },
+        {
+          "letter": "B",
+          "text": "An empty String"
+        },
+        {
+          "letter": "C",
+          "text": "Monday"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 8 does not compile. String::new is a constructor reference. This constructor reference is equivalent to writing the lambda () -> new String(). It participates in deferred\nexecution. When it is executed later, it will return a String. It does not return a String on\nline 8, though. The method reference is a Supplier<String>, which cannot be stored in\nlist. Since the code does not compile, option D is correct."
+    },
+    {
+      "id": 17,
+      "question": "Which functional interface, when filled in the blank, allows the class to compile?\npackage space;\nimport java.util.function.*;\npublic class Asteroid {\npublic void mine( lambda) {\n// IMPLEMENTATION OMITTED\n}\npublic static void main(String[] debris) {\nnew Asteroid().mine((s,p) -> s+p);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiConsumer<Integer,Double>"
+        },
+        {
+          "letter": "B",
+          "text": "BiConsumer<Integer,Double,Double>"
+        },
+        {
+          "letter": "C",
+          "text": "BiFunction<Integer,Double,Double>"
+        },
+        {
+          "letter": "D",
+          "text": "BiFunction<Integer,Integer,Double>"
+        },
+        {
+          "letter": "E",
+          "text": "Function<Integer,Double>"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The lambda (s,p) -> s+p takes two arguments and returns a value. For this reason,\noptions A and B are incorrect because BiConsumer does not return any values. Option E\nis also incorrect, since Function takes only one argument and returns a value. This leaves\nus with options C and D, which both use BiFunction, which takes two generic arguments\nand returns a generic value. Option D is incorrect because the data type of the unboxed sum\ns+q is int, and int cannot be both autoboxed and implicitly cast to Double. Option C is\ncorrect. The sum s+p is of type double, and double can be autoboxed to Double."
+    },
+    {
+      "id": 18,
+      "question": "What best describes a reduction?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A source operation that creates a small value"
+        },
+        {
+          "letter": "B",
+          "text": "An intermediate operation where it filters the stream it receives"
+        },
+        {
+          "letter": "C",
+          "text": "An intermediate operation where it mathematically divides each element in the stream"
+        },
+        {
+          "letter": "D",
+          "text": "A terminal operation where a single value or object is generated by reading each element in the prior step in a stream pipeline"
+        },
+        {
+          "letter": "E",
+          "text": "A terminal operation where one element is returned from the prior step in a stream pipeline without reading all the elements"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The word reduction is used with streams for a terminal operation, so options A, B, and C\nare incorrect. Option E describes a valid terminal operation like anyMatch(), but is not a\nreduction. Option D is correct because a reduction has to look at each element in the stream\nto determine the result."
+    },
+    {
+      "id": 19,
+      "question": "Suppose you have a stream with exactly one element and the following line of code. Filling\nin xxxx from top to bottom in the table, how many elements can be printed out? Assume a\nvalid lambda expression is passed to each method in the table.\nstream.xxxx.forEach(System.out::print);\nMethod Number elements printed\nfilter() ?\nflatMap() ?\nmap() ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero or one, zero or more, exactly one"
+        },
+        {
+          "letter": "B",
+          "text": "Zero or one, exactly one, zero or more"
+        },
+        {
+          "letter": "C",
+          "text": "Zero or one, zero or more, zero or more"
+        },
+        {
+          "letter": "D",
+          "text": "Exactly one, zero or more, exactly one"
+        },
+        {
+          "letter": "E",
+          "text": "Exactly one, exactly one, zero or more"
+        },
+        {
+          "letter": "F",
+          "text": "Exactly one, zero or more, zero or more"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The filter() method either passes along a given element or doesn’t, making options\nD, E, and F incorrect. The flatMap() method doesn’t pass along any elements for empty\nstreams. For nonempty streams, it flattens the elements, allowing it to return zero or\nmore elements. This makes option B incorrect. Finally, the map() method applies a oneto-one function for each element. It has to return exactly one element, so option A is the\ncorrect answer."
+    },
+    {
+      "id": 20,
+      "question": "Assuming the proper generic types are used, which lambda expressions can be assigned to a\nToDoubleBiFunction functional interface reference? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(Integer a, Double b) -> {int c; return b;}"
+        },
+        {
+          "letter": "B",
+          "text": "(h,i) -> (long)h"
+        },
+        {
+          "letter": "C",
+          "text": "(String u, Object v) -> u.length()+v.length()"
+        },
+        {
+          "letter": "D",
+          "text": "(x,y) -> {int z=2; return y/z;}"
+        },
+        {
+          "letter": "E",
+          "text": "z -> z"
+        },
+        {
+          "letter": "F",
+          "text": "(double y, double z) -> y + z"
+        }
+      ],
+      "correct": "A,B,D",
+      "explanation": "To begin with, ToDoubleBiFunction<T,U> takes two generic inputs and returns\na double value. Option A is correct because it takes an Integer and Double and returns\na Double value that can be implicitly unboxed to double. Option B is correct because\nlong can be implicitly cast to double. While we don’t know the data types for the input\narguments, we know that some values, such as using Integer for both, will work. Option\nC cannot be assigned and does not compile because the variable v is of type Object and\nObject does not have a length() method. Option D is correct. The variable y could\nbe declared Double in the generic argument to the functional interface, making y/z a\ndouble return value. Option E is not correct because the lambda only has one parameter.\nFinally, option F is incorrect because the interface uses the class Double rather than primitive double."
+    },
+    {
+      "id": 21,
+      "question": "Given a Stream<T>, which method would you use to obtain an equivalent parallel\nStream<T>?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "getParallelStream()"
+        },
+        {
+          "letter": "B",
+          "text": "parallelStream()"
+        },
+        {
+          "letter": "C",
+          "text": "parallel()"
+        },
+        {
+          "letter": "D",
+          "text": "getParallel()"
+        },
+        {
+          "letter": "E",
+          "text": "parallels()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The correct method to obtain an equivalent parallel stream of an existing stream is\nparallel(), which is inherited by any class that implements BaseStream<T>. For this\nreason, option C is correct."
+    },
+    {
+      "id": 22,
+      "question": "Rewrite this lambda that takes an int n using a constructor reference:\nn -> new ArrayList<>(n)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ArrayList::new"
+        },
+        {
+          "letter": "B",
+          "text": "ArrayList::new()"
+        },
+        {
+          "letter": "C",
+          "text": "ArrayList::new(n)"
+        },
+        {
+          "letter": "D",
+          "text": "ArrayList::new[n]"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The lambda is a Function<Integer, ArrayList>. We need a constructor reference\nthat uses the new keyword where a method name would normally go in a method reference.\nIt can implicitly take zero or one parameter just like a method reference. In this case, we have\none parameter, which gets passed to the constructor. Option A is correct. Options B, C, and D\nuse syntax that is not supported with method references."
+    },
+    {
+      "id": 23,
+      "question": "On aDoubleStream, how many of theaverage(),count(),max(), andsum()methods return an\nOptionalDouble?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The average() method returns an OptionalDouble. This reflects that it doesn’t make\nsense to calculate an average when you don’t have any numbers. Similarly, max() returns\nan OptionalDouble because there isn’t a maximum of no number. By contrast, counting\nwithout any numbers gives the long number 0 and summing gives the double number 0.0.\nSince only two methods match the desired return type, option C is correct."
+    },
+    {
+      "id": 24,
+      "question": "Which of the following are not functional interfaces in the java.util.function\npackage? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiPredicate"
+        },
+        {
+          "letter": "B",
+          "text": "DoubleUnaryOperator"
+        },
+        {
+          "letter": "C",
+          "text": "IntUnaryOperator"
+        },
+        {
+          "letter": "D",
+          "text": "ObjectDoubleConsumer"
+        },
+        {
+          "letter": "E",
+          "text": "ObjectIntConsumer"
+        },
+        {
+          "letter": "F",
+          "text": "ToLongFunction"
+        }
+      ],
+      "correct": "D,E",
+      "explanation": "The BiPredicate interface takes two generic arguments and returns a boolean\nvalue. Next, DoubleUnaryOperator and IntUnaryOperator exist and transform values\nof type double and int, respectively. Last, ToLongFunction takes a generic argument\nand returns a long value. That leaves options D and E, which are the answers. Remember\nObject is abbreviated to Obj in the built-in functional interfaces."
+    },
+    {
+      "id": 25,
+      "question": "Five of the following six methods always produce the same result whether they are executed\non an ordered serial or parallel stream. Which one does not?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "findAny()"
+        },
+        {
+          "letter": "B",
+          "text": "findFirst()"
+        },
+        {
+          "letter": "C",
+          "text": "limit()"
+        },
+        {
+          "letter": "D",
+          "text": "skip()"
+        },
+        {
+          "letter": "E",
+          "text": "anyMatch()"
+        },
+        {
+          "letter": "F",
+          "text": "count()"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The findAny() method can return the first, last, or any element of the stream, regardless\nof whether the stream is serial or parallel. While on serial streams this is likely to be the first\nelement in the stream, on parallel streams the result is less certain. For this reason, option A\nis the correct answer."
+    },
+    {
+      "id": 26,
+      "question": "In a stream pipeline, which can return a value other than a Stream?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Source"
+        },
+        {
+          "letter": "B",
+          "text": "Intermediate operation"
+        },
+        {
+          "letter": "C",
+          "text": "Terminal operation"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The result of the source and any intermediate operations are chained and eventually\npassed to the terminal operation. The terminal operation is where a result with a type other\nthan stream is possible, making option C correct."
+    },
+    {
+      "id": 27,
+      "question": "When working with a Stream<String>, which of these types can be returned from the\ncollect() terminal operator by passing arguments to Collectors.groupingBy()?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only Map<Boolean, HashSet<String>>"
+        },
+        {
+          "letter": "B",
+          "text": "Only Map<Integer, List<String>>"
+        },
+        {
+          "letter": "C",
+          "text": "Both Map<Boolean, HashSet<String>> and Map<Integer, List<String>>"
+        },
+        {
+          "letter": "D",
+          "text": "Only List<Integer>"
+        },
+        {
+          "letter": "E",
+          "text": "Only List<String>"
+        },
+        {
+          "letter": "F",
+          "text": "Both List<Integer> and List<String>"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The groupingBy() collector always returns a Map (or a specific implementation class\nof Map), so options D, E, and F are incorrect. The other two are definitely possible. To get\none, you can group using a Function that returns an Integer such as s.collect(\ngroupingBy(String::length)). To get the other, you need to group using a\nFunction that returns a Boolean and specify the type, such as s.collect(\ngroupingBy(String::isEmpty, toCollection(HashSet::new))). Therefore,\noption C is correct."
+    },
+    {
+      "id": 28,
+      "question": "What does the following output?\n12: Set<String> set = new HashSet<>();\n13: set.add(\"tire-\");\n14: List<String> list = new LinkedList<>();\n15: Deque<String> queue = new ArrayDeque<>();\n16: queue.push(\"wheel-\");\n17: Stream.of(set, list, queue)\n18: .flatMap(x -> x)\n19: .forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[tire-][wheel-]"
+        },
+        {
+          "letter": "B",
+          "text": "tire-wheelC. [wheel-][tire-]"
+        },
+        {
+          "letter": "D",
+          "text": "wheel-tireE. None of the above"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The flatMap() method works with streams rather than collections. Line 18 is problematic because the return value is not a stream. Since the code does not compile, option F is\ncorrect."
+    },
+    {
+      "id": 29,
+      "question": "What is the result of executing the following?\nvar list = new LinkedList<>();\nlist.add(\"Archie\");\nlist.add(\"X-Men\");\nStream s = list.stream(); // line w\ns.forEach(System.out::println);\ns.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code runs without exception and prints two lines."
+        },
+        {
+          "letter": "B",
+          "text": "The code runs without exception and prints four lines."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line w."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Since no generic type is specified, list is a LinkedList<Object>. Line w compiles\nbecause no generic type is specified. However, Java allows you to operate on a stream only\nonce. The final line of code throws an IllegalStateException because the stream has\nalready been used up, making option E correct."
+    },
+    {
+      "id": 30,
+      "question": "What is the output of the following application?\npackage zoo;\nimport java.util.function.*;\npublic class TicketTaker {\nprivate static int AT_CAPACITY = 100;\npublic int takeTicket(int currentCount,\nIntUnaryOperator<Integer> counter) {\nreturn counter.applyAsInt(currentCount);\n}\npublic static void main(String[] theater) {\nfinal TicketTaker bob = new TicketTaker();\nfinal int oldCount = 50;\nfinal int newCount = bob.takeTicket(oldCount,t -> {\nif(t>AT_CAPACITY) {\nthrow new RuntimeException(\n\"Sorry, max has been reached\");\n}\nreturn t+1;\n});\nSystem.out.print(newCount);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "50"
+        },
+        {
+          "letter": "B",
+          "text": "51"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the lambda expression."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but prints an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code does not compile, so options A, B, and E are incorrect. The\nIntUnaryOperator functional interface is not generic, so the argument\nIntUnaryOperator<Integer> in the takeTicket() does not compile, making option\nD the correct answer. The lambda expression compiles without issue, making option C incorrect. If the generic argument <Integer> was dropped from the argument declaration, the\nclass would compile without issue and output 51 at runtime, which would make option B the\ncorrect answer."
+    },
+    {
+      "id": 31,
+      "question": "What are the three requirements for performing a parallel reduction with the collect()\nmethod, which takes a Collector argument? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The Collector argument is marked concurrent."
+        },
+        {
+          "letter": "B",
+          "text": "The elements of the stream implement the Comparable interface."
+        },
+        {
+          "letter": "C",
+          "text": "The stream is parallel."
+        },
+        {
+          "letter": "D",
+          "text": "The stream is thread-safe."
+        },
+        {
+          "letter": "E",
+          "text": "The stream or Collector is marked unordered."
+        },
+        {
+          "letter": "F",
+          "text": "The stream is not a primitive stream."
+        }
+      ],
+      "correct": "A,C,E",
+      "explanation": "Options A, C, and E are correct because they are the precise requirements for Java\nto perform a concurrent reduction using the collect() method, which takes a Collector\nargument. Recall from your studies that a Collector is considered concurrent and unordered if it has the Collector.Characteristics enum values CONCURRENT and\nUNORDERED, respectively. The rest of the options are not required for a parallel reduction."
+    },
+    {
+      "id": 32,
+      "question": "Which are true about the following code? (Choose two.)\n27: public static void main(String[] s) {\n28: Predicate dash = c -> c.startsWith(\"-\");\n29: System.out.println(dash.test(\"–\"));\n30:\n31: Consumer clear = x -> System.out.println(x);\n32: clear.accept(\"pink\");\n33:\n34: Comparator<String> c = (String s, String t) -> 0;\n35: System.out.println(c.compare(\"s\", \"t\"));\n36: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles successfully."
+        },
+        {
+          "letter": "B",
+          "text": "One line does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "Two lines do not compile."
+        },
+        {
+          "letter": "D",
+          "text": "Three lines do not compile."
+        },
+        {
+          "letter": "E",
+          "text": "If any lines that do not compile are fixed, the output includes pink."
+        },
+        {
+          "letter": "F",
+          "text": "If any lines that do not compile are fixed, the output does not include pink."
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "While it is common for a Predicate to have a generic type, it is not required. However, it is treated like a Predicate of type Object if the generic type is missing. Since\nstartsWith() does not exist on Object, line 28 does not compile. Line 34 would be a\ncorrect lambda declaration in isolation. However, it uses the variable s, which is already\ntaken by the main() method parameter. This causes a compiler error on line 34. These are\nthe only two compiler errors, making option C correct. If Predicate were changed to\nPredicate<String> and lambda variable were changed to x, then the Consumer would\nin fact print pink, making option E the other answer."
+    },
+    {
+      "id": 33,
+      "question": "Which functional interface returns a primitive value?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiPredicate"
+        },
+        {
+          "letter": "B",
+          "text": "CharSupplier"
+        },
+        {
+          "letter": "C",
+          "text": "LongFunction"
+        },
+        {
+          "letter": "D",
+          "text": "UnaryOperator"
+        },
+        {
+          "letter": "E",
+          "text": "TriDoublePredicate"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is the correct answer because BiPredicate takes two generic types and\nreturns a primitive boolean value. Options B and E are incorrect, since CharSupplier\nand TriDoublePredicate do not exist. Option C is also incorrect, since LongFunction\ntakes a primitive long value and returns a generic type. Finally, option D is incorrect because\nUnaryOperator takes a generic type and returns a generic value."
+    },
+    {
+      "id": 34,
+      "question": "Given the following code snippet, which lambda expressions are the best choices for an accumulator? (Choose two.)\nimport java.util.*;\nimport java.util.function.*;\npublic class GoodAccumulator {\nint i = 0;\nList<String> words = new ArrayList<>();\npublic void test() {\nBiFunction<Integer,Integer,Integer> x = ;\nSystem.out.print(List.of(1,2,3,4,5)\n.parallelStream()\n.reduce(0, x, (s1, s2) -> s1 + s2));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(a,b) -> (a-b)"
+        },
+        {
+          "letter": "B",
+          "text": "(a,b) -> 5"
+        },
+        {
+          "letter": "C",
+          "text": "(a,b) -> i++"
+        },
+        {
+          "letter": "D",
+          "text": "(a,b) -> {words.add(\"awesome\"); return 0;}"
+        },
+        {
+          "letter": "E",
+          "text": "(a,b) -> {return 0;}"
+        },
+        {
+          "letter": "F",
+          "text": "(a,b) -> words.add(\"awesome\")"
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "An accumulator in a serial or parallel reduction should be associative and stateless. In\na parallel reduction, problematic accumulators tend to produce more visible errors. Option\nA is not associative, since (a-b)-c is not the same as a-(b-c) for all values a, b, and c.\nOptions C and D are incorrect because they represent stateful lambda expressions, which\nshould be avoided especially on parallel streams. In particular, option C could return different results each time it is run. Option F doesn’t even compile, since the return type is a\nboolean, not an Integer. That leaves us with the correct answers, options B and E. While\nthese accumulators may not seem useful, they are both stateless and associative, which meets\nthe qualifications for performing a reduction."
+    },
+    {
+      "id": 35,
+      "question": "Fill in the blanks so that both methods produce the same output for all inputs.\nprivate static void longer(Optional<Boolean> opt) {\nif (opt. ())\nSystem.out.println(\"run: \" + opt.get());\n}\nprivate static void shorter(Optional<Boolean> opt) {\nopt.map(x -> \"run: \" + x)\n. (System.out::println);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "isNotNull, isPresent"
+        },
+        {
+          "letter": "B",
+          "text": "ifPresent, isPresent"
+        },
+        {
+          "letter": "C",
+          "text": "isPresent, forEach"
+        },
+        {
+          "letter": "D",
+          "text": "isPresent, ifPresent"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A and C do not compile because there are no isNotNull() or forEach()\nmethods in the Optional class. The Optional class does have an isPresent() method\nthat doesn’t take any parameters, making option B incorrect since it is used with a parameter.\nThe method returns a boolean and is commonly used in if statements. There is also an\nifPresent() method that takes a Consumer parameter and runs it only if the Optional\nis nonempty. Therefore, option D is correct."
+    },
+    {
+      "id": 36,
+      "question": "Rewrite this lambda using a method reference:\n() -> Math.random()",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Math.random"
+        },
+        {
+          "letter": "B",
+          "text": "Math::random"
+        },
+        {
+          "letter": "C",
+          "text": "Math::random()"
+        },
+        {
+          "letter": "D",
+          "text": "java.lang::Math.random"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The lambda is a Supplier<Double>. Since the random() method is static, we need\na static method reference. It uses :: to separate the class name and method name. Option\nB is correct. Options A, C, and D use syntax that is not supported with method references."
+    },
+    {
+      "id": 37,
+      "question": "Which operation can occur more than once in a stream pipeline?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Origin"
+        },
+        {
+          "letter": "B",
+          "text": "Sink"
+        },
+        {
+          "letter": "C",
+          "text": "Source"
+        },
+        {
+          "letter": "D",
+          "text": "Intermediate operation"
+        },
+        {
+          "letter": "E",
+          "text": "Terminal operation"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A and B are incorrect because they are not operations in a stream pipeline. A\nsource and the terminal operation are required parts of a stream pipeline and must occur\nexactly once. The intermediate operation is optional. It can appear zero or more times. Since\nmore than one falls within zero or more, option D is correct."
+    },
+    {
+      "id": 38,
+      "question": "What is true of the following code?\n21: var list = List.of('c', 'b', 'a');\n22:\n23: list.stream()\n24: .sorted()\n25: .findAny()\n26: .ifPresent(System.out::println);\n27:\n28: System.out.println(list.stream().sorted().findFirst());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both streams are guaranteed to print the single character a."
+        },
+        {
+          "letter": "B",
+          "text": "Both streams will print a single character of a, b, or c."
+        },
+        {
+          "letter": "C",
+          "text": "Only one stream is guaranteed to print the single character a."
+        },
+        {
+          "letter": "D",
+          "text": "Only one stream will print a single character of a, b, or c."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "All of the code compiles. The first stream source has three elements. The intermediate\noperations both sort the elements of this stream and then we request one from findAny().\nThe findAny() method is not guaranteed to return a specific element. Since we are not\nusing parallelization, it is highly likely that the code will print a. However, you need to\nknow this is not guaranteed. Additionally, the stream on line 28 prints Optional[a],\nOptional[b], or Optional[c]. Since only lines 23–26 print a single character, option D\nis the answer."
+    },
+    {
+      "id": 39,
+      "question": "Which functional interface, when entered into the following blank, allows the class to\ncompile?\npackage groceries;\nimport java.util.*;\nimport java.util.function.*;\npublic class Market {\nprivate static void checkPrices(List<Double> prices,\nscanner) {\nprices.forEach(scanner);\n}\npublic static void main(String[] right) {\nList<Double> prices = List.of(1.2, 6.5, 3.0);\ncheckPrices(prices,\np -> {\nString result = p<5 ? \"Correct\" : \"Too high\";\nSystem.out.println(result);\n});\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Consumer<Integer>"
+        },
+        {
+          "letter": "C",
+          "text": "DoubleConsumer"
+        },
+        {
+          "letter": "D",
+          "text": "Supplier<Double>"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "First, the forEach() method requires a Consumer instance. Option D can be immediately discarded because Supplier<Double> does not inherit Consumer. For this same\nreason, option C is also incorrect. DoubleConsumer does not inherit from Consumer.\nIn this manner, primitive functional interfaces cannot be used in the forEach() method.\nOption A seems correct, since forEach() does take a Consumer instance, but it is missing\na generic argument. Without the generic argument, the lambda expression does not compile because the expression p<5 cannot be applied to an Object. Option B is also close.\nHowever, a Double cannot be passed to an Integer. The correct functional interface is\nConsumer<Double>, and since that is not available, option E is the correct answer."
+    },
+    {
+      "id": 40,
+      "question": "Which of the following is not a valid lambda expression?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(Integer j, k) -> 5"
+        },
+        {
+          "letter": "B",
+          "text": "(p,q) -> p+q"
+        },
+        {
+          "letter": "C",
+          "text": "(Integer x, Integer y) -> x*y"
+        },
+        {
+          "letter": "D",
+          "text": "(left,right) -> {return \"null\";}"
+        },
+        {
+          "letter": "E",
+          "text": "All of these are valid."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is the invalid lambda expression because the type is specified for the variable\nj, but not the variable k. The rest of the options are valid lambda expressions. To be a valid\nlambda expression, the type must be specified for all of the variables, as in option C, or none\nof them, as in options B and D."
+    },
+    {
+      "id": 41,
+      "question": "What is the output of the following application?\nimport java.util.*;\npublic class Concat {\npublic String concat1(List<String> values) {\nreturn values.parallelStream()\n.reduce(\"a\",\n(x,y)->x+y,\nString::concat);\n}\npublic String concat2(List<String> values) {\nreturn values.parallelStream()\n.reduce((w,z)->z+w).get();\n}\npublic static void main(String[] questions) {\nConcat c = new Concat();\nvar list = List.of(\"Cat\",\"Hat\");\nString x = c.concat1(list);\nString y = c.concat2(list);\nSystem.out.print(x+\" \"+y);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "CatHat CatHat"
+        },
+        {
+          "letter": "B",
+          "text": "aCataHat HatCat"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because the stream in concat1() returns an Optional."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles and runs without issue. The three-argument reduce() method\nreturns a generic type, while the one-argument reduce() method returns an Optional.\nThe concat1() method is passed an identity \"a\", which it applies to each element, resulting in the reduction to aCataHat. The lambda expression in the concat2() method\nreverses the order of its inputs, leading to a value of HatCat. For these reasons, option B is\nthe correct answer."
+    },
+    {
+      "id": 42,
+      "question": "Which of the following three functional interfaces is not equivalent to the other two?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiFunction<Double,Double,Double>"
+        },
+        {
+          "letter": "B",
+          "text": "BinaryOperator<Double>"
+        },
+        {
+          "letter": "C",
+          "text": "DoubleFunction<Double>"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above. All three are equivalent."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Options A and B take two Double input arguments and return a Double value, making\nthem equivalent to each other. On the other hand, option C takes a single double value and\nreturns a Double value. For this reason, it is different from the other two, making option C\ncorrect."
+    },
+    {
+      "id": 43,
+      "question": "Given the following code snippet, what changes should be made for the JVM to correctly\nprocess this as a concurrent reduction? (Choose two.)\nvar w = Stream.of(\"c\",\"a\",\"t\")\n.collect(HashSet::new, Set::add, Set::addAll);\nSystem.out.println(w);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Replace HashSet with LinkedHashSet."
+        },
+        {
+          "letter": "B",
+          "text": "Mark the stream parallel."
+        },
+        {
+          "letter": "C",
+          "text": "Remove the second argument of the collect() method."
+        },
+        {
+          "letter": "D",
+          "text": "Remove the third argument of the collect() method."
+        },
+        {
+          "letter": "E",
+          "text": "Replace HashSet with ConcurrentSkipListSet."
+        },
+        {
+          "letter": "F",
+          "text": "Mark the stream unordered."
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "For a concurrent reduction, the underlying type should be a thread-safe collection. For\nthis reason, option A is incorrect and option E is correct. The streams must all be parallel,\nmaking option B correct and option F incorrect. Options C and D are incorrect, as there is no\ntwo-argument version of collect() within the Stream interface."
+    },
+    {
+      "id": 44,
+      "question": "Fill in the blank so this code outputs three lines:\nvar list = new ArrayList<String>();\nlist.add(\"Atlanta\");\nlist.add(\"Chicago\");\nlist.add(\"New York\");\nlist.stream()\n.filter( )\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "String::isEmpty"
+        },
+        {
+          "letter": "B",
+          "text": "! String::isEmpty"
+        },
+        {
+          "letter": "C",
+          "text": "String::! isEmpty"
+        },
+        {
+          "letter": "D",
+          "text": "String::isNotEmpty"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Option A is the only one of the three options to compile. However, it results in no lines\nbeing output since none of the three strings is empty. Options B and C do not even compile\nbecause a method reference cannot have an operator next to it. Option D does not compile\nbecause String does not have an isNotEmpty() method. Therefore, option E is correct."
+    },
+    {
+      "id": 45,
+      "question": "What does the following output?\nvar chars = Stream.generate(() -> 'a');\nchars.filter(c -> c < 'b')\n.sorted()\n.findFirst()\n.ifPresent(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "a"
+        },
+        {
+          "letter": "B",
+          "text": "The code runs successfully without any output."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not complete."
+        },
+        {
+          "letter": "D",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The source of this stream is infinite. Sorting something infinite never finishes, so the\nstream pipeline never completes and option C is the answer."
+    },
+    {
+      "id": 46,
+      "question": "What is the expected output of the following code snippet?\nStream.iterate(1, x -> x + 1)\n.limit(5)\n.skip(2)\n.peek(System.out::print)\n.collect(Collectors.toList())\n.forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "It throws an exception at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "It does not print any output at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "345345"
+        },
+        {
+          "letter": "E",
+          "text": "334455"
+        },
+        {
+          "letter": "F",
+          "text": "The behavior of the code snippet cannot be determined until runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code compiles and does not throw any exceptions at runtime, so options A and B are\nincorrect. The code snippet is serial, by default, so the order is predictable, making option\nF incorrect. The peek() method executes on each member of the pipeline, printing five\nnumbers as the elements are then collected into a List, which gives us 345. They are then\nprinted again, making the final output 345345 and option D correct."
+    },
+    {
+      "id": 47,
+      "question": "What is the output of the following program?\npackage ai;\nimport java.util.function.*;\npublic class Android {\npublic void wakeUp(Supplier supplier) { // d1\nsupplier.get();\n}\npublic static void main(String[] electricSheep) {\nAndroid data = new Android();\ndata.wakeUp(() -> System.out.print(\"Started!\")); // d2\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Started!"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of line d1 only."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line d2 only."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of lines d1 and d2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for another reason."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The Supplier functional interface normally takes a generic argument, although generic\ntypes are not strictly required since they are removed by the compiler. Therefore, line d1\ncompiles while triggering a compiler warning. On the other hand, line d2 does cause a compiler error, because the lambda expression does not return a value. Therefore, it is not compatible with Supplier, making option C the correct answer."
+    },
+    {
+      "id": 48,
+      "question": "Fill in the blanks so this code prints *8.0-8.0* (Choose two.)\nvar ints = IntStream.of(6, 10);\nvar longs = ints.mapToLong(i -> i);\nvar first = longs. ;\nvar moreLongs = LongStream.of(6, 10);\nvar stats = moreLongs.summaryStatistics();\nvar second = stats. ;\nSystem.out.println(\"*\" + first + \"-\" + second + \"*\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "averageAsDouble() in the first blank"
+        },
+        {
+          "letter": "B",
+          "text": "average().getAsDouble() in the first blank"
+        },
+        {
+          "letter": "C",
+          "text": "getAverage().get() in the first blank"
+        },
+        {
+          "letter": "D",
+          "text": "average() in the second blank"
+        },
+        {
+          "letter": "E",
+          "text": "average().get() in the second blank"
+        },
+        {
+          "letter": "F",
+          "text": "getAverage() in the second blank"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "Primitive streams, like LongStream, declare an average() method that returns an\nOptionalDouble object. This object declares a getAsDouble() method rather than a\nget() method. Therefore, option B is correct. By contrast, the summary statistics classes\nprovide getters in order to access the data. The getAverage() method returns a double\nand not an OptionalDouble, which makes option F correct."
+    },
+    {
+      "id": 49,
+      "question": "Starting with DoubleConsumer and going downward, fill in the missing values for\nthe table.\nFunctional interface # Parameters in method signature\nDoubleConsumer\nIntFunction\nLongSupplier\nObjDoubleConsumer",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0, 1, 1, 1"
+        },
+        {
+          "letter": "B",
+          "text": "0, 1, 0, 2"
+        },
+        {
+          "letter": "C",
+          "text": "0, 2, 1, 2"
+        },
+        {
+          "letter": "D",
+          "text": "1, 1, 0, 2"
+        },
+        {
+          "letter": "E",
+          "text": "1, 1, 1, 1"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Remember that all Supplier interfaces take zero parameters. For this reason, the\nthird value in the table is 0, making options A, C, and E incorrect. Next, DoubleConsumer\nand IntFunction each take one value, double and int, respectively. On the other hand,\nObjDoubleConsumer takes two values, a generic value and a double, and returns void.\nFor this reason, option D is correct, and option B is incorrect."
+    },
+    {
+      "id": 50,
+      "question": "Starting with DoubleConsumer and going downward, fill in the values for the table. For the\nfollowing choices, assume R is a generic type.\nFunctional interface Return type\nDoubleConsumer\nIntFunction\nLongSupplier\nObjDoubleConsumer",
+      "options": [
+        {
+          "letter": "A",
+          "text": "double, int, long, R"
+        },
+        {
+          "letter": "B",
+          "text": "double, R, long, R"
+        },
+        {
+          "letter": "C",
+          "text": "R, int, long, R"
+        },
+        {
+          "letter": "D",
+          "text": "R, int, long, void"
+        },
+        {
+          "letter": "E",
+          "text": "void, int, R, void"
+        },
+        {
+          "letter": "F",
+          "text": "void, R, long, void"
+        }
+      ],
+      "correct": "F",
+      "explanation": "All Consumer functional interfaces have a void return type. For this reason, the\nfirst and last values in the table are both void, making options A, B, and C incorrect.\nIntFunction takes an int and returns a generic value, ruling out option D. Finally,\nLongSupplier does not take any values and returns a long value. For this reason, option E\nis incorrect, and option F is correct."
+    },
+    {
+      "id": 51,
+      "question": "What is a possible output of the following application?\npackage salvage;\nimport java.util.*;\nimport java.util.stream.*;\npublic record Car(String model, int year) {\n@Override public String toString() {return model;}\npublic static void main(String[] make) {\nvar cars = new ArrayList<Car>();\ncars.add(new Car(\"Mustang\",1967));\ncars.add(new Car(\"Thunderbird\",1967));\ncars.add(new Car(\"Escort\",1975));\nvar map = cars\n.stream()\n.collect(\nCollectors.groupingByConcurrent(Car::year));\nSystem.out.print(map);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "{1975=[Escort], 1967=[Mustang, Thunderbird]}"
+        },
+        {
+          "letter": "B",
+          "text": "{Escort=[1975], Thunderbird=[1967], Mustang=[1967]}"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The application throws an exception at runtime because the stream is not parallel."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles and runs without issue. The JVM will fall back to a single-threaded\nprocess if all of the conditions for performing the parallel reduction are not met. The stream\nused in the main() method is not parallel, but the groupingByConcurrent() method\ncan still be applied without throwing an exception at runtime. Although performance will\nsuffer from not using a parallel stream, the application will still process the results correctly.\nSince the process groups the data by year, option A is the correct answer."
+    },
+    {
+      "id": 52,
+      "question": "How many lines does this code output?\nvar list = new LinkedList<String>();\nlist.add(\"Archie\");\nlist.add(\"X-Men\");\nlist.stream().forEach(System.out.println);\nlist.stream().forEach(System.out.println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Two"
+        },
+        {
+          "letter": "B",
+          "text": "Four"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This code is almost correct. Calling two different streams is allowed. The code attempts\nto use a method reference when calling the forEach() method. However, it does not use\nthe right syntax for a method reference. A double colon needs to be used. If the code were\nchanged to System.out::println, it would print two lines for each call, for a total of\nfour lines. Since it does not compile, option C is correct."
+    },
+    {
+      "id": 53,
+      "question": "Which lambda expression can replace the instance of new BiologyMaterial() on line\nh1 and produce the same results under various inputted values?\npackage university;\n@FunctionalInterface interface Study {\nabstract int learn(String subject, int duration);\n}\nclass BiologyMaterial implements Study {\n@Override public int learn(String subject, int duration) {\nif(subject == null)\nreturn duration;\nelse\nreturn duration+1;\n} }\npublic class Scientist {\npublic static void main(String[] courses) {\nfinal Study s = new BiologyMaterial(); // h1\nSystem.out.print(s.learn(courses[0],\nInteger.parseInt(courses[1])));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(p,q) -> q==null ? p : p+1"
+        },
+        {
+          "letter": "B",
+          "text": "(c,d) -> {int d=1; return c!=null ? d+1 : d;}"
+        },
+        {
+          "letter": "C",
+          "text": "(x,y) -> {return x==null ? y : y+1;}"
+        },
+        {
+          "letter": "D",
+          "text": "(a,b) -> 1"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "First, option A does not compile since the variables p and q are reversed, making the\nreturn type of the method and usage of operators invalid. The first argument, p, is a String\nand q is an int, but the lambda expression reverses them, and the code does not compile. Option B also does not compile. The variable d is declared twice, first in the lambda\nargument list and then in the body of the lambda expression. The second declaration in the\nbody of the lambda expression causes the compiler to generate a duplicate local variable\nmessage. Note that other than it being used twice, the expression is valid; the ternary operator is functionally equivalent to the learn() method in the BiologyMaterial class.\nOption C is the correct answer since it compiles and handles the input in the same way as the\nlearn() method in the BiologyMaterial class. Option D compiles but does not return\nthe same result."
+    },
+    {
+      "id": 54,
+      "question": "Which are true of the following? (Choose two.)\nvar s = Stream.of(\"speak\", \"bark\", \"meow\", \"growl\");\nBinaryOperator<String> merge = (a, b) -> a;\nvar map = s.collect(Collectors.toMap(\nString::length, k -> k, merge));\nSystem.out.println(map.size() + \" \" + map.get(4));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The output is 2 bark."
+        },
+        {
+          "letter": "B",
+          "text": "The output is 2 meow."
+        },
+        {
+          "letter": "C",
+          "text": "The output is 4 bark."
+        },
+        {
+          "letter": "D",
+          "text": "The output is 4 meow."
+        },
+        {
+          "letter": "E",
+          "text": "If \"meow\" were replaced by a null reference, the output would remain the same."
+        },
+        {
+          "letter": "F",
+          "text": "If \"meow\" were replaced by a null reference, the output would change."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "This code does compile. Remember that imports are implied, including the static\nimport for Collectors. The collector tries to use the number of characters in each stream\nelement as the key in a map. This works fine for the first two elements, speak and bark,\nbecause they are of length 5 and 4, respectively. When it gets to meow, it sees another key of\n4. The merge function says to use the first one, so it chooses bark for the value. Similarly,\ngrowl is five characters, but the first value of speak is used. There are only two distinct\nlengths, so option A is correct. If the stream had a null instead of \"meow\", then the code\nwould throw a NullPointerException since we need to check the length of the String\nto determine which part of the Map it goes in. Since you cannot call a method on null,\noption F is also correct."
+    },
+    {
+      "id": 55,
+      "question": "Which statement about a source in a Stream is true?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The source is mandatory in a stream pipeline."
+        },
+        {
+          "letter": "B",
+          "text": "The source is only allowed to return primitives."
+        },
+        {
+          "letter": "C",
+          "text": "The source must be retrieved by calling the stream() method."
+        },
+        {
+          "letter": "D",
+          "text": "The source must return a finite number of elements."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is correct as the source and terminal operation are mandatory parts of a stream\npipeline. Option B is incorrect because a Stream must return objects. Specialized interfaces\nlike IntStream are needed to return primitives. Option C is incorrect because Stream has\nmethods such as of() and iterate() that return a Stream. Option D is incorrect because\ninfinite streams are possible."
+    },
+    {
+      "id": 56,
+      "question": "Given an IntStream, which method would you use to obtain an equivalent parallel\nStream<T>?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "parallel()"
+        },
+        {
+          "letter": "B",
+          "text": "parallelStream()"
+        },
+        {
+          "letter": "C",
+          "text": "parallels()"
+        },
+        {
+          "letter": "D",
+          "text": "getParallel()"
+        },
+        {
+          "letter": "E",
+          "text": "getParallelStream()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Trick question! The correct method to obtain an equivalent parallel stream of an existing\nIntStream is parallel(), but for an IntStream this returns another IntStream, not\na generic Stream<T>. The correct solution would be to call boxed().parallel(), but\nsince this isn’t available, option F is correct."
+    },
+    {
+      "id": 57,
+      "question": "Which can fill in the blank to have the code print true?\nvar stream = Stream.iterate(1, i -> i+1);\nvar b = stream. (i -> i > 5);\nSystem.out.println(b);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "anyMatch"
+        },
+        {
+          "letter": "B",
+          "text": "allMatch"
+        },
+        {
+          "letter": "C",
+          "text": "findAny"
+        },
+        {
+          "letter": "D",
+          "text": "findFirst"
+        },
+        {
+          "letter": "E",
+          "text": "noneMatch"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "We can rule out options C and D because they do not take any parameters, so they do\nnot compile. This code generates an infinite stream of integers: 1, 2, 3, 4, 5, 6, 7, etc. The\nPredicate checks if the element is greater than 5. With anyMatch(), the stream pipeline\nends once element 6 is hit and the code prints true. For the allMatch() operator, it sees\nthat the first element in the stream does not match and the code prints false. Similarly, the\nnoneMatch() operator gets to the point where i is 6 and returns false because there is a\nmatch. Therefore, option A is correct."
+    },
+    {
+      "id": 58,
+      "question": "Which of the following fills in the blank so that the code outputs weasel but uses a poor\npractice?\nimport java.util.*;\npublic class Cheater {\nint count = 0;\npublic void sneak(Collection<String> coll) {\ncoll.stream(). ;\n}\npublic static void main(String[] args) {\nvar c = new Cheater();\nc.sneak(Arrays.asList(\"weasel\"));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "peek(System.out::println)"
+        },
+        {
+          "letter": "B",
+          "text": "peek(System.out::println).findFirst()"
+        },
+        {
+          "letter": "C",
+          "text": "peek(r -> System.out.println(r)).findFirst()"
+        },
+        {
+          "letter": "D",
+          "text": "peek(r -> {count++; System.out.println(r); }).findFirst()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of these are bad practice."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Option A is incorrect because it doesn’t print out any text. The peek() method is an\nintermediate operation. Since there is no terminal operation, the stream pipeline is not executed, so the peek() method is never executed, and nothing is printed. Options B and C\nare incorrect because they correctly output one line using a method reference and lambda,\nrespectively, and don’t use any bad practices. Option D is the correct answer. It does output\none line. However, it is bad practice to have a peek() method that has side effects like modifying a variable."
+    },
+    {
+      "id": 59,
+      "question": "What is the output of the following application?\npackage nesting;\nimport java.util.function.*;\npublic class Doll {\nprivate int layer;\npublic Doll(int layer) {\nsuper();\nthis.layer = layer;\n}\npublic static void open(\nUnaryOperator<Doll> task, Doll doll) {\nwhile((doll = task.accept(doll)) != null)\nSystem.out.print(\"X\");\n}\npublic static void main(String[] wood) {\nopen(s -> {\nif(s.layer<=0) return null;\nelse return new Doll(s.layer--);\n}, new Doll(5));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "XXXXX"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of the lambda expression in the main() method."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but produces an infinite loop at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The lambda expression compiles without issue, making option B incorrect. The task variable is of type UnaryOperator<Doll>, with the abstract method apply(). There is no\naccept() method defined on that interface, therefore the code does not compile, and option\nC is the correct answer."
+    },
+    {
+      "id": 60,
+      "question": "What is the expected output of the following code snippet?\nRandom r = new Random();\nStream.generate(r::nextDouble)\n.skip(2)\n.limit(4)\n.sorted()\n.peek(System.out::println)\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "It throws an exception at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "It does not print any output at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "It prints four numbers twice each."
+        },
+        {
+          "letter": "E",
+          "text": "It can print up to eight distinct numbers."
+        },
+        {
+          "letter": "F",
+          "text": "The behavior of the code snippet cannot be determined until runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code compiles and does not throw any exceptions at runtime, so options A and B are\nincorrect. As an element goes through the pipeline, it is printed once by the peek() method,\nthen once by the forEach() method. For example, 0.1 0.1 0.54 0.54 0.6 0.6 0.3\n0.3 is a possible output from this code. For this reason, option D is correct."
+    },
+    {
+      "id": 61,
+      "question": "Which statements about the findAny() method applied to a stream are correct?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It always returns the first element on an ordered serial stream."
+        },
+        {
+          "letter": "B",
+          "text": "It may return any element on an ordered serial stream."
+        },
+        {
+          "letter": "C",
+          "text": "It always returns the first element on an unordered stream."
+        },
+        {
+          "letter": "D",
+          "text": "It may return any element on an unordered stream."
+        },
+        {
+          "letter": "E",
+          "text": "It always returns the first element on an ordered parallel stream."
+        },
+        {
+          "letter": "F",
+          "text": "It may return any element on an ordered parallel stream."
+        }
+      ],
+      "correct": "B,D,F",
+      "explanation": "The findAny() method is capable of returning any element of the stream regardless\nof whether it is serial, parallel, ordered, or unordered. For this reason, options B, D, and F are\ncorrect. Option C is actually invalid, as an unordered stream does not have a first element."
+    },
+    {
+      "id": 62,
+      "question": "Which functional interface has a get() method?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Function"
+        },
+        {
+          "letter": "C",
+          "text": "Supplier"
+        },
+        {
+          "letter": "D",
+          "text": "UnaryOperator"
+        },
+        {
+          "letter": "E",
+          "text": "Producer"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "To begin with, Consumer uses accept(), making option A incorrect. Next, Function\nand UnaryOperator use apply(), making options B and D, respectively, incorrect. Option\nE is also incorrect, as there is no Producer functional interface. Finally, Supplier uses\nget(), making option C the correct answer."
+    },
+    {
+      "id": 63,
+      "question": "Why can’t String::charAt be used as a method reference within a Function?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Method references can only be used on static methods."
+        },
+        {
+          "letter": "B",
+          "text": "The charAt() method takes an int rather than Integer parameter."
+        },
+        {
+          "letter": "C",
+          "text": "The method reference is not compatible with Function."
+        },
+        {
+          "letter": "D",
+          "text": "The method reference syntax is illegal."
+        },
+        {
+          "letter": "E",
+          "text": "There is no charAt() method in the String class."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option D is incorrect as the syntax is fine. Option E is incorrect because there is a\ncharAt() instance method. While option B is correct that the method takes an int\nparameter, autoboxing would take care of conversion for us if there were no other problems. So option B is not the answer either. Option A is not true because there are constructor and instance method references. This method reference could be assigned to\nBiFunction<String, Integer, Character>. However, it cannot be assigned to a\nFunction. This makes option C the correct answer."
+    },
+    {
+      "id": 64,
+      "question": "Given the following independent stream operations, which statements are correct?\n(Choose three.)\nList.of(2,4,6,8)\n.parallel()\n.parallelStream()\n.forEach(System.out::print);\nList.of(2,4,6,8)\n.parallelStream()\n.parallel()\n.forEach(System.out::print);\nList.of(2,4,6,8)\n.parallelStream()\n.parallel().parallel().parallel()\n.forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first stream operation compiles."
+        },
+        {
+          "letter": "B",
+          "text": "The second stream operation compiles."
+        },
+        {
+          "letter": "C",
+          "text": "The third stream operation compiles."
+        },
+        {
+          "letter": "D",
+          "text": "None of the stream operations that compile produce an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "At least one of the stream operations that compiles produces an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output of the stream operations that compile is consistent between executions."
+        }
+      ],
+      "correct": "B,C,D",
+      "explanation": "While the second and third stream operations compile, the first does not. The\nparallel() method should be applied to a stream, while the parallelStream()\nmethod should be applied to a Collection<E>. For this reason, option A is incorrect, and\noptions B and C are correct. Neither the second nor the third stream operation is expected to\nproduce an exception at runtime, making option D correct and option E incorrect. Note that\ncalling parallel() on an already parallel stream is unnecessary but allowed. Finally, the\noutput of the second and third stream operations will vary at runtime since the streams are\nparallel, making option F incorrect."
+    },
+    {
+      "id": 65,
+      "question": "Which method reference can replace the lambda on the first line so the output is the same?\nBiPredicate<String, String> pred = (a, b) -> a.contains(b);\nSystem.out.println(pred.test(\"fish\", \"is\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "a::contains(b)"
+        },
+        {
+          "letter": "B",
+          "text": "a::contains"
+        },
+        {
+          "letter": "C",
+          "text": "String::contains(b)"
+        },
+        {
+          "letter": "D",
+          "text": "String::contains"
+        },
+        {
+          "letter": "E",
+          "text": "The supplied code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Since the code uses a BiPredicate, it takes two parameters in the test() call. The\nfirst is the instance of String and the second is the substring value to check. Since both\nparameters are passed in, we use the type of String in the method reference, making option\nD the correct answer."
+    },
+    {
+      "id": 66,
+      "question": "What is the result of the following?\nimport static java.util.stream.Collectors.*;\nimport java.util.stream.Stream;\npublic class Speaking {\nrecord Ballot(String name, int judgeNumber, int score) {}\npublic static void main(String[] args) {\nStream<Ballot> ballots = Stream.of(\nnew Ballot(\"Mario\", 1, 10),\nnew Ballot(\"Christina\", 1, 8),\nnew Ballot(\"Mario\", 2, 9),\nnew Ballot(\"Christina\", 2, 8)\n);\nvar scores = ballots.collect(\ngroupingBy(Ballot::name,\nsummingInt(Ballot::score)));\nSystem.out.println(scores.get(\"Mario\"));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2"
+        },
+        {
+          "letter": "B",
+          "text": "18"
+        },
+        {
+          "letter": "C",
+          "text": "19"
+        },
+        {
+          "letter": "D",
+          "text": "110"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This code compiles. It creates a stream of Ballot objects. Then it creates a map with the\ncontestant’s name as the key and the sum of the scores as the value. For Mario, this is 10 +\n9, or 19, so option C is correct."
+    },
+    {
+      "id": 67,
+      "question": "Which of the following can fill in the blank to have the code print 44?\nvar stream = Stream.of(\"base\", \"ball\");\nstream. (s -> s.length()).forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only map"
+        },
+        {
+          "letter": "B",
+          "text": "Only mapToInt"
+        },
+        {
+          "letter": "C",
+          "text": "Only mapToObject"
+        },
+        {
+          "letter": "D",
+          "text": "Both map and mapToInt"
+        },
+        {
+          "letter": "E",
+          "text": "Both map and mapToObject"
+        },
+        {
+          "letter": "F",
+          "text": "map, mapToInt, and mapToObject"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The map() method can fill in the blank. The lambda converts a String to an int, and\nJava uses autoboxing to turn that into an Integer. The mapToInt() method can also fill\nin the blank, and Java doesn’t even need to autobox. There isn’t a mapToObject() in the\nstream API. Note there is a similarly named mapToObj() method on IntStream. Since\nboth map() and mapToInt() work here, option D is correct."
+    },
+    {
+      "id": 68,
+      "question": "What does the following do? (Choose two.)\npublic class Player {\ninterface Basket {\nboolean needToAim(double angle);\n}\nstatic void prepare(double angle, Basket t) {\nboolean ready = t.needToAim(angle); // k1\nSystem.out.println(ready);\n}\npublic static void main(String[] args) {\nprepare(45, d -> d > 5 || d < -5); // k2\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If any compiler errors are fixed, it prints true."
+        },
+        {
+          "letter": "B",
+          "text": "If any compiler errors are fixed, it prints false."
+        },
+        {
+          "letter": "C",
+          "text": "It compiles without issue."
+        },
+        {
+          "letter": "D",
+          "text": "It doesn’t compile due to line k1."
+        },
+        {
+          "letter": "E",
+          "text": "It doesn’t compile due to line k2."
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "This is a correct example of code that uses a lambda. The interface has a single abstract\nmethod. The lambda correctly takes one double parameter and returns a boolean. This\nmatches the interface. The lambda syntax is correct. Since it compiles, option C is correct.\nFinally, option A is correct because 45 is greater than 5."
+    },
+    {
+      "id": 69,
+      "question": "Which statements about the following code are correct?\nvar data = List.of(1,2,3);\nint f = data.parallelStream()\n.reduce(1, (a,b) -> a+b, (a,b) -> a+b);\nSystem.out.println(f);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It consistently prints 6."
+        },
+        {
+          "letter": "B",
+          "text": "It consistently prints 7."
+        },
+        {
+          "letter": "C",
+          "text": "It consistently prints another value."
+        },
+        {
+          "letter": "D",
+          "text": "It does not consistently print the same value on every execution."
+        },
+        {
+          "letter": "E",
+          "text": "It compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The reduction is parallel, but since the accumulator and combiner are well-behaved (stateless and associative), the result is consistent, making option D incorrect. The identity is 1,\nwhich is applied to every element, meaning the operation sums the values (1+1), (1+2),\nand (1+3). For this reason, 9 is consistently printed at runtime, making option C correct."
+    },
+    {
+      "id": 70,
+      "question": "What is the result of the following?\n11: var s1 = IntStream.empty();\n12: System.out.print(s1.average().getAsDouble());\n13:\n14: var s2 = IntStream.of(-1,0, 1);\n15: System.out.print(s2.average().getAsDouble());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both statements print 0."
+        },
+        {
+          "letter": "B",
+          "text": "Both statements print 0.0."
+        },
+        {
+          "letter": "C",
+          "text": "The statements print different values."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The average() method returns an OptionalDouble. This interface has a\ngetAsDouble() method rather than a get() method, so the code does compile. However,\nthe stream is empty, so the optional is also empty. When trying to get the value on line 12, the\ncode throws a NoSuchElementException, making option E correct."
+    },
+    {
+      "id": 71,
+      "question": "Which lambdas can replace the method references in this code? (Choose two.)\n11: Stream.of(\"fish\", \"mammal\", \"amphibian\")\n12: .map(String::length)\n13: .findFirst()\n14: .ifPresent(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "x.length() on line 12"
+        },
+        {
+          "letter": "B",
+          "text": "x -> x.length() on line 12"
+        },
+        {
+          "letter": "C",
+          "text": "x -> x::length on line 12"
+        },
+        {
+          "letter": "D",
+          "text": "System.out.println(s) on line 14"
+        },
+        {
+          "letter": "E",
+          "text": "s -> System.out.println(s) on line 14"
+        },
+        {
+          "letter": "F",
+          "text": "s -> System.out::println on line 14"
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "Options A and D are incorrect since they are missing the arrow (->), which makes\nthem lambdas. Options C and F are incorrect, as they try to mix lambdas and method references. This leaves options B and E as the answers."
+    },
+    {
+      "id": 72,
+      "question": "In the image, what collector can turn the stream at left to the Map at right?\nSree\nKen\nKumar\nYe\nDan\ntrue Sree Kumar\nKen Ye Dan\nfalse",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only grouping()"
+        },
+        {
+          "letter": "B",
+          "text": "Only groupingBy()"
+        },
+        {
+          "letter": "C",
+          "text": "Only partitioning()"
+        },
+        {
+          "letter": "D",
+          "text": "Only partitioningBy()"
+        },
+        {
+          "letter": "E",
+          "text": "Both grouping() and partitioning()"
+        },
+        {
+          "letter": "F",
+          "text": "Both groupingBy() and partitioningBy()"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Both Collectors.groupingBy() and Collectors.partitioningBy()\nare useful for turning a stream into a Map. The other two methods do not exist. The\npartitioningBy() method automatically groups using a Boolean key. However,\nwe can also have a Boolean key with groupingBy(). For example, we could write\ns -> s.length() > 3. Therefore, option F is correct."
+    },
+    {
+      "id": 73,
+      "question": "Which expression is compatible with the IntSupplier functional interface?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "() -> 1<10 ? \"3\" : 4"
+        },
+        {
+          "letter": "B",
+          "text": "() -> {return 1/0;}"
+        },
+        {
+          "letter": "C",
+          "text": "() -> return 4"
+        },
+        {
+          "letter": "D",
+          "text": "System.out::print"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Option A is incorrect because \"3\" is a String, which is not compatible with the return\ntype int required for IntSupplier. Option B is the correct answer. Although this\nwill result in a divide-by-zero issue at runtime, the lambda is valid and compatible with\nIntSupplier. Option C is incorrect because the lambda expression is invalid. The return\nstatement is allowed only inside a set of braces ({}). Finally, option D is incorrect. The\nmethod reference is used for Consumer, not Supplier, since it takes a value and does not\nreturn anything."
+    },
+    {
+      "id": 74,
+      "question": "What is the output of the following application?\npackage beach;\nimport java.util.function.*;\npublic class Lifeguard {\nrecord Tourist(double distance) { }\nprivate void saveLife(Predicate<Tourist> canSave,\nTourist tourist) {\nSystem.out.print(canSave.test(tourist)\n? \"Saved\" : \"Too far\");\n}\npublic final static void main(String[] sand) {\nnew Lifeguard().saveLife(s -> s.distance<4,\nnew Tourist(2));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Saved"
+        },
+        {
+          "letter": "B",
+          "text": "Too far"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the main() method."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the saveLife() method."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles without issue, so options C and D are incorrect. The value for distance\nis 2, which based on the lambda for the Predicate will result in a true expression, and\nSaved will be printed, making option A correct."
+    },
+    {
+      "id": 75,
+      "question": "Given a LinkedList<E>, which method would you call to obtain a parallel stream that uses it\nas a data source?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "getParallel()"
+        },
+        {
+          "letter": "B",
+          "text": "parallels()"
+        },
+        {
+          "letter": "C",
+          "text": "getParallelStream()"
+        },
+        {
+          "letter": "D",
+          "text": "parallel()"
+        },
+        {
+          "letter": "E",
+          "text": "parallelStream()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The correct method to obtain a parallel stream from a Collection<E> is\nparallelStream(), making option E correct."
+    },
+    {
+      "id": 76,
+      "question": "How many lines does the following code output?\nimport java.util.*;\npublic class PreSchool {\nrecord Blankie(String color) { }\npublic static void main(String[] args) {\nvar b1 = new Blankie(\"pink\");\nvar b2 = new Blankie(\"blue\");\nvar list = Arrays.asList(b1, b2);\nlist.stream()\n.filter(Blankie::getColor) // line x\n.forEach(System.out::println); // line y\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line x."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line y."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The filter() method takes a Predicate, which requires a boolean return type from\nthe lambda or method reference. The getColor() method returns a String and is not\ncompatible. This causes the code to not compile and option C to be the answer."
+    },
+    {
+      "id": 77,
+      "question": "Which are true statements? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A source cannot return an infinite stream."
+        },
+        {
+          "letter": "B",
+          "text": "A source may return an infinite stream."
+        },
+        {
+          "letter": "C",
+          "text": "A source must return an infinite stream."
+        },
+        {
+          "letter": "D",
+          "text": "An intermediate operation cannot return an infinite stream."
+        },
+        {
+          "letter": "E",
+          "text": "An intermediate operation may return an infinite stream."
+        },
+        {
+          "letter": "F",
+          "text": "An intermediate operation must return an infinite stream."
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "The generate() and iterate() sources return an infinite stream. Further, the\nof() source returns a finite stream, which shows option B is one of the answers. The\nlimit() intermediate operation returns a finite stream. When given an infinite stream, the\nmap() intermediate operation keeps the infinite stream, which means option E is the other\ncorrect answer."
+    },
+    {
+      "id": 78,
+      "question": "How many of these lines have compiler errors?\n14: Consumer<Object> c1 = ArrayList::new;\n15: Consumer<Object> c2 = String::new;\n16: Consumer<Object> c3 = System.out::println;\n17: var c4 = ArrayList::new;\n18: var c5 = String::new;\n19: var c6 = System.out::println;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "Four"
+        },
+        {
+          "letter": "E",
+          "text": "Five"
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles as is."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Like a lambda, method references use type inference. When assigned to a local variable,\nvar cannot be used because there is not enough information to infer the type. Because of\nthis, lines 17, 18, and 19 do not compile. Consumer<Object> takes a single Object\nargument and does not return any data. The ArrayList and String classes do not contain\nconstructors that take an Object, so lines 14 and 15 do not compile either. Line 16 does\nsupport an Object variable, since the System.out.println(Object) method exists.\nFor these reasons, option E is the correct answer."
+    },
+    {
+      "id": 79,
+      "question": "What is the output of the following program?\nvar p = List.of(new StringBuilder(\"hello\"),\nnew StringBuilder(\"goodbye\"));\nvar q = p.parallelStream().reduce(0,\n(w,x) -> w.length() + x.length(),\n(y,z) -> y.length() + z.length());\nSystem.out.print(q);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "12"
+        },
+        {
+          "letter": "C",
+          "text": "14"
+        },
+        {
+          "letter": "D",
+          "text": "One line does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "Two lines do not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Based on the reduction operation, the data types of w, y, and z are Integer, while the\ndata type of x is StringBuilder. Since Integer does not define a length() method,\nboth the accumulator and combiner lambda expressions are invalid, making option E correct."
+    },
+    {
+      "id": 80,
+      "question": "Which are true of this code? (Choose two.)\nvar bools = Stream.of(Boolean.TRUE, null);\nvar map = bools\n.limit(1) // line k\n.collect(Collectors.partitioningBy(b -> b));\nSystem.out.println(map);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It outputs {true=[true]}."
+        },
+        {
+          "letter": "B",
+          "text": "It outputs {false=null, true=[true]}."
+        },
+        {
+          "letter": "C",
+          "text": "It outputs {false=[], true=[true]}."
+        },
+        {
+          "letter": "D",
+          "text": "It outputs {false=[null], true=[true]}."
+        },
+        {
+          "letter": "E",
+          "text": "The output is the same if line k is removed."
+        },
+        {
+          "letter": "F",
+          "text": "The output is different after line k is removed."
+        }
+      ],
+      "correct": "C,F",
+      "explanation": "The first intermediate operation, limit(1), gets rid of the null. The\npartitioningBy() method returns a map with two keys, true and false, regardless\nof whether any elements actually match. If there are no matches, the value is an empty list,\nmaking option C correct. If line k is removed, the code throws a NullPointerException\nsince null is neither true nor false. Therefore, option F is the other answer."
+    },
+    {
+      "id": 81,
+      "question": "What is the output of the following code snippet?\nvar apples = List.of(1, 2);\nvar oranges = List.of(1, 2);\nfinal var count = Stream.of(apples, oranges)\n.flatMapToInt(List::stream)\n.peek(System.out::print)\n.count();\nSystem.out.print(count);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "12124"
+        },
+        {
+          "letter": "B",
+          "text": "11224"
+        },
+        {
+          "letter": "C",
+          "text": "122"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but does not output anything at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code does not compile because flatMapToInt() requires a Function with a\nreturn value of IntStream, not Stream<Integer>, making option D correct."
+    },
+    {
+      "id": 82,
+      "question": "Which functional interface, when filled in the blank, prevents the class from compiling?\npackage morning;\nimport java.util.function.*;\npublic class Sun {\npublic static void dawn( sunrise) {}\npublic static void main(String[] rays) {\ndawn(s -> s+1);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "DoubleUnaryOperator"
+        },
+        {
+          "letter": "B",
+          "text": "Function<String,String>"
+        },
+        {
+          "letter": "C",
+          "text": "IntToLongFunction"
+        },
+        {
+          "letter": "D",
+          "text": "UnaryOperator"
+        },
+        {
+          "letter": "E",
+          "text": "All of the above allow the code to compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "A lambda expression can match multiple functional interfaces. It matches option A,\nwhich takes a double value and returns a double value. Note that the data type of s+1\nis double because one of the operands, in this case s, is double. It also matches option B\nsince the addition (+) operator can be used for String concatenation. Finally, it matches\noption C since the int value s+1 can be implicitly cast to long. On the other hand, the\nlambda expression is not compatible with UnaryOperator without a generic type. When\nUnaryOperator is used without a generic argument, the type is assumed to be Object.\nSince the addition operator is not defined on Object, the code does not compile due to the\nlambda expression body, making option D the correct answer."
+    },
+    {
+      "id": 83,
+      "question": "Which statements about applying forEachOrdered() to a parallel ordered stream instead of\nusing forEach() are correct? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The operation will likely be faster."
+        },
+        {
+          "letter": "B",
+          "text": "The operation will likely be slower."
+        },
+        {
+          "letter": "C",
+          "text": "There is no expected change in performance."
+        },
+        {
+          "letter": "D",
+          "text": "It forces some stream operations in the pipeline to be performed in a serial manner."
+        },
+        {
+          "letter": "E",
+          "text": "It forces all stream operations in the pipeline to be performed in a serial manner."
+        },
+        {
+          "letter": "F",
+          "text": "All stream operations will continue to be performed in a parallel manner."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Applying forEachOrdered() to a parallel stream forces the terminal operation to be\nperformed in a single-threaded, rather than parallel, manner. For this reason, it is likely that\nit will be slower, making option B correct. Intermediate operations can still take advantage of\nparallel processing, since forEachOrdered() is only applied at the end of the pipeline. For\nthis reason, option D is also correct."
+    },
+    {
+      "id": 84,
+      "question": "Which are true of the following? (Choose two.)\nIntegerSummaryStatistics stats = Stream.of(20, 40)\n.mapToInt(i -> i)\n.summaryStatistics();\nlong total = stats.getSum();\nlong count = stats.getCount();\nlong max = stats.getMax();\nSystem.out.println(total + \"-\" + count + \"-\" + max);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The output is 60-0-40."
+        },
+        {
+          "letter": "B",
+          "text": "The output is 60-2-40."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile for one reason."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile for two reasons."
+        },
+        {
+          "letter": "E",
+          "text": "Correct code could be written without summary statistics using a single stream pipeline."
+        },
+        {
+          "letter": "F",
+          "text": "Correct code could not be written without summary statistics using a single stream pipeline."
+        }
+      ],
+      "correct": "C,F",
+      "explanation": "The code does not compile because the class should be IntSummaryStatistics,\nnot IntegerSummaryStatistics. This makes option C correct. The purpose of using the\nsummary statistics class is to avoid multiple trips through the stream pipeline, making option\nF the other answer."
+    },
+    {
+      "id": 85,
+      "question": "What is a difference between lambdas and method references?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only one can take a method parameter."
+        },
+        {
+          "letter": "B",
+          "text": "Only one can reference an effectively final local variable."
+        },
+        {
+          "letter": "C",
+          "text": "Only one can make a method call where the method parameter is the hard-coded number 3."
+        },
+        {
+          "letter": "D",
+          "text": "Only one can use deferred execution."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Both lambda and method references can accept a parameter and be executed later, ruling\nout options A and D. One big difference is with a lambda like: () -> s.charAt(3). The s\nvariable must be final or effectively final variable in both lambdas and method references,\nmaking option B incorrect. However, there isn’t a way to use the hard-coded number in a\nmethod reference. Therefore, option C is a difference and the answer."
+    },
+    {
+      "id": 86,
+      "question": "How many of these print 3?\nSystem.out.println(IntStream.of(1, 2).reduce(0, Integer::sum));\nSystem.out.println(IntStream.of(1, 2).sum());\nSystem.out.println(Stream.of(1, 2).reduce(0, Integer::sum));\nSystem.out.println(Stream.of(1, 2).sum());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "D",
+      "explanation": "All but the last line compile and print 3, making option D the answer. The last line does\nnot compile because addition is not allowed on a generic stream."
+    },
+    {
+      "id": 87,
+      "question": "Which of the four method calls in this code can be removed and have the method still compile and run without error?\nStream.generate(() -> 'a')\n.limit(5)\n.filter(c -> c < 'b')\n.sorted()\n.findFirst()\n.ifPresent(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "filter()"
+        },
+        {
+          "letter": "B",
+          "text": "sorted()"
+        },
+        {
+          "letter": "C",
+          "text": "filter() and sorted()"
+        },
+        {
+          "letter": "D",
+          "text": "filter() and ifPresent()"
+        },
+        {
+          "letter": "E",
+          "text": "filter(), sorted(), and ifPresent()"
+        },
+        {
+          "letter": "F",
+          "text": "filter(), sorted(), findFirst(), and ifPresent()"
+        }
+      ],
+      "correct": "E",
+      "explanation": "A stream pipeline is allowed to have zero or more intermediate operations. This means\nboth filter() and sorted() can be removed. The source and terminal operations are\nrequired, so cannot be removed. Therefore, generate() and findFirst() must stay. The\nifPresent() call is not part of the stream pipeline. It is a method on Optional. Option E\nmatches the methods we can remove."
+    },
+    {
+      "id": 88,
+      "question": "Which are true of the following? (Choose three.)\nimport java.util.*;\npublic class Catch {\npublic static void main(String[] args) {\nOptional opt = Optional.empty();\nvar message = \"\";\ntry {\nmessage = (opt);\n} catch (IllegalArgumentException e) {\nSystem.out.print(\"Caught it\");\n}\nSystem.out.print(message);\n}\nprivate static String x(Optional<String> opt) {\nreturn opt.orElseThrow();\n}\nprivate static String y(Optional<String> opt) {\nreturn opt.orElseThrow(IllegalArgumentException::new);\n}\nprivate static String z(Optional<String> opt) {\nreturn opt.orElse(\"Caught it\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If filling in the blank with method x, the code outputs Caught it."
+        },
+        {
+          "letter": "B",
+          "text": "If filling in the blank with method x, the code prints a stack trace."
+        },
+        {
+          "letter": "C",
+          "text": "If filling in the blank with method y, the code outputs Caught it."
+        },
+        {
+          "letter": "D",
+          "text": "If filling in the blank with method y, the code prints a stack trace."
+        },
+        {
+          "letter": "E",
+          "text": "If filling in the blank with method z, the code outputs Caught it."
+        },
+        {
+          "letter": "F",
+          "text": "If filling in the blank with method z, the code prints a stack trace."
+        }
+      ],
+      "correct": "B,C,E",
+      "explanation": "The orElseThrow() method throws a NoSuchElementException when the\nOptional is empty. Since this exception is not caught, a stack trace is printed. This matches\noption B. The overloaded method that takes a parameter throws the specified exception.\nSince we do catch an IllegalArgumentException, the code prints the message, which is\noption C. Finally, the orElse() method returns the specified string and option E is correct."
+    },
+    {
+      "id": 89,
+      "question": "Which statement is not true of Predicate?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A boolean is returned from the method it declares."
+        },
+        {
+          "letter": "B",
+          "text": "It is an interface."
+        },
+        {
+          "letter": "C",
+          "text": "The method it declares accepts two parameters."
+        },
+        {
+          "letter": "D",
+          "text": "The method it declares is named test()."
+        },
+        {
+          "letter": "E",
+          "text": "All of the above are true."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Predicate<T> is a generic interface with one method. The method signature is\nboolean test(T t). Option C is the answer because the method accepts one parameter\nrather than two."
+    },
+    {
+      "id": 90,
+      "question": "Which functional interfaces do not have the correct number of generic arguments?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiFunction<T,U,R>"
+        },
+        {
+          "letter": "B",
+          "text": "BinaryOperator<T, U>"
+        },
+        {
+          "letter": "C",
+          "text": "DoubleFunction<T,R>"
+        },
+        {
+          "letter": "D",
+          "text": "ToDoubleFunction<T>"
+        },
+        {
+          "letter": "E",
+          "text": "ToIntBiFunction<T,U>"
+        }
+      ],
+      "correct": "B,C",
+      "explanation": "The BiFunction interface takes two different generic values and returns a generic\nvalue, taking a total of three generic arguments. Next, ToDoubleFunction takes\nexactly one generic value and returns a double value, requiring one generic argument. The\nToIntBiFunction interface takes two generic values and returns an int value, for a total\nof two generic arguments. For these reasons, options A, D, and E have the correct number of\ngenerics. BinaryOperator<T> takes two parameters of a generic type and returns the same\ntype. Therefore, only one generic is needed when declaring the type. DoubleFunction<R>\ntakes a double value and returns a generic result, taking exactly one generic argument, not\ntwo. This makes the answer options B and C."
+    },
+    {
+      "id": 91,
+      "question": "How many changes need to be made to the following stream operation to execute a parallel\nreduction?\nvar r = new Random();\nvar data = Stream.generate(() -> String.valueOf(r.nextInt()))\n.limit(50_000_000)\n.collect(Collectors.toSet());\nvar map = data.stream()\n.collect(Collectors.groupingBy(String::length));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None, it is already a parallel reduction."
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "To execute a parallel reduction with the collect() method, the stream or Collector\nmust be unordered, the Collector must be concurrent, and the stream must be parallel.\nSince an unordered Set is used as the data source, the first property is fulfilled. To be a\nparallel reduction, though, Collectors.groupingByConcurrent() should be used\ninstead of Collectors.groupingBy(). In addition, parallelStream() should be\ncalled on the Set, instead of stream(). For these two reasons, option C is correct."
+    },
+    {
+      "id": 92,
+      "question": "What is the output of this code?\nStream.of(\"one\", \"two\", \"bloat\")\n.limit(1)\n.map(String::toUpperCase) // line x\n.sorted()\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "bloat"
+        },
+        {
+          "letter": "B",
+          "text": "BLOAT"
+        },
+        {
+          "letter": "C",
+          "text": "one"
+        },
+        {
+          "letter": "D",
+          "text": "ONE"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to line x."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "This is a correct stream pipeline. The source creates a stream of three elements. The first\noperation makes a stream of one element, one. Then that single element is made uppercase\nand sorted to complete the intermediate operations. Finally, the terminal operation prints\nONE, which corresponds to option D."
+    },
+    {
+      "id": 93,
+      "question": "Which lambda expression can be passed to the magic() method?\npackage show;\nimport java.util.function.*;\npublic class Magician {\npublic void magic(BinaryOperator<Long> lambda) {\nlambda.apply(3L, 7L);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(a) -> a"
+        },
+        {
+          "letter": "B",
+          "text": "(b,w) -> (long)w.intValue()"
+        },
+        {
+          "letter": "C",
+          "text": "(c,m) -> {long c=4; return c+m;}"
+        },
+        {
+          "letter": "D",
+          "text": "(Integer d, Integer r) -> (Long)r+d"
+        },
+        {
+          "letter": "E",
+          "text": "All of these can be passed to the method."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "BinaryOperator<Long> takes two Long arguments and returns a Long value. For this\nreason, option A, which takes one argument, and option D, which takes two Integer values\nthat do not inherit from Long, are both incorrect. Option C is incorrect because the local\nvariable c is re-declared inside the lambda expression, causing the expression to fail to compile. The correct answer is option B because intValue() can be called on a Long object.\nThe result is then be cast to long, which is autoboxed to Long."
+    },
+    {
+      "id": 94,
+      "question": "Fill in the blank: is the only functional interface that does not involve\ndouble, int, or long.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BooleanSupplier"
+        },
+        {
+          "letter": "B",
+          "text": "CharPredicate"
+        },
+        {
+          "letter": "C",
+          "text": "FloatUnaryOperator"
+        },
+        {
+          "letter": "D",
+          "text": "ShortConsumer"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "BooleanSupplier is the only functional interface that does not involve double, int,\nor long, making option A the correct answer. The others do not exist in the java.util\n.function package."
+    },
+    {
+      "id": 95,
+      "question": "Which statements about parallel streams are correct? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A parallel stream is always faster than a serial stream."
+        },
+        {
+          "letter": "B",
+          "text": "The JVM will automatically apply a parallel stream operation to an arbitrary stream in order to boost performance."
+        },
+        {
+          "letter": "C",
+          "text": "A parallel stream synchronizes its operations so that they are atomic."
+        },
+        {
+          "letter": "D",
+          "text": "All streams can be converted to a parallel stream."
+        },
+        {
+          "letter": "E",
+          "text": "If a stream uses a reduction method, the result will be the same regardless of whether the stream is parallel or serial."
+        },
+        {
+          "letter": "F",
+          "text": "Sometimes, a parallel stream will still operate in a single-threaded manner."
+        }
+      ],
+      "correct": "D,F",
+      "explanation": "Certain stream operations, such as limit() or skip(), force a parallel stream\nto behave in a serial manner, so option A is incorrect and option F is correct. Option B\nis also incorrect. The stream must be explicitly set to be parallel in order for the JVM to\napply a parallel operation. Option C is incorrect because parallel stream operations are\nnot synchronized. It is up to the developer to provide synchronization or use a concurrent\ncollection if required. Option D is correct. The BaseStream interface, which all streams\ninherit, includes a parallel() method. Of course, the results of an operation may change\nin the presence of a parallel stream, such as using a problematic (non-associative) accumulator. For this reason, option E is incorrect."
+    },
+    {
+      "id": 96,
+      "question": "What is the output of the following?\nvar s = Stream.of(\"over the river\",\n\"through the woods\",\n\"to grandmother's house we go\");\ns.filter(n -> n.startsWith(\"t\"))\n.sorted(Comparator::reverseOrder)\n.findFirst()\n.ifPresent(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "over the river"
+        },
+        {
+          "letter": "B",
+          "text": "through the woods"
+        },
+        {
+          "letter": "C",
+          "text": "to grandmother's house we go"
+        },
+        {
+          "letter": "D",
+          "text": "The output cannot be determined ahead of time."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The sorted() method allows an optional Comparator to be passed as a reference.\nHowever, Comparator.reverseOrder() does not implement the Comparator interface. It takes zero parameters instead of the required two. Since it cannot be used as a\nmethod reference, the code does not compile, and option E is correct."
+    },
+    {
+      "id": 97,
+      "question": "Which can fill in the blank to have the code print the single digit 9?\nvar stream = LongStream.of(9);\nstream. (p -> p).forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only mapToDouble"
+        },
+        {
+          "letter": "B",
+          "text": "Only mapToInt"
+        },
+        {
+          "letter": "C",
+          "text": "Only mapToLong"
+        },
+        {
+          "letter": "D",
+          "text": "Both mapToDouble and mapToInt"
+        },
+        {
+          "letter": "E",
+          "text": "mapToDouble, mapToInt, and mapToLong"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The mapToDouble() method compiles. However, it converts 9 into 9.0 rather than\nthe single digit 9. The mapToInt() method does not compile because a long cannot be\nconverted into an int without casting. The mapToLong() method is not available on\nLongStream so it does not compile. It is available on DoubleStream, IntStream, and\nStream implementations. Since none of the options outputs the single digit 9, option F is\ncorrect."
+    },
+    {
+      "id": 98,
+      "question": "What is the output of the following application?\npackage savings;\nimport java.util.function.*;\npublic class Bank {\nprivate int savingsInCents;\nprivate static class ConvertToCents {\nstatic DoubleToIntFunction f = p -> p*100;\n}\npublic static void main(String[] currency) {\nBank creditUnion = new Bank();\ncreditUnion.savingsInCents = 100;\ndouble deposit = 1.5;\ncreditUnion.savingsInCents +=\nConvertToCents.f.applyAsInt(deposit); // j1\nSystem.out.print(creditUnion.savingsInCents);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "100"
+        },
+        {
+          "letter": "B",
+          "text": "200"
+        },
+        {
+          "letter": "C",
+          "text": "250"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line j1."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because the lambda expression p -> p*100 is not compatible with the DoubleToIntFunction functional interface. The input to the functional\ninterface is double, meaning p*100 is also double. The functional interface requires a\nreturn value of int, and since double cannot be implicitly cast to int, the code does not\ncompile, making option E the correct answer."
+    },
+    {
+      "id": 99,
+      "question": "Which statements about stateful lambda expressions are correct? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Stateful lambda expressions should be avoided on both serial and parallel streams."
+        },
+        {
+          "letter": "B",
+          "text": "Stateful lambda expressions should be avoided only on serial streams."
+        },
+        {
+          "letter": "C",
+          "text": "Stateful lambda expressions should be avoided only on parallel streams."
+        },
+        {
+          "letter": "D",
+          "text": "One way to avoid modifying a List with a stateful lambda expression is to use a concurrent collection."
+        },
+        {
+          "letter": "E",
+          "text": "One way to avoid modifying a List with a stateful lambda expression is to use a collector that outputs a List."
+        },
+        {
+          "letter": "F",
+          "text": "One way to avoid modifying a List with a stateful lambda expression is to use a synchronized list."
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "Stateful lambda expressions should be avoided with both serial and parallel streams\nbecause they can lead to unintended side effects, making option A correct. A common way\nto remove a stateful lambda expression that modifies a List is to have the stream operation output a new List. For this reason, option E is correct. Options D and F are incorrect\nbecause, while a concurrent or synchronized list may make the stream operation threadsafe, they are still stateful lambda expressions."
+    },
+    {
+      "id": 100,
+      "question": "Which method reference can replace the lambda on the second line so the output is\nthe same?\nvar s = \"fish\";\nPredicate<String> pred = (a) -> s.contains(a);\nSystem.out.println(pred.test(\"fish\", \"is\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "a::contains(b)"
+        },
+        {
+          "letter": "B",
+          "text": "a::contains"
+        },
+        {
+          "letter": "C",
+          "text": "String::contains(b)"
+        },
+        {
+          "letter": "D",
+          "text": "String::contains"
+        },
+        {
+          "letter": "E",
+          "text": "The supplied code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile, making option E the answer. In particular, the call to\ntest() should have one parameter instead of two."
+    },
+    {
+      "id": 101,
+      "question": "What is the best example of lazy evaluation?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The pipeline can execute before seeing all the data."
+        },
+        {
+          "letter": "B",
+          "text": "The pipeline does not begin until the terminal operation is executed."
+        },
+        {
+          "letter": "C",
+          "text": "The pipeline executes all operations as quickly as possible."
+        },
+        {
+          "letter": "D",
+          "text": "The pipeline loses data."
+        },
+        {
+          "letter": "E",
+          "text": "The pipeline takes a nap."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Lazy evaluation delays execution until it is needed. Option B is the only one that\nmatches this requirement. While option A is true, this can be done without lazy evaluation.\nOption C requires parallelization rather than deferred execution. Option D is incorrect, as\nlosing the data is bad. Finally, pipelines are run by the computer, which does not get tired."
+    },
+    {
+      "id": 102,
+      "question": "Which method can be applied to an existing Stream<T> to return a stream with a different generic type?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "distinct()"
+        },
+        {
+          "letter": "B",
+          "text": "iterate()"
+        },
+        {
+          "letter": "C",
+          "text": "peek()"
+        },
+        {
+          "letter": "D",
+          "text": "sorted()"
+        },
+        {
+          "letter": "E",
+          "text": "filter()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The distinct() and filter() methods can reduce the number of elements in\na stream but do not change the generic type, making options A and E incorrect. The\niterate() method is static and creates a new stream. It cannot be applied to an existing stream, making option B incorrect. The peek() and sorted() methods do not alter\nthe generic type of the stream, making options C and D incorrect. For these reasons, option\nF is correct."
+    },
+    {
+      "id": 103,
+      "question": "The functional interface has an apply() method, while the\nfunctional interface has an applyAsDouble() method. (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BiConsumer"
+        },
+        {
+          "letter": "B",
+          "text": "BiFunction"
+        },
+        {
+          "letter": "C",
+          "text": "BiPredicate"
+        },
+        {
+          "letter": "D",
+          "text": "DoubleConsumer"
+        },
+        {
+          "letter": "E",
+          "text": "DoublePredicate"
+        },
+        {
+          "letter": "F",
+          "text": "DoubleUnaryOperator"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "Option B fills in the first blank because BiFunction includes the apply() method.\nDoubleUnaryOperator contains the applyAsDouble() method, making option F\ncorrect. For the exam, pay attention to methods that have a different name for primitives."
+    },
+    {
+      "id": 104,
+      "question": "Which of the following can fill in the blank to have the code print out *?\nStream.generate(() -> \"*\")\n.limit(3)\n.sorted( )\n.distinct()\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(s,t) -> s.length() - t.length()"
+        },
+        {
+          "letter": "B",
+          "text": "String::isEmpty"
+        },
+        {
+          "letter": "C",
+          "text": "Both of these will produce the desired output."
+        },
+        {
+          "letter": "D",
+          "text": "Neither of these will allow the code to compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not complete regardless of what goes in the blank."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The sorted() method takes an optional Comparator as the parameter, which takes\ntwo String parameters and returns an int. Option A is correct because the lambda\nimplements this interface. Option B is incorrect because the method reference doesn’t return\nan int. While generate() starts with an infinite stream, the limit() intermediate operation immediately makes it finite. Finally, the distinct() intermediate operation gives us\none star instead of three."
+    },
+    {
+      "id": 105,
+      "question": "Which statement about functional interfaces and lambda expressions is not true?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A lambda expression may be compatible with multiple functional interfaces."
+        },
+        {
+          "letter": "B",
+          "text": "A lambda expression must be assigned to a functional interface when it is declared."
+        },
+        {
+          "letter": "C",
+          "text": "A method can return a lambda expression in the form of a functional interface instance."
+        },
+        {
+          "letter": "D",
+          "text": "The compiler uses deferred execution to skip determining whether or not a lambda expression compiles."
+        },
+        {
+          "letter": "E",
+          "text": "All of these are true."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A, B, and C are true statements about functional interfaces. A lambda may be\ncompatible with multiple functional interfaces, but it must be assigned to a functional interface when it is declared or passed as a method argument. Also, a method can be created\nwith the return type that matches a functional interface, allowing a lambda expression to be\nreturned. Option D is the correct answer. Deferred execution means the lambda expression\nis not evaluated until runtime, but it is compiled. Compiler errors in the lambda expression\nwill still prevent the code from compiling."
+    },
+    {
+      "id": 106,
+      "question": "Which of the following are output by this code? (Choose two.)\n16: void shareToys() {\n17: record Toy(String name){ }\n18:\n19: var toys = Stream.of(\n20: new Toy(\"Jack in the Box\"),\n21: new Toy(\"Slinky\"),\n22: new Toy(\"Yo-Yo\"),\n23: new Toy(\"Rubik's Cube\"));\n24:\n25: var spliterator = toys.spliterator();\n26: var batch = spliterator.trySplit();\n27:\n28: var more = batch.tryAdvance(x -> {});\n29: System.out.println(more);\n30: spliterator.tryAdvance(System.out::println);\n31: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "Toy[name=Jack in the Box]"
+        },
+        {
+          "letter": "D",
+          "text": "Toy[name=Slinky]"
+        },
+        {
+          "letter": "E",
+          "text": "Toy[name=Rubik's Cube]"
+        },
+        {
+          "letter": "F",
+          "text": "Toy[name=Yo-Yo]"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "Line 25 creates a Spliterator containing four toys. Line 26 splits them into two\nequal groups by removing the first half of the elements and making them available to\nbatch. On line 28, we remove Jack in the Box from batch passing it to a lambda\nthat doesn’t print anything. Line 29 prints true since Slinky is still in batch. Therefore,\noption B is one of the answers. Option F is the other correct answer since Yo-Yo is the first\ntoy in the half that remained in the original spliterator."
+    },
+    {
+      "id": 107,
+      "question": "Which can fill in the blank to have the code print true?\nvar stream = Stream.iterate(1, i -> i);\nvar b = stream. (i -> i > 5);\nSystem.out.println(b);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "anyMatch"
+        },
+        {
+          "letter": "B",
+          "text": "allMatch"
+        },
+        {
+          "letter": "C",
+          "text": "findAny"
+        },
+        {
+          "letter": "D",
+          "text": "findFirst"
+        },
+        {
+          "letter": "E",
+          "text": "noneMatch"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "We can rule out options C and D because they do not take any parameters, so\nthey do not compile. Further, this code generates an infinite stream of the number 1.\nThe Predicate checks if the element is greater than 5. This will never be true. With\nallMatch(), the stream pipeline ends after checking the first element. It doesn’t match,\nso the code prints false. Both anyMatch() and noneMatch() keep checking and don’t\nfind any matches. However, they don’t know if a future stream element will be different, so\nthe code executes infinitely until the process is terminated. Therefore, option F is correct."
+    },
+    {
+      "id": 108,
+      "question": "Given the following class, how many changes need to be made for the code to compile?\n1: package showtimes;\n2: import java.util.*;\n3: import java.util.function.*;\n4: public class FindMovie {\n5: private Function<String> printer;\n6: protected FindMovie() {\n7: printer = s -> {System.out.println(s); return s;}\n8: }\n9: void printMovies(List<String> movies) {\n10: movies.forEach(printer);\n11: }\n12: public static void main(String[] screen) {\n13: List<String> movies = new ArrayList<>();\n14: movies.add(\"Stream 3\");\n15: movies.add(\"Lord of the Recursion\");\n16: movies.add(\"Silence of the Lambdas\");\n17: new FindMovie().printMovies(movies);\n18: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None. The code compiles as is."
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 5 needs to be modified to take a second generic argument since it uses Function.\nSecond, the assignment statement on line 7 is missing an ending semicolon (;). Finally, the\nforEach() method on line 10 needs to be commented out since it requires a Consumer,\nnot a Function. Alternatively, you can change Function to Consumer, add the missing\nsemicolon, and remove the return from the lambda. Since either of these approaches is\nthree changes, option D is the correct answer."
+    },
+    {
+      "id": 109,
+      "question": "Which statements about the findFirst() method applied to a stream are correct?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It always returns the first element on an ordered serial stream."
+        },
+        {
+          "letter": "B",
+          "text": "It may return any element on an ordered serial stream."
+        },
+        {
+          "letter": "C",
+          "text": "It always returns the first element on an unordered stream."
+        },
+        {
+          "letter": "D",
+          "text": "It may return any element on an unordered stream."
+        },
+        {
+          "letter": "E",
+          "text": "It always returns the first element on an ordered parallel stream."
+        },
+        {
+          "letter": "F",
+          "text": "It may return any element on an ordered parallel stream."
+        }
+      ],
+      "correct": "A,D,E",
+      "explanation": "The findFirst() method always returns the first element on an ordered stream,\nregardless if it is serial or parallel, making options A and E correct. Option D is also correct,\nas it is free to return any element if the stream is unordered. Option C is actually invalid, as\nan unordered stream does not have a first element."
+    },
+    {
+      "id": 110,
+      "question": "Which method reference can replace the lambda in the first line of the main() method to\nproduce the same output?\ninterface Marsupial {\nvoid carryInPouch(int size);\n}\npublic class Opossum {\npublic static void main(String[] args) {\nMarsupial mar =\nx -> System.out.println(\"Carrying \" + x);\nmar.carryInPouch(1);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "System:out:println"
+        },
+        {
+          "letter": "B",
+          "text": "System::out:println"
+        },
+        {
+          "letter": "C",
+          "text": "System::out::println"
+        },
+        {
+          "letter": "D",
+          "text": "System.out::println"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The only one of these references to compile is option D. However, the original code\nprints Carrying 1. The version with a method reference would just print 1. Option E is\nthe answer because this is not the same output."
+    },
+    {
+      "id": 111,
+      "question": "What is true of the following code?\n21: Stream<Integer> s1 = Stream.of(8, 2);\n22: Stream<Integer> s2 = Stream.of(10, 20);\n23: s2 = s1.filter(n -> n > 4);\n24: s1 = s2.filter(n -> n < 1);\n25: System.out.println(s1.count());\n26: System.out.println(s2.count());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code runs without error and prints 0."
+        },
+        {
+          "letter": "B",
+          "text": "The code runs without error and prints 1."
+        },
+        {
+          "letter": "C",
+          "text": "The code throws an exception on line 23."
+        },
+        {
+          "letter": "D",
+          "text": "The code throws an exception on line 24."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception on line 25."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception on line 26."
+        }
+      ],
+      "correct": "F",
+      "explanation": "A stream cannot be used again once it is executed. Line 21 creates a stream. Line 22\ncreates a second stream; however, the reference is lost on line 23. Lines 23 and 24 add\nintermediate operations to the stream that was created on line 21. Due to lazy evaluation,\nthey do not run it. Line 25 does execute the stream pipeline and prints 0. However, line\n26 attempts to execute the same stream and throws an IllegalStateException. This\nmatches option F."
+    },
+    {
+      "id": 112,
+      "question": "Which changes can be independently made to this code and have it still compile?\n(Choose three.)\nPredicate<StringBuilder> p =\n(StringBuilder b) -> {return true;};",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Change StringBuilder b to var b."
+        },
+        {
+          "letter": "B",
+          "text": "Change StringBuilder b to b."
+        },
+        {
+          "letter": "C",
+          "text": "Remove StringBuilder b."
+        },
+        {
+          "letter": "D",
+          "text": "Remove ->."
+        },
+        {
+          "letter": "E",
+          "text": "Remove { and ;}."
+        },
+        {
+          "letter": "F",
+          "text": "Remove { return and ;}."
+        }
+      ],
+      "correct": "A,B,F",
+      "explanation": "Options A and B are correct because the type may be var or omitted in a lambda.\nIf there are multiple parameters, all must be handled the same way. Option C is tricky but\nincorrect. While a lambda can have zero parameters, a Predicate cannot. A Predicate\nis defined as a type mapping to a boolean. Option D is clearly incorrect, as -> separates\nthe parts of a lambda. Options E and F are similar. Option E is incorrect because return is\nallowed only when the braces are present. Option F is correct."
+    },
+    {
+      "id": 113,
+      "question": "What does this code output?\nvar babies = Arrays.asList(\"chick\", \"cygnet\", \"duckling\");\nbabies.replaceAll(x -> { var newValue = \"baby\";\nreturn newValue; });\nSystem.out.println(newValue);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "baby"
+        },
+        {
+          "letter": "B",
+          "text": "chick"
+        },
+        {
+          "letter": "C",
+          "text": "cygnet"
+        },
+        {
+          "letter": "D",
+          "text": "duckling"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The newValue variable is locally scoped to the lambda. It is not available outside the\nlambda, so the println() does not compile, and option E is the answer."
+    },
+    {
+      "id": 114,
+      "question": "Which lambda expression cannot be assigned to a DoubleToLongFunction functional\ninterface?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "a -> null==null ? 1 : 2L"
+        },
+        {
+          "letter": "B",
+          "text": "e -> (int)(10.0*e)"
+        },
+        {
+          "letter": "C",
+          "text": "(double m) -> {long p = (long)m; return p;}"
+        },
+        {
+          "letter": "D",
+          "text": "(Double s) -> s.longValue()"
+        },
+        {
+          "letter": "E",
+          "text": "All of these can be assigned."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The DoubleToLongFunction interface takes a double argument and returns a\nlong value. Option A is compatible since the int value 1 can be implicitly cast to long,\nand 2L is already a long. Option B is also compatible, since the double value 10.0*e is\nexplicitly cast to int then implicitly cast to long. Next, option C is compatible because\nan explicit cast of the double to a long value is used. Option D cannot be assigned and is\nthe correct answer. Although the Double class does have a longValue() method, the left\nside of the lambda expression must use the primitive double, not the wrapper Double.\nThis lambda expression violates the signature of the functional interface, since it allows\nDouble values to be sent to the interface, including those that could be null."
+    },
+    {
+      "id": 115,
+      "question": "Given the following code snippet, which values of x will allow the call divide(x) to compile and provide predictable results at runtime? (Choose two.)\nimport java.util.*;\nimport java.util.stream.*;\npublic class Divide {\nstatic float divide(Stream<Float> s) {\nreturn s.reduce(1.0f, (a,b) -> a/b, (a,b) -> a/b);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Set.of(1f,2f,3f,4f).stream()"
+        },
+        {
+          "letter": "B",
+          "text": "List.of(1f,2f,3f,4f).stream()"
+        },
+        {
+          "letter": "C",
+          "text": "List.of(1f,2f,3f,4f).parallel()"
+        },
+        {
+          "letter": "D",
+          "text": "List.of(1f).parallelStream()"
+        },
+        {
+          "letter": "E",
+          "text": "List.of(1f,2f,3f,4f).parallelStream()"
+        },
+        {
+          "letter": "F",
+          "text": "List.of(1f).parallel()"
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Option A is incorrect because sets are unordered. Options C and F are incorrect\nbecause they do not compile. The correct method call is parallelStream(). Option\nE is incorrect because the accumulator and combiner in the divide() method are not\nwell-behaved. In particular, they are not associative and in a parallel stream could produce\nvarious results at runtime. On a serial ordered stream, though, the results will be processed\nsequentially and in a predictable order, making option B correct. Option D is also correct\nbecause the stream has only one element, so the identity is the only thing that will be\napplied."
+    },
+    {
+      "id": 116,
+      "question": "Which of the following produces different output than the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Stream.of(\"eeny\", \"meeny\", \"miny\", \"moe\") .collect(Collectors.partitioningBy(x -> x.charAt(0) == 'e')) .get(false) .stream() .collect(Collectors.groupingBy(String::length)) .get(4) .forEach(System.out::println);"
+        },
+        {
+          "letter": "B",
+          "text": "Stream.of(\"eeny\", \"meeny\", \"miny\", \"moe\") .filter(x -> x.charAt(0) != 'e') .collect(Collectors.groupingBy(String::length)) .get(4) .forEach(System.out::println);"
+        },
+        {
+          "letter": "C",
+          "text": "Stream.of(\"eeny\", \"meeny\", \"miny\", \"moe\") .collect(Collectors.groupingBy(x -> x.charAt(0) == 'e')) .get(false) .stream() .collect(Collectors.partitioningBy(String::length)) .get(4) .forEach(System.out::println);"
+        },
+        {
+          "letter": "D",
+          "text": "Stream.of(\"eeny\", \"meeny\", \"miny\", \"moe\") .collect(Collectors.groupingBy(x -> x.charAt(0) == 'e')) .get(false) .stream() .collect(Collectors.groupingBy(String::length)) .get(4) .forEach(System.out::println);"
+        },
+        {
+          "letter": "E",
+          "text": "Stream.of(\"eeny\", \"meeny\", \"miny\", \"moe\") .collect(Collectors.partitioningBy(x -> x.charAt(0) == 'e')) .get(false) .stream() .collect(Collectors.partitioningBy(x -> x.length() == 4)) .get(true) .forEach(System.out::println);"
+        },
+        {
+          "letter": "F",
+          "text": "They all produce the same output."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Four of the five examples print miny. Option C does not compile. The difference is that\npartitioningBy() requires a Predicate that returns a boolean. When you get a\nquestion like this on the exam, focus on the differences between the provided options."
+    },
+    {
+      "id": 117,
+      "question": "Given an IntStream, which method would you use to obtain an equivalent parallel\nIntStream?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "parallelStream()"
+        },
+        {
+          "letter": "B",
+          "text": "parallels()"
+        },
+        {
+          "letter": "C",
+          "text": "getParallelStream()"
+        },
+        {
+          "letter": "D",
+          "text": "parallel()"
+        },
+        {
+          "letter": "E",
+          "text": "getParallel()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The correct method to obtain an equivalent parallel stream of an existing stream is\nparallel(), which is inherited by any class that implements BaseStream<T>, including\nthe primitive streams. For this reason, option D is correct."
+    },
+    {
+      "id": 118,
+      "question": "Which of these statements is true?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "All lambdas can be converted to method references."
+        },
+        {
+          "letter": "B",
+          "text": "All method references can be converted to lambdas."
+        },
+        {
+          "letter": "C",
+          "text": "Both of these statements are true."
+        },
+        {
+          "letter": "D",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Method references are a shorter way of writing lambdas, and all method references can\nbe expanded to lambdas. However, this does not apply in reverse. Consider the lambda:\n() -> s.charAt(3). The number three cannot be passed to a method reference. Since\nonly method references can always be converted, option B is correct."
+    },
+    {
+      "id": 119,
+      "question": "The following diagram shows input arguments being used in three functional interface\nmethods of unknown type. Which three functional interfaces, inserted in order from left to\nright, could be used to complete the diagram?\n? ? ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "DoubleBinaryOperator ToDoubleBiFunction<Integer,Double> UnaryOperator<Integer>"
+        },
+        {
+          "letter": "B",
+          "text": "BinaryOperator<Double> BiFunction<Integer,Integer,Double> UnaryOperator<Integer>"
+        },
+        {
+          "letter": "C",
+          "text": "Function<Double,Integer> BiFunction<Integer,Integer,Double> DoubleToIntFunction"
+        },
+        {
+          "letter": "D",
+          "text": "BiFunction<Integer,Double,Integer> BinaryOperator<Integer> IntUnaryOperator"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "First, options A and B are incorrect because the second functions for both return\na double or Double value, respectively. Neither of these values can be sent to a\nUnaryOperator<Integer> without an explicit cast. Next, option C is incorrect. The\nfirst functional interface Function<Double,Integer> takes only one input, but the diagram shows two inputs for the first functional interface.\nThat leaves us with option D. The first functional interface BiFunction<\nInteger,Double,Integer> takes an int, which can be implicitly autoboxed to\nInteger, and a Double and returns an Integer. The next functional interface,\nBinaryOperator<Integer>, takes two Integer values and returns an\nInteger value. Finally, this Integer value can be implicitly unboxed and sent to\nIntUnaryOperator, returning an int. Since these behaviors match our diagram, option\nD is the correct answer."
+    },
+    {
+      "id": 120,
+      "question": "Which of the following are functional interfaces in the java.util.function package?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "DoublePredicate"
+        },
+        {
+          "letter": "B",
+          "text": "LongUnaryOperator"
+        },
+        {
+          "letter": "C",
+          "text": "NullOperator"
+        },
+        {
+          "letter": "D",
+          "text": "ShortSupplier"
+        },
+        {
+          "letter": "E",
+          "text": "ToIntBiFunction"
+        },
+        {
+          "letter": "F",
+          "text": "ToStringOperator"
+        }
+      ],
+      "correct": "A,B,E",
+      "explanation": "The DoublePredicate interface takes a double value and returns a\nboolean value. LongUnaryOperator takes a long value and returns a long value.\nToIntBiFunction takes two generic values and returns an int value. For these\nreasons, options A, B, and E are correct. NullOperator, ShortSupplier, and\nToStringOperator are not built-in functional interfaces."
+    },
+    {
+      "id": 121,
+      "question": "What is the output of the following application?\npackage tps;\nimport java.util.*;\nrecord Boss(String name) {\n@Override public String toString() {\nreturn name.toUpperCase();\n}\n}\npublic class Initech {\npublic static void main(String[] reports) {\nfinal List<Boss> bosses = new ArrayList(8);\nbosses.add(new Boss(\"Peter\"));\nbosses.add(new Boss(\"Samir\"));\nbosses.add(new Boss(\"Michael\"));\nbosses.removeIf(s -> s.equalsIgnoreCase(\"samir\"));\nSystem.out.print(bosses);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[PETER, MICHAEL]"
+        },
+        {
+          "letter": "B",
+          "text": "[samir]"
+        },
+        {
+          "letter": "C",
+          "text": "[tps.Boss@4218224c, tps.Boss@815f19a]"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the lambda expression."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The lambda expression is invalid because the input argument is of type Boss, and Boss\ndoes not define an equalsIgnoreCase() method, making option D the correct answer.\nIf the lambda was corrected to use s.toString() instead of s, the code would compile\nand run without issue, printing [PETER, MICHAEL] at runtime and making option A the\ncorrect answer."
+    },
+    {
+      "id": 122,
+      "question": "Which lambda can implement this functional interface?\npublic interface Serval {\nstatic void printName(String name) {}\nboolean cat(String name) { return true; }\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "() -> System.out.println()"
+        },
+        {
+          "letter": "B",
+          "text": "n -> System.out.println(n)"
+        },
+        {
+          "letter": "C",
+          "text": "() -> true"
+        },
+        {
+          "letter": "D",
+          "text": "n -> true"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Serval is not a valid interface let alone a functional interface. The cat() method\nspecifies an implementation, but does not have one of the modifiers that allows a body:\ndefault, private, or static. For this reason, option E is correct."
+    },
+    {
+      "id": 123,
+      "question": "How many of these lines compile?\n17: Comparator<String> c1 = s -> false;\n18: Comparator<String, String> c2 = (s1, s2) -> false;\n19: Predicate<String> p1 = String s -> false;\n20: Predicate<String> p2 = (String s) -> false;\n21: Supplier<String> s1 = String s -> false;\n22: Supplier<String> s2 = (String s) -> false;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "Four"
+        },
+        {
+          "letter": "E",
+          "text": "Five"
+        },
+        {
+          "letter": "F",
+          "text": "Six"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Let’s use the process of elimination here. Comparator returns an int, causing lines\n17 and 18 to not compile. Supplier does not take any parameters further, ruling out\nlines 21 and 22. Predicate at least has the right number of parameters and the correct\nboolean return type. However, line 19 is not correct because the parentheses are missing\naround the type and variable. The parentheses can be omitted only if no type declaration is\npresent, making line 20 correct. Since only one of these lines of code compiles, option A is\nthe answer."
+    },
+    {
+      "id": 124,
+      "question": "What is the output of the following code?\npublic static void main(String[] args) {\nrecord Pet(int age) {}\nrecord PetSummary(long count, int sum) {}\nvar summary = Stream.of(new Pet(2), new Pet(5), new Pet(8))\n.collect(Collectors.teeing(\nCollectors.counting(),\nCollectors.summingInt(Pet::age),\nPetSummary::new));\nSystem.out.println(summary);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "PetSummary[count=1, sum=3]"
+        },
+        {
+          "letter": "B",
+          "text": "PetSummary[count=1, sum=15]"
+        },
+        {
+          "letter": "C",
+          "text": "PetSummary[count=3, sum=3]"
+        },
+        {
+          "letter": "D",
+          "text": "PetSummary[count=3, sum=15]"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to the teeing() call."
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile since records are defined inside a method."
+        },
+        {
+          "letter": "G",
+          "text": "The code does not compile for another reason."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code is correct, ruling out options E, F, and G. There are three Pet records and the\nages add up to 15, making option D the answer."
+    },
+    {
+      "id": 125,
+      "question": "Which method is not available on the IntSummaryStatistics class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "getCountAsLong()"
+        },
+        {
+          "letter": "B",
+          "text": "getMax()"
+        },
+        {
+          "letter": "C",
+          "text": "toString()"
+        },
+        {
+          "letter": "D",
+          "text": "None of these methods are available."
+        },
+        {
+          "letter": "E",
+          "text": "All of these methods are available."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is the answer because there is a getCount() method that returns a long\nrather than a method named getCountAsLong(). Option B is incorrect because there is\nin fact a getMax() method. Option C is incorrect because toString() is declared on\nObject, which means it is inherited by all classes."
+    },
+    {
+      "id": 126,
+      "question": "Which functional interface, when placed in the blank, allows the class to compile?\npackage sleep;\nimport java.util.function.*;\nclass Sheep {}\npublic class Dream {\nint MAX_SHEEP = 10;\nint sheepCount;\npublic void countSheep( backToSleep) {\nwhile(sheepCount<MAX_SHEEP) {\n// TODO: Apply lambda\nsheepCount++;\n}\n}\npublic static void main(String[] dark) {\nnew Dream().countSheep(System.out::println);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer<Sheep>"
+        },
+        {
+          "letter": "B",
+          "text": "Function<Sheep,void>"
+        },
+        {
+          "letter": "C",
+          "text": "Supplier<Sheep>"
+        },
+        {
+          "letter": "D",
+          "text": "UnaryOperator<Sheep>"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The method reference System.out::println takes a single input and does not\nreturn any data. Consumer<Sheep> is compatible with this behavior, making option A the\ncorrect answer. Note that option B does not even compile because void cannot be used as\na generic argument. Similarly, option C does not take a parameter. Option D is also incorrect since System.out::println() does not return any data, and UnaryOperator\nrequires a return value."
+    },
+    {
+      "id": 127,
+      "question": "Given an instance of Stream s and Collection c, which of the following are valid\nways of creating a parallel stream? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "c.parallel()"
+        },
+        {
+          "letter": "B",
+          "text": "c.parallel().parallelStream()"
+        },
+        {
+          "letter": "C",
+          "text": "c.parallelStream()"
+        },
+        {
+          "letter": "D",
+          "text": "s.parallelStream()"
+        },
+        {
+          "letter": "E",
+          "text": "c.parallelStream().parallel()"
+        },
+        {
+          "letter": "F",
+          "text": "s.parallel()"
+        }
+      ],
+      "correct": "C,E,F",
+      "explanation": "The correct method to obtain a parallel stream of an arbitrary stream is\nparallel(), while the correct method to obtain a parallel stream that operates on a\nCollection is parallelStream(). For this reason, options C, E, and F are correct.\nNote that option E retrieves a parallel stream of an already parallel stream, which is\nallowed."
+    },
+    {
+      "id": 128,
+      "question": "Which are true of the following code? (Choose two.)\n3: public static void main(String[] args) {\n4: var prefix = \"r\";\n5: var pets = List.of(\"rabbit\", \"snake\", \"turtle\");\n6:\n7: // prefix = \"t\";\n8: pets.forEach(p -> {\n9: if (p.startsWith(prefix)) System.out.println(p); } );\n10: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "As written, the code prints one line."
+        },
+        {
+          "letter": "B",
+          "text": "As written, the code prints two lines."
+        },
+        {
+          "letter": "C",
+          "text": "As written, the code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "If line 7 is uncommented, the code prints one line."
+        },
+        {
+          "letter": "E",
+          "text": "If line 7 is uncommented, the code prints two lines."
+        },
+        {
+          "letter": "F",
+          "text": "If line 7 is uncommented, the code does not compile."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "The code, as written, prints rabbit since it starts with the letter r. This is option\nA. The prefix variable is effectively final and therefore safe to use in a lambda. Uncommenting line 7 changes the prefix variable, and it is no longer effectively final. Since this\ncauses a compiler error, option F is the other answer."
+    },
+    {
+      "id": 129,
+      "question": "What is the output of the following code snippet?\n10: var pears = List.of(1, 2, 3, 4, 5, 6);\n11: final var sum = pears.stream()\n12: .skip(1)\n13: .limit(3)\n14: .flatMapToInt(s -> IntStream.of(s))\n15: .skip(1)\n16: .boxed()\n17: .mapToDouble(s -> s)\n18: .sum();\n19: System.out.print(sum);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "7.0"
+        },
+        {
+          "letter": "C",
+          "text": "6.0"
+        },
+        {
+          "letter": "D",
+          "text": "7"
+        },
+        {
+          "letter": "E",
+          "text": "Exactly one line contains a compiler error."
+        },
+        {
+          "letter": "F",
+          "text": "More than one line contains a compiler error."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles, so options E and F are incorrect. The stream operations on\nlines 12–13 reduce the stream to the values [2, 3, 4]. Line 14 then converts the\nStream<Integer> to an IntStream. On line 15, the first element of the IntStream\nis skipped, so the stream has only two elements [3, 4]. On line 16–17, the IntStream\nis converted to a Stream<Integer>, then a DoubleStream. Finally, on lines 18–19 the\nsum of the remaining elements is calculated and printed. Since 7.0 is printed, option B is\ncorrect."
+    },
+    {
+      "id": 130,
+      "question": "What is the minimum number of intermediate operations that can fill in each box\n[M, N, O, P] to have the pipeline complete given any intermediate operation?\nSource Intermediate operation Terminal operation\nFinite Stream Source M count()\nFinite Stream Source N findFirst()\nInfinite Stream Source O count()\nInfinite Stream Source P findFirst()",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[0, 0, 0, 1]"
+        },
+        {
+          "letter": "B",
+          "text": "[0, 0, 1, 0]"
+        },
+        {
+          "letter": "C",
+          "text": "[0, 0, 1, 1]"
+        },
+        {
+          "letter": "D",
+          "text": "[1, 1, 0, 1]"
+        },
+        {
+          "letter": "E",
+          "text": "[1, 1 ,1, 0]"
+        },
+        {
+          "letter": "F",
+          "text": "[1, 1, 1, 1]"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Since the first two rows are already finite streams, boxes M and N do not require an\nintermediate operation to complete, so options D, E, and F are incorrect. Box P does not\nneed an intermediate operation either since findFirst() will cause the stream to terminate, making options A and C incorrect. Box O does need to be filled in with code such as\nlimit(1). This allows the code to terminate, and option B is the answer."
+    },
+    {
+      "id": 131,
+      "question": "Given the table in the previous question, how many of the boxes in the Intermediate operation column will have the pipeline complete regardless of which intermediate operation is\nplaced in the box?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Since the first two rows are already finite streams, boxes M and N meet these criteria.\nThe last two rows can be filled in with code such as sorted(), which does not terminate for an infinite stream. Therefore, neither allows the code to terminate, and option C is\nthe answer."
+    },
+    {
+      "id": 132,
+      "question": "Which of the following declares a Comparator where all objects are treated as equal?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Comparator<Character> comp = (c1) -> 0;"
+        },
+        {
+          "letter": "B",
+          "text": "Comparator<Character> comp = (c1) -> {0};"
+        },
+        {
+          "letter": "C",
+          "text": "Comparator<Character> comp = (c1, c2) -> 0;"
+        },
+        {
+          "letter": "D",
+          "text": "Comparator<Character> comp = (c1, c2) -> {0};"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "A Comparator takes two parameters, so options A and B are incorrect. Option D\ndoesn’t compile. When returning a value using braces, a return keyword and semicolon\nare required. Option C is a correct implementation."
+    },
+    {
+      "id": 133,
+      "question": "Which can fill in the blank so this code outputs true?\nimport java.util.function.*;\nimport java.util.stream.*;\npublic class HideAndSeek {\npublic static void main(String[] args) {\nvar hide = Stream.of(true, false, true);\nvar found = hide.filter(b -> b). ();\nSystem.out.println(found);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only anyMatch"
+        },
+        {
+          "letter": "B",
+          "text": "Only allMatch"
+        },
+        {
+          "letter": "C",
+          "text": "Both anyMatch and allMatch"
+        },
+        {
+          "letter": "D",
+          "text": "Only noneMatch"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile with any of these options."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The anyMatch(), allMatch(), and noneMatch() methods take a Predicate as a\nparameter. This code does not compile because the parameter is missing, making option E\ncorrect."
+    },
+    {
+      "id": 134,
+      "question": "Which method reference can replace the lambda on the second line so the output is\nthe same?\nvar s = \"fish\";\nPredicate<String> pred = (a) -> s.contains(a);\nSystem.out.println(pred.test(\"is\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "s::contains(a)"
+        },
+        {
+          "letter": "B",
+          "text": "s::contains"
+        },
+        {
+          "letter": "C",
+          "text": "String::contains(a)"
+        },
+        {
+          "letter": "D",
+          "text": "String::contains"
+        },
+        {
+          "letter": "E",
+          "text": "The supplied code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Since the lambda references an effectively final variable, the method reference needs to\nas well. Option B is a correct method reference that meets this criteria. Options A and C\nuse syntax that is not supported with method references. Option D is incorrect because the\nPredicate passes only one value at runtime, so either the instance variable or method\nparameter would need to be supplied."
+    },
+    {
+      "id": 135,
+      "question": "How many of these lines compile?\nPredicate<String> pred1 = (final String s) -> s.isEmpty();\nPredicate<String> pred2 = (final s) -> s.isEmpty();\nPredicate<String> pred3 = (final var s) -> s.isEmpty();\nPredicate<String> pred4 = (String s) -> s.isEmpty();\nPredicate<String> pred5 = (var s) -> s.isEmpty();",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        },
+        {
+          "letter": "F",
+          "text": "5"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Both pred4 and pred5 are valid, as they use a type or var without final. Both\npred1 and pred3 are valid because the final modifier can only be used if a type or var\nis specified. Since pred2 is missing a data type and is the only line that does not compile,\noption E is the answer."
+    },
+    {
+      "id": 136,
+      "question": "What is the output of the following application?\npackage pet;\nimport java.util.*;\nimport java.util.function.*;\npublic class DogSearch {\nvoid reduceList(List<String> names,\nPredicate<String> tester) {\nnames.removeIf(tester);\n}\npublic static void main(String[] treats) {\nint MAX_LENGTH = 2;\nDogSearch search = new DogSearch();\nList<String> names = new ArrayList<>();\nnames.add(\"Lassie\");\nnames.add(\"Benji\");\nnames.add(\"Brian\");\nsearch.reduceList(names, d -> d.length()>MAX_LENGTH);\nSystem.out.print(names.size());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the lambda expression."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        }
+      ],
+      "correct": "A",
+      "explanation": "This code does compile, making options D and E incorrect. It correctly uses a\nPredicate<String> and removes all the elements from names and prints out 0. Therefore, option A is the answer."
+    },
+    {
+      "id": 137,
+      "question": "What is the output of the following program?\nvar p = List.of(1,3,5);\nvar q = p.parallelStream().reduce(0f,\n(w,x) -> w.floatValue() + x.floatValue(),\n(y,z) -> y.floatValue() + z.floatValue());\nSystem.out.println(q);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0.0"
+        },
+        {
+          "letter": "B",
+          "text": "9.0"
+        },
+        {
+          "letter": "C",
+          "text": "11.0"
+        },
+        {
+          "letter": "D",
+          "text": "One line does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "Two lines do not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Since it’s not a primitive stream, the underlying type is Stream<Integer>, which\nmeans the data type of x is Integer. On the other hand, the data type of w, y, and z is\nFloat. Because Integer and Float both define a floatValue() method, all of the\nlines compile. The code snippet prints 9.0 at runtime, making option B correct."
+    },
+    {
+      "id": 138,
+      "question": "What does the following output?\nSet<String> set = new HashSet<>();\nset.add(\"tire-\");\nList<String> list = new LinkedList<>();\nDeque<String> queue = new ArrayDeque<>();\nqueue.push(\"wheel-\");\nStream.of(set, list, queue)\n.flatMap(x -> x.stream())\n.forEach(System.out::print);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[tire-][wheel-]"
+        },
+        {
+          "letter": "B",
+          "text": "tire-wheelC. None of the above."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The flatMap() method is used to turn a stream of collections into a one-dimensional\nstream. This means it gets rid of the empty list and flattens the other two. Option A is\nincorrect because this is the output you’d get using the regular map() method. Option B is\ncorrect because it flattens the elements. Notice how it doesn’t matter that all three elements\nare different types of Collection implementations."
+    },
+    {
+      "id": 139,
+      "question": "How many lines does this code output?\n1: import java.util.*;\n2: public class PrintNegative {\n3: public static void main(String[] args) {\n4: List<String> list = new ArrayList<>();\n5: list.add(\"-5\");\n6: list.add(\"0\");\n7: list.add(\"5\");\n8: list.removeIf(e -> e < 0);\n9: list.forEach(x -> System.out.println(x));\n10: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "None. The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None. The code throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Pay attention to the data types. The forEach() method is looping through a list of\nobjects. This is a good example of using a lambda with list. By contrast, the Predicate\npassed to removeIf() uses an Integer. Since Integer is not compatible with String,\nline 8 does not compile and option D is the answer."
+    },
+    {
+      "id": 140,
+      "question": "How many of the following lines compile?\n8: IntFunction<Integer> f1 =(Integer f) -> f;\n9: IntFunction<Integer> f2 = (v) -> null;\n10: IntFunction<Integer> f3 = s -> s;\n11: IntFunction<Integer> f4 = () -> 5;\n12: IntFunction<Integer> f5 = () -> Integer.valueOf(9);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "C",
+      "explanation": "To start with, IntFunction<Integer> takes an int value and returns an Integer.\nLine 8 takes an Integer instead of int as the input argument and is therefore not compatible. Line 9 is compatible, since the return type null can be used as an Integer return\ntype. Line 10 is also valid. An int can be autoboxed to Integer. Lines 11 and 12 do not\ncompile because they do not take a parameter. Since only two statements compile, option C\nis the correct answer."
+    },
+    {
+      "id": 141,
+      "question": "Which statements about using a parallel stream instead of a serial stream are correct?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The number of threads used is guaranteed to be higher."
+        },
+        {
+          "letter": "B",
+          "text": "It requires a stateful lambda expression."
+        },
+        {
+          "letter": "C",
+          "text": "The stream operation may execute faster."
+        },
+        {
+          "letter": "D",
+          "text": "The stream operation may execute slower."
+        },
+        {
+          "letter": "E",
+          "text": "The result of the stream operation will be the same."
+        },
+        {
+          "letter": "F",
+          "text": "The result of the stream operation may change."
+        }
+      ],
+      "correct": "C,D,F",
+      "explanation": "Using a parallel stream does not guarantee concurrent execution or a specific\nnumber of threads, making option A incorrect. Option B is also incorrect, as stateful\nlambda expressions should be avoided with all streams, serial or parallel. In fact, if a stateful lambda expression is used, the result of the stream may change, making option F correct\nand option E incorrect. Option C is correct, as a parallel stream may improve performance.\nOption D is also correct, though, as a parallel stream may add extra overhead to a stream\nthat is forced into a serial operation, such as when the findFirst() method is called."
+    },
+    {
+      "id": 142,
+      "question": "Which is a possible output of the following code snippet?\nvar landmarks = Set.of(\"Eiffel Tower\", \"Statue of Liberty\",\n\"Stonehenge\", \"Mount Fuji\");\nvar result = landmarks\n.stream()\n.collect(Collectors.partitioningBy(b -> b.contains(\" \")))\n.entrySet()\n.stream()\n.flatMap(t -> t.getValue().stream())\n.collect(Collectors.groupingBy(s -> !s.startsWith(\"S\")));\nSystem.out.print(result);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "{false=[Stonehenge, Statue of Liberty], true=[Eiffel Tower, Mount Fuji]}"
+        },
+        {
+          "letter": "B",
+          "text": "{false=[Stonehenge], true=[Mount Fuji, Eiffel Tower, Statue of Liberty]}"
+        },
+        {
+          "letter": "C",
+          "text": "{false=[Mount Fuji, Stonehenge], true=[Eiffel Tower, Statue of Liberty]}"
+        },
+        {
+          "letter": "D",
+          "text": "Exactly one line contains a compiler error."
+        },
+        {
+          "letter": "E",
+          "text": "More than one line contains a compiler error."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles, so options D and E are incorrect. The code first splits the stream\ninto a Map<Boolean, List<String> based on whether the landmark contains a space.\nUsing the flatMap() method, it then takes the List<String> values of the Map and\nreforms them as a Stream<String>. This new stream is similar to the original stream,\nalthough with elements in a possibly different order. Finally, the groupingBy() collector\nsplits the stream based on whether it does not start with an \"S\". Since Set and Map were\nused, the order may vary, but option A is one possible output."
+    },
+    {
+      "id": 143,
+      "question": "Which can independently fill in the blank to output No dessert today?\nimport java.util.*;\npublic class Dessert {\npublic static void main(String[] yum) {\neatDessert(Optional.of(\"Cupcake\"));\n}\nprivate static void eatDessert(Optional<String> opt) {\nSystem.out.println(opt. );\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "get(\"No dessert today\")"
+        },
+        {
+          "letter": "B",
+          "text": "orElse(\"No dessert today\")"
+        },
+        {
+          "letter": "C",
+          "text": "orElseGet(() -> \"No dessert today\")"
+        },
+        {
+          "letter": "D",
+          "text": "orElseThrow()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Option A doesn’t compile because the get() method on Optional doesn’t take any\nparameters. Options B, C, and D do compile but print Cupcake since the Optional is not\nempty. Therefore, option E is correct."
+    },
+    {
+      "id": 144,
+      "question": "What is the output of this code?\nList.of(\"one\", \"two\", \"bloat\")\n.limit(1)\n.map(String::toUpperCase) // line x\n.sorted()\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "bloat"
+        },
+        {
+          "letter": "B",
+          "text": "BLOAT"
+        },
+        {
+          "letter": "C",
+          "text": "one"
+        },
+        {
+          "letter": "D",
+          "text": "ONE"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to line x."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "There is no source in this attempt at a stream pipeline. While a Collection does have\nsome of the same methods as a stream, such as forEach(), the limit() method is not\none of them, so the code as written causes a compile error. Since this error is not on line x,\noption F is the answer."
+    },
+    {
+      "id": 145,
+      "question": "Which is one of the lines output by this code?\n10: var list = new ArrayList<Integer>();\n11: list.add(10);\n12: list.add(9);\n13: list.add(8);\n14:\n15: var num = 9;\n16: list.removeIf(x -> {int keep = num; return x == keep;});\n17: System.out.println(list);\n18:\n19: num = 8;\n20: list.removeIf(x -> {int keep = num; return x == keep;});\n21: System.out.println(list);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[]"
+        },
+        {
+          "letter": "B",
+          "text": "[8]"
+        },
+        {
+          "letter": "C",
+          "text": "[9]"
+        },
+        {
+          "letter": "D",
+          "text": "[10]"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The num variable is not effectively final because the value changes. This means it cannot\nbe used in a lambda and the code does not compile, which is option E."
+    },
+    {
+      "id": 146,
+      "question": "What is the output of the following?\nimport java.util.*;\nimport java.util.stream.*;\npublic class Compete {\npublic static void main(String[] args) {\nStream<Integer> is = Stream.of(8, 6, 9);\nComparator<Integer> c = (a, b) -> a - b;\nis.sort(c).forEach(System.out::print);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "689"
+        },
+        {
+          "letter": "B",
+          "text": "869"
+        },
+        {
+          "letter": "C",
+          "text": "986"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "There is not a stream pipeline method called sort(). There is one called sorted().\nSince the code does not compile, option D is correct. If sorted() were used, then the\noutput would be 689."
+    },
+    {
+      "id": 147,
+      "question": "What can a lambda implement?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Any functional interface"
+        },
+        {
+          "letter": "B",
+          "text": "Any interface"
+        },
+        {
+          "letter": "C",
+          "text": "Only functional interfaces in the JDK"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "A lambda can only implement an interface with a single abstract method, ruling out\noption B. Developers can write their own functional interfaces, making option A correct."
+    },
+    {
+      "id": 148,
+      "question": "What is the output of the following application?\npackage lot;\nimport java.util.function.*;\npublic class Warehouse {\nprivate int quantity = 40;\nprivate final BooleanSupplier stock;\n{\nstock = () -> quantity>0;\n}\npublic void checkInventory() {\nif(stock.get())\nSystem.out.print(\"Plenty!\");\nelse\nSystem.out.print(\"On Backorder!\");\n}\npublic static void main(String[] widget) {\nfinal Warehouse w13 = new Warehouse();\nw13.checkInventory();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Plenty!"
+        },
+        {
+          "letter": "B",
+          "text": "On Backorder!"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the checkInventory() method."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile for a different reason."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The primitive Supplier functional interfaces, such as BooleanSupplier and\nLongSupplier, do not have a get() method. Instead, they have methods such as\ngetAsBoolean() and getAsLong(), respectively. For this reason, the first line of the\ncheckInventory() method does not compile, making option C the correct answer."
+    },
+    {
+      "id": 149,
+      "question": "What is a possible output of the following application?\nimport java.util.*;\nimport java.util.stream.*;\npublic record Thermometer(String feelsLike, double temp) {\n@Override public String toString() { return feelsLike; }\npublic static void main(String[] season) {\nvar readings = List.of(new Thermometer(\"HOT!\",72),\nnew Thermometer(\"Too Cold!\",0),\nnew Thermometer(\"Just right!\",72));\nreadings\n.parallelStream() // k1\n.collect(Collectors.groupingByConcurrent(\nThermometer::temp)) // k2\n.forEach(System.out::println); // k3\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "{0.0=[Cold!], 72.0=[HOT!, Just right!]}"
+        },
+        {
+          "letter": "B",
+          "text": "{0.0=[Cold!], 72.0=[Just right!] , 72.0=[HOT!]}"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line k1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line k2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile because of line k3."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because the collector returns a ConcurrentMap, which\nrequires a BiConsumer in the forEach() method. For this reason, option E is correct."
+    },
+    {
+      "id": 150,
+      "question": "What is the output of the following code?\nvar odds = IntStream.iterate(1, a -> a+2);\nvar evens = IntStream.iterate(2, a -> a+2);\nvar sum = Stream.concat(odds, evens).limit(3).sum();\nSystem.out.println(sum);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "9"
+        },
+        {
+          "letter": "C",
+          "text": "12"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The program does not terminate."
+        }
+      ],
+      "correct": "D",
+      "explanation": "When calling Stream.concat(), we need to pass Stream references, not\nIntStream. The code does not compile as written and option D is the answer."
+    }
+  ]
+}

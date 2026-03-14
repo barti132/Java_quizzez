@@ -1,0 +1,1238 @@
+{
+  "chapter": "Chapter 2 - Controlling Program Flow",
+  "totalQuestions": 40,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which statements are true of the following code? (Choose two.)\npublic class Penguins {\npublic static void main(String[] args) {\nvar pen = new Penguins();\npen.length(\"penguins\");\npen.length(5);\npen.length(new Object());\n}\npublic void length(Object obj) {\nif (obj instanceof String x)\nSystem.out.println(x.length());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles as is."
+        },
+        {
+          "letter": "B",
+          "text": "One line causes compiler errors."
+        },
+        {
+          "letter": "C",
+          "text": "Two lines cause compiler errors."
+        },
+        {
+          "letter": "D",
+          "text": "If any lines that do not compile are removed, this code does not print anything."
+        },
+        {
+          "letter": "E",
+          "text": "If any lines that do not compile are removed, this code prints one line."
+        },
+        {
+          "letter": "F",
+          "text": "If any lines that do not compile are removed, this code prints two lines."
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "The code compiles fine, making option A correct. Note that the length() method\ntakes advantage of pattern matching to avoid a cast. Only the call with \"penguins\" has a\nmatching type because it is a String. It enters the if statement, giving us option E."
+    },
+    {
+      "id": 2,
+      "question": "Variables declared as which of the following are never permitted in a switch statement?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "var"
+        },
+        {
+          "letter": "B",
+          "text": "double"
+        },
+        {
+          "letter": "C",
+          "text": "int"
+        },
+        {
+          "letter": "D",
+          "text": "String"
+        },
+        {
+          "letter": "E",
+          "text": "char"
+        },
+        {
+          "letter": "F",
+          "text": "Object"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "A switch statement supports the primitive types byte, short, char, and int and\nthe wrapper classes Character, Byte, Short, and Integer. It also supports String\nand enumerated types. Finally, it permits var if it can be resolved to one of the previous\ntypes. Floating-point types like float and double are not supported; therefore, option B\nis correct. Object is also not supported since it could include any class, making option F\ncorrect as well."
+    },
+    {
+      "id": 3,
+      "question": "When can you omit the default condition in a switch expression? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "When all the values of an enum are covered"
+        },
+        {
+          "letter": "B",
+          "text": "When no value is returned"
+        },
+        {
+          "letter": "C",
+          "text": "When the type is a Boolean"
+        },
+        {
+          "letter": "D",
+          "text": "When the type is a Byte"
+        },
+        {
+          "letter": "E",
+          "text": "When the type is a Boolean or Byte"
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "Option A is correct because the compiler knows all possible values have been\naddressed. Option B is also correct because switch expressions only need to be complete if\nreturning a value. We can rule out options C and E because a Boolean is not allowed in a\nswitch. We can further rule out option D because Byte does not allow this shortcut."
+    },
+    {
+      "id": 4,
+      "question": "What happens when running the following code snippet?\n3: var gas = true;\n4: do (\n5: System.out.println(\"helium\");\n6: gas = gas ^ gas;\n7: gas = !gas;\n8: ) while (!gas);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It completes successfully without output."
+        },
+        {
+          "letter": "B",
+          "text": "It outputs helium once."
+        },
+        {
+          "letter": "C",
+          "text": "It outputs helium repeatedly."
+        },
+        {
+          "letter": "D",
+          "text": "Line 6 does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because parentheses, (), are used instead of braces, {}, making option E the correct answer."
+    },
+    {
+      "id": 5,
+      "question": "What is output by the following?\n10: int m = 0, n = 0;\n11: while (m < 5) {\n12: n++;\n13: if (m == 3)\n14: continue;\n15:\n16: switch (m) {\n17: case 0:\n18: case 1:\n19: n++;\n20: default:\n21: n++;\n22: }\n23: m++;\n24: }\n25: System.out.println(m + \" \" + n);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "3 10"
+        },
+        {
+          "letter": "B",
+          "text": "3 12"
+        },
+        {
+          "letter": "C",
+          "text": "5 10"
+        },
+        {
+          "letter": "D",
+          "text": "5 12"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "When getting this type of question, the best approach is to write down the values of\nthe variables. Both start out as 0 on line 10. On the first iteration of the loop, n becomes\n1, while m remains 0, so the clause in the if statement doesn’t run. In the switch statement, the value of m remains 0, so it matches the first case. Since there is no break, the\ndefault block is also executed, and n is incremented twice and is now 3. Finally, m is incremented to 1.\nOn the second iteration of the loop, m goes from 1 to 2, and n goes from 3 to 6. On the third\niteration, m goes from 2 to 3, and n goes from 6 to 8. On the fourth iteration m is 3 and the\ncontinue is executed with only n increasing in value by 1. This pattern continues with\nthe loop never terminating, while n continues to increase by 1. Since the execution does not\ncomplete, option F is the correct answer."
+    },
+    {
+      "id": 6,
+      "question": "What is true of the following program?\nenum Admission { ADULT, SENIOR, CHILD}\npublic class Movie {\npublic static void main(String[] args) {\nvar price = switch (Admission.CHILD) {\ncase ADULT -> 12.50;\ncase SENIOR, CHILD -> 10;\n};\nSystem.out.println(price);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile because the return types of the case branches are different."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because one of the case branches has two values."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because the value being evaluated in the switch is hard coded."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because there are too many semicolons."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles and prints 10."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles and prints 10.0."
+        }
+      ],
+      "correct": "F",
+      "explanation": "We can eliminate options B and C, as both of these are legal. Also, semicolon usage is fine\nwithin the switch expression, so option D is incorrect. The switch expression returns\nvalues of two different types, double and int, but since they both can be implicitly cast to\nthe same type, double, option A is incorrect. This makes option F the answer."
+    },
+    {
+      "id": 7,
+      "question": "Given the following, which can fill in the blank and allow the code to compile?\n(Choose three.)\nvar quest = ;\nfor(var zelda : quest) {\nSystem.out.print(zelda);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "3"
+        },
+        {
+          "letter": "B",
+          "text": "new int[] {3}"
+        },
+        {
+          "letter": "C",
+          "text": "new StringBuilder(\"3\")"
+        },
+        {
+          "letter": "D",
+          "text": "List.of(3)"
+        },
+        {
+          "letter": "E",
+          "text": "new String[3]"
+        },
+        {
+          "letter": "F",
+          "text": "\"Link\""
+        }
+      ],
+      "correct": "B,D,E",
+      "explanation": "A for-each loop accepts arrays and classes that implement java.lang.Iterable,\nsuch as List. For these reasons, options B, D, and E are correct. Option A is incorrect\nbecause it is a primitive value. Options C and F are incorrect because StringBuilder and\nString do not implement Iterable."
+    },
+    {
+      "id": 8,
+      "question": "Which of the following rules about adding a default branch to this switch statement are\ncorrect? (Choose two.)\nswitch (numPenguins) {\ncase 0 : System.out.println(\"no penguins\");\ncase 1 : System.out.println(\"one penguin\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "This switch statement is required to declare a default statement."
+        },
+        {
+          "letter": "B",
+          "text": "A default statement must be placed after all case statements."
+        },
+        {
+          "letter": "C",
+          "text": "A default statement can be placed between any case statements."
+        },
+        {
+          "letter": "D",
+          "text": "Unlike a case statement, a default statement does not take a parameter value."
+        },
+        {
+          "letter": "E",
+          "text": "This switch statement can contain more than one default statement."
+        },
+        {
+          "letter": "F",
+          "text": "A default statement can be used only when at least one case statement is present."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "A default statement inside a switch statement is optional and can be placed in any\norder within the switch’s case statements, making options A and B incorrect and option\nC correct. Option D is also correct because a default statement does not take a parameter\nvalue. Options E and F are incorrect rules about switch statements."
+    },
+    {
+      "id": 9,
+      "question": "What does the following method output?\nvoid dance() {\nvar singer = 0;\nwhile (singer)\nSystem.out.print(singer++);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The method does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The method completes with no output."
+        },
+        {
+          "letter": "C",
+          "text": "The method prints 0 and then terminates."
+        },
+        {
+          "letter": "D",
+          "text": "The method enters an infinite loop."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "A while loop requires a boolean condition. While singer is a variable, it is not a\nboolean. Therefore, the code does not compile, and option A is correct."
+    },
+    {
+      "id": 10,
+      "question": "How many lines contain compiler errors?\n22: int magicNumber = 7;\n23: var ok = switch (magicNumber) {\n24: case 7 -> true; break;\n25: case 9 -> { yield true }\n26: case 11 -> yield true;\n27: case 13 : {yield true;}\n28: default -> false;\n29: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Line 24 is incorrect because break is not permitted here. Line 25 is incorrect because\nthere should be a semicolon (;) after true. Line 26 does not compile as yield needs to be\nin a block. Line 27 is not allowed because you can’t mix switch expression and switch\nstatement syntax. Line 28 is the only branch that is correct. Finally, line 29 is missing the\nclosing semicolon. This gives us five compiler errors and option F."
+    },
+    {
+      "id": 11,
+      "question": "Which are true statements comparing for-each and traditional for loops? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both can iterate through an array starting with the first element."
+        },
+        {
+          "letter": "B",
+          "text": "Only the for-each loop can iterate through an array starting with the first element."
+        },
+        {
+          "letter": "C",
+          "text": "Only the traditional for loop can iterate through an array starting with the first element."
+        },
+        {
+          "letter": "D",
+          "text": "Both can iterate through an array starting from the end."
+        },
+        {
+          "letter": "E",
+          "text": "Only the for-each loop can iterate through an array starting from the end."
+        },
+        {
+          "letter": "F",
+          "text": "Only the traditional for loop can iterate through an array starting from the end."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "A traditional for loop gives you full control over the order of iteration. This means\nyou can iterate through the array backward or forward. By contrast, with a for-each loop,\nthe iteration order is determined for you. With an array, this means starting with index 0.\nOptions A and F match this scenario."
+    },
+    {
+      "id": 12,
+      "question": "What statements are true about filling in the blank and calling with zero(0)? (Choose two.)\npublic void zero(Object number) {\nif (number instanceof Math.abs(n) == 0)\nSystem.out.println(\"zero\");\nelse\nSystem.out.println(\"non-zero\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "When filling in the blank with Integer n ||, the code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "When filling in the blank with Integer n ||, the output is zero."
+        },
+        {
+          "letter": "C",
+          "text": "When filling in the blank with Integer n ||, the output is non-zero."
+        },
+        {
+          "letter": "D",
+          "text": "When filling in the blank with int n &&, the code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "When filling in the blank with int n &&, the output is zero."
+        },
+        {
+          "letter": "F",
+          "text": "When filling in the blank with int n &&, the output is non-zero."
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "Since pattern matching uses flow scoping and n cannot be guaranteed to exist,\nthe statement with || does not compile, making option A one answer. The other answer\nis option D, since primitives cannot be used with instanceof. If the blank contained\nInteger n &&, the output would be zero."
+    },
+    {
+      "id": 13,
+      "question": "What is the output of the following application?\npackage planning;\npublic class ThePlan {\npublic static void main(String[] input) {\nvar plan = 1;\nplan = plan++ + --plan;\nif(plan==1) {\nSystem.out.print(\"Plan A\");\n} else { if(plan==2) System.out.print(\"Plan B\"); }\n} else System.out.print(\"Plan C\");\n}\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Plan A"
+        },
+        {
+          "letter": "B",
+          "text": "Plan B"
+        },
+        {
+          "letter": "C",
+          "text": "Plan C"
+        },
+        {
+          "letter": "D",
+          "text": "The class does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "This code does not compile because it has two else statements as part of a single if\nstatement. Notice that the second if statement is not connected to the last else statement.\nFor this reason, option D is the correct answer."
+    },
+    {
+      "id": 14,
+      "question": "What is true about the following code? (Choose two.)\n23: var race = \"\";\n24: loop:\n25: do {\n26: race += \"x\";\n27: break loop;\n28: } while (true);\n29: System.out.println(race);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It outputs x."
+        },
+        {
+          "letter": "B",
+          "text": "It does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "It is an infinite loop."
+        },
+        {
+          "letter": "D",
+          "text": "With lines 25 and 28 removed, it outputs x."
+        },
+        {
+          "letter": "E",
+          "text": "With lines 25 and 28 removed, it does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "With lines 25 and 28 removed, it is an infinite loop."
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "The code compiles as is. Due to the break statement on line 27, the loop executes only\nonce. It prints a single x, which means option A is the first correct answer. While the label on\nline 24 is present with lines 25 and 28 removed, it no longer points to a loop. This causes the\ncode to not compile, and option E is the other correct answer."
+    },
+    {
+      "id": 15,
+      "question": "What does the following code output?\nint count = 0;\nchar letter = 'A';\nswitch (letter) {\ncase 'A' -> count++;\ncase 'B' -> count++;\n}\nSystem.out.println(count);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code is correct. The default case is optional since there is no return value assigned.\nSince this is a switch expression, rather than a switch statement, the cases do not fall\nthrough and option B is the answer."
+    },
+    {
+      "id": 16,
+      "question": "Which of the following can replace the body of the perform() method to produce the same\noutput on any nonempty input? (Choose two.)\npublic void perform(String[] circus) {\nfor (int i=circus.length-1; i>=0; i--)\nSystem.out.print(circus[i]);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "for (int i=circus.length; i>0; i--) System.out.print(circus[i-1]);"
+        },
+        {
+          "letter": "B",
+          "text": "for-reversed (String c = circus) System.out.print(c);"
+        },
+        {
+          "letter": "C",
+          "text": "for (var c : circus) System.out.print(c);"
+        },
+        {
+          "letter": "D",
+          "text": "for (var i=0; i<circus.length; i++) System.out.print(circus[circus.length-i-1]);"
+        },
+        {
+          "letter": "E",
+          "text": "for (int i=circus.length; i>0; i--) System.out.print(circus[i+1]);"
+        },
+        {
+          "letter": "F",
+          "text": "for-each (String c circus) System.out.print(c);"
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "The method prints the elements of the array in the reverse order in which they\nare defined. Option A correctly accomplishes this using a different starting value for the\nloop. Options B and F do not compile, as they do not use the correct syntax in a for-each\nloop. Option C compiles and runs without issue, but prints the items in their natural\nordering, as opposed to the reverse ordering. Option D is correct, as it increments in\npositive order but reverses the output within the body of the for loop. Finally, option E\nis incorrect. The first element read is circus[circus.length+1], which results in an\nArrayIndexOutOfBoundsException."
+    },
+    {
+      "id": 17,
+      "question": "What does the following code snippet output?\nvar bottles = List.of(\"glass\", \"plastic\", \"can\");\nfor (int type = 1; type < bottles.size();) {\nSystem.out.print(bottles.get(type) + \"-\");\nif(type < bottles.size()) break;\n}\nSystem.out.print(\"end\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "glass-end"
+        },
+        {
+          "letter": "B",
+          "text": "glass-plastic-can-end"
+        },
+        {
+          "letter": "C",
+          "text": "plastic-end"
+        },
+        {
+          "letter": "D",
+          "text": "plastic-can-end"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The first time through the loop, type is 1, and plastic- is output. The break\nstatement then terminates the loop, with end bring printed. If the break keyword were\nremoved, then this would be an infinite loop because type is not incremented between loop\nexecutions."
+    },
+    {
+      "id": 18,
+      "question": "What is the result of executing the following code snippet?\nfinal var GOOD = 100;\nvar score = 10;\nswitch (score) {\ndefault:\n1 : System.out.print(\"1-\");\n-1 : System.out.print(\"2-\"); break;\n4,5 : System.out.print(\"3-\");\n6 : System.out.print(\"4-\");\n9 : System.out.print(\"5-\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1-"
+        },
+        {
+          "letter": "B",
+          "text": "1-2-"
+        },
+        {
+          "letter": "C",
+          "text": "2-"
+        },
+        {
+          "letter": "D",
+          "text": "3-"
+        },
+        {
+          "letter": "E",
+          "text": "4-"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The code does not compile because the switch statement is missing the case keyword\nfor each value."
+    },
+    {
+      "id": 19,
+      "question": "What is the output of the following application?\npackage dinosaur;\npublic class Park {\npublic final static void main(String... arguments) {\nint pterodactyl = 8;\nlong triceratops = 3;\nif(pterodactyl % 3 > 1 + 1)\ntriceratops++;\ntriceratops--;\nSystem.out.print(triceratops);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2"
+        },
+        {
+          "letter": "B",
+          "text": "3"
+        },
+        {
+          "letter": "C",
+          "text": "4"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "First, determine whether the if statement’s expression is executed. The expression 8 % 3\nevaluates to 2. The right-hand side of the expression is evaluated next, since + has a higher\nprecedence than >. Since 2 > 2 is false, the expression triceratops++ is not called.\nNotice there are no braces, {}, in the if statement. Despite the triceratops–– line being\nindented, it is not part of the if statement. Therefore, triceratops–– is always executed,\nresulting in a value of 2 for triceratops and making option A the correct answer."
+    },
+    {
+      "id": 20,
+      "question": "What variable type of red allows the following application to compile?\npackage tornado;\npublic class Kansas {\npublic static void main(String[] args) {\nint colorOfRainbow = 10;\nred = 5;\nswitch(colorOfRainbow) {\ndefault:\nSystem.out.print(\"Home\");\nbreak;\ncase red:\nSystem.out.print(\"Away\");\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "long"
+        },
+        {
+          "letter": "B",
+          "text": "double"
+        },
+        {
+          "letter": "C",
+          "text": "int"
+        },
+        {
+          "letter": "D",
+          "text": "var"
+        },
+        {
+          "letter": "E",
+          "text": "String"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The value of a case statement must be a constant, a literal value, or a final variable.\nSince red is missing the final attribute, no variable type allows the code to compile, making option F the correct answer. If the final modifier were added to the declaration of red,\nthen int or var would be correct. The other options use types that are incompatible with\nswitch statements or with colorOfRainbow."
+    },
+    {
+      "id": 21,
+      "question": "What is true about the following method when calling with an empty ArrayList?\n(Choose two.)\npublic void meow(Collection<String> kitties) {\nif (kitties instanceof List c) {\nSystem.out.println(\"L \" + c.size());\n} else if (kitties instanceof Map c) {\nc = new TreeMap<>(); // x1\nSystem.out.println(\"M \" + c.size());\n} else {\nSystem.out.println(\"E \" + c.size());\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile due to line x1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile for another reason."
+        },
+        {
+          "letter": "D",
+          "text": "If any lines that do not compile are removed, the output is L0."
+        },
+        {
+          "letter": "E",
+          "text": "If any lines that do not compile are removed, the output is E0."
+        },
+        {
+          "letter": "F",
+          "text": "If any lines that do not compile are removed, the output is another value."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "The code does not compile because of the else block. Since no variable named c is in\nscope, option C is one of the answers. The other answer is option D since the first if block is\nexecuted."
+    },
+    {
+      "id": 22,
+      "question": "How many lines of the magic() method contain compilation errors?\n10: public void magic() {\n11: do {\n12: int trick = 0;\n13: LOOP: do {\n14: trick++;\n15: } while (trick < 2--);\n16: continue LOOP;\n17: } while (1 > 2);\n18: System.out.println(trick);\n19: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 15 does not compile because the post-decrement operator can be applied only to variables, not values. Line 16 also does not compile because the label LOOP is out of scope after\nline 15. Finally, line 18 does not compile because trick is declared within the do/while\nloop and is out of scope after line 17. For these reasons, option D is the correct answer."
+    },
+    {
+      "id": 23,
+      "question": "How many of these statements can be inserted after the println to have the code flow follow\nthe arrow in this diagram?\nbreak;\nbreak letters;\nbreak numbers;\ncontinue;\ncontinue letters;\ncontinue numbers;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "Four"
+        },
+        {
+          "letter": "E",
+          "text": "Five"
+        },
+        {
+          "letter": "F",
+          "text": "None of above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "If the code follows the arrow, then it prints each letter once, breaking out of the inner\nloop on every iteration. Since a break without a label applies to the innermost structure,\nbreak and break numbers are equivalent, and both of these two are correct answers.\nLikewise, continue and continue numbers are equivalent although wrong in this case\nsince they resume operation of the inner loop. That leaves break letters and continue\nletters. In this case, break letters stops the outer loop after printing just one letter, so\nit is incorrect. On the other hand, continue letters exits the inner loop and returns control to the outer loop, which is the desired behavior. Since three statements are correct, option\nC is correct."
+    },
+    {
+      "id": 24,
+      "question": "What is the output of the following application?\npackage dessert;\npublic class IceCream {\npublic final static void main(String... args) {\nvar flavors = 30;\nint eaten = 0;\nswitch(flavors) {\ncase 30: eaten++;\ncase 40: eaten+=2;\nletters: for (char ch = 'a'; ch <= 'z'; ch++) {\nnumbers: for (int n = 0; n<=10; n++) {\nSystem.out.print(ch);\n}\n}\ndefault: eaten--;\n}\nSystem.out.print(eaten);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because var cannot be used in a switch statement."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for another reason."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles without issue, so options D and E are incorrect. A var can be used in a\nswitch statement, provided the underlying type resolves to a supported switch type. Next,\nnotice there are no break statements. Once the matching case statement, 30, is reached, all\nremaining case statements will be executed. The eaten variable is increased by 1, then 2,\nthen reduced by 1, resulting in a final value of 2, making option B the correct answer."
+    },
+    {
+      "id": 25,
+      "question": "Which of the following statements compile and create infinite loops at runtime?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "while (!false) {}"
+        },
+        {
+          "letter": "B",
+          "text": "do {}"
+        },
+        {
+          "letter": "C",
+          "text": "for( : ) {}"
+        },
+        {
+          "letter": "D",
+          "text": "do {} while (true);"
+        },
+        {
+          "letter": "E",
+          "text": "while {}"
+        },
+        {
+          "letter": "F",
+          "text": "for( ; ; ) {}"
+        }
+      ],
+      "correct": "A,D,F",
+      "explanation": "A while loop and do/while loop both require a boolean expression, making\noptions A and D correct and options B and E incorrect. Option C is incorrect because a foreach statement requires an assignment type and an object to iterate on. Option F is correct\nand shows a traditional for loop with no arguments."
+    },
+    {
+      "id": 26,
+      "question": "How many of these methods compile?\npublic void m(Object obj) {\nif (obj instanceof LocalDate date)\nSystem.out.println(date);\nelse\nSystem.out.println(date);\n}\npublic void n(Object obj) {\nif (obj instanceof LocalDate date)\nreturn;\nelse\nSystem.out.println(date);\n}\npublic void o(Object obj) {\nif (!obj instanceof LocalDate date)\nreturn;\nelse\nSystem.out.println(date);\n}\npublic void p(Object obj) {\nif (!(obj instanceof LocalDate date))\nreturn;\nelse\nSystem.out.println(date);\n}\npublic void q(Object obj) {\nif (!obj instanceof LocalDate date)\nreturn;\nSystem.out.println(date);\n}\npublic void r(Object obj) {\nif (!(obj instanceof LocalDate date))\nreturn;\nSystem.out.println(date);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        },
+        {
+          "letter": "G",
+          "text": "Six"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Methods m() and n() do not compile because date is not in scope in the else block.\nMethods o() and q() do not compile due to the missing parentheses when negating\ninstanceof. Methods p() and r() do compile, which makes option C the answer."
+    },
+    {
+      "id": 27,
+      "question": "Which of the following iterates a different number of times than the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "for (int k=0; k < 5; k++) {}"
+        },
+        {
+          "letter": "B",
+          "text": "for (int k=1; k <= 5; k++) {}"
+        },
+        {
+          "letter": "C",
+          "text": "int k=0; do { } while(k++ < 5);"
+        },
+        {
+          "letter": "D",
+          "text": "int k=0; while (k++ < 5) {}"
+        },
+        {
+          "letter": "E",
+          "text": "All of these iterate the same number of times."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option A goes through five indexes on the iterations: 0, 1, 2, 3, and 4. Option B also goes\nthrough five indexes: 1, 2, 3, 4, and 5. Option D goes through five iterations as well, from 0\nto 4. However, option C goes through six iterations since the loop condition is at the end of\nthe loop. Therefore, it is not like the others, and option C is the correct answer."
+    },
+    {
+      "id": 28,
+      "question": "What is the output of the following code snippet?\nint count = 0;\nvar stops = new String[] { \"Washington\", \"Monroe\",\n\"Jackson\", \"LaSalle\" };\nwhile (count < stops.length)\nif (stops[++count].length() < 8)\nbreak;\nelse continue;\nSystem.out.println(count);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "On the first iteration of the loop, stops[++count] evaluates to stops[1], while also\nsetting count to 1. Since stops[1] is Monroe and it has six characters, the break is\nreached, and the loop stops. For this reason, 1 is printed, making option B correct."
+    },
+    {
+      "id": 29,
+      "question": "What is the output of the following code snippet?\nint hops = 0;\nint jumps = 0;\njumps = hops++;\nif(jumps)\nSystem.out.print(\"Jump!\");\nelse\nSystem.out.print(\"Hop!\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Jump!"
+        },
+        {
+          "letter": "B",
+          "text": "Hop!"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The statement if(jumps) evaluates to if(0), and since 0 is not a boolean value, the\ncode does not compile. Java requires boolean expressions in if statements, making option\nC the correct answer."
+    },
+    {
+      "id": 30,
+      "question": "Which of the following best describes the flow of execution in this for loop if beta always\nreturns false?\nfor (alpha; beta; gamma) {\ndelta;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "alpha"
+        },
+        {
+          "letter": "B",
+          "text": "alpha, beta"
+        },
+        {
+          "letter": "C",
+          "text": "alpha, beta, gamma"
+        },
+        {
+          "letter": "D",
+          "text": "alpha, gamma"
+        },
+        {
+          "letter": "E",
+          "text": "alpha, gamma, beta"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The initializer, which is alpha, runs first. Then Java checks the condition, which is beta,\nto see whether loop execution should start. Since beta returns false, the loop is never\nentered, and option B is correct."
+    },
+    {
+      "id": 31,
+      "question": "What is the output of the following code snippet?\nboolean balloonInflated = false;\ndo {\nif (!balloonInflated) {\nballoonInflated = true;\nSystem.out.print(\"inflate-\");\n}\n} while (!balloonInflated);\nSystem.out.println(\"done\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "done"
+        },
+        {
+          "letter": "B",
+          "text": "inflate-done"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "This is an infinite loop."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "On the first iteration of the loop, the if statement executes and prints inflate-. Then\nthe loop condition is checked. The balloonInflated variable is true, so the loop\ncondition is false, and the loop completes and done is printed."
+    },
+    {
+      "id": 32,
+      "question": "Which are true about switch expressions and switch statements? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both allow assigning the result to a variable."
+        },
+        {
+          "letter": "B",
+          "text": "Both allow multiple values in the same case."
+        },
+        {
+          "letter": "C",
+          "text": "Only a switch expression supports break."
+        },
+        {
+          "letter": "D",
+          "text": "Only a switch statement supports break."
+        },
+        {
+          "letter": "E",
+          "text": "A switch expression is more compact."
+        },
+        {
+          "letter": "F",
+          "text": "A switch statement is more compact."
+        }
+      ],
+      "correct": "B,D,E",
+      "explanation": "A switch expression is more compact and does not allow fall through. This makes\noptions D and E correct. The final answer is option B, because either can use multiple values."
+    },
+    {
+      "id": 33,
+      "question": "Which of these code snippets behaves differently from the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "if (numChipmunks == 1) System.out.println(\"One chipmunk\"); if (numChipmunks == 2) System.out.println(\"Two chipmunks\"); if (numChipmunks == 3) System.out.println(\"Three chipmunks\");"
+        },
+        {
+          "letter": "B",
+          "text": "switch (numChipmunks) { case 1: System.out.println(\"One chipmunk\"); case 2: System.out.println(\"Two chipmunks\"); case 3: System.out.println(\"Three chipmunks\"); }"
+        },
+        {
+          "letter": "C",
+          "text": "if (numChipmunks == 1) System.out.println(\"One chipmunk\"); else if (numChipmunks == 2) System.out.println(\"Two chipmunks\"); else if (numChipmunks == 3) System.out.println(\"Three chipmunks\");"
+        },
+        {
+          "letter": "D",
+          "text": "All three code snippets do the same thing."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options A and C print one line if numChipmunks is 1, 2, or 3. Option B does not behave\nthe same way if numChipmunks is 1 or 2. There is no break statement, so the case statements fall through, and more than one statement will be printed."
+    },
+    {
+      "id": 34,
+      "question": "Which statements about loops are correct? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A do/while loop requires a body."
+        },
+        {
+          "letter": "B",
+          "text": "A while loop cannot be exited early with a return statement."
+        },
+        {
+          "letter": "C",
+          "text": "A while loop requires a conditional expression."
+        },
+        {
+          "letter": "D",
+          "text": "A do/while loop executes the body (if present) at least once."
+        },
+        {
+          "letter": "E",
+          "text": "A do/while loop cannot be exited early with a return statement."
+        },
+        {
+          "letter": "F",
+          "text": "A while loop executes the body (if present) at least once."
+        }
+      ],
+      "correct": "A,C,D",
+      "explanation": "A do/while loop requires a body, making option A correct. Options B and E\nare incorrect, as both types of while loops can be exited early with a return statement.\nBoth also require a conditional expression, making option C correct. What distinguishes a\ndo/while loop from a while loop is that it executes its body at least once, making option D\ncorrect and option F incorrect."
+    },
+    {
+      "id": 35,
+      "question": "Given the following enum and class, which option fills in the blank and allows the code\nto compile?\nenum Season { SPRING, SUMMER, WINTER }\npublic class Weather {\npublic int getAverageTemperate(Season s) {\nswitch (s) {\ndefault:\nreturn 30;\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "case Season.WINTER:"
+        },
+        {
+          "letter": "B",
+          "text": "case WINTER, SPRING:"
+        },
+        {
+          "letter": "C",
+          "text": "case SUMMER | WINTER:"
+        },
+        {
+          "letter": "D",
+          "text": "case SUMMER ->"
+        },
+        {
+          "letter": "E",
+          "text": "case FALL:"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Option B is correct since a comma is allowed to separate values in Java 17. Option A is\nincorrect because the enum type Season is not used within a case statement. If it were just\ncase WINTER:, then it would compile. Option C does not compile because a pipe (|) is\nnot valid syntax in a case statement. Option D is incorrect because -> is used instead of :.\nOption E is incorrect because FALL is not defined in the list of values for the enum Season."
+    },
+    {
+      "id": 36,
+      "question": "Fill in the blank with the line of code that causes the application to compile and print exactly\none line at runtime.\npackage nyc;\npublic class TourBus {\npublic static void main(String... args) {\nvar nycTour = new String[] { \"Downtown\", \"Uptown\",\n\"Brooklyn\" };\nvar times = new String[] { \"Day\", \"Night\" };\nfor ( i<nycTour.length && j<times.length;\ni++, j++)\nSystem.out.println(nycTour[i] + \"-\" + times[j]);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "int i=1; j=1;"
+        },
+        {
+          "letter": "B",
+          "text": "int i=0, j=1;"
+        },
+        {
+          "letter": "C",
+          "text": "int i=1; int j=0;"
+        },
+        {
+          "letter": "D",
+          "text": "int i=1, int j=0;"
+        },
+        {
+          "letter": "E",
+          "text": "int i=1, j=0;"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "In a traditional for loop, only one initialization type is allowed to be specified. If more\nthan one variable is supplied, then they are separated by a comma. Therefore, options A, C,\nand D do not compile. Options B and E both compile, although only option B prints a single\nline at runtime. Option E instead prints two lines since nycTour is of size 3 and times is\nof size 2."
+    },
+    {
+      "id": 37,
+      "question": "What statements are true of the following code? (Choose two.)\npublic class Penguins {\npublic static void main(String[] args) {\nvar pen = new Penguins();\npen.length(\"penguins\");\npen.length(5);\npen.length(new Object());\n}\npublic void length(Object obj) {\nif (obj instanceof String) {\nSystem.out.println(obj.length());\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles as is."
+        },
+        {
+          "letter": "B",
+          "text": "One line causes compiler errors."
+        },
+        {
+          "letter": "C",
+          "text": "Two lines cause compiler errors."
+        },
+        {
+          "letter": "D",
+          "text": "If any lines that do not compile are removed, this code does not print anything."
+        },
+        {
+          "letter": "E",
+          "text": "If any lines that do not compile are removed, this code prints one line."
+        },
+        {
+          "letter": "F",
+          "text": "If any lines that do not compile are removed, this code prints two lines."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "The code does not compile because obj is never cast to a String. Since this is the\nonly error, option B is one answer. Removing that line due to the compiler error also removes\nthe println() statement, so option D is the other answer."
+    },
+    {
+      "id": 38,
+      "question": "The following code contains six pairs of curly braces. How many pairs can be removed\nwithout changing the behavior?\n12: public static void main(String[] args) {\n13: int secret = 0;\n14: for (int i = 0; i < 10; i++) {\n15: while (i < 10) {\n16: if (i == 5) {\n17: System.out.println(\"if\");\n18: } else {\n19: System.out.println(\"in\");\n20: System.out.println(\"else\");\n21: }\n22: }\n23: }\n24: switch (secret) {\n25: case 0: System.out.println(\"zero\");\n26: }\n27: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "Four"
+        },
+        {
+          "letter": "E",
+          "text": "Five"
+        },
+        {
+          "letter": "F",
+          "text": "Six"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The braces on lines 12 and 27 are required because they comprise the method body. The\nbraces on lines 24 and 26 are required because a switch statement needs braces regardless\nof how many case statements are inside. Finally, the braces on lines 18 and 21 are required\nbecause the else has two statements inside.\nThe braces on lines 14 and 23, 15 and 22, and 16 and 18 are all optional because there is\nonly one statement inside. Since there are three pairs, option C is correct."
+    },
+    {
+      "id": 39,
+      "question": "Which of the following can replace the body of the travel() method to produce the same\noutput on any nonempty input?\npublic void travel(List<Integer> roads) {\nfor (int w = 1; w <= roads.size(); w++)\nSystem.out.print(roads.get(w-1));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "for (int r = 0; r < roads.size(); r += 1) System.out.print(roads.get(0));"
+        },
+        {
+          "letter": "B",
+          "text": "for(var z : roads) System.out.print(z);"
+        },
+        {
+          "letter": "C",
+          "text": "for (int t = roads.size(); t > 0; t--) System.out.print(roads.get(t));"
+        },
+        {
+          "letter": "D",
+          "text": "for (var var : roads) System.out.print(roads);"
+        },
+        {
+          "letter": "E",
+          "text": "for (int q = roads.size(); q >= 0; q++) System.out.print(roads.get(q));"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The method prints the elements of the list in the order in which they are defined. Option\nA is incorrect and prints the first element repeatedly. Option B is correct and prints the elements using a for-each loop. Options C and E are incorrect because the first element that’s\nread results in an ArrayIndexOutOfBoundsException. Finally, option D is incorrect\nbecause the entire list is printed each time."
+    },
+    {
+      "id": 40,
+      "question": "Which statement about the following code snippet is correct?\n3: final var javaVersions = List.of(17,11,8);\n4: var names = List.of(\"JDK\", \"Java\");\n5: V: for (var e1 : javaVersions) {\n6: E: for (String e2 : names)\n7: System.out.println(e1 + \"_\" + e2);\n8: break;\n9: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One line does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "Two lines do not compile."
+        },
+        {
+          "letter": "C",
+          "text": "Three lines do not compile."
+        },
+        {
+          "letter": "D",
+          "text": "It compiles and prints two lines at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "It compiles and prints three lines at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code snippet compiles, making options A, B, and C incorrect. Notice that the inner\nfor-each loop does not use braces, {}, so the break statement applies to the outer loop only.\nOn the first iteration of the outer loop, the inner loop prints 17_JDK and 17_Java. Then,\nthe break statement is encountered, and the outer loop is terminated, making option D\ncorrect."
+    }
+  ]
+}

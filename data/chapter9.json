@@ -1,0 +1,1270 @@
+{
+  "chapter": "Chapter 9 - Using Java IO API",
+  "totalQuestions": 40,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What exception is expected to be thrown by the following code snippet?\nvar oldPath = Path.get(\"/rodent/mouse.txt\");\nvar newPath = Path.get(\"/rodent/rat.txt\");\nFiles.move(oldPath, newPath,\nStandardCopyOption.REPLACE_EXISTING);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "AtomicMoveNotSupportedException"
+        },
+        {
+          "letter": "B",
+          "text": "DirectoryNotEmptyException"
+        },
+        {
+          "letter": "C",
+          "text": "FileAlreadyExistsException"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code does not compile because Path.get() is not a valid NIO.2 method, making\noption D correct. Either Paths.get() or Path.of() should be used instead."
+    },
+    {
+      "id": 2,
+      "question": "What is the result of compiling and executing the following program?\npackage vacation;\nimport java.io.*;\nimport java.util.*;\npublic class Itinerary {\nprivate List<String> activities = new ArrayList<>();\nprivate static Itinerary getItinerary(String name) {\nreturn null;\n}\npublic static void printItinerary() throws Exception {\nConsole c = new Console();\nfinal String name = c.readLine(\"What is your name?\");\nfinal var stuff = getItinerary(name);\nstuff.activities.forEach(s -> c.printf(s));\n}\npublic static void main(String[] h) throws Exception {\nprintItinerary();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The code compiles and prints a NullPointerException at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The code compiles but does not print anything at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles and prints the value the user enters at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The behavior cannot be determined until runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above.Chapter 9 ■ Using Java I/O API 321"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The constructor for Console is private. Therefore, attempting to call new\nConsole() outside the class results in a compilation error, making option A the correct\nanswer. The correct way to obtain a Console instance is to call System.console()."
+    },
+    {
+      "id": 3,
+      "question": "Assuming the file path referenced in the following class is accessible and writable, what is the\noutput of the following program? (Choose two.)\nString fn = \"icecream.txt\";\ntry (var w = new BufferedWriter(new FileOutputStream(fn));\nvar s = System.out) {\nw.write(\"ALERT!\");\nw.flush();\nw.write('!');\nSystem.out.print(\"1\");\n} catch (IOException e) {\nSystem.out.print(\"2\");\n} finally {\nSystem.out.print(\"3\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "23"
+        },
+        {
+          "letter": "C",
+          "text": "13"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "If the code compiles or the lines that do not compile are fixed, then the last value output is 3."
+        },
+        {
+          "letter": "F",
+          "text": "If the code compiles or the lines that do not compile are fixed, then the last value output is not 3."
+        }
+      ],
+      "correct": "D,F",
+      "explanation": "BufferedWriter is a wrapper class that requires an instance of Writer to operate\non. Since FileOutputStream does not inherit Writer, the code does not compile, and\noption D is correct. If FileWriter was used instead of FileOutputStream, then the\ncode would compile without issue and print 1. The try-with-resources statement closes\nSystem.out before the catch and finally blocks are called. When the finally block\nis executed, the output has nowhere to go to, which means the last value of 3 is not printed,\nmaking option F correct."
+    },
+    {
+      "id": 4,
+      "question": "What is the expected result when the writeResume() method is called? Assume the directories\nreferenced in the class do not exist prior to the execution and that the file system is available\nand able to be written to.\npackage job;\nimport java.nio.file.*;\npublic class Resume {\npublic void writeResume() throws Exception {\nvar f1 = Path.of(\"/templates/proofs\");\nf1.createDirectories();\nvar f2 = Path.of(\"/templates\");\nf2.createDirectory(); // k1\ntry(var w = Files.newBufferedWriter(\nPath.of(f2.toString(), \"draft.txt\"))) {\nw.append(\"My dream job\");322 Chapter 9 ■ Using Java I/O API\nw.flush();\n}\nf1.delete(f1);\nf2.delete(f2); // k2\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One line of this application does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "Two lines of this application do not compile."
+        },
+        {
+          "letter": "C",
+          "text": "The code compiles, but line k1 triggers an exception at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles, but line k2 triggers an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles and runs without printing an exception."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The code does not compile. There are no createDirectory(),\ncreateDirectories(), and delete() methods defined on the Path interface. Instead,\nthe NIO.2 Files class should be used. Since four lines of code do not compile, option F is\nthe correct answer. If the lines were corrected to use the Files class, then the application\nwould print an exception at line k1, as the directory already exists."
+    },
+    {
+      "id": 5,
+      "question": "Which classes are least likely to be marked Serializable? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A class that monitors the state of every thread in the application"
+        },
+        {
+          "letter": "B",
+          "text": "A class that holds data about the amount of rain that has fallen in a given year"
+        },
+        {
+          "letter": "C",
+          "text": "A class that manages the memory of running processes in an application"
+        },
+        {
+          "letter": "D",
+          "text": "A class that stores information about apples in an orchard"
+        },
+        {
+          "letter": "E",
+          "text": "A class that tracks the amount of candy in a gumball machine"
+        },
+        {
+          "letter": "F",
+          "text": "A class that tracks which users have logged in"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "Generally speaking, classes should be marked with the Serializable interface\nif they contain data that we might want to save and retrieve later. Options B, D, E, and F\ndescribe the type of data that we would want to store over a long period of time. Options A\nand C, though, define classes that manage transient or short-lived data. Application processes\nchange quite frequently, and trying to reconstruct a process is often considered a bad idea."
+    },
+    {
+      "id": 6,
+      "question": "What is the output of the following code snippet? Assume that the current directory is the\nroot path.\nPath p1 = Path.of(\"./found/../keys\");\nPath p2 = Paths.get(\"/lost/blue.txt\");\nSystem.out.println(p1.resolve(p2));\nSystem.out.println(p2.resolve(p1));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "/lost/blue.txt and /lost/blue.txt/keys"
+        },
+        {
+          "letter": "B",
+          "text": "/found/../keys/./lost/blue.txt and /lost/blue.txt/keys"
+        },
+        {
+          "letter": "C",
+          "text": "/found/../keys/./lost/blue.txt and keys"
+        },
+        {
+          "letter": "D",
+          "text": "/lost/blue.txt and /lost/blue.txt/./found/../keys"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "First, p2 is an absolute path, which means that p1.resolve(p2) just returns p2. For\nthis reason, options B and C are incorrect. Since p1 is a relative path, it is appended onto p2,\nmaking option D correct and option A incorrect. Option A would be correct if\nnormalize() were applied."
+    },
+    {
+      "id": 7,
+      "question": "Fill in the blanks: Writer is a(n) that related stream classes .",
+      "options": [
+        {
+          "letter": "A",
+          "text": "concrete class, extend"
+        },
+        {
+          "letter": "B",
+          "text": "abstract class, extend"
+        },
+        {
+          "letter": "C",
+          "text": "abstract class, implement"
+        },
+        {
+          "letter": "D",
+          "text": "interface, extend"
+        },
+        {
+          "letter": "E",
+          "text": "interface, implement"
+        },
+        {
+          "letter": "F",
+          "text": "None of the aboveChapter 9 ■ Using Java I/O API 323"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Writer is an abstract class, so options A, D, and E are incorrect. Classes extend abstract\nclasses; they do not implement them, making option B correct. Note that InputStream,\nOutputStream, and Reader are also abstract classes."
+    },
+    {
+      "id": 8,
+      "question": "Assuming /away/baseball.txt exists and is accessible, what is the expected result of\nexecuting the following code snippet?\nvar p1 = Path.of(\"baseball.txt\");\nvar p2 = Path.of(\"/home\");\nvar p3 = Path.of(\"/away\");\nFiles.createDirectories(p2);\nFiles.copy(p3.resolve(p1),p2);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A new file /home/baseball.txt is created."
+        },
+        {
+          "letter": "B",
+          "text": "A new file /home/away/baseball.txt is created."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles, but an exception is printed at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The output cannot be determined until runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "After calling createDirectories(), the directory /home is guaranteed to exist if it\ndoes not already. The second argument of the copy() method should be the location of\nthe new file, not the folder the new file is placed in. Therefore, the program attempts to\nwrite the file to the path /home. Since there is already a directory at that location, a\nFileAlreadyExistsException is thrown at runtime, making option D correct."
+    },
+    {
+      "id": 9,
+      "question": "Assuming the file referenced in the following snippet exists and contains five lines with the\nword eggs in them, what is the expected output?\nvar p = Path.of(\"breakfast.menu\");\nFiles.readAllLines(p)\n.filter(s -> s.contains(\"eggs\"))\n.collect(Collectors.toList())\n.forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "No lines will be printed."
+        },
+        {
+          "letter": "B",
+          "text": "One line will be printed."
+        },
+        {
+          "letter": "C",
+          "text": "Five lines will be printed."
+        },
+        {
+          "letter": "D",
+          "text": "More than five lines will be printed."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because readAllLines() returns a List<String>, not a\nstream, making option E the answer. If the correct method lines() was used instead, then\nfive lines would be printed at runtime."
+    },
+    {
+      "id": 10,
+      "question": "What is the output of the following program? Assume the file paths referenced in the class\nexist and are able to be written to and read from.\nimport java.io.*;\npublic class Vegetable implements Serializable {\nprivate Integer size = 1;\nprivate transient String name = \"Red\";\n{ size = 3; name = \"Purple\"; }\npublic Vegetable() { this.size = 2; name = \"Green\"; }\npublic static void main(String[] love) throws Throwable {\n// Write data\ntry (var o = new ObjectOutputStream(\nnew FileOutputStream(\"healthy.txt\"))) {324 Chapter 9 ■ Using Java I/O API\nfinal var v = new Vegetable();\nv.size = 4;\no.writeObject(v);\n}\n// Read data\ntry (var o = new ObjectInputStream(\nnew FileInputStream(\"healthy.txt\"))) {\nvar v = (Vegetable) o.readObject();\nSystem.out.print(v.size + \",\" + v.name);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1,Red"
+        },
+        {
+          "letter": "B",
+          "text": "2,Green"
+        },
+        {
+          "letter": "C",
+          "text": "2,null"
+        },
+        {
+          "letter": "D",
+          "text": "3,Purple"
+        },
+        {
+          "letter": "E",
+          "text": "4,null"
+        },
+        {
+          "letter": "F",
+          "text": "null,null"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The size variable is properly serialized with a value of 4. Upon deserialization, none of\nthe class elements that assign a value to an instance variable are run, leading to size being\ndeserialized as 4. Since the name variable is marked transient, this value is deserialized as\nnull. For these reasons, option E is correct."
+    },
+    {
+      "id": 11,
+      "question": "Why does Console readPassword() return a char array rather than a String?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It improves performance."
+        },
+        {
+          "letter": "B",
+          "text": "It improves security."
+        },
+        {
+          "letter": "C",
+          "text": "Passwords must be stored as a char array."
+        },
+        {
+          "letter": "D",
+          "text": "String cannot hold the individual password characters."
+        },
+        {
+          "letter": "E",
+          "text": "It adds encryption."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The readPassword() returns a char array for security reasons. If the data was stored\nas a String, it would enter the shared JVM string pool, potentially allowing a malicious\nuser to access it, especially if there is a memory dump. By using a char array, the data can be\nimmediately cleared after it is written and removed from memory. For this reason, option B is\nthe correct answer."
+    },
+    {
+      "id": 12,
+      "question": "Given the following class inheritance diagram, which two classes can be placed in the\nblank boxes?\nFilterOutputStream\nOutputStream",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BufferedOutputStream and PrintStream"
+        },
+        {
+          "letter": "B",
+          "text": "BufferedOutputStream and PrintOutputStreamChapter 9 ■ Using Java I/O API 325"
+        },
+        {
+          "letter": "C",
+          "text": "ByteArrayOutputStream and Stream"
+        },
+        {
+          "letter": "D",
+          "text": "FileOutputStream and OutputStream"
+        },
+        {
+          "letter": "E",
+          "text": "ObjectOutputStream and PrintOutputStream"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "While you might not be familiar with FilterOutputStream, the diagram shows that\nthe two classes must inherit from OutputStream. Options B, C, and E can be eliminated\nas choices since PrintOutputStream and Stream are not the name of any java.io\nclasses. Option D can also be eliminated because OutputStream is already in the diagram, and you cannot have a circular class dependency. That leaves us with the correct\nanswer, option A, because BufferedOutputStream and PrintStream both extend\nFilterOutputStream."
+    },
+    {
+      "id": 13,
+      "question": "How many lines of the following code contain compiler errors?\n12: var path = Paths.get(new URI(\"ice.cool\"));\n13: var view = Files.readAttributes(path,\n14: BasicFileAttributes.class);\n15: Files.createDirectories(Path.relativize(\".backup\"));\n16: if(view.length() > 0 && view.isDirectory())\n17: view.setTimes(null,null,null);\n18: System.out.println(Files.deleteIfExists(path));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "All of the lines compile."
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four or more"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 15 is the first line to not compile, as relativize() is an instance method, not a\nstatic method. Line 16 also does not compile, as size(), not length(), should be used\nto retrieve a file size. Finally, line 17 does not compile because view is an attribute class, not\nan attribute view. The rest of the lines do not contain any compiler errors, making option D\ncorrect."
+    },
+    {
+      "id": 14,
+      "question": "What is the output of the following application?\nimport java.io.*;\npublic class TaffyFactory {\npublic int getPrize(byte[] luck) throws Exception {\ntry (InputStream is = new ByteArrayInputStream(luck)) {\nis.read(new byte[2]);\nif (!is.markSupported()) return -1;\nis.mark(5);\nis.read(); is.read();\nis.skip(3);\nis.reset();\nreturn is.read();\n}\n}\npublic static void main(String[] sticky) throws Exception {\nfinal TaffyFactory p = new TaffyFactory();\nfinal var luck = new byte[] { 1, 2, 3, 4, 5, 6, 7 };\nSystem.out.print(p.getPrize(luck));\n} }326 Chapter 9 ■ Using Java I/O API",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-2"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "5"
+        },
+        {
+          "letter": "E",
+          "text": "7"
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code compiles and runs without issue. The first two values of the\nByteArrayInputStream are read. Next, the markSupported() value is tested. Since -1\nis not one of the possible options, we assume that ByteArrayInputStream does support\nmarks. Two values are read and three are skipped, but then reset() is called, putting\nthe stream back in the state before mark() was called. In other words, everything between mark() and reset() can be ignored. The last value read is 3, making option C the\ncorrect answer."
+    },
+    {
+      "id": 15,
+      "question": "What is the output of the following program? Assume the file paths referenced in the class\nexist and are able to be written to and read from.\npackage heart;\nimport java.io.*;\npublic class Valve implements Serializable {\nprivate int chambers = -1;\nprivate transient Double size = null;\nprivate static String color;\npublic Valve() { this.chambers = 3; color = \"BLUE\"; }\npublic static void main(String[] love) throws Throwable {\ntry (var o = new ObjectOutputStream(\nnew FileOutputStream(\"scan.txt\"))) {\nfinal Valve v = new Valve();\nv.chambers = 2;\nv.size = 10.0;\nv.color = \"RED\";\no.writeObject(v);\n}\nnew Valve();\ntry (var i = new ObjectInputStream(\nnew FileInputStream(\"scan.txt\"))) {\nValve v = (Valve)i.readObject();\nSystem.out.print(v.chambers+\",\"+v.size+\",\"+v.color);\n}\n}\n{ chambers = 4; } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2,null,RED"
+        },
+        {
+          "letter": "B",
+          "text": "2,null,BLUE"
+        },
+        {
+          "letter": "C",
+          "text": "3,10.0,RED"
+        },
+        {
+          "letter": "D",
+          "text": "3,10.0,BLUE"
+        },
+        {
+          "letter": "E",
+          "text": "0,null,null"
+        },
+        {
+          "letter": "F",
+          "text": "None of the aboveChapter 9 ■ Using Java I/O API 327"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The class compiles and runs without issue, so option F is incorrect. The class defines three\nvariables, only one of which is serializable. The first variable, chambers, is serializable, with\nthe value 2 being written to disk and then read from disk. Remember, the constructors and\ninstance initializers are not executed when a class is deserialized. The next variable, size,\nis transient. It is discarded when it is written to disk, so it has the default object value of\nnull when read from disk. Finally, the color variable is static, which means it is shared\nby all instances of the class. Even though the value was RED when the instance was serialized,\nthis value was not written to disk, since it was not part of the instance. The constructor call\nnew Valve() between the two try-with-resources blocks sets this value to BLUE, which is\nthe value printed later in the application. For these reasons, the class prints 2,null,BLUE,\nmaking option B the correct answer."
+    },
+    {
+      "id": 16,
+      "question": "In the following file system diagram, forward is a symbolic link to the java directory.\nIf each of the following values is inserted into the blank, which do not print\n/java/Sort.java? (Choose two.)\n/\njava objC\nSort.java Sort.class Heap.m bin\nHeap.exe\nforward\nPath p = Path.of(\"/\", \"objC\", \"bin\");\nSystem.out.print(p.resolve(\" \").toRealPath());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "objC/forward/Sort.java"
+        },
+        {
+          "letter": "B",
+          "text": "../backwards/../forward/Sort.java"
+        },
+        {
+          "letter": "C",
+          "text": "../forward/./Sort.java"
+        },
+        {
+          "letter": "D",
+          "text": "../java/./forward/Sort.java"
+        },
+        {
+          "letter": "E",
+          "text": "../../java/Sort.java"
+        },
+        {
+          "letter": "F",
+          "text": ".././forward/Sort.java"
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "Simplifying the path symbols, options B, C, and F become /objC/forward/\nSort.java, which applying the symbol link becomes /java/Sort.java. Option E just\nbecomes /java/Sort.java, without any path symbols involved. Option A is correct, as\nthe resolve() method concatenates the path to be /objC/bin/objC/forward/\nSort.java. Option D is also correct, as the simplified path is /objC/java/forward/\nSort.java. In both of these cases, the symbolic link /objC/forward cannot be applied."
+    },
+    {
+      "id": 17,
+      "question": "Which method defined in Reader can be used in place of calling skip(1)?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jump()"
+        },
+        {
+          "letter": "B",
+          "text": "mark()"
+        },
+        {
+          "letter": "C",
+          "text": "markSupported()"
+        },
+        {
+          "letter": "D",
+          "text": "read()"
+        },
+        {
+          "letter": "E",
+          "text": "reset()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The skip(1) method just reads a single byte and discards the value. The read()\nmethod can be used for a similar purpose, making option D the correct answer. Option A is\nincorrect because there is no jump() method defined in Reader. Options B, C, and E are\nincorrect because they cannot be used to skip data, only to mark a location and return to\nit later."
+    },
+    {
+      "id": 18,
+      "question": "The Rose application is run with an input argument of /flower. The /flower directory\ncontains five subdirectories, each of which contains five files. What is the result of executing\nthe following program?\nimport java.nio.file.*;\npublic class Rose {\npublic void tendGarden(Path p) throws Exception {\nFiles.walk(p,1)\n.map(q -> q.toRealPath())\n.forEach(System.out::println);\n}328 Chapter 9 ■ Using Java I/O API\npublic static void main(String... thorns) throws Exception {\nnew Rose().tendGarden(Paths.get(thorns[0]));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The program completes without outputting anything."
+        },
+        {
+          "letter": "B",
+          "text": "One Path value is printed."
+        },
+        {
+          "letter": "C",
+          "text": "Six Path values are printed."
+        },
+        {
+          "letter": "D",
+          "text": "Twenty-five Path values are printed."
+        },
+        {
+          "letter": "E",
+          "text": "Twenty-six Path values are printed."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "Trick question! The code does not compile; therefore, option F is correct. The\ntoRealPath() interacts with the file system, and therefore throws a checked\nIOException. Since this checked exception is not handled inside the lambda expression,\nthe class does not compile. If the lambda expression was fixed to handle the IOException,\nthen the expected number of Path values printed would be six, and option C would be the\ncorrect answer. A maxDepth value of 1 causes the walk() method to visit two total levels—\nthe original /flower and the files it contains."
+    },
+    {
+      "id": 19,
+      "question": "What may be the result of executing the following program?\npackage test;\nimport java.io.*;\npublic class Turing {\npublic static void main(String... robots) {\nConsole c = System.console();\nfinal String response = c.readLine(\"Are you human?\");\nSystem.err.print(response);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The program asks the user a question and prints the results to the error stream."
+        },
+        {
+          "letter": "B",
+          "text": "The program throws a NullPointerException at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The program does not terminate."
+        },
+        {
+          "letter": "D",
+          "text": "All of the above."
+        },
+        {
+          "letter": "E",
+          "text": "The class does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The statements in options A, B, and C are each correct, making option D correct. If\nSystem.console() is available, then the program will ask the user a question and print\nthe response to the error stream. On the other hand, if System.console() is not available,\nthen the program will exit with a NullPointerException. It is strongly recommended to\nalways check whether System.console() is null after requesting it. Finally, the user may\nchoose not to respond to the program’s request for input, resulting in the program hanging\nindefinitely."
+    },
+    {
+      "id": 20,
+      "question": "What is the output of the following method applied to an InputStream that contains the first\nfour prime numbers, stored as bytes: 2, 3, 5, 7?\nprivate void jumpAround(InputStream is) throws IOException {\ntry (is) {\nis.skip(1);\nis.read();\nis.skip(1);\nis.mark(4);\nis.skip(1);\nis.reset();\nSystem.out.print(is.read());\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "5"
+        },
+        {
+          "letter": "B",
+          "text": "7Chapter 9 ■ Using Java I/O API 329"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The result cannot be determined until runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code compiles, so option C is incorrect. Not all InputStream classes support the\nmark() operation. If mark() is supported, then 7 is printed at runtime. Alternatively, if\nmark() is not supported, then an IOException will be printed at runtime. For this reason,\noption E is correct. Always remember to call markSupported() before using a mark()\noperation on an InputStream."
+    },
+    {
+      "id": 21,
+      "question": "Assuming the directories and files referenced exist and are not symbolic links, what is the\nresult of executing the following code?\nvar p1 = Path.of(\"/tea/earlgrey/..\",\".\").resolve(Path.of(\"hot.txt\"));\nvar p2 = new File(\"/./tea/./earlgrey/./.././hot.txt\").toPath();\nSystem.out.print(Files.isSameFile(p1,p2));\nSystem.out.print(\" \");\nSystem.out.print(p1.normalize().equals(p2.normalize()));\nSystem.out.print(\" \");\nSystem.out.print(Files.mismatch(p1,p2));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "true true -1"
+        },
+        {
+          "letter": "B",
+          "text": "true true 0"
+        },
+        {
+          "letter": "C",
+          "text": "true false -1"
+        },
+        {
+          "letter": "D",
+          "text": "true false 0"
+        },
+        {
+          "letter": "E",
+          "text": "false true -1"
+        },
+        {
+          "letter": "F",
+          "text": "false true 0"
+        },
+        {
+          "letter": "G",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "H",
+          "text": "The result cannot be determined."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles and runs without issue, so option G is incorrect. If you simplify the\nredundant path symbols, then p1 and p2 represent the same path, /tea/hot.txt. Therefore, isSameFile() returns true. The second output is also true because the path values\nhave been normalized. Finally, mismatch() sees the contents are the same, returning -1.\nFor these reasons, option A is correct."
+    },
+    {
+      "id": 22,
+      "question": "Which method are classes that implement the java.io.Serializable interface required\nto implement?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "cereal()"
+        },
+        {
+          "letter": "B",
+          "text": "deserialize()"
+        },
+        {
+          "letter": "C",
+          "text": "serial()"
+        },
+        {
+          "letter": "D",
+          "text": "serialize()"
+        },
+        {
+          "letter": "E",
+          "text": "clone()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Serializable is a marker interface, which means it does not contain any abstract\nmethods that require implementation, making option F correct. The interface is only meant\nto indicate the object is capable of serialization."
+    },
+    {
+      "id": 23,
+      "question": "What is the result of compiling and executing the following program? Assume the current\ndirectory is /stock and the /stock/sneakers path does not exist prior to execution.\npackage shoe;\nimport java.io.*;\nimport java.nio.file.*;330 Chapter 9 ■ Using Java I/O API\npublic class Sneaker {\npublic void setupInventory(Path d) throws Exception {\nPath suggestedPath = Paths.get(\"sneakers\");\nif(Files.isSameFile(suggestedPath, d) // j1\n&& !Files.exists(suggestedPath))\nFiles.createDirectories(d); // j2\n}\npublic static void main(String[] socks) throws Exception {\nPath w = new File(\"/stock/sneakers\").toPath(); // j3\nnew Sneaker().setupInventory(w);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The /stock/sneakers directory is created."
+        },
+        {
+          "letter": "B",
+          "text": "Line j1 does not compile or produces an exception at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "Line j2 does not compile or produces an exception at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "Line j3 does not compile or produces an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "First, the class compiles without issue. The Files.isSameFile() method call on line\nj1 first does a quick check to verify if the Path values are equivalent in terms of equals().\nOne is absolute, and the other is relative, so this initial test will fail. The isSameFile()\nmethod then moves on to verify that the two Path values reference the same file system\nobject. Since we know the directory does not exist, the call to isSameFile() on line j1\nwill produce a NoSuchFileException at runtime, making option B the correct answer."
+    },
+    {
+      "id": 24,
+      "question": "Assuming the absolute path referenced in the code exists and its contents are accessible,\nwhich statement about the following code snippet is correct?\nPath p = Paths.get(\"/glasses/lens\");\nFiles.walk(p)\n.map(z -> z.toAbsolutePath().toString())\n.filter(s -> s.endsWith(\".java\"))\n.collect(Collectors.toList()).forEach(System.out::println);\nFiles.find(p,Integer.MAX_VALUE,\n(w,a) -> w.toAbsolutePath().toString().endsWith(\".java\"))\n.collect(Collectors.toList()).forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first stream statement does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The second stream statement does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "Neither statement compiles."
+        },
+        {
+          "letter": "D",
+          "text": "Both statements compile and produce the same result at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Both stream statements compile without issue, making options A, B, and C incorrect.\nThe two statements are equivalent to one another and print the same values at runtime. For\nthis reason, option D is correct. There are some subtle differences between the two methods\ncalls. The walk() call does not include a depth limit, but since Integer.MAX_VALUE is\nthe default value, the two calls are equivalent. Furthermore, the walk() statement prints\na stream of absolute paths stored as String values, while the find() statement prints a\nstream of Path values. If the input p was a relative path, then these two calls would have\nvery different results, but since we are told p is an absolute path, the application of\ntoAbsolutePath() does not change the results."
+    },
+    {
+      "id": 25,
+      "question": "When reading file information, what is an advantage of using an NIO.2 attribute interface\nrather than reading the values individually using Files methods? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Costs fewer round-trips to the file system"
+        },
+        {
+          "letter": "B",
+          "text": "Guarantees performance improvementChapter 9 ■ Using Java I/O API 331"
+        },
+        {
+          "letter": "C",
+          "text": "Has support for symbolic links"
+        },
+        {
+          "letter": "D",
+          "text": "Reduces memory leaks"
+        },
+        {
+          "letter": "E",
+          "text": "Supports file system–dependent attributes"
+        },
+        {
+          "letter": "F",
+          "text": "Reduces resource leaks"
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "An attribute view has the advantage of reading all of the file information on a single\ntrip, rather than multiple trips to the file system, making option A correct. Option B is incorrect because nothing guarantees it will perform faster, especially if the Files method is only\nbeing used to read a single attribute. Option C is also incorrect because both sets of methods\nhave built-in support for symbolic links. Options D and F are incorrect because memory and\nresource leaks are not related to reading file attribute views. Finally, option E is correct, as\nNIO.2 supports file system–dependent attribute view classes."
+    },
+    {
+      "id": 26,
+      "question": "Suppose that you need to read data that consists of serialized int, double, boolean,\nand String values from a file. You also want the program to be performant on large files.\nWhich three java.io stream classes can be chained together to best achieve this result?\n(Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "BufferedReader"
+        },
+        {
+          "letter": "B",
+          "text": "FileReader"
+        },
+        {
+          "letter": "C",
+          "text": "ObjectInputStream"
+        },
+        {
+          "letter": "D",
+          "text": "BufferedStream"
+        },
+        {
+          "letter": "E",
+          "text": "FileInputStream"
+        },
+        {
+          "letter": "F",
+          "text": "BufferedInputStream"
+        }
+      ],
+      "correct": "C,E,F",
+      "explanation": "Since you need to read primitives and String values, the InputStream classes are\nappropriate. Therefore, you can eliminate options A and B since they use Reader classes.\nOption D is incorrect, as this is not a java.io class. The data should be read from the file\nusing an FileInputStream class, buffered with an BufferedInputStream class for\nperformance, and deserialized into Java-accessible data types with an ObjectInputStream\nclass, making options C, E, and F correct."
+    },
+    {
+      "id": 27,
+      "question": "Which statement about the following method is correct? Assume the coffee directory exists\nand is able to be read.\nvoid brew() throws Exception {\nfinal var m = Path.of(\"coffee\");\nFiles.walk(m)\n.filter(Files::isDirectory)\n.forEach(Files::isDirectory);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "It compiles but does not print anything at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "It compiles and prints true exactly once at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "It compiles and prints true at least once."
+        },
+        {
+          "letter": "E",
+          "text": "The answer cannot be determined without knowing the contents of the directory."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The method compiles, so option A is incorrect. The method reads all of the elements of\na directory tree, keeping only directories. The forEach() method does not print anything,\nthough, making option B correct. If the lambda in the forEach() method was modified to\nprint something, such as s -> System.out.println(Files.isDirectory(s)), then\nit would print true at least once for the coffee directory. It would then print true for each\ndirectory within the directory tree."
+    },
+    {
+      "id": 28,
+      "question": "Assuming the file referenced in the StudentManager class exists and contains at least one\nrecord, which statements about the following class are correct? (Choose two.)\npackage school;\nimport java.io.*;\nrecord Student(String name) { static Integer score = -1; }\npublic class StudentManager {\npublic static void main(String[] grades) {\ntry(var ios = new ObjectInputStream(\nnew FileInputStream(new File(\"s.data\")))) {332 Chapter 9 ■ Using Java I/O API\nStudent record;\nwhile((record = (Student)ios.readObject()) != null) // p1\nSystem.out.print(record);\n} catch (EOFException e) {\n} catch (Exception e) {\nthrow new RuntimeException(e);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The code compiles but prints an exception at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The program runs and prints all students in the file."
+        },
+        {
+          "letter": "D",
+          "text": "The program runs but may only print some students in the files."
+        },
+        {
+          "letter": "E",
+          "text": "Line p1 demonstrates the proper way to check if all records have been read."
+        },
+        {
+          "letter": "F",
+          "text": "Line p1 does not demonstrate the proper way to check if all records have been read."
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "The code compiles but the Student record does not implement Serializable.\nFor this reason, an exception is thrown at runtime, and option B is correct. If the purpose\nis to verify all records have been read, then line p1 contains an error. The problem with the\nimplementation is that checking if ios.readObject() is null is not the recommended\nway of iterating over an entire file. For example, the file could have been written with\nwriteObject(null) in between two non-null records. In this case, the reading of the file\nwould stop on this null value, before the end of the file has been reached. For this reason,\noption F is also correct."
+    },
+    {
+      "id": 29,
+      "question": "Given an instance of Console c, which of the following two method calls are invalid ways\nof retrieving input from the user? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "c.read()"
+        },
+        {
+          "letter": "B",
+          "text": "c.reader().read()"
+        },
+        {
+          "letter": "C",
+          "text": "c.reader().readLine()"
+        },
+        {
+          "letter": "D",
+          "text": "c.readLine()"
+        },
+        {
+          "letter": "E",
+          "text": "c.readPassword()"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "The Console class contains readLine() and readPassword() methods, but not\na read() method, making option A one of the correct answers, and options D and E incorrect. It also contains a reader() method that returns a Reader object. The Reader class\ndefines a read() method, but not a readLine() method. For this reason, option C is the\nother correct answer, and option B is incorrect. Recall that a BufferedReader is required\nto call the readLine() method."
+    },
+    {
+      "id": 30,
+      "question": "What is the output of the following code snippet? Assume that the current directory is the\nroot path /.\nPath p1 = Paths.get(\"./locks\");\nPath p2 = Paths.get(\"/found/red.zip\");\nSystem.out.println(p1.relativize(p2));\nSystem.out.println(p2.relativize(p1));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "../found/red.zip and ../../locks"
+        },
+        {
+          "letter": "B",
+          "text": "/found/red.zip and /found/red.zip/./locks"
+        },
+        {
+          "letter": "C",
+          "text": "locks/../found/red.zip and ../found/locks"
+        },
+        {
+          "letter": "D",
+          "text": "../../locks and ../found/red.zip"
+        },
+        {
+          "letter": "E",
+          "text": "/found/red.zip and /found/red.zip/locks"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The relativize() method requires that both path values be absolute or relative. Based\non the details provided, p1 is a relative path, while p2 is an absolute path. For this reason,\nthe code snippet produces an exception at runtime, making option F the correct answer. If the\nfirst path was modified to be absolute by dropping the leading dot (.) in the path expression,\nthen the output would match the values in option A."
+    },
+    {
+      "id": 31,
+      "question": "Assuming the current working directory is /home, then what is the output of the\nfollowing program?\n1: package magic;\n2: import java.nio.file.*;\n3: public class Magician {Chapter 9 ■ Using Java I/O API 333\n4: public String doTrick(Path path) {\n5: return path.subpath(2,3)\n6: .getName(1)\n7: .toAbsolutePath()\n8: .toString();\n9: }\n10: public static void main(String... cards) {\n11: final Magician m = new Magician();\n12: System.out.print(m.doTrick(\n13: Paths.get(\"/bag/of/tricks/.././disappear.txt\")));\n14: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "/home/tricks"
+        },
+        {
+          "letter": "B",
+          "text": "/home"
+        },
+        {
+          "letter": "C",
+          "text": "tricks"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but prints an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code compiles without issue. Even though tricks would be dropped in the\nnormalized path /bag/of/disappear.txt, there is no normalize() call, so\npath.subpath(2,3) returns tricks on line 5. On line 6, the call to getName() throws\nan IllegalArgumentException at runtime. Since getName() is zero-indexed and contains only one element, the call on line 6 throws an IllegalArgumentException, making option E the correct answer. If getName(0) had been used instead of getName(1),\nthen the program would run without issue and print /home/tricks."
+    },
+    {
+      "id": 32,
+      "question": "Which statements about the Files methods lines() and readAllLines() are correct?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "They have different return types."
+        },
+        {
+          "letter": "B",
+          "text": "The readAllLines() method is always faster."
+        },
+        {
+          "letter": "C",
+          "text": "The lines() method may require more memory."
+        },
+        {
+          "letter": "D",
+          "text": "They have the same return type."
+        },
+        {
+          "letter": "E",
+          "text": "The lines() method is always faster."
+        },
+        {
+          "letter": "F",
+          "text": "The readAllLines() method may require more memory."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "The lines() method returns Stream<String>, while the readAllLines()\nmethod returns List<String>, making option A correct and option D incorrect. Neither\nmethod is guaranteed to be faster or slower than the other, making options B and E\nincorrect. The lines() method lazily reads the file as the stream is processed, while the\nreadAllLines() method reads the entire file into memory at once. For this reason,\nthe readAllLines() method may require more memory to hold a large file, making option\nF correct and option C incorrect."
+    },
+    {
+      "id": 33,
+      "question": "Given the following application in which a user enters bone twice, what is the\nexpected result?\nlong start = System.currentTimeMillis();\nvar retriever = new BufferedReader(new InputStreamReader(System.in));\ntry(retriever; var husky = System.err) {\nvar fetch = retriever.readLine();\nSystem.out.printf(\"%s fetched in %5.1f seconds\",fetch, // v1\n(System.currentTimeMillis()-start)/1000.0);\n}\nvar fetchAgain = retriever.readLine();\nSystem.out.println(fetchAgain + \" fetched again!\");334 Chapter 9 ■ Using Java I/O API",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The program completes after printing a message once."
+        },
+        {
+          "letter": "B",
+          "text": "The program completes after printing a message twice."
+        },
+        {
+          "letter": "C",
+          "text": "An IOException is printed."
+        },
+        {
+          "letter": "D",
+          "text": "The program prints an exception because the format of the String on line v1 is invalid."
+        },
+        {
+          "letter": "E",
+          "text": "A NullPointerException is thrown since System.in may be unavailable."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above, as the code does not compile."
+        }
+      ],
+      "correct": "A",
+      "explanation": "First, the code compiles. The format of the String on line v1 is valid, making option\nD incorrect. While System.console() throws a NullPointerException if it is\nnot available, System.in does not, making option E incorrect. The first part of the code\nruns without issue, printing a message such as bone fetched in 1.8 seconds. The\nI/O stream System.in is closed at the end of the try-with-resources block. That means\ncalling readLine() again results in an operation on a closed stream, which would print\nan exception at runtime and make option C correct, except System.err is already closed\ndue to the try-with-resources block! Therefore, only one message is printed, and option A is\ncorrect."
+    },
+    {
+      "id": 34,
+      "question": "What is the expected result of calling deleteTree() on a directory? Assume the directory\nexists and is able to be modified.\nimport java.nio.file.*;\npublic class Exterminate {\npublic void deleteTree(Path q) {\nif (!Files.isDirectory(q))\nFiles.delete(q);\nelse {\nFiles.list(q).forEach(this::deleteTree);\nFiles.delete(q);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It will delete the directory itself only."
+        },
+        {
+          "letter": "B",
+          "text": "It will delete the directory and its file contents only."
+        },
+        {
+          "letter": "C",
+          "text": "It will delete the entire directory tree."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but produces an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The Files.delete() and Files.list() declare a checked IOException that must\nbe handled or declared. For this reason, the code does not compile, and option D is correct."
+    },
+    {
+      "id": 35,
+      "question": "Which code, if inserted into the method, will cause it to correctly copy any file passed to it\nthat is accessible? (Choose two.)\nvoid copyFile(String source, String target) throws Exception {\ntry (var is = new FileInputStream(source);\nOutputStream os = new FileOutputStream(target)) {\nbyte[] data = new byte[123];\nint chirps;\n// INSERT CODE HERE\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "while (is.read(data) > 0) os.write(data);Chapter 9 ■ Using Java I/O API 335"
+        },
+        {
+          "letter": "B",
+          "text": "while ((chirps = is.read(data)) > 0) os.write(data, 0, chirps);"
+        },
+        {
+          "letter": "C",
+          "text": "while ((chirps = is.read(data)) > 0) os.write(data);"
+        },
+        {
+          "letter": "D",
+          "text": "while ((chirps = is.read(data)) > 0) os.write(data, chirps, data.length);"
+        },
+        {
+          "letter": "E",
+          "text": "String line; while ((line = is.readLine()) != null) os.write(line + \"\\n\");"
+        },
+        {
+          "letter": "F",
+          "text": "while ((chirps = is.read()) > 0) os.write(chirps);"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "All of the options compile except option E, since FileInputStream does not have\na readLine() method. A BufferedReader should be used instead. Options A and C\nsuffer from the same problem. If the file is not exactly a multiple of 123 bytes, then extra\ninformation will be written to the file from the end of the data array. Option D is incorrect because the second argument should be an offset and the third argument should be the\nnumber of bytes to read from the data array. Option B is correct and uses an array to read a\nfixed number of bytes and then writes that exact number of bytes to the output file. Option F\nis also correct, although it does not use an array. Instead, a single byte is read and written on\neach iteration of the loop."
+    },
+    {
+      "id": 36,
+      "question": "In this question, an instance of Cereal has been serialized to disk, with the source object\nhaving a name value of CornLoops and sugar value of 5. What is the value of name\nand sugar after this object has been read from disk using the ObjectInputStream’s\nreadObject() method?\npackage breakfast;\nimport java.io.Serializable;\nrecord Bowl(boolean spoon) {}\npublic class Cereal implements Serializable {\nprivate String name = \"CocoaCookies\";\nprivate transient int sugar = 10;\nprivate Bowl bowl;\npublic Cereal() {\nsuper();\nthis.name = \"CaptainPebbles\";\nthis.bowl = new Bowl(true);\nsugar = 2;\n}\n{ name = \"SugarPops\"; }\n// Getters/Setters Omitted\n}336 Chapter 9 ■ Using Java I/O API",
+      "options": [
+        {
+          "letter": "A",
+          "text": "CaptainPebbles and 10"
+        },
+        {
+          "letter": "B",
+          "text": "CornLoops and 0"
+        },
+        {
+          "letter": "C",
+          "text": "SugarPops and 10"
+        },
+        {
+          "letter": "D",
+          "text": "SugarPops and 2"
+        },
+        {
+          "letter": "E",
+          "text": "CornLoops and -1"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The Bowl record does not implement the Serializable interface; therefore, attempting\nto write the instance to disk, or calling readObject() using ObjectInputStream, will\nresult in a NotSerializableException at runtime. Remember, all instance members of\na class must be serializable or marked transient for the class to properly implement the\nSerializable interface and be used with Java serialization. For this reason, option F is the\ncorrect answer."
+    },
+    {
+      "id": 37,
+      "question": "What is the output of the following code snippet?\n11: var halleysComet = Path.of(\"stars/./rocks/../m1.meteor\")\n12: .subpath(1, 5).normalize();\n13:\n14: var lexellsComet = Paths.get(\"./stars/../solar/\");\n15: lexellsComet.subpath(1, 3)\n16: .resolve(\"m1.meteor\").normalize();\n17:\n18: System.out.print(halleysComet.equals(lexellsComet) ?\n19: \"Same!\" : \"Different!\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Same!"
+        },
+        {
+          "letter": "B",
+          "text": "Different!"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The class compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The program compiles and runs without issue, making options C and D incorrect. The\nfirst variable, halleysComet, is created with subpath(1,5) and normalize() being\napplied right away, leading to halleysComet being assigned a value of m1.meteor. The\nsecond variable, lexellsComet, is assigned a value on line 14, but lines 15–16 do not\ninclude an assignment operation. Since Path instances are immutable, the changes are lost.\nFor this reason, the two objects are not equivalent on lines 18–19, and option B is correct."
+    },
+    {
+      "id": 38,
+      "question": "During deserialization from an I/O stream, which element of the class can be used to assign a\nvalue to the deserialized object?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Variable initializer"
+        },
+        {
+          "letter": "B",
+          "text": "Instance initializer"
+        },
+        {
+          "letter": "C",
+          "text": "Static initializer"
+        },
+        {
+          "letter": "D",
+          "text": "Constructor"
+        },
+        {
+          "letter": "E",
+          "text": "The restoreObject() method"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "When data is deserialized, none of variable initializers, instance initializers, or constructors\nis called. The class can have static initializers, but they are not called as part of deserialization. Finally, there is no restoreObject() method that is used in standard deserialization.\nFor these reasons, option F is correct."
+    },
+    {
+      "id": 39,
+      "question": "Assuming there are no symbolic links involved and file /nursery/sapling.seed exists,\nwhich statements about the following code snippet are correct? (Choose three.)\nFiles.move(\nPaths.get(\"/nursery/sapling.seed\"),\nPaths.get(\"/forest\"),\nStandardCopyOption.ATOMIC_MOVE);Chapter 9 ■ Using Java I/O API 337",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code may throw an exception at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "The code may complete without throwing an exception at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "After it runs, the new location of the file is /nursery/sapling.seed."
+        },
+        {
+          "letter": "D",
+          "text": "After it runs, the new location of the file is /forest/sapling.seed."
+        },
+        {
+          "letter": "E",
+          "text": "If a process is monitoring the move, it will not see an incomplete file."
+        },
+        {
+          "letter": "F",
+          "text": "If a process is monitoring the move, it could see an incomplete file."
+        }
+      ],
+      "correct": "A,B,E",
+      "explanation": "The code moves a file from /nursery/sapling.seed to the new location of\n/forest. For this reason, options C and D are incorrect. If there is no file or directory at\n/forest, then the program completes successfully. If a file already exists at that location,\nthen an exception is thrown since the REPLACE_EXISTING option is not set. For these reasons, options A and B are correct. Since the ATOMIC_MOVE flag is set, option E is correct,\nand option F is incorrect."
+    },
+    {
+      "id": 40,
+      "question": "What is the output of the following application? Assume /all-data exists and is accessible\nwithin the file system.\n1: package sesame;\n2: import java.nio.file.*;\n3: import java.util.stream.*;\n4: public class TheCount {\n5: public static Stream<String> readLines(Path p) {\n6: try { return Files.lines(p); } catch (Exception e) {\n7: throw new RuntimeException(e);\n8: }\n9: }\n10: public static long count(Path p) throws Exception {\n11: return Files.list(p)\n12: .filter(w -> Files.isRegularFile(w))\n13: .flatMap(s -> readLines(s))\n14: .count();\n15: }\n16: public static void main(String[] d) throws Exception {\n17: System.out.print(count(Paths.get(\"/all-data\")));\n18: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The number of lines in all files in a directory tree."
+        },
+        {
+          "letter": "C",
+          "text": "The number of lines in all files in a single directory."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The program compiles and runs without issue, making options A, D, and E incorrect.\nThe program uses Files.list() to iterate over all files within a single directory. For\neach file, it then iterates over the lines of the file and sums them. For this reason, option\nC is the correct answer. If the count() method had used Files.walk() instead of\nFiles.lines(), then the class would still compile and run, and option B would be the\ncorrect answer."
+    }
+  ]
+}

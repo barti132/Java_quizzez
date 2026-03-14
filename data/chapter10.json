@@ -1,0 +1,866 @@
+{
+  "chapter": "Chapter 10 - Accessing Databases Using JDBC",
+  "totalQuestions": 30,
+  "questions": [
+    {
+      "id": 1,
+      "question": "How many of Connection, Driver, DriverManager, PreparedStatement, and\nResultSet are JDBC interfaces included with the JDK?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Connection is a JDK interface for communicating with the database.\nPreparedStatement and ResultSet are typically used to write queries and are also in\nthe JDK. Driver is tricky because you don’t write code that references it directly. However,\nyou are still required to know it is a JDBC interface. DriverManager is used in JDBC code\nto get a Connection. However, it is a concrete class rather than an interface. Since only four\nout of the five are JDBC interfaces, option E is correct."
+    },
+    {
+      "id": 2,
+      "question": "Which of these can replace the following line of code without changing the behavior?\nvoid updateRecord(PreparedStatement stmt) throws SQLException {\nstmt.setString(2, null);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "stmt.setNull(2);"
+        },
+        {
+          "letter": "B",
+          "text": "stmt.setNull(2, null);"
+        },
+        {
+          "letter": "C",
+          "text": "stmt.setNull(2, Types.VARCHAR);"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The setNull() method requires you to pass the data type in the database. This makes\noption C the answer."
+    },
+    {
+      "id": 3,
+      "question": "What must be the first characters of a database URL?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "db,"
+        },
+        {
+          "letter": "B",
+          "text": "db:"
+        },
+        {
+          "letter": "C",
+          "text": "jdbc,"
+        },
+        {
+          "letter": "D",
+          "text": "jdbc:"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "All JDBC URLs begin with the protocol jdbc followed by a colon as a delimiter. Option\nD is the only one that does both of these, making it the correct answer."
+    },
+    {
+      "id": 4,
+      "question": "Which is responsible for getting a connection to the database?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Driver"
+        },
+        {
+          "letter": "B",
+          "text": "Connection"
+        },
+        {
+          "letter": "C",
+          "text": "PreparedStatement"
+        },
+        {
+          "letter": "D",
+          "text": "Statement"
+        },
+        {
+          "letter": "E",
+          "text": "ResultSet"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The Driver interface is responsible for getting a connection to the database, making\noption A the answer. The Connection interface is responsible for communication with the\ndatabase but not making the initial connection. The Statement interface knows how to run\nthe SQL query, and the ResultSet interface knows what was returned by a SELECT query."
+    },
+    {
+      "id": 5,
+      "question": "Which of these obtains a Connection?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Connection.getConnection(url)"
+        },
+        {
+          "letter": "B",
+          "text": "Driver.getConnection(url)"
+        },
+        {
+          "letter": "C",
+          "text": "DriverManager.getConnection(url)"
+        },
+        {
+          "letter": "D",
+          "text": "new Connection(url)"
+        },
+        {
+          "letter": "E",
+          "text": "None of the aboveChapter 10 ■ Accessing Databases Using JDBC 341"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Connection is an interface. Since interfaces do not have constructors, option D is incorrect. The Connection class doesn’t have a static method to get a Connection either,\nmaking option A incorrect. The Driver class is also an interface without static methods,\nmaking option B incorrect. Option C is the answer because DriverManager is the class\nused in JDBC to get a Connection."
+    },
+    {
+      "id": 6,
+      "question": "Which method in DriverManager is overloaded to allow passing a username\nand password?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "conn()"
+        },
+        {
+          "letter": "B",
+          "text": "connect()"
+        },
+        {
+          "letter": "C",
+          "text": "forName()"
+        },
+        {
+          "letter": "D",
+          "text": "getStatement()"
+        },
+        {
+          "letter": "E",
+          "text": "open()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The DriverManager.getConnection() method can be called with just a URL. It\nis also overloaded to take the URL, username, and password. Since this is not one of the\noptions, the answer is option F."
+    },
+    {
+      "id": 7,
+      "question": "What is the output if the animals database exists and contains an empty names table?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT count(*) FROM names\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql,\nResultSet.TYPE_SCROLL_INSENSITIVE,\nResultSet.CONCUR_UPDATABLE);\nvar rs = stmt.executeQuery()) {\nSystem.out.println(rs.getInt(1));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "This code is missing a call to rs.next(). As a result, rs.getInt(1) throws a\nSQLException with the message invalid cursor state. Therefore, option D is\nthe answer."
+    },
+    {
+      "id": 8,
+      "question": "Consider the three methods execute(), executeQuery(), and executeUpdate().\nFill in the blanks: of these methods is/are allowed to run a DELETE SQL\nstatement while of these methods is/are allowed to run an UPDATE SQL\nstatement.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None, one"
+        },
+        {
+          "letter": "B",
+          "text": "One, none"
+        },
+        {
+          "letter": "C",
+          "text": "One, one"
+        },
+        {
+          "letter": "D",
+          "text": "One, two"
+        },
+        {
+          "letter": "E",
+          "text": "Two, two"
+        },
+        {
+          "letter": "F",
+          "text": "Three, three"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The execute() method is allowed to run any type of SQL statements. The\nexecuteUpdate() method is allowed to run any type of the SQL statement that returns\na row count rather than a ResultSet. Both DELETE and UPDATE SQL statements are\nallowed to be run with either execute() or executeUpdate(). They are not allowed to\nbe run with executeQuery() because they do not return a ResultSet. Therefore, option\nE is the answer."
+    },
+    {
+      "id": 9,
+      "question": "Suppose the pandas table has one row with the name Mei Xiang and the location DC.\nWhat does the following code output?\nvar url = \"jdbc:hsqldb:file:mammals\";\nvar sql = \"SELECT name FROM pandas WHERE location = 'DC'\";\ntry (var conn = DriverManager.getConnection(url); // s1342 Chapter 10 ■ Accessing Databases Using JDBC\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getString(\"name\"));\nelse\nSystem.out.println(\"No match\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Mei Xiang"
+        },
+        {
+          "letter": "B",
+          "text": "No match"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "This code uses a PreparedStatement without bind variables (?). While it would be\nbetter to use bind variables, this code does run. The ResultSet has one value and does\nprint Mei Xiang successfully. Therefore, option A is the answer."
+    },
+    {
+      "id": 10,
+      "question": "Suppose we have a peacocks table with two columns: name and rating. What does the following code output if the table is empty?\nvar url = \"jdbc:hsqldb:file:birds\";\nvar sql = \"SELECT name FROM peacocks WHERE name = ?\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"Feathers\");\nstmt.setString(2, \"Nice\");\nboolean result = stmt.execute(); // s2\nSystem.out.println(result);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime.Chapter 10 ■ Accessing Databases Using JDBC 343"
+        }
+      ],
+      "correct": "F",
+      "explanation": "While the table has two columns, the SQL query has only one bind variable (?). Therefore,\nthe code throws an exception when attempting to set the second bind variable, and option F\nis correct."
+    },
+    {
+      "id": 11,
+      "question": "Suppose we have an empty bunny table with two columns: name and color. What is the state\nof the table after running this code?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"INSERT INTO bunny(name, color) VALUES (?, ?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"Daisy\");\nstmt.setString(2, \"Brown\");\nstmt.executeUpdate();\nstmt.setString(1, \"Cinna\");\nstmt.setString(2, \"Brown\");\nstmt.executeUpdate();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It has one row."
+        },
+        {
+          "letter": "B",
+          "text": "It has two rows, and the color is Brown in both."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code is correct. It executes the first update to add the first row and then sets the\nparameters for the second. When it updates the second time, it adds the second row. Therefore, option B is the answer."
+    },
+    {
+      "id": 12,
+      "question": "Suppose cats is an empty table. Where can conn.rollback() be inserted so that the\ntable remains empty?\ntry (var conn = DriverManager.getConnection(url)) {\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert,\nResultSet.TYPE_FORWARD_ONLY,\nResultSet.CONCUR_READ_ONLY)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n// line x\n}\n// line y\nconn.commit();\n}344 Chapter 10 ■ Accessing Databases Using JDBC",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line x"
+        },
+        {
+          "letter": "B",
+          "text": "Line y"
+        },
+        {
+          "letter": "C",
+          "text": "Either line x or y"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Since conn.setAutoCommit(false) is not called, each update is automatically committed. Therefore, there is nothing to roll back and option D is the answer."
+    },
+    {
+      "id": 13,
+      "question": "Given the books table in the figure and the following method, which option prints the value\n379?\ntitle\ncharacter vararg(255)\nBeginning Java\nAdvanced Java\n379\n669\nnum_pages\ninteger\nvoid printNumPages(Connection conn) throws SQLException {\nvar sql = \"\"\"\nSELECT *\nFROM books\nWHERE title = 'Beginning Java'\"\"\";\nvar ps = conn.prepareStatement(sql);\nvar rs = ps.executeQuery();\nif(rs.next())\nSystem.out.print( );\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "rs.getInt(1)"
+        },
+        {
+          "letter": "B",
+          "text": "rs.getInt(2)"
+        },
+        {
+          "letter": "C",
+          "text": "rs.getInteger(1)"
+        },
+        {
+          "letter": "D",
+          "text": "rs.getInteger(2)"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Unlike arrays, JDBC uses one-based indexes. Since num_pages is in the second column,\nthe parameter needs to be 2, ruling out options A and C. Further, there is not a method\nnamed getInteger() on the ResultSet interface, ruling out option D. Because the\nproper method is getInt(), option B is the answer."
+    },
+    {
+      "id": 14,
+      "question": "Given the books table in the previous question and the following code, which lines would\nyou add to successfully insert a row? (Choose two.)\nvar url = \"jdbc:hsqldb:file:library\";\nvar sql = \"INSERT INTO books (title,num_pages) VALUES(?,?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql,\nResultSet.TYPE_SCROLL_INSENSITIVE,\nResultSet.CONCUR_UPDATABLE)) {\n// INSERT CODE HERE\nstmt.executeUpdate();\n}Chapter 10 ■ Accessing Databases Using JDBC 345",
+      "options": [
+        {
+          "letter": "A",
+          "text": "stmt.setObject(0, \"Intermediate Java\");"
+        },
+        {
+          "letter": "B",
+          "text": "stmt.setObject(1, \"Intermediate Java\");"
+        },
+        {
+          "letter": "C",
+          "text": "stmt.setObject(1, 500);"
+        },
+        {
+          "letter": "D",
+          "text": "stmt.setObject(2, 500);"
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Since JDBC does not begin indexes with 0, option A is incorrect and option B is\ncorrect. Similarly, the second parameter is at index 2, so option C is incorrect and option D is\nthe other answer. Note that setObject() can be called instead of a more specific type."
+    },
+    {
+      "id": 15,
+      "question": "Given the books table from the previous two questions and the following method, which\noption prints Advanced Java?\nvoid printTitle(Connection conn) throws SQLException {\nvar sql = \"\"\"\nSELECT title\nFROM books\nWHERE num_pages > 500\"\"\";\nvar ps = conn.prepareStatement(sql);\nvar rs = ps.executeQuery();\nif(rs.next())\nSystem.out.print( );\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "rs.getString()"
+        },
+        {
+          "letter": "B",
+          "text": "rs.getString(\"0\")"
+        },
+        {
+          "letter": "C",
+          "text": "rs.getString(\"1\")"
+        },
+        {
+          "letter": "D",
+          "text": "rs.getString(\"title\")"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Option A does not compile because you have to pass a column index or column name to\nthe method. Options B and C compile. However, there are no columns named 0 or 1. Since\nthese column names don’t exist, the code would throw a SQLException at runtime. Option\nD is correct as it uses the proper column name."
+    },
+    {
+      "id": 16,
+      "question": "Suppose we have a stored procedure named summon that has one OUT parameter named\nsuperpower that always returns the value fly. Fill in the blank so that the output is fly.\nvar sql = \"{call summon(?)}\";\ntry (var conn = DriverManager.getConnection(url);\nvar cs = conn.prepareCall(sql)) {\ncs. (1, Types.VARCHAR);\nvar rs = cs. ();\nSystem.out.println(cs.getString(\"superpower\"));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "registerOutParameter and execute"
+        },
+        {
+          "letter": "B",
+          "text": "registerOutParameter and executeQuery"
+        },
+        {
+          "letter": "C",
+          "text": "setOutParameter and execute"
+        },
+        {
+          "letter": "D",
+          "text": "setOutParameter and executeQuery"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above346 Chapter 10 ■ Accessing Databases Using JDBC"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Stored procedures use the registerOutParameter() method. Since this stored\nprocedure returns a value, we need to call execute(), making option A the answer."
+    },
+    {
+      "id": 17,
+      "question": "Suppose cats is an empty table. Where can conn.rollback(sp) be inserted so that\nexactly one row is in the table?\ntry (var conn = DriverManager.getConnection(url)) {\nconn.setAutoCommit(false);\nString insert = \"INSERT INTO cats VALUES (?,?)\";\nSavepoint sp = null;\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n// line x\n}\nsp = conn.setSavepoint();\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 2);\nstmt.setString(2, \"Beverly\");\nstmt.executeUpdate();\n// line y\n}\nconn.commit();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line x"
+        },
+        {
+          "letter": "B",
+          "text": "Line y"
+        },
+        {
+          "letter": "C",
+          "text": "Either line x or y"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The Kitty insert is before the SavePoint so it is remembered. The rollback()\nmethod prevents the Beverly commit. When the code calls commit(), only Kitty is committed and option B is correct."
+    },
+    {
+      "id": 18,
+      "question": "Assuming the animals database exists and contains one empty table named names, what is\nthe output of the following?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT * FROM names\";\ntry (var conn = new Connection(url); // s1\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) { // s3\nif (rs.next())\nSystem.out.println(rs.getString(1));\n}\n}Chapter 10 ■ Accessing Databases Using JDBC 347",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code terminates successfully without any output."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s3."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Connection is an interface rather than a concrete class. Therefore, it does not have a\nconstructor and line s1 does not compile. As a result, option B is the answer."
+    },
+    {
+      "id": 19,
+      "question": "What is the correct order to close database resources?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Connection then PreparedStatement then ResultSet"
+        },
+        {
+          "letter": "B",
+          "text": "Connection then ResultSet then PreparedStatement"
+        },
+        {
+          "letter": "C",
+          "text": "PreparedStatement then Connection then ResultSet"
+        },
+        {
+          "letter": "D",
+          "text": "PreparedStatement then ResultSet then Connection"
+        },
+        {
+          "letter": "E",
+          "text": "ResultSet then PreparedStatement then Connection"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Database resources should be manually closed in the reverse order from which they\nwere opened. This means the ResultSet object is closed before the Statement object\nand the Statement object is closed before the Connection object. This makes option E\nthe answer."
+    },
+    {
+      "id": 20,
+      "question": "Assuming the animals database exists and contains one empty table named names, what is\nthe output of the following?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT * FROM names\";\ntry (var conn = DriverManager.getConnection(url); // s1\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) { // s3\nif (rs.next())\nSystem.out.println(rs.getString(1));\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code terminates successfully without any output."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s3."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "This code correctly obtains a Connection and PreparedStatement. It then runs a\nquery, getting back a ResultSet without any rows. The rs.next() call returns false, so\nnothing is printed, making option A correct."
+    },
+    {
+      "id": 21,
+      "question": "Suppose we have a bunny table with two columns: name and color. What does the following\ncode output if the table is empty?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"SELECT count(*) FROM bunny WHERE color = ? and name = ?\";348 Chapter 10 ■ Accessing Databases Using JDBC\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"White\");\ntry (var rs = stmt.executeQuery()) { // s2\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The SQL query has two bind variables, but the code sets only one. This causes a\nSQLException when executeQuery() is called, making option F the answer."
+    },
+    {
+      "id": 22,
+      "question": "Suppose the pandas table has one row with the name Mei Xiang and the location DC.\nWhat does the following code output?\nvar url = \"jdbc:hsqldb:file:mammals\";\nvar sql = \"SELECT name FROM pandas WHERE location = ?\";\ntry (var conn = DriverManager.getConnection(url); // s1\nvar stmt = conn.prepareStatement(sql)) { // s2\nstmt.setString(1, \"DC\");\ntry (var rs = stmt.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getString(\"name\"));\nelse\nSystem.out.println(\"No match\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Mei Xiang"
+        },
+        {
+          "letter": "B",
+          "text": "No match"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime.Chapter 10 ■ Accessing Databases Using JDBC 349"
+        }
+      ],
+      "correct": "A",
+      "explanation": "This code uses a PreparedStatement and properly sets a bind variable (?). The\nResultSet has one value and does print Mei Xiang successfully. Therefore, option A is\nthe answer."
+    },
+    {
+      "id": 23,
+      "question": "Suppose we have a stored procedure named increment that has one INOUT parameter named\nnum. The num parameter always returns a number 1 larger than the one passed in. Which\noptions fill in the blank so the output is 7? (Choose two.)\nvar sql = \"{call increment(?)}\";\ntry (var conn = DriverManager.getConnection(url);\nvar cs = conn.prepareCall(sql)) {\n// Input parameter\ncs. (1, 6);\n// Output parameter\ncs. (1, Types.VARCHAR);\nvar rs = cs.execute();\nSystem.out.println(cs.getString(\"num\"));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "registerInParameter"
+        },
+        {
+          "letter": "B",
+          "text": "registerInOutParameter"
+        },
+        {
+          "letter": "C",
+          "text": "registerOutParameter"
+        },
+        {
+          "letter": "D",
+          "text": "setInt"
+        },
+        {
+          "letter": "E",
+          "text": "setInOutParameter"
+        },
+        {
+          "letter": "F",
+          "text": "setOutParameter"
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "Input parameters are set in the same way as in a PreparedStatement, making\nsetInt() correct for the first blank and option D correct. For the second blank, stored\nprocedures use registerOutParameter() for output, making option C the other\ncorrect answer."
+    },
+    {
+      "id": 24,
+      "question": "Which is true if the animals database exists and contains an empty names table?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT COUNT(*) FROM names\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql,\nResultSet.TYPE_FORWARD_ONLY,\nResultSet.CONCUR_READ_ONLY);\nvar rs = stmt.executeQuery()) {\nrs.next(); // r1\nSystem.out.println(rs.getInt(1)); // r2\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles and prints 0 without error."
+        },
+        {
+          "letter": "B",
+          "text": "The code compiles and prints 1 without error."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime on line r1."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime on line r2.350 Chapter 10 ■ Accessing Databases Using JDBC"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The count(*) function in SQL always returns a number. In this case, it is the number 0.\nThis means line r1 executes successfully because it positions the cursor at that row. Line r2\nalso executes successfully and prints 0, which is the value in the row. Since the code runs successfully, option A is the answer."
+    },
+    {
+      "id": 25,
+      "question": "Suppose we have an empty bunny table with two columns: name and color. What is the state\nof the table after running this code?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"INSERT INTO bunny(name, color) VALUES (?, ?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"Hoppy\");\nstmt.setString(2, \"Brown\");\nstmt.executeUpdate();\nstmt.setString(1, \"Daisy\");\nstmt.executeUpdate();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only one row has the color Brown set."
+        },
+        {
+          "letter": "B",
+          "text": "It has two rows and the color is Brown in both."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code is correct. It executes the first update to add the first row and then sets the\nparameters for the second. For the second update, only one parameter is set. The other is\nreused since it was set earlier. Therefore, option B is the answer."
+    },
+    {
+      "id": 26,
+      "question": "Suppose cats is an empty table. How many rows are in this table when the code\nhas completed?\ntry (var conn = DriverManager.getConnection(url)) {\nconn.setAutoCommit(false);\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n}\nvar sp = conn.setSavepoint();\nconn.rollback();\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 2);\nstmt.setString(2, \"Beverly\");\nstmt.executeUpdate();\n}\nconn.commit();\n}Chapter 10 ■ Accessing Databases Using JDBC 351",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The Kitty insert is rolled back even though there is a savepoint since the savepoint is not\nreferenced. The Beverly insert is retained, making option B correct."
+    },
+    {
+      "id": 27,
+      "question": "Which is true of a PreparedStatement?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It has a method to change the bind variable to a different character other than the ? character."
+        },
+        {
+          "letter": "B",
+          "text": "It can be used only for SELECT statements."
+        },
+        {
+          "letter": "C",
+          "text": "It can be used only for UPDATE statements."
+        },
+        {
+          "letter": "D",
+          "text": "All of these are true."
+        },
+        {
+          "letter": "E",
+          "text": "None of these are true."
+        }
+      ],
+      "correct": "E",
+      "explanation": "In JDBC, the bind variable is always a question mark (?), making option A incorrect. A\nPreparedStatatement is not limited to specific types of SQL, making options B and C\nincorrect as well. This makes option E the correct answer."
+    },
+    {
+      "id": 28,
+      "question": "Suppose we have a peacocks table with two columns: name and rating. What does the following code output if the table is empty?\nvar url = \"jdbc:hsqldb:file::birds\";\nvar sql = \"SELECT name FROM peacocks WHERE name = ?\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"Feathers\");\nSystem.out.println(stmt.executeUpdate()); // s2\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line s1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line s2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to another line."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "F",
+      "explanation": "While this code compiles, it isn’t right. Since we have a SELECT statement, we should be\ncalling execute() or executeQuery(). Option F is the answer because the code throws\nan exception when attempting to call executeUpdate()."
+    },
+    {
+      "id": 29,
+      "question": "Which of the following statements about Connection methods are true? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "rollback() is ignored while autocommit mode is set to false."
+        },
+        {
+          "letter": "B",
+          "text": "rollback() is ignored while autocommit mode is set to true."
+        },
+        {
+          "letter": "C",
+          "text": "When not in autocommit mode, calling setAutoCommit(true) causes the data to be immediately committed."
+        },
+        {
+          "letter": "D",
+          "text": "When not in autocommit mode, calling setAutoCommit(true) creates a SavePoint."
+        },
+        {
+          "letter": "E",
+          "text": "When not in autocommit mode, calling setAutoCommit(true) rolls back any outstanding changes."
+        },
+        {
+          "letter": "F",
+          "text": "When not in autocommit mode, calling setAutoCommit(true) throws an exception.352 Chapter 10 ■ Accessing Databases Using JDBC"
+        }
+      ],
+      "correct": "B,C",
+      "explanation": "When in autocommit mode, statements are immediately committed. Since there is\nnothing to roll back, option B is one of the answers. Additionally, enabling autocommit mode\ntriggers an immediate commit, giving us option C."
+    },
+    {
+      "id": 30,
+      "question": "What is the most likely outcome of this code if the bunny table is empty?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"INSERT INTO bunny(name, color) VALUES (?, ?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.createStatement()) {\nstmt.setString(1, \"Hoppy\");\nstmt.setString(2, \"Brown\");\nstmt.executeUpdate(sql);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One row is in the table."
+        },
+        {
+          "letter": "B",
+          "text": "Two rows are in the table."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code throws a SQLException."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This question is trickier if you know more JDBC than is on the exam. If you know only\nwhat is on the exam, you would assume the createStatement() method doesn’t exist.\nHowever, it does, and stmt is a Statement object. Since setString() does not exist on\nStatement, the code does not compile. This means the answer is option C regardless of\nyour level of knowledge of JDBC."
+    }
+  ]
+}

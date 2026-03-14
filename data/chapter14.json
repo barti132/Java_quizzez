@@ -1,0 +1,1594 @@
+{
+  "chapter": "Chapter 14 - Practice Exam 3",
+  "totalQuestions": 50,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following are true about Java operators and statements? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Both right-hand sides of the ternary expression are evaluated at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "A switch statement may contain at most one default statement."
+        },
+        {
+          "letter": "C",
+          "text": "The post-increment operator (++) returns the value of the variable before the addition is applied."
+        },
+        {
+          "letter": "D",
+          "text": "The logical operators (|) and (||) are interchangeable, producing the same results at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The complement operator (!) operator may be applied to numeric expressions."
+        },
+        {
+          "letter": "F",
+          "text": "An assignment operator returns a value that is equal to the value of the expression being assigned."
+        }
+      ],
+      "correct": "B,C,F",
+      "explanation": "The ternary operator (? :) evaluates only one of the two right-hand expressions at\nruntime, so option A is incorrect. A switch statement may contain at most one optional\ndefault statement, making option B correct. The post-increment operator increments the\nvariable and returns the original value, making option C correct. The logical operator (|)\noperator will evaluate both operands, while the disjunctive short-circuit (||) operator will\nonly evaluate the right-hand side of the expression if the left-hand side evaluates to\nfalse. Therefore, they may produce different results if the left operand is true, and\noption D is incorrect. Option E is incorrect as the complement operator (!) is applied to\nboolean values. Finally, option F is correct and allows the assignment operator to be used in\na conditional expression, such as part of a loop condition."
+    },
+    {
+      "id": 2,
+      "question": "What is the output of the following?\npublic class Legos {\npublic static void main(String[] args) {\nvar ok = true;\nif (ok) {\nvar sb = new StringBuilder();\nsb.append(\"red\");\nsb.deleteCharAt(0);\nsb.delete(1, 1);\n}\nSystem.out.print(sb);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "r"
+        },
+        {
+          "letter": "B",
+          "text": "e"
+        },
+        {
+          "letter": "C",
+          "text": "ed"
+        },
+        {
+          "letter": "D",
+          "text": "red"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "This code does not compile because print() attempts to reference the sb variable.\nHowever, that variable is only in scope for the if statement. Since the code does not compile,\noption E is correct. If println() were inside the if statement, option C would be correct."
+    },
+    {
+      "id": 3,
+      "question": "Which line of code belongs in a service locator?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ServiceLoader<Mouse> sl = ServiceLoader.load(Mouse.class);"
+        },
+        {
+          "letter": "B",
+          "text": "ServiceLoader<Mouse> sl = ServiceLoader.loader(Mouse.class);"
+        },
+        {
+          "letter": "C",
+          "text": "ServiceLoader<Mouse> sl = ServiceLoader.lookup(Mouse.class);"
+        },
+        {
+          "letter": "D",
+          "text": "ServiceLocator<Mouse> sl = ServiceLoader.load(Mouse.class);"
+        },
+        {
+          "letter": "E",
+          "text": "ServiceLocator<Mouse> sl = ServiceLoader.loader(Mouse.class);"
+        },
+        {
+          "letter": "F",
+          "text": "ServiceLocator<Mouse> sl = ServiceLoader.lookup(Mouse.class);Chapter 14 ■ Practice Exam 3 419"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The service locator contains a ServiceLoader call to the load() method to look up,\nwhich is option A."
+    },
+    {
+      "id": 4,
+      "question": "What is the result of the following?\n1: import java.util.function.*;\n2: public class Ready {\n3: private static double getNumber() {\n4: return .007;\n5: }\n6: public static void main(String[] args) {\n7: Supplier<double> s = Ready::getNumber;\n8: double d = s.get();\n9: System.out.println(d);\n10: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "0.007"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile due to line 7."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to line 8."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for another reason."
+        }
+      ],
+      "correct": "C",
+      "explanation": "You can’t use generics with a primitive, so it should be Supplier<Double>. This makes\noption C the answer."
+    },
+    {
+      "id": 5,
+      "question": "What is the output of executing the following code snippet?\nvar e = Executors.newSingleThreadExecutor();\nRunnable r1 = () -> Stream.of(1,2,3).parallel();\nCallable r2 = () -> Stream.of(4,5,6).parallel();\nFuture<Stream<Integer>> f1 = e.submit(r1); // x1\nFuture<Stream<Integer>> f2 = e.submit(r2); // x2\nvar r = Stream.of(f1.get(),f2.get())\n.flatMap(p -> p) // x3\n.parallelStream() // x4\n.collect(\nCollectors.groupingByConcurrent(i -> i%2==0));\nSystem.out.print(r.get(false).size()\n+\" \"+r.get(true).size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "3 3"
+        },
+        {
+          "letter": "B",
+          "text": "2 4"
+        },
+        {
+          "letter": "C",
+          "text": "One of the marked lines (x1, x2, x3, x4) does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "Two of the marked lines (x1, x2, x3, x4) do not compile."
+        },
+        {
+          "letter": "E",
+          "text": "Three of the marked lines (x1, x2, x3, x4) do not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above.420 Chapter 14 ■ Practice Exam 3"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line x1 does not compile because of an assignment and value mismatch. The r1 variable\nis a Runnable expression. While there is an ExecutorService.submit() that takes\na Runnable expression, it returns Future<?>, since the return type is void. This type is\nincompatible with the Future<Stream> assignment without an explicit cast, leading to a\ncompiler error. Next, line x4 does not compile. The parallelStream() method is found\nin the Collection interface, not the Stream interface. Due to these two compilation\nerrors, option D is the correct answer."
+    },
+    {
+      "id": 6,
+      "question": "Which can fill in the blank so this code outputs true?\nimport java.util.function.*;\nimport java.util.stream.*;\npublic class HideAndSeek {\npublic static void main(String[] args) {\nvar hide = Stream.of(true, false, true);\nPredicate<Boolean> pred = b -> b;\nvar found = hide.filter(pred). (pred);\nSystem.out.println(found);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only anyMatch"
+        },
+        {
+          "letter": "B",
+          "text": "Only allMatch"
+        },
+        {
+          "letter": "C",
+          "text": "Both anyMatch and allMatch"
+        },
+        {
+          "letter": "D",
+          "text": "Only noneMatch"
+        },
+        {
+          "letter": "E",
+          "text": "Both noneMatch and anyMatch"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile with any of these options."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The filter() method passes two of the three elements of the stream through to\nthe terminal operation. This is redundant, since the terminal operation checks the same\nPredicate. There are two matches with the same value, so both anyMatch() and\nallMatch() return true, and option C is correct."
+    },
+    {
+      "id": 7,
+      "question": "Suppose you have a consumer that calls the lion() method within a Lion service. You have\nfour distinct modules: consumer, service locator, service provider, and service provider\ninterface. If you add a parameter to the lion() method, how many of the modules require\nrecompilation?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The service provider interface clearly needs to be recompiled, since that’s where the\nchange occurs. The service provider also needs to be recompiled because it implements the\ninterface. Finally, the consumer needs to be recompiled because it calls the interface. The service locator does not need to be recompiled, as it only knows the service provider interface\nname rather than its method signature. Since three require recompilation, option D is correct."
+    },
+    {
+      "id": 8,
+      "question": "What is the output of the following application?\npackage music;\ninterface DoubleBass {\nvoid strum();\ndefault int getVolume() {return 5;}\n}\ninterface BassGuitar {\nvoid strum();\ndefault int getVolume() {return 10;}\n}\nabstract class ElectricBass implements DoubleBass, BassGuitar {\n@Override public void strum() {System.out.print(\"X\");}\n}Chapter 14 ■ Practice Exam 3 421\npublic class RockBand {\npublic static void main(String[] strings) {\nfinal class MyElectricBass extends ElectricBass {\npublic int getVolume() {return 30;}\npublic void strum() {System.out.print(\"Y\");}\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "X"
+        },
+        {
+          "letter": "B",
+          "text": "Y"
+        },
+        {
+          "letter": "C",
+          "text": "The application completes without printing anything."
+        },
+        {
+          "letter": "D",
+          "text": "ElectricBass is the first class to not compile."
+        },
+        {
+          "letter": "E",
+          "text": "RockBand is the first class to not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The application does not compile, so options A, B, and C are incorrect. The\nElectricBass class does not compile, since it inherits two default methods with the\nsame signature. Even though the class is marked abstract, it still must override this\ndefault method. Since ElectricBass fails to do so, option D is correct."
+    },
+    {
+      "id": 9,
+      "question": "Which condition is most likely to result in invalid data entering the system?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Deadlock"
+        },
+        {
+          "letter": "B",
+          "text": "Livelock"
+        },
+        {
+          "letter": "C",
+          "text": "Resource not found"
+        },
+        {
+          "letter": "D",
+          "text": "Out of memory error"
+        },
+        {
+          "letter": "E",
+          "text": "Race condition"
+        },
+        {
+          "letter": "F",
+          "text": "Starvation"
+        }
+      ],
+      "correct": "E",
+      "explanation": "A race condition occurs when two threads attempt to execute the same process. If not\nproperly handled, it can lead to an undesirable result, such as two users both being able to\ncreate an account with the same login. For this reason, option E is correct."
+    },
+    {
+      "id": 10,
+      "question": "Which statements are correct? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A Comparable implementation is often implemented by a lambda."
+        },
+        {
+          "letter": "B",
+          "text": "A Comparable object has a compare() method."
+        },
+        {
+          "letter": "C",
+          "text": "The compare() and compareTo() methods have the same contract for the return value."
+        },
+        {
+          "letter": "D",
+          "text": "It is possible to sort the same List using different Comparator implementations."
+        },
+        {
+          "letter": "E",
+          "text": "Two objects that return true for equals() will always return 0 when passed to compareTo()."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "Option A is incorrect because Comparable is implemented in the class being compared. To be useful, such a class must have instance variables to compare, ruling out a\nlambda. By contrast, a Comparator is often implemented with a lambda. Option B is incorrect because compareTo() is the method in Comparable. Option C is correct because\nthese methods have different parameters but the same return type, with the same rules for\nordering elements. Option D is correct because a Comparator doesn’t need to be implemented by the class being compared. It can be passed to the sort() method as a parameter. Option E is incorrect because comparators are not required to be consistent with the\nequals() method. For example, two objects that are equivalent in terms of equals() may\nbe sorted differently."
+    },
+    {
+      "id": 11,
+      "question": "Which lines fail to compile?\npackage armory;\nimport java.util.function.*;\ninterface Shield {\nvoid protect();\n}\nclass Dragon {\nint addDragon(Integer count) {\nreturn ++count;\n} }422 Chapter 14 ■ Practice Exam 3\npublic class Sword {\npublic static void main(String[] knight) {\nvar dragon = new Dragon();\nFunction<Shield, Sword> func = Shield::protect; // line x\nUnaryOperator<Integer> op = dragon::addDragon; // line y\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only line x"
+        },
+        {
+          "letter": "B",
+          "text": "Only line y"
+        },
+        {
+          "letter": "C",
+          "text": "Both lines x and y"
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The method reference on line x is supposed to define a Function. The Shield interface\ndoes define a single abstract method. However, that method has a void return type, which\nis not compatible with Function. Line y does compile since addDragon() has both a\nparameter and return type. Option A is the answer, since only line x fails to compile."
+    },
+    {
+      "id": 12,
+      "question": "What option names are equivalent to -p and -cp on the javac command? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "--module-path and -classpath"
+        },
+        {
+          "letter": "B",
+          "text": "--module-path and -class-path"
+        },
+        {
+          "letter": "C",
+          "text": "--module-path and --class-path"
+        },
+        {
+          "letter": "D",
+          "text": "--path and -classpath"
+        },
+        {
+          "letter": "E",
+          "text": "--path and -class-path"
+        },
+        {
+          "letter": "F",
+          "text": "--path and --class-path"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "The javac command uses -p and --module-path to supply the module path.\nThere are two valid long forms of the classpath option: -classpath and --class-path.\nOptions A and C match these."
+    },
+    {
+      "id": 13,
+      "question": "What is the minimum number of lines that need to be changed or removed to make this\nmethod compile?\n11: public void colors() {\n12: var yellow = \"\";\n13: yellow = null;\n14:\n15: var red = null;\n16:\n17: var blue = \"\";\n18: blue = 1;\n19:\n20: var var = \"\";\n21: var = \"\";\n22:\n23: var pink = 1;\n24: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "ThreeChapter 14 ■ Practice Exam 3 423"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 15 does not compile because the type of a variable cannot be inferred when the value\nis null. Line 18 does not compile because the type cannot be changed once the variable is\ndeclared. In this case, an int cannot be assigned to a String variable. Since the change or\nremoval of these two lines allows the code to compile, option C is correct."
+    },
+    {
+      "id": 14,
+      "question": "What is the output of the following application?\npackage ballroom;\npublic class Dance {\npublic static void swing(int... beats)\nthrows ClassCastException {\ntry {\nSystem.out.print(\"1\"+beats[2]); // p1\n} catch (RuntimeException e) {\nSystem.out.print(\"2\");\n} catch (Exception e) {\nSystem.out.print(\"3\");\n} finally {\nSystem.out.print(\"4\");\n} }\npublic static void main(String[] music) {\nnew Dance().swing(0,0); // p2\nSystem.out.print(\"5\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "145"
+        },
+        {
+          "letter": "B",
+          "text": "1045"
+        },
+        {
+          "letter": "C",
+          "text": "24, followed by a stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "245"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile because of line p1."
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile because of line p2."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code compiles without issue, so options E and F are incorrect. Note that line p2\naccesses a static method using an instance reference, which is discouraged but permitted in\nJava. First, a varargs int array of [0,0] is passed to the swing() method. The try block\nthrows ArrayIndexOutOfBoundsException, since the third element is requested, and\nthe size of the array is two. For this reason, the print() statement in the try block is\nnot executed. Next, since ArrayIndexOutOfBoundsException is a subclass of\nRuntimeException, the RuntimeException catch block is executed and 2 is printed.\nThe rest of the catch blocks are skipped, since the first one was selected. The finally\nblock then executes and prints 4. Finally, control is returned to the main() method\nwithout an exception being thrown, and 5 is printed. Since 245 is printed, option D is the\ncorrect answer."
+    },
+    {
+      "id": 15,
+      "question": "What is the output of the following application?\n1: interface HasHue {String getHue();}\n2: enum COLORS implements HasHue {\n3: red {\n4: public String getHue() {return \"FF0000\";}\n5: }, green {\n6: public String getHue() {return \"00FF00\";}\n7: }, blue {\n8: public String getHue() {return \"0000FF\";}\n9: }\n10: private COLORS() {}424 Chapter 14 ■ Practice Exam 3\n11: }\n12: class Book {\n13: static void main(String[] pencils) {}\n14: }\n15: final public class ColoringBook extends Book {\n16: final void paint(COLORS c) {\n17: System.out.print(\"Painting: \" + c.getHue());\n18: }\n19: final public static void main(String[] crayons) {\n20: new ColoringBook().paint(green);\n21: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Painting: 00FF00"
+        },
+        {
+          "letter": "B",
+          "text": "Exactly one line of code does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "Exactly two lines of code do not compile."
+        },
+        {
+          "letter": "D",
+          "text": "Three or more lines of code do not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but prints an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 10 does not compile because line 9 is missing a semicolon (;) at the end of it. A\nsemicolon is required after a list of enum values if the enum contains anything besides the list\nof values. Line 20 does not compile because the enum name is missing before the enum value\ngreen. For these two reasons, option C is correct."
+    },
+    {
+      "id": 16,
+      "question": "Which of the following methods can run without error for a SQL query that returns a count\nof matching rows?\nprivate static void choices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void moreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nrs.next();\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void stillMoreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n} }Chapter 14 ■ Practice Exam 3 425",
+      "options": [
+        {
+          "letter": "A",
+          "text": "moreChoices()"
+        },
+        {
+          "letter": "B",
+          "text": "stillMoreChoices()"
+        },
+        {
+          "letter": "C",
+          "text": "choices() and stillMoreChoices()"
+        },
+        {
+          "letter": "D",
+          "text": "moreChoices() and stillMoreChoices()"
+        },
+        {
+          "letter": "E",
+          "text": "All three methods"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The stillMoreChoices() method is a common approach to retrieve zero or one\nrecords, which works for any SELECT statement that has an int in the first column. If\nthe SELECT statement has a function like count(*) or sum(*) in the first column, there\nwill always be a row in the ResultSet, so moreChoices() works as well. The method\nchoices() produces an exception at runtime regardless of the query, because rs.next()\nis not called before any values are read. Therefore, option D is the answer."
+    },
+    {
+      "id": 17,
+      "question": "In most of the United States, daylight saving time ends on November 6 at 02:00 and we\nrepeat that hour. What is the output of the following?\nvar localDate = LocalDate.of(2022, Month.NOVEMBER, 6);\nvar localTime = LocalTime.of(1, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar z = ZonedDateTime.of(localDate, localTime, zone);\nvar offset = z.getOffset();\nfor (int i = 0; i < 6; i++)\nz = z.plusHours(1);\nSystem.out.print(z.getHour() + \" \"\n+ offset.equals(z.getOffset()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "5 false"
+        },
+        {
+          "letter": "B",
+          "text": "5 true"
+        },
+        {
+          "letter": "C",
+          "text": "6 false"
+        },
+        {
+          "letter": "D",
+          "text": "6 true"
+        },
+        {
+          "letter": "E",
+          "text": "7 false"
+        },
+        {
+          "letter": "F",
+          "text": "7 true"
+        },
+        {
+          "letter": "G",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "H",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This code runs the loop six times, adding an hour to z each time. However, the first time\nis the repeated hour from daylight saving time. The time zone offset changes, but not the\nhour. This means the hour only increments five times. Adding that to 01:00 gives us 06:00.\nSince the time zone changes as well, option C is correct."
+    },
+    {
+      "id": 18,
+      "question": "What is the output of the Light program?\npackage physics;\nclass Wave {\npublic int size = 7;\n}\npublic class Light extends Wave {\npublic int size = 5;\npublic static void main(String... emc2) {\nLight v1 = new Light();\nvar v2 = new Light();426 Chapter 14 ■ Practice Exam 3\nWave v3 = new Light();\nSystem.out.println(v1.size+\",\"+v2.size+\",\"+v3.size);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "5,5,5"
+        },
+        {
+          "letter": "B",
+          "text": "5,5,7"
+        },
+        {
+          "letter": "C",
+          "text": "5,7,7"
+        },
+        {
+          "letter": "D",
+          "text": "7,7,7"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "When using a variable in a subclass, Java uses the reference type to determine the variable\nto use. Option A would be correct if the size variables were treated like method overriding,\nsince all of the objects in the main() method are instances of Light. Instead, the reference\ntype is used. The variables v1 and v2 are of reference type Light, so 5 is selected. Likewise,\nthe variable v3 is of type Wave, so 7 is used. The output is 5,5,7, making option B correct."
+    },
+    {
+      "id": 19,
+      "question": "Suppose we have a stored procedure named update_data that has one IN parameter\nnamed data. Which fills in the blank so the code runs without error?\nString sql = \"{call update_data(?)}\";\ntry (Connection conn = DriverManager.getConnection(url);\nStatement cs = conn.prepareCall(sql)) {\ncs. (1, 6);\nvar rs = cs.execute();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "registerInParameter"
+        },
+        {
+          "letter": "B",
+          "text": "registerIntParameter"
+        },
+        {
+          "letter": "C",
+          "text": "registerInputParameter"
+        },
+        {
+          "letter": "D",
+          "text": "setIn"
+        },
+        {
+          "letter": "E",
+          "text": "setInt"
+        },
+        {
+          "letter": "F",
+          "text": "setInteger"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "G",
+      "explanation": "Options A, B, C, D, and F are decoys. However, this question is tricky because\nprepareCall() returns a CallableStatement. While it can be stored in a Statement,\nthe setInt() method is no longer available, making option G the answer."
+    },
+    {
+      "id": 20,
+      "question": "What are possible outputs of this code? (Choose two.)\nimport java.time.LocalDate;\npublic class Animal {\nprivate record Baby(String name, LocalDate birth) { }\npublic static void main(String[] args) {\nLocalDate now = LocalDate.now();\nvar b1 = new Baby(\"Teddy\", now);\nvar b2 = new Baby(\"Teddy\", now);\nSystem.out.println((b1 == b2) + \" \" + b1.equals(b2));\nSystem.out.println(b1);\n} }Chapter 14 ■ Practice Exam 3 427",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false false"
+        },
+        {
+          "letter": "B",
+          "text": "false true"
+        },
+        {
+          "letter": "C",
+          "text": "true false"
+        },
+        {
+          "letter": "D",
+          "text": "true true"
+        },
+        {
+          "letter": "E",
+          "text": "Baby[name=Teddy, birth=2022-05-21]"
+        },
+        {
+          "letter": "F",
+          "text": "Baby@1d81eb93"
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "The == operator checks if two references point to the same object, which is not the case\nhere. By contrast, records provide a default equals() method to compare the values of all\nfields. The former is false here, and the latter is true, making option B one answer. Also, a\nrecord provides a useful toString() implementation, making option E the other answer."
+    },
+    {
+      "id": 21,
+      "question": "What is the output of calling the following method?\npublic void countPets() {\nrecord Pet(int age) {}\nrecord PetSummary(long count, int sum) {}\nvar summary = Stream.of(new Pet(2), new Pet(5), new Pet(8))\n.collect(Collectors.teeing(\nCollectors.counting(),\nCollectors.summingInt(Pet::age)));\nSystem.out.println(summary);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "PetSummary[count=1, sum=3]"
+        },
+        {
+          "letter": "B",
+          "text": "PetSummary[count=1, sum=15]"
+        },
+        {
+          "letter": "C",
+          "text": "PetSummary[count=3, sum=3]"
+        },
+        {
+          "letter": "D",
+          "text": "PetSummary[count=3, sum=15]"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile due to the teeing() call."
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile since records are defined inside a method."
+        },
+        {
+          "letter": "G",
+          "text": "The code does not compile for another reason."
+        }
+      ],
+      "correct": "E",
+      "explanation": "A teeing() collector takes three parameters. Since one is missing, the code does not\ncompile because of the teeing() call and option E is the answer."
+    },
+    {
+      "id": 22,
+      "question": "Given the following, what can we infer about subtypes of First, called Chicken and Egg?\n(Choose two.)\npublic sealed class First { }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Chicken and Egg must be classes."
+        },
+        {
+          "letter": "B",
+          "text": "Chicken and Egg can be classes, interfaces, enums, or records."
+        },
+        {
+          "letter": "C",
+          "text": "Chicken and Egg must be located in a file other than First."
+        },
+        {
+          "letter": "D",
+          "text": "Chicken and Egg must be located in the same file as First."
+        },
+        {
+          "letter": "E",
+          "text": "Chicken and Egg must be located as nested classes of First."
+        },
+        {
+          "letter": "F",
+          "text": "Chicken and Egg may be located in the same file or a different file as First.428 Chapter 14 ■ Practice Exam 3"
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "Chicken and Egg must be subclasses of First since interfaces, enums, and records\ncan’t extend a class. This gives us option A as one of the answers. Since the permits clause\nis not specified, Chicken and Egg may or may not be nested classes, but they must be in the\nsame file as First. Therefore, option D is the other answer."
+    },
+    {
+      "id": 23,
+      "question": "Which of the following statements about try/catch blocks are correct? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A catch block can never appear after a finally block."
+        },
+        {
+          "letter": "B",
+          "text": "A try block must be followed by a catch block."
+        },
+        {
+          "letter": "C",
+          "text": "A finally block can never appear after a catch block."
+        },
+        {
+          "letter": "D",
+          "text": "A try block must be followed by a finally block."
+        },
+        {
+          "letter": "E",
+          "text": "A try block can have zero or more catch blocks."
+        },
+        {
+          "letter": "F",
+          "text": "A try block can have more than one finally block."
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "A try block can have zero or more catch blocks and zero or one finally blocks,\nbut must be accompanied by at least one of these blocks. For these reasons, options B, D, and\nF are incorrect, and option E is correct. A finally block must appear after the last catch\nblock, if there are any, making option C incorrect and option A correct."
+    },
+    {
+      "id": 24,
+      "question": "What is the result of compiling and executing the following application?\npackage reptile;\npublic class Alligator {\nstatic int teeth;\ndouble scaleToughness;\npublic Alligator() {\nthis.teeth++;\n}\npublic void snap(int teeth) {\nSystem.out.print(teeth+\" \");\nteeth--;\n}\npublic static void main(String[] unused) {\nnew Alligator().snap(teeth);\nnew Alligator().snap(teeth);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0 1"
+        },
+        {
+          "letter": "B",
+          "text": "1 1"
+        },
+        {
+          "letter": "C",
+          "text": "1 2"
+        },
+        {
+          "letter": "D",
+          "text": "2 2"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but produces an exception at runtime."
+        },
+        {
+          "letter": "G",
+          "text": "The answer cannot be determined ahead of time."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code compiles and runs without exception, making options E and F incorrect. The\nquestion is testing your knowledge of variable scope. The teeth variable is static in\nthe Alligator class, meaning the same value is accessible from all instances of the class,\nincluding the static main() method. The static variable teeth is incremented each\ntime the constructor is called. Note that the constructor uses this to access a static variable, which is bad practice but allowed.\nSince teeth is a local variable within the snap() method, the argument value is used, but\nchanges to the local variable do not affect the static variable teeth. The local variable\nteeth is not used after it is decremented, so the decrement operation has no meaningful\neffect on the program flow or the static variable teeth. Since the constructor is called\ntwice, with snap() executed after each constructor call, the output printed is 1 2, making\noption C the correct answer."
+    },
+    {
+      "id": 25,
+      "question": "Fill in the blank to make this code compile:\nString cheese = ServiceLoader.stream(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");Chapter 14 ■ Practice Exam 3 429",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Mouse.get()"
+        },
+        {
+          "letter": "B",
+          "text": "Mouse::get"
+        },
+        {
+          "letter": "C",
+          "text": "Provider.get()"
+        },
+        {
+          "letter": "D",
+          "text": "Provider::get"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The ServiceLoader.load() method needs to be called to get an instance before\ncalling stream(). Since this call is missing, option E is correct."
+    },
+    {
+      "id": 26,
+      "question": "Which lines can fill in the blank that would allow the code to compile? (Choose two.)\nabstract public class Exam {\nboolean pass;\nprotected abstract boolean passed();\nclass JavaProgrammerCert extends Exam {\nprivate Exam part1;\nprivate Exam part2;\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "boolean passed() { return part1.pass && part2.pass; }"
+        },
+        {
+          "letter": "B",
+          "text": "boolean passed() { return part1.passed() && part2.passed(); }"
+        },
+        {
+          "letter": "C",
+          "text": "private boolean passed() { return super.passed(); }"
+        },
+        {
+          "letter": "D",
+          "text": "public boolean passed() { return part1.passed() && part2.passed(); }"
+        },
+        {
+          "letter": "E",
+          "text": "public boolean passed() { return part1.pass && part2.pass; }430 Chapter 14 ■ Practice Exam 3"
+        },
+        {
+          "letter": "F",
+          "text": "public boolean passed() { return super.passed(); }"
+        }
+      ],
+      "correct": "D,E",
+      "explanation": "Each option presents a potential override of the passed() method, since the method\nsignature is the same. Options A, B, and C are incorrect because the method reduces the visibility of the protected method version declared in the parent class. Option F is incorrect,\nas the parent version of passed() is abstract and cannot be invoked. That leaves options\nD and E as valid overrides of this method."
+    },
+    {
+      "id": 27,
+      "question": "How many of these lines print false?\n23: var smart = \"\"\"\n24: barn owl\\n\\n\n25: wise\n26: \"\"\";\n27: var clever = \"\"\"\n28: barn owl\\n\\n\n29: wise\n30: \"\"\";\n31: var sly = \"\"\"\n32: barn owl\\n\\n\n33: wise\"\"\";\n34:\n35: System.out.println(smart.equals(smart.indent(0)));\n36: System.out.println(smart.equals(smart.strip()));\n37: System.out.println(smart.equals(smart.stripIndent()));\n38:\n39: System.out.println(clever.equals(clever.indent(0)));\n40: System.out.println(clever.equals(clever.strip()));\n41: System.out.println(clever.equals(clever.stripIndent()));\n42:\n43: System.out.println(sly.equals(sly.indent(0)));\n44: System.out.println(sly.equals(sly.strip()));\n45: System.out.println(sly.equals(sly.stripIndent()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        },
+        {
+          "letter": "G",
+          "text": "Six or more"
+        },
+        {
+          "letter": "H",
+          "text": "The code does not compile.Chapter 14 ■ Practice Exam 3 431"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The first thing to notice is that indent(0) matches the indentation of a text block and\nthen normalizes line breaks. Since sly has the closing triple quotes (\"\"\") on the same line as\ntext, it does not have a trailing line break. Therefore, lines 35 and 39 print true while line\n43 prints false.\nNext, strip() gets rid of any leading or trailing whitespace. The last text block does not\nhave either, which means lines 36 and 40 print false, while line 44 prints true.\nFinally, stripIndent() only removes incidental whitespace. None of these text blocks\nhas any, making lines 37, 41, and 45 print true. Since three lines print false, option D is\nthe answer."
+    },
+    {
+      "id": 28,
+      "question": "Which are true statements about interfaces and abstract classes? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Abstract classes offer support for single inheritance, while interfaces offer support for multiple inheritance."
+        },
+        {
+          "letter": "B",
+          "text": "All methods in abstract classes are implicitly public, while interfaces can use various access modifiers for their methods and variables, including private in some cases."
+        },
+        {
+          "letter": "C",
+          "text": "Both abstract classes and interfaces can have abstract methods."
+        },
+        {
+          "letter": "D",
+          "text": "Both abstract classes and interfaces can have public constructors."
+        },
+        {
+          "letter": "E",
+          "text": "Interfaces can only extend other interfaces, while abstract classes can extend both abstract and concrete classes."
+        },
+        {
+          "letter": "F",
+          "text": "Unlike abstract classes, interfaces can be marked final."
+        }
+      ],
+      "correct": "A,C,E",
+      "explanation": "Option B is incorrect as abstract classes allow any of the access modifiers. Option\nD is incorrect because interfaces do not have constructors. Option F is incorrect because\nneither abstract classes nor interfaces can be marked final. Options A, C, and E are true\nstatements."
+    },
+    {
+      "id": 29,
+      "question": "Fill in the blanks: The operators +=, ______, ______, _______, _______, and -- are listed in\nincreasing or the same level of operator precedence. (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "^, *, =, ++"
+        },
+        {
+          "letter": "B",
+          "text": "%, *, /, &&"
+        },
+        {
+          "letter": "C",
+          "text": "=, +, /, *"
+        },
+        {
+          "letter": "D",
+          "text": "^, *, ==, ++"
+        },
+        {
+          "letter": "E",
+          "text": "*, /, %, ++"
+        },
+        {
+          "letter": "F",
+          "text": "<=, >=, !=, !"
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "In option A, the assignment operator (=) incorrectly comes after the multiplication\n(*) operator. In option B, the short-circuit logical operator (&&) incorrectly comes after the\ndivision (/) operator. In option D, the equality operator (==) incorrectly comes after the multiplication (*) operator. In option F, the not equals operator (!=) incorrectly comes after the\nrelational operators, (<= and >=). This leaves options C and E as the correct answers. For\nthese answers, it may help to remember that the modulus operator (%), multiplication operator (*), and division operator (/) have the same operator precedence."
+    },
+    {
+      "id": 30,
+      "question": "Given the following two classes in the same package, which constructors contain compiler\nerrors? (Choose three.)\npublic class Big {\npublic Big(boolean stillIn) {\nsuper();\n} }\npublic class Trouble extends Big {\npublic Trouble() {}\npublic Trouble(int deep) {\nsuper(false);\nthis();\n}\npublic Trouble(String now, int... deep) {\nthis(3);\n}\npublic Trouble(long deep) {\nthis(\"check\", deep);\n}\npublic Trouble(double test) {\nsuper(test>5 ? true : false);\n} }432 Chapter 14 ■ Practice Exam 3",
+      "options": [
+        {
+          "letter": "A",
+          "text": "public Big(boolean stillIn)"
+        },
+        {
+          "letter": "B",
+          "text": "public Trouble()"
+        },
+        {
+          "letter": "C",
+          "text": "public Trouble(int deep)"
+        },
+        {
+          "letter": "D",
+          "text": "public Trouble(String now, int... deep)"
+        },
+        {
+          "letter": "E",
+          "text": "public Trouble(long deep)"
+        },
+        {
+          "letter": "F",
+          "text": "public Trouble(double test)"
+        }
+      ],
+      "correct": "B,C,E",
+      "explanation": "The constructors declared by options A, D, and F compile without issue. Option B\ndoes not compile. Since there is no call to a parent constructor or constructor in the same\nclass, the compiler inserts a no-argument super() call as the first line of the constructor.\nBecause Big does not have a no-argument constructor, the no-argument constructor\nTrouble() does not compile. Option C also does not compile because super() and\nthis() cannot be called in the same constructor. Finally, option E does not compile. There is\nno matching constructor that can take a String followed by a long value."
+    },
+    {
+      "id": 31,
+      "question": "What is the output of the following code snippet?\n11: Path x = Paths.get(\".\",\"song\",\"..\",\"/note\");\n12: Path y = Paths.get(\"/dance/move.txt\");\n13: x.normalize();\n14: System.out.println(x.resolve(y));\n15: System.out.println(y.resolve(x));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "/./song/../note/dance/move.txt /dance/move.txt"
+        },
+        {
+          "letter": "B",
+          "text": "/dance/move.txt /dance/move.txt/note"
+        },
+        {
+          "letter": "C",
+          "text": "/dance/move.txt /dance/move.txt/./song/../note"
+        },
+        {
+          "letter": "D",
+          "text": "/note/dance/move.txt ../dance/move.txt/song"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but an exception is thrown at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 13 does not modify the value of x because Path is immutable and x is not\nreassigned to the new value. On line 14, the resolve() method is called using y as the\ninput argument. If the parameter passed to the resolve() method is absolute, then that\nvalue is returned, causing the first println() method call to output /dance/move.txt.\nOn line 15, the absolute path is concatenated with the relative path, printing\n/dance/move.txt/./song/../note at runtime. For these reasons, option C is correct."
+    },
+    {
+      "id": 32,
+      "question": "How many lines does this code output?\nimport java.util.*;\npublic class PrintNegative {\npublic static void main(String[] args) {\nList<Integer> list = new ArrayList<>();\nlist.add(-5);\nlist.add(0);\nlist.add(5);\nlist.removeIf(e -> e < 0);\nlist.forEach(x -> System.out.println(x));\n} }Chapter 14 ■ Practice Exam 3 433",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "None. It doesn’t compile."
+        },
+        {
+          "letter": "E",
+          "text": "None. It throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This is a correct example of using lambdas. The code creates an ArrayList with three\nelements. Both lambdas are correct. The code removes any negative numbers and prints the\nremaining two numbers, 0 and 5, making option B correct."
+    },
+    {
+      "id": 33,
+      "question": "What is the result of the following?\npublic static void main(String[] args) {\nvar list = Arrays.asList(\"0\", \"1\", \"01\", \"10\");\nCollections.reverse(list);\nCollections.sort(list);\nSystem.out.println(list);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[]"
+        },
+        {
+          "letter": "B",
+          "text": "[0, 01, 1, 10]"
+        },
+        {
+          "letter": "C",
+          "text": "[0, 01, 10, 1]"
+        },
+        {
+          "letter": "D",
+          "text": "[0, 1, 01, 10]"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The reverse() method is just there to mislead you since sort() will reorder regardless\nof the original state. Remember that String values sort alphabetically rather than by\nnumber. Therefore, 01 sorts before 1, and option B is correct."
+    },
+    {
+      "id": 34,
+      "question": "What is the result of the following?\nvar dice = new TreeSet<Integer>();\ndice.add(6);\ndice.add(6);\ndice.add(4);\ndice.stream()\n.filter(n -> n != 4)\n.forEach(System.out::println)\n.count();",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It prints just one line."
+        },
+        {
+          "letter": "B",
+          "text": "It prints one line and then the number 3."
+        },
+        {
+          "letter": "C",
+          "text": "There is no output."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime.434 Chapter 14 ■ Practice Exam 3"
+        }
+      ],
+      "correct": "D",
+      "explanation": "This code attempts to use two terminal operations, forEach() and count(). Only one\nterminal operation is allowed, so the code does not compile, and option D is correct."
+    },
+    {
+      "id": 35,
+      "question": "How many objects are eligible for garbage collection at the end of the main() method?\npackage store;\npublic class Shoes {\nstatic String shoe1 = new String(\"sandal\");\nstatic String shoe2 = new String(\"flip flop\");\npublic void shopping() {\nString shoe3 = new String(\"croc\");\nshoe2 = shoe1;\nshoe1 = shoe3;\n}\npublic static void main(String... args) {\nnew Shoes().shopping();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "While shoe3 goes out of scope after the shopping() method, the \"croc\" object is\nreferenced by shoe1, and therefore cannot be garbage collected. Similarly, the \"sandal\"\nobject is now referenced by shoe2. No variables reference the \"flip flop\" object, so it is\neligible to be garbage collected. Finally, the Shoes object created in the main() method is\nalso eligible for garbage collection, since there are no saved references to it. For these reasons,\noption C is correct."
+    },
+    {
+      "id": 36,
+      "question": "Which of the following are true? (Choose two.)\n20: int[] crossword [] = new int[10][20];\n21: for (int i = 0; i < crossword.length; i++)\n22: for (int j = 0; j < crossword.length; j++)\n23: crossword[i][j] = 'x';\n24: System.out.println(crossword.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One line needs to be changed for this code to compile."
+        },
+        {
+          "letter": "B",
+          "text": "Two lines need to be changed for this code to compile."
+        },
+        {
+          "letter": "C",
+          "text": "Three lines need to be changed for this code to compile."
+        },
+        {
+          "letter": "D",
+          "text": "If the code is fixed to compile, none of the cells in the 2D array have a value of 0."
+        },
+        {
+          "letter": "E",
+          "text": "If the code is fixed to compile, half of the cells in the 2D array have a value of 0."
+        },
+        {
+          "letter": "F",
+          "text": "If the code is fixed to compile, all of the cells in the 2D array have a value of 0."
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "Line 24 does not compile because arrays use length. It is ArrayList that uses\nsize(). All of the other lines compile, making option A correct. It is permitted to split up\nthe brackets, [], in the 2D array declaration on line 20. The code is also allowed to use\ncrossword.length as the loop condition on line 22, although this is not a good idea for\na nested array. Instead, the inner loop should reference crossword[i].length. The array\nstarts out with all two hundred of the cells initialized to the default value for an int of 0.\nBoth loops iterate starting at 0 and stopping before 10, which causes only half of the array to\nbe set to 'x'. The other half still has the initial default value of 0, making option E correct."
+    },
+    {
+      "id": 37,
+      "question": "Which of the following can fill in the blank to output sea lion, bald eagle?\nString names = Stream.of(\n\"bald eagle\", \"pronghorn\", \"puma\", \"sea lion\")\n.collect(Collectors.joining(\", \"));\nSystem.out.println(names);Chapter 14 ■ Practice Exam 3 435",
+      "options": [
+        {
+          "letter": "A",
+          "text": ".filter(s -> s.contains(\" \")) .collect(Collectors.toSet()) .stream() .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .flatMap(List::stream) .sorted(Comparator.reverseOrder())"
+        },
+        {
+          "letter": "B",
+          "text": ".filter(s -> s.contains(\" \")) .collect(Collectors.toUnmodifiableSet()) .stream() .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .flatMap(List::stream) .sorted(Comparator.reverseOrder())"
+        },
+        {
+          "letter": "C",
+          "text": ".collect(Collectors.toUnmodifiableSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .map(List::stream) .sorted(Comparator.reverseOrder())"
+        },
+        {
+          "letter": "D",
+          "text": ".collect(Collectors.toSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .flatMap(List::stream) .sorted(Comparator.reverseOrder())436 Chapter 14 ■ Practice Exam 3"
+        },
+        {
+          "letter": "E",
+          "text": ".filter(s -> s.contains(\" \")) .collect(Collectors.toUnmodifiableSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .map(List::stream) .sorted(Comparator.reverseOrder())"
+        },
+        {
+          "letter": "F",
+          "text": ".collect(Collectors.toUnmodifiableSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .map(List::stream) .sorted(Comparator.reverseOrder())"
+        }
+      ],
+      "correct": "D",
+      "explanation": "In options A and B, the stream pipeline attempts to call entrySet() on it. However this\nmethod is only defined on Map, which makes these two options incorrect. Options C, E, and\nF are incorrect because the second-to-last line is map(), instead of flatMap(). It doesn’t\nmake sense to sort the Stream generated by map() and the code does not compile. By contrast, option D is correct. It creates a Set of matching String objects. It then builds a map\nwhere the key represents whether they match. Next, the code gets the list of all matching\nvalues, turns it into a Stream, and uses flatMap() to turn it back into individual objects.\nFinally, the code sorts in descending order and turns the result back into a String."
+    },
+    {
+      "id": 38,
+      "question": "What is the output of the following code snippet?\nLocalDate dogDay = LocalDate.of(2022,8,26);\nvar x = DateTimeFormatter.ISO_DATE;\nSystem.out.println(x.format(dogDay));\nvar y = DateTimeFormatter.ofPattern(\"Dog Day: dd/MM/yy\");\nSystem.out.println(y.format(dogDay));\nvar z = DateTimeFormatter.ofPattern(\"Dog Day: dd/MM/yy\");\nSystem.out.println(dogDay.format(z));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-07-26 and Dog Day: 26/07/22"
+        },
+        {
+          "letter": "B",
+          "text": "2022-07-25 and Dog Day: 25/07/22"
+        },
+        {
+          "letter": "C",
+          "text": "2022-08-26 and Dog Day: 26/08/22"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above.Chapter 14 ■ Practice Exam 3 437"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code compiles without issue. The text Dog Day: is not properly escaped and\nincludes letters, such as o, which are invalid patterns. Therefore, the code prints an exception\nat runtime, making option E correct. If the values were properly escaped, then option C\nwould be correct."
+    },
+    {
+      "id": 39,
+      "question": "How many of the following lines contain a compiler error?\nlong min1 = 123.0, max1 = 987L;\nfinal long min2 = 1_2_3, max2 = 9 8 7;\nlong min3 = 123, int max3 = 987;\nlong min4 = 123L, max4 = 987;\nlong min5 = 123_, max5 = _987;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "D",
+      "explanation": "A long cannot contain a number with decimal points, preventing min1 from compiling.\nWhen declaring multiple variables in the same statement, the type is only declared once.\nTherefore, max3 does not compile. Underscores in numeric expressions are allowed as long\nas they are between two digits, making the line with min5 and max5 incorrect. Since three\nlines have compiler errors, the answer is option D. The L suffix is valid, as is having multiple\nunderscores in a row."
+    },
+    {
+      "id": 40,
+      "question": "Fill in the blanks: Using ________ and ________ together allows a variable to be accessed\nfrom any class, without requiring an instance variable.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "class, static"
+        },
+        {
+          "letter": "B",
+          "text": "default, public"
+        },
+        {
+          "letter": "C",
+          "text": "final, package (no modifier)"
+        },
+        {
+          "letter": "D",
+          "text": "protected, instance"
+        },
+        {
+          "letter": "E",
+          "text": "public, static"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The public modifier allows access from the same class, package, subclass, or even classes\nin other packages, while the static modifier allows access without an instance of the class.\nFor these reasons, option E is the correct answer. Option A is incorrect because class is\nnot a modifier; it is a keyword. Option B is incorrect because the default keyword is for\ninterface methods and switch statements, not class variables. Option C is incorrect because\nfinal is not related to access, and package access limits to the package. Finally, option D is\nincorrect because instance is not a Java keyword or modifier. Further, protected prevents all classes outside the package other than subclasses from accessing the variable."
+    },
+    {
+      "id": 41,
+      "question": "Which of the following sequences can fill in the blanks so the code prints -1 0 2?\nchar[][] letters = new char[][] {\nnew char[] { 'a', 'e', 'i', 'o', 'u'},\nnew char[] { 'a', 'e', 'o', 'u'} };\nvar x = Arrays. (letters[0], letters[0]);\nvar y = Arrays. (letters[0], letters[0]);\nvar z = Arrays. (letters[0], letters[1]);\nSystem.out.print(x + \" \" + y + \" \" + z);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "compare, mismatch, compare"
+        },
+        {
+          "letter": "B",
+          "text": "compare, mismatch, mismatch"
+        },
+        {
+          "letter": "C",
+          "text": "mismatch, compare, compare"
+        },
+        {
+          "letter": "D",
+          "text": "mismatch, compare, mismatch"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above438 Chapter 14 ■ Practice Exam 3"
+        }
+      ],
+      "correct": "D",
+      "explanation": "When the arrays are the same, the compare() method returns 0, while the mismatch()\nmethod returns -1. This narrows it down to option C or option D. When the arrays are different, mismatch() returns the index of the first element that is different. In our case, this is\nindex 2, making option D correct. By contrast, the compare() method would return a negative number if filling in the third blank since 'i' is smaller than 'o'."
+    },
+    {
+      "id": 42,
+      "question": "What is the output of the following application? Assume the file system is available and able\nto be written to and read from.\npackage boat;\nimport java.io.*;\npublic class Cruise {\nprivate int numPassengers = 1;\nprivate transient String schedule = \"NONE\";\n{ numPassengers = 2; }\npublic Cruise() {\nthis.numPassengers = 3;\nthis.schedule = \"Tropical Island\";\n}\npublic static void main(String... p) throws Exception {\nfinal String f = \"ship.txt\";\ntry (var o = new ObjectOutputStream(\nnew FileOutputStream(f))) {\nCruise c = new Cruise();\nc.numPassengers = 4;\nc.schedule = \"Casino\";\no.writeObject(c);\n}\ntry (var i = new ObjectInputStream(\nnew FileInputStream(f))) {\nCruise c = i.readObject();\nSystem.out.print(c.numPassengers + \",\" + c.schedule);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2,NONE"
+        },
+        {
+          "letter": "B",
+          "text": "3,null"
+        },
+        {
+          "letter": "C",
+          "text": "4,Casino"
+        },
+        {
+          "letter": "D",
+          "text": "4,null"
+        },
+        {
+          "letter": "E",
+          "text": "One line would need to be fixed for this code to run without throwing an exception."
+        },
+        {
+          "letter": "F",
+          "text": "Two lines would need to be fixed for this code to run without throwing an exception."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The readObject() method returns an Object instance, which must be\nexplicitly cast to Cruise in the second try-with-resources statement. For this reason,\nthe code does not compile. If the explicit cast were added, the code would compile but\nthrow a NotSerializableException at runtime, since Cruise does not implement\nthe Serializable interface. For this reason, option F is correct. If both of these issues\nwere fixed, then the code would run and print 4,null. The schedule variable is marked\ntransient, so it defaults to null when deserialized, while numPassengers is assigned\nthe value it had when it was serialized. Remember that on deserialization, the constructors\nand instance initializers are not executed."
+    },
+    {
+      "id": 43,
+      "question": "How many lines does the following program output?\nclass Coin {\nenum Side { HEADS, TAILS };\npublic static void main(String[] args) {\nvar sides = Side.values();\nfor (var s : sides)Chapter 14 ■ Practice Exam 3 439\nfor (int i=sides.length; i>0 ; i-=2)\nSystem.out.print(s+\" \"+sides[i]);\nSystem.out.println();\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Four"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but enters an infinite loop at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The first time the inner for loop is executed, it accesses sides[i] where i is equal to\nsides.length. Since the maximum element is indexed as sides.length-1, this results\nin an IndexOutOfBoundsException, making option E correct. Also, notice that there\nare no braces {} around the inner for loop; therefore, even without the exception, the\nmost lines this code would print would be one, since there’s only one println() statement\nexecuted."
+    },
+    {
+      "id": 44,
+      "question": "What is the minimum number of lines that need to be removed to make this code compile\nand be able to be implemented as a lambda expression?\n@FunctionalInterface\npublic interface Play {\npublic static void baseball() {}\nprivate static void soccer() {}\ndefault void play() {}\nvoid fun();\nvoid game();\nvoid toy();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "4"
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles as is."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code is not a functional interface because it has three abstract methods: fun(), and\ngame(), and toy(). Removing two of these three methods would cause the code to compile, leaving it with a single abstract method. Therefore, option B is the answer."
+    },
+    {
+      "id": 45,
+      "question": "What is the output of this code?\n10: var m = new TreeMap<Integer, Integer>();\n11: m.put(1, 4);\n12: m.put(2, 8);\n13:\n14: m.putIfAbsent(2, 10);\n15: m.putIfAbsent(3, 9);\n16:\n17: m.replaceAll((k, v) -> k + 1);\n18:\n19: m.entrySet().stream()440 Chapter 14 ■ Practice Exam 3\n20: .sorted(Comparator.comparing(Entry::getKey))\n21: .limit(1)\n22: .map(Entry::getValue)\n23: .forEach(System.out::println);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "4"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but prints something else."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Lines 10–12 created a map with two key/value pairs. Line 14 does not add to the map,\nsince the key 2 is present. Line 15 adds a third key/value to the map. At this point, the map\ncontains {1=4, 2=8, 3=9}. Line 17 replaces the values with one higher than the key, and\nthe map contains {1=2, 2=3, 3=4}. The stream on lines 19–23 goes through the map and\nsorts ascendingly by key. It gets the lowest key from that sort, which is 1. Then it prints the\nvalue that goes with that key, which is 2. This makes option B the answer."
+    },
+    {
+      "id": 46,
+      "question": "Given the following three property files, what does the following method output?\ntoothbrush.properties\ncolor=purple\ntype=generic\ntoothbrush_es.properties\ncolor=morado\ntype=lujoso\ntoothbrush_fr.properties\ncolor=violette\nvoid brush() {\nLocale.setDefault(new Locale.Builder()\n.setLanguage(\"es\")\n.setRegion(\"MX\").build());\nvar rb = ResourceBundle.getBundle(\"toothbrush\",\nnew Locale(\"fr\"));\nvar a = rb.getString(\"color\");\nvar b = rb.getString(\"type\");\nSystem.out.print(a + \" \" + b);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "morado null"
+        },
+        {
+          "letter": "B",
+          "text": "violette generic"
+        },
+        {
+          "letter": "C",
+          "text": "morado lujoso"
+        },
+        {
+          "letter": "D",
+          "text": "violette null"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime.Chapter 14 ■ Practice Exam 3 441"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Java starts out by looking for a properties file with the requested locale. In this case, the\nrequested locale is the fr language, which it finds with toothbrush_fr.properties.\nFor this reason, the default locale of es_MX is ignored, and the first value for color printed\nis violette. Next, it looks for a value for type property. Since it doesn’t find it in the first\nproperties file, it checks the default toothbrush.properties, where it does find it, and\nprints generic. For these reasons, option B is correct."
+    },
+    {
+      "id": 47,
+      "question": "Which options, when inserted into the blank, allow this code to compile? (Choose three.)\nimport java.io.*;\nclass Music {\nvoid make() throws IOException {\nthrow new UnsupportedOperationException();\n} }\npublic class Sing extends Music {\npublic void make() {\nSystem.out.println(\"do-re-mi-fa-so-la-ti-do\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "throws FileNotFoundException"
+        },
+        {
+          "letter": "B",
+          "text": "throws NumberFormatException"
+        },
+        {
+          "letter": "C",
+          "text": "throws Exception"
+        },
+        {
+          "letter": "D",
+          "text": "throws SQLException"
+        },
+        {
+          "letter": "E",
+          "text": "throws Throwable"
+        },
+        {
+          "letter": "F",
+          "text": "Placing nothing in the blank"
+        }
+      ],
+      "correct": "A,B,F",
+      "explanation": "An overriding method cannot declare any new or broader checked exceptions than\nthe overridden method. For this reason, options C, D, and E are incorrect. Option A is correct\nbecause FileNotFoundException is a narrower exception than IOException. Option\nB is also correct because new unchecked exceptions are allowed. Option F is correct because\nnot throwing any exceptions is also permitted in overridden methods."
+    },
+    {
+      "id": 48,
+      "question": "Given the application shown here, which lines do not compile? (Choose three.)\npackage furryfriends;\ninterface Friend {\nprotected String getName(); // h1\n}\nclass Cat implements Friend {\nString getName() { // h2\nreturn \"Kitty\";\n} }\npublic class Dog implements Friend {\nString getName() throws RuntimeException { // h3\nreturn \"Doggy\";\n}\npublic static void main(String[] adoption) {\nFriend friend = new Dog(); // h4\nSystem.out.print(((Cat)friend).getName()); // h5\nSystem.out.print(((Dog)null).getName()); // h6\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line h1"
+        },
+        {
+          "letter": "B",
+          "text": "Line h2"
+        },
+        {
+          "letter": "C",
+          "text": "Line h3"
+        },
+        {
+          "letter": "D",
+          "text": "Line h4"
+        },
+        {
+          "letter": "E",
+          "text": "Line h5"
+        },
+        {
+          "letter": "F",
+          "text": "Line h6442 Chapter 14 ■ Practice Exam 3"
+        }
+      ],
+      "correct": "A,B,C",
+      "explanation": "All of the compilation issues with this code involve access modifiers. First, interface\nmethods cannot be marked protected. This causes a compilation error on line h1, making\noption A correct. Next, lines h2 and h3 both override the interface method to be package\naccess. Since this reduces the implied visibility of protected, the overrides are invalid and\nneither line compiles. Therefore, options B and C are also correct. Line h4 is valid. An object\ncan be implicitly cast to a superclass or inherited interface. Finally, lines h5 and h6 will\ncompile without issue but independently throw a ClassCastException and a\nNullPointerException at runtime, respectively."
+    },
+    {
+      "id": 49,
+      "question": "What is the output of the following?\n1: package reader;\n2: import java.util.stream.*;\n3: public class Books {\n4: public static void main(String[] args) {\n5: IntStream pages = IntStream.of(200, 300);\n6: long total = pages.sum();\n7: long count = pages.count();\n8: System.out.println(total + \"-\" + count);\n9: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2-2"
+        },
+        {
+          "letter": "B",
+          "text": "200-1"
+        },
+        {
+          "letter": "C",
+          "text": "500-0"
+        },
+        {
+          "letter": "D",
+          "text": "500-2"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "F",
+      "explanation": "When summing int primitives, the return type is also an int. Since a long is larger, you\ncan assign the result to it, so line 6 is correct. All the primitive stream types use long as the\nreturn type for count(). Therefore, the code compiles, and option E is incorrect. When\nactually running the code, line 7 throws an IllegalStateException because the stream\nhas already been used. Both sum() and count() are terminal operations, and only one\nterminal operation is allowed on the same stream. Therefore, option F is the answer."
+    },
+    {
+      "id": 50,
+      "question": "_______________ modules are on the classpath, while ____________ modules never contain a\nmodule-info file.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Automatic, named"
+        },
+        {
+          "letter": "B",
+          "text": "Automatic, unnamed"
+        },
+        {
+          "letter": "C",
+          "text": "Named, automatic"
+        },
+        {
+          "letter": "D",
+          "text": "Named, unnamed"
+        },
+        {
+          "letter": "E",
+          "text": "Unnamed, automatic"
+        },
+        {
+          "letter": "F",
+          "text": "Unnamed, named"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Unnamed modules are always on the classpath. Both automatic and named modules are\non the module path. Named modules always contain a module-info file, but automatic\nmodules never do. Option E is correct, as it meets both these criteria."
+    }
+  ]
+}

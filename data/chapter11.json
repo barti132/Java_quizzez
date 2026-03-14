@@ -1,0 +1,930 @@
+{
+  "chapter": "Chapter 11 - Implementing Localization",
+  "totalQuestions": 30,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following are considered locales? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Cultural region"
+        },
+        {
+          "letter": "B",
+          "text": "Local address"
+        },
+        {
+          "letter": "C",
+          "text": "City"
+        },
+        {
+          "letter": "D",
+          "text": "Time zone region"
+        },
+        {
+          "letter": "E",
+          "text": "Political region"
+        },
+        {
+          "letter": "F",
+          "text": "Geographical region"
+        }
+      ],
+      "correct": "D",
+      "explanation": "There is a DateTimeFormatter class, but not a DateFormatter class. The\nDateTimeFormatter class is used for formatting dates, times, or both. Since the provided\ncode does not compile, nothing can fill in the blank to make the code print 2022-01-15,\nand option D is the answer.\n12. D. The getBundle() does not find Cars_de_DE.properties or\nCars_de.properties, so it moves on to the default locale. Since Cars_en.properties\nis available, it will use this file, falling back to Cars.properties if any values are not\navailable. Therefore, it selects engine and horses from the first file, and country from\nthe second file, printing engine 241 earth and making option D correct.\n13. F. The getBundle() method matches Cars_fr_FR.properties. It will then fall back to\nCars_fr.properties (which does not exist) and Cars.properties if the value is not\navailable. For this reason, the first and third values would be France and moteur. While\nthe second value horses is in the default locale, it is not available if the requested locale has\nbeen found. As a result, the code throws a MissingResourceException, making option\nF the answer.\n14. A. The getBundle() method matches Cars_fr_FR.properties. It will then fall\nback to Cars_fr.properties (which does not exist) and Cars.properties if\nthe value is not available. For this reason, the first value printed is moteur from\nCars.properties, while the next two values printed are autoroute and France from\nCars_fr_FR.properties, making option A correct.\n15. B, D, F. There are no get() or of() methods in Locale. You can define a Locale using a\nconstructor, making option B correct. You can also use a Locale.Builder, making option\nD correct. Finally, you can use a built-in constant, making option F correct.\n16. A. Java starts out by looking for a properties file with the requested locale, which in this case\nis the zh_CN language and country. It doesn’t find it, so it moves onto the locale with just a\nlanguage code zh, which it also does not find. It then moves on to the default locale en_US,\nbut there is still no match. It drops the country code and does find a match with en, making\noption A correct.\n17. D. For dates, a lowercase m means minute while an uppercase M means month. This eliminates options A and C. A lowercase h means hour. Therefore, option B is incorrect, and\noption D is the answer.\n18. F. A CompactNumberFormat rounds to the nearest whole number within the three-digit\nrange, so the numeric value printed is 123. Since the SHORT style is selected, the output is\n123K, making option F correct.\n19. B, D. Options B and D correctly print the same string value in the specified format. Option\nA is incorrect because <06.92> is printed instead of <06.9>. Options C and E are incorrect, because (among other things) commas are printed as part of both of the first two values.\nOption F is incorrect because <2.1> <6.9> is printed instead of <02.1> <06.9>.\n20. C, D. In Java, a locale can be represented by a language code in lowercase, or a language\nand country code, with language in lowercase and country in uppercase. Option C is invalid\nbecause both values are lowercase. Option D is invalid because the value is in uppercase. The\nrest of the options are valid locale formats.\n21. D. The DateTimeFormatter is created with ofLocalizedDate(). It knows how to\nformat date fields but not time fields. Line 18 is fine because a LocalDate clearly has date\nfields. Line 19 is also fine. Since a LocalDateTime has both date and time fields, the formatter just looks at the date fields. Line 20 is a problem. A LocalTime object does not have\nany date fields so the formatter throws an UnsupportedTemporalTypeException, making option D the answer.\n22. B. The code compiles, so option D is incorrect. While three distinct locale values are set, the\none that is used for formatting text is Category.FORMAT. For this reason, the GERMANY\nlocale is used to format the data with the € symbol, making option B correct.\n23. D. The date/time pattern uses single quotes to escape the date/time values, meaning the\noutput is yyyy-MM for all valid inputs. For this reason, option D is correct. If the single\nquotes were removed, then 2022-03 2022-01 would be the correct output.\n24. D. The method creates a resource bundle using a builder but never sets it. Since we don’t\nknow the default locale of the code, the answer depends on where it is executed, making\noption D correct.\n25. A. This code sets the default locale to English and then tries to get a resource bundle for\ncontainer. It finds the resource bundle container_en.properties as the most\nspecific match. Both keys are found in this file, so option A is the answer.\n26. E. The Locale constructor that takes a single argument expects a language code, not a concatenation of language and region codes. Therefore, the language is set as en_us, not en,\nwith no region code set. Since no properties files match the language en_us, the\ndefault container.properties is used. Since type is not found in this properties file, a\nMissingResourceException is thrown at runtime.\n27. E. Both LocalDate and DateTimeFormatter have a format() method. While it is\ntricky, you do need to know that the format() method can be called on either object.\nTherefore, option E is the answer.\n28. A. The code compiles, so option E is incorrect. Java starts out by looking for a properties\nfile with the requested locale, which in this case is the fr language. It doesn’t find\nForest_fr.properties, so it moves onto the default locale en. It also doesn’t find\nForest_en.properties. It settles on Forest.properties without throwing an\nexception, so option F is incorrect. The first argument to MessageFormat.format()\nshould be a pattern String value. Since trees is sent, the output of the formatting string is\ntrees, making option A correct. If rb.getString(\"trees\") was passed instead of just\ntrees, then the output would be evergreen pretty.\n29. D. The format of the pattern is incorrect. You can’t just put literal text in there without\nescaping it. Most of the characters of Holiday: are not defined formatting symbols. The\ncode throws an IllegalArgumentException, so option D is correct.\n30. E. The code does not compile because the first formatter requires both a Locale and a\nStyle. You can omit both values, but not one."
+    },
+    {
+      "id": 2,
+      "question": "What is the result of the following?\nLocalDateTime pi = LocalDateTime.of(2022, 3, 14, 1, 59);\nvar formatter = DateTimeFormatter.ofPattern(\"M.ddhhmm\");\nSystem.out.println(formatter.format(pi));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2.140159"
+        },
+        {
+          "letter": "B",
+          "text": "3.140159"
+        },
+        {
+          "letter": "C",
+          "text": "59.140102"
+        },
+        {
+          "letter": "D",
+          "text": "59.140103"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "While it is traditional to include the year when outputting a date, it is not required. This\ncode correctly prints the month followed by a decimal point. After the decimal point, it prints\nthe day of the month followed by the hours and minutes. Happy Pi Day! For these reasons,\noption B is correct."
+    },
+    {
+      "id": 3,
+      "question": "Assuming the key green is in all five of the files referenced in the options, which file will the\nfollowing code use for the resource bundle?\nLocale.setDefault(new Locale(\"en\", \"US\"));\nvar rb = ResourceBundle.getBundle(\"Colors\", new Locale(\"fr\"));\nSystem.out.print(rb.getString(\"green\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Colors_default.properties"
+        },
+        {
+          "letter": "B",
+          "text": "Colors.properties"
+        },
+        {
+          "letter": "C",
+          "text": "Colors_en.properties"
+        },
+        {
+          "letter": "D",
+          "text": "Colors_US.properties"
+        },
+        {
+          "letter": "E",
+          "text": "Colors_en_US.properties"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Java starts out by looking for a properties file with the requested locale, which in this case\nis the fr language. It doesn’t find it, so it moves on to the default locale, en_US, which it\ndoes find, making option E correct."
+    },
+    {
+      "id": 4,
+      "question": "Assuming the following method is called with a double value of 1_900_000.0, which\nvalues are printed? (Choose two.)\npublic void payBill(double t) {\nvar nf1 = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.LONG);\nvar nf2 = NumberFormat.getCompactNumberInstance();\nSystem.out.println(nf1.format(t));\nSystem.out.println(nf2.format(t));\n}Chapter 11 ■ Implementing Localization 355",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1M"
+        },
+        {
+          "letter": "B",
+          "text": "1.9 million"
+        },
+        {
+          "letter": "C",
+          "text": "2M"
+        },
+        {
+          "letter": "D",
+          "text": "1.900M"
+        },
+        {
+          "letter": "E",
+          "text": "2 million"
+        },
+        {
+          "letter": "F",
+          "text": "1 million"
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "A CompactNumberFormat rounds to the nearest whole number within the three-digit\nrange, so the first line prints 2 million, making option E correct. The second line prints\n2M, since SHORT is used as the STYLE by default, making option C correct."
+    },
+    {
+      "id": 5,
+      "question": "What is the output of the following code snippet?\nvar d = LocalDateTime.parse(\"2022-01-21T12:00:00\",\nDateTimeFormatter.ISO_LOCAL_DATE);\nSystem.out.print(d.format(DateTimeFormatter.ISO_LOCAL_TIME));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "00:00:00"
+        },
+        {
+          "letter": "B",
+          "text": "12:00:00"
+        },
+        {
+          "letter": "C",
+          "text": "2022-01-21"
+        },
+        {
+          "letter": "D",
+          "text": "2022-01-22"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The code compiles but the first line throws an exception at runtime, making option F\ncorrect. The string sent to the parse() method contains a time component, but\nISO_LOCAL_DATE is used as the formatter."
+    },
+    {
+      "id": 6,
+      "question": "Fill in the blank with the option that allows the code snippet to compile and print a message\nwithout throwing an exception at runtime.\nvar x = LocalDate.of(2022, 3, 1);\nvar y = LocalDateTime.of(2022, 3, 1, 5, 55);\nvar f = DateTimeFormatter.ofPattern(\"MMMM' at 'h' o'clock'\");\nSystem.out.print( );",
+      "options": [
+        {
+          "letter": "A",
+          "text": "f.formatDate(x)"
+        },
+        {
+          "letter": "B",
+          "text": "f.formatDate(y)"
+        },
+        {
+          "letter": "C",
+          "text": "f.format(x)"
+        },
+        {
+          "letter": "D",
+          "text": "f.format(y)"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile regardless of what is placed in the blank."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "Options A and B are incorrect because formatDate() is not a valid method name in\nDateTimeFormatter. Option E is incorrect because the code compiles if either option\nC or D is used. Both options C and D will produce an exception at runtime, though, as the\ndate pattern is invalid. In particular, the apostrophe in o'clock should be escaped. Option\nC is also incorrect because there is no hour value h for a LocalDate. If the pattern string\nwas corrected with o''clock, then option D would be correct and print March at 5\no'clock at runtime."
+    },
+    {
+      "id": 7,
+      "question": "What does the following program print?\nimport java.time.*;\nimport java.time.format.*;\npublic class PolarBear {\npublic static void main(String[] args) {\nLocalDate polarBearDay = LocalDate.of(2022, 2, 27);356 Chapter 11 ■ Implementing Localization\nvar formatter = DateTimeFormatter.ofPattern(\"yyyy dd MMM\");\nSystem.out.println(polarBearDay.format(formatter));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022 27 Jan"
+        },
+        {
+          "letter": "B",
+          "text": "2022 27 Feb"
+        },
+        {
+          "letter": "C",
+          "text": "2022 Jan 27"
+        },
+        {
+          "letter": "D",
+          "text": "2022 Feb 27"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "LocalDate starts counting months from 1, so month 2 is February. This rules out\noptions A and C. The pattern specifies that the date should appear before the month, making\noption B correct."
+    },
+    {
+      "id": 8,
+      "question": "Which of the following are valid locale formats? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "hi"
+        },
+        {
+          "letter": "B",
+          "text": "IN_hi"
+        },
+        {
+          "letter": "C",
+          "text": "hi_IN"
+        },
+        {
+          "letter": "D",
+          "text": "HI_IN"
+        },
+        {
+          "letter": "E",
+          "text": "in_hi"
+        },
+        {
+          "letter": "F",
+          "text": "IN"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "In Java, a locale can be represented by a language code in lowercase, or a language\nand country code, with language in lowercase and country in uppercase. For these reasons,\noptions A and C are correct. Options B, D, and E are incorrect because the lowercase language must be before the uppercase country. Option F is incorrect because the language is\nmissing."
+    },
+    {
+      "id": 9,
+      "question": "Assuming the key indigo is in all five of the files referenced in the options, which file will\nthe following code use for the resource bundle?\nLocale loc = new Locale(\"fr\", \"CH\");\nLocale.setDefault(new Locale(\"it\", \"CH\"));\nResourceBundle rb = ResourceBundle.getBundle(\"Colors\", loc);\nrb.getString(\"Indigo\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Colors_default.properties"
+        },
+        {
+          "letter": "B",
+          "text": "Colors_en_US.properties"
+        },
+        {
+          "letter": "C",
+          "text": "Colors_CH.properties"
+        },
+        {
+          "letter": "D",
+          "text": "Colors_en.properties"
+        },
+        {
+          "letter": "E",
+          "text": "Colors_es.properties"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Java starts out by looking for a properties file with the requested locale, which in this\ncase is the fr_CH language and country. It doesn’t find Colors_fr_CH.properties,\nso it moves on to the locale with just a language code fr. It also does not find\nColors_fr.properties. It then moves on to the default locale, it_CH, checking\nColors_it_CH.properties, but there is still no match. It drops the country code and\nchecks it for Colors_it.properties, but still doesn’t find a match. Finally, it checks for\na Colors.properties file but since that’s not an option, it fails. The result is that a\nMissingResourceException is thrown at runtime, making option F correct."
+    },
+    {
+      "id": 10,
+      "question": "For currency, the United States uses the $ symbol, the UK uses the £ symbol, and Germany\nuses the € symbol. Given this information, what is the expected output of the following\ncode snippet?\nLocale.setDefault(Locale.US);\nLocale.setDefault(Category.FORMAT, Locale.GERMANY);\nSystem.out.print(NumberFormat.getCurrencyInstance(Locale.UK)\n.format(1.1));Chapter 11 ■ Implementing Localization 357",
+      "options": [
+        {
+          "letter": "A",
+          "text": "$1.10"
+        },
+        {
+          "letter": "B",
+          "text": "1,10€"
+        },
+        {
+          "letter": "C",
+          "text": "£1.10"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined without knowing the locale of the system where it will be run."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code compiles, so option D is incorrect. In this sample, the default locale is set to US,\nwhile the default locale format is set to GERMANY. Neither is used for formatting the value, as\ngetCurrencyInstance() is called with UK as the locale. For this reason, the £ symbol is\nused, making option C correct."
+    },
+    {
+      "id": 11,
+      "question": "Which correctly fills in the blank to print 2022-01-15?\nLocalDate hatDay = LocalDate.of(2022, Month.JANUARY, 15);\nDateFormatter f = DateFormatter.ISO_DATE;\nSystem.out.println( );",
+      "options": [
+        {
+          "letter": "A",
+          "text": "f.format(hatDate)"
+        },
+        {
+          "letter": "B",
+          "text": "hatDay.format(f)"
+        },
+        {
+          "letter": "C",
+          "text": "Both of the above"
+        },
+        {
+          "letter": "D",
+          "text": "Neither of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "There is a DateTimeFormatter class, but not a DateFormatter class. The\nDateTimeFormatter class is used for formatting dates, times, or both. Since the provided\ncode does not compile, nothing can fill in the blank to make the code print 2022-01-15,\nand option D is the answer."
+    },
+    {
+      "id": 12,
+      "question": "Given the following four properties files, what does this code print?\nCars_en.properties\nengine=engine\nhorses=241\nengine=moteur\ncountry=earth\nroad=highway\ncountry=France\nroad=autoroute\ncountry=US\nhorses=45\nCars.properties\nCars_en_US.properties Cars_fr_FR.properties\nLocale.setDefault(new Locale(\"en\"));\nvar rb = ResourceBundle.getBundle(\"Cars\",\nnew Locale(\"de\", \"DE\"));\nvar r1 = rb.getString(\"engine\");\nvar r2 = rb.getString(\"horses\");\nvar r3 = rb.getString(\"country\");\nSystem.out.print(r1+ \" \" + r2 + \" \" + r3);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "null null null"
+        },
+        {
+          "letter": "B",
+          "text": "engine 241 US"
+        },
+        {
+          "letter": "C",
+          "text": "moteur 45 US"
+        },
+        {
+          "letter": "D",
+          "text": "engine 241 earth"
+        },
+        {
+          "letter": "E",
+          "text": "moteur 241 earth"
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime.358 Chapter 11 ■ Implementing Localization"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The getBundle() does not find Cars_de_DE.properties or\nCars_de.properties, so it moves on to the default locale. Since Cars_en.properties\nis available, it will use this file, falling back to Cars.properties if any values are not\navailable. Therefore, it selects engine and horses from the first file, and country from\nthe second file, printing engine 241 earth and making option D correct."
+    },
+    {
+      "id": 13,
+      "question": "Given the four properties files in Question 12, what does this code print?\nLocale.setDefault(new Locale(\"en\", \"US\"));\nvar rb = ResourceBundle.getBundle(\"Cars\",\nnew Locale(\"fr\", \"FR\"));\nvar s1 = rb.getString(\"country\");\nvar s2 = rb.getString(\"horses\");\nvar s3 = rb.getString(\"engine\");\nSystem.out.print(s1+ \" \" + s2 + \" \" + s3);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "France null engine"
+        },
+        {
+          "letter": "B",
+          "text": "France 241 moteur"
+        },
+        {
+          "letter": "C",
+          "text": "France 45 moteur"
+        },
+        {
+          "letter": "D",
+          "text": "France 241 engine"
+        },
+        {
+          "letter": "E",
+          "text": "France 45 engine"
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The getBundle() method matches Cars_fr_FR.properties. It will then fall back to\nCars_fr.properties (which does not exist) and Cars.properties if the value is not\navailable. For this reason, the first and third values would be France and moteur. While\nthe second value horses is in the default locale, it is not available if the requested locale has\nbeen found. As a result, the code throws a MissingResourceException, making option\nF the answer."
+    },
+    {
+      "id": 14,
+      "question": "Given the four properties files in Question 12, what does this code print?\nLocale.setDefault(new Locale(\"ja\",\"JP\"));\nvar rb = ResourceBundle.getBundle(\"Cars\",\nnew Locale(\"fr\", \"FR\"));\nvar t1 = rb.getString(\"engine\");\nvar t2 = rb.getString(\"road\");\nvar t3 = rb.getString(\"country\");\nSystem.out.print(t1+ \" \" + t2 + \" \" + t3);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "moteur autoroute France"
+        },
+        {
+          "letter": "B",
+          "text": "engine autoroute France"
+        },
+        {
+          "letter": "C",
+          "text": "engine highway France"
+        },
+        {
+          "letter": "D",
+          "text": "moteur highway France"
+        },
+        {
+          "letter": "E",
+          "text": "moteur highway US"
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The getBundle() method matches Cars_fr_FR.properties. It will then fall\nback to Cars_fr.properties (which does not exist) and Cars.properties if\nthe value is not available. For this reason, the first value printed is moteur from\nCars.properties, while the next two values printed are autoroute and France from\nCars_fr_FR.properties, making option A correct."
+    },
+    {
+      "id": 15,
+      "question": "Which of the following correctly define a Locale instance? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Locale.get(\"it\")"
+        },
+        {
+          "letter": "B",
+          "text": "new Locale(\"it\")"
+        },
+        {
+          "letter": "C",
+          "text": "Locale.get(Locale.ITALIAN)"
+        },
+        {
+          "letter": "D",
+          "text": "new Locale.Builder().setLanguage(\"it\").build()"
+        },
+        {
+          "letter": "E",
+          "text": "Locale.of(\"it\")"
+        },
+        {
+          "letter": "F",
+          "text": "Locale.ITALIANChapter 11 ■ Implementing Localization 359"
+        }
+      ],
+      "correct": "B,D,F",
+      "explanation": "There are no get() or of() methods in Locale. You can define a Locale using a\nconstructor, making option B correct. You can also use a Locale.Builder, making option\nD correct. Finally, you can use a built-in constant, making option F correct."
+    },
+    {
+      "id": 16,
+      "question": "Assuming the key turquoise is in all five of the files referenced in the options, which file\nwill the following code use for the resource bundle?\nLocale loc = new Locale(\"zh\", \"CN\");\nLocale.setDefault(new Locale(\"en\", \"US\"));\nResourceBundle rb = ResourceBundle.getBundle(\"Colors\", loc);\nrb.getString(\"turquoise\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Colors_en.properties"
+        },
+        {
+          "letter": "B",
+          "text": "Colors_CN.properties"
+        },
+        {
+          "letter": "C",
+          "text": "Colors.properties"
+        },
+        {
+          "letter": "D",
+          "text": "Colors_default.properties"
+        },
+        {
+          "letter": "E",
+          "text": "Colors_en_CN.properties"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Java starts out by looking for a properties file with the requested locale, which in this case\nis the zh_CN language and country. It doesn’t find it, so it moves onto the locale with just a\nlanguage code zh, which it also does not find. It then moves on to the default locale en_US,\nbut there is still no match. It drops the country code and does find a match with en, making\noption A correct."
+    },
+    {
+      "id": 17,
+      "question": "What format pattern would you pass to a DateTimeFormatter so it creates hour and\nminute output such as 02:33?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "HH:MM"
+        },
+        {
+          "letter": "B",
+          "text": "HH:mm"
+        },
+        {
+          "letter": "C",
+          "text": "hh:MM"
+        },
+        {
+          "letter": "D",
+          "text": "hh:mm"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "For dates, a lowercase m means minute while an uppercase M means month. This eliminates options A and C. A lowercase h means hour. Therefore, option B is incorrect, and\noption D is the answer."
+    },
+    {
+      "id": 18,
+      "question": "Assuming the following method is called with a double value of 123_456.789, which\nvalue is printed?\npublic void printReceipt(double t) {\nvar formatter = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.SHORT);\nSystem.out.print(formatter.format(t));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "123,456.789"
+        },
+        {
+          "letter": "B",
+          "text": "123.456 thousand"
+        },
+        {
+          "letter": "C",
+          "text": "123.456K"
+        },
+        {
+          "letter": "D",
+          "text": "124K"
+        },
+        {
+          "letter": "E",
+          "text": "123 thousand"
+        },
+        {
+          "letter": "F",
+          "text": "123K360 Chapter 11 ■ Implementing Localization"
+        }
+      ],
+      "correct": "F",
+      "explanation": "A CompactNumberFormat rounds to the nearest whole number within the three-digit\nrange, so the numeric value printed is 123. Since the SHORT style is selected, the output is\n123K, making option F correct."
+    },
+    {
+      "id": 19,
+      "question": "For what values of pattern will the following print <02.1> <06.9> <10,00>?\n(Choose two.)\nString pattern = \" \";\nvar message = DoubleStream.of(2.1, 6.923, 1000)\n.mapToObj(v -> new DecimalFormat(pattern).format(v))\n.collect(Collectors.joining(\"> <\"));\nSystem.out.print(\"<\" + message + \">\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "##,00.##"
+        },
+        {
+          "letter": "B",
+          "text": "##,00.#"
+        },
+        {
+          "letter": "C",
+          "text": "0,00.#"
+        },
+        {
+          "letter": "D",
+          "text": "#,00.#"
+        },
+        {
+          "letter": "E",
+          "text": "0,00.0"
+        },
+        {
+          "letter": "F",
+          "text": "#,##.#"
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Options B and D correctly print the same string value in the specified format. Option\nA is incorrect because <06.92> is printed instead of <06.9>. Options C and E are incorrect, because (among other things) commas are printed as part of both of the first two values.\nOption F is incorrect because <2.1> <6.9> is printed instead of <02.1> <06.9>."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following are not valid Locale formats? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "nl_BE"
+        },
+        {
+          "letter": "B",
+          "text": "fr_CA"
+        },
+        {
+          "letter": "C",
+          "text": "uk_ua"
+        },
+        {
+          "letter": "D",
+          "text": "CR"
+        },
+        {
+          "letter": "E",
+          "text": "no"
+        },
+        {
+          "letter": "F",
+          "text": "ro_RO"
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "In Java, a locale can be represented by a language code in lowercase, or a language\nand country code, with language in lowercase and country in uppercase. Option C is invalid\nbecause both values are lowercase. Option D is invalid because the value is in uppercase. The\nrest of the options are valid locale formats."
+    },
+    {
+      "id": 21,
+      "question": "What is the result of running this code?\n12: LocalDate pieDay = LocalDate.of(2022, Month.JANUARY, 23);\n13: LocalTime midnight = LocalTime.of(0, 0);\n14: LocalDateTime pieTime = LocalDateTime.of(pieDay, midnight);\n15:\n16: DateTimeFormatter f = DateTimeFormatter\n17: .ofLocalizedDate(FormatStyle.SHORT);\n18: f.format(pieDay);\n19: f.format(pieTime);\n20: f.format(midnight);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code runs successfully."
+        },
+        {
+          "letter": "B",
+          "text": "The code throws an exception on line 18."
+        },
+        {
+          "letter": "C",
+          "text": "The code throws an exception on line 19."
+        },
+        {
+          "letter": "D",
+          "text": "The code throws an exception on line 20."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile.Chapter 11 ■ Implementing Localization 361"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The DateTimeFormatter is created with ofLocalizedDate(). It knows how to\nformat date fields but not time fields. Line 18 is fine because a LocalDate clearly has date\nfields. Line 19 is also fine. Since a LocalDateTime has both date and time fields, the formatter just looks at the date fields. Line 20 is a problem. A LocalTime object does not have\nany date fields so the formatter throws an UnsupportedTemporalTypeException, making option D the answer."
+    },
+    {
+      "id": 22,
+      "question": "For currency, the United States uses the $ symbol, the UK uses the £ symbol, and Germany\nuses the € symbol. Given this information, what is the expected output of the following\ncode snippet?\nLocale.setDefault(Locale.US);\nLocale.setDefault(Category.FORMAT, Locale.GERMANY);\nLocale.setDefault(Category.DISPLAY, Locale.UK);\nSystem.out.print(NumberFormat.getCurrencyInstance()\n.format(6.95));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "$6.95"
+        },
+        {
+          "letter": "B",
+          "text": "6,95 €"
+        },
+        {
+          "letter": "C",
+          "text": "£6.95"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined without knowing the locale of the system where it will be run."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles, so option D is incorrect. While three distinct locale values are set, the\none that is used for formatting text is Category.FORMAT. For this reason, the GERMANY\nlocale is used to format the data with the € symbol, making option B correct."
+    },
+    {
+      "id": 23,
+      "question": "What is the output of the following code snippet?\nvar x = LocalDate.of(2022, 3, 1);\nvar y = LocalDateTime.of(2022, 1, 1, 2, 55);\nvar f = DateTimeFormatter.ofPattern(\"'yyyy-MM'\");\nSystem.out.print(f.format(x) + \" \" + f.format(y));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-03 2022-01"
+        },
+        {
+          "letter": "B",
+          "text": "2022-01 2022-03"
+        },
+        {
+          "letter": "C",
+          "text": "2022-02 2022-00"
+        },
+        {
+          "letter": "D",
+          "text": "yyyy-MM yyyy-MM"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The date/time pattern uses single quotes to escape the date/time values, meaning the\noutput is yyyy-MM for all valid inputs. For this reason, option D is correct. If the single\nquotes were removed, then 2022-03 2022-01 would be the correct output."
+    },
+    {
+      "id": 24,
+      "question": "Given the following two properties files, what does the loadPod() method output?\ncontainer.properties\nname=generic\nnumber=2\ncontainer_en.properties\nname=Ship\ntype=container\nvoid loadPod() {\nnew Locale.Builder()362 Chapter 11 ■ Implementing Localization\n.setLanguage(\"en\")\n.setRegion(\"US\").build();\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Ship container"
+        },
+        {
+          "letter": "B",
+          "text": "generic container"
+        },
+        {
+          "letter": "C",
+          "text": "generic null"
+        },
+        {
+          "letter": "D",
+          "text": "The output cannot be determined without knowing the locale of the system where it will be run."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The method creates a resource bundle using a builder but never sets it. Since we don’t\nknow the default locale of the code, the answer depends on where it is executed, making\noption D correct."
+    },
+    {
+      "id": 25,
+      "question": "Given the two properties files from Question 24, what does the following method output?\nvoid loadContainer() {\nLocale.setDefault(new Locale(\"en\"));\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Ship container"
+        },
+        {
+          "letter": "B",
+          "text": "generic container"
+        },
+        {
+          "letter": "C",
+          "text": "generic null"
+        },
+        {
+          "letter": "D",
+          "text": "The output cannot be determined without knowing the locale of the system where it will be run."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "This code sets the default locale to English and then tries to get a resource bundle for\ncontainer. It finds the resource bundle container_en.properties as the most\nspecific match. Both keys are found in this file, so option A is the answer."
+    },
+    {
+      "id": 26,
+      "question": "Given the two properties files from Question 24, what does the following method output?\nvoid loadControlPlane() {\nLocale.setDefault(new Locale(\"en_US\"));\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}Chapter 11 ■ Implementing Localization 363",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Ship container"
+        },
+        {
+          "letter": "B",
+          "text": "generic container"
+        },
+        {
+          "letter": "C",
+          "text": "generic null"
+        },
+        {
+          "letter": "D",
+          "text": "The output cannot be determined without knowing the locale of the system where it will be run."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The Locale constructor that takes a single argument expects a language code, not a concatenation of language and region codes. Therefore, the language is set as en_us, not en,\nwith no region code set. Since no properties files match the language en_us, the\ndefault container.properties is used. Since type is not found in this properties file, a\nMissingResourceException is thrown at runtime."
+    },
+    {
+      "id": 27,
+      "question": "Which correctly fills in the blank to print 2022-01-15?\nLocalDate hatDay = LocalDate.of(2022, Month.JANUARY, 15);\nDateTimeFormatter f = DateTimeFormatter.ISO_DATE;\nSystem.out.println( );",
+      "options": [
+        {
+          "letter": "A",
+          "text": "f.format(hatDay)"
+        },
+        {
+          "letter": "B",
+          "text": "hatDay.format(f)"
+        },
+        {
+          "letter": "C",
+          "text": "f.formatDate(hatDay)"
+        },
+        {
+          "letter": "D",
+          "text": "hatDay.formatDate(f)"
+        },
+        {
+          "letter": "E",
+          "text": "f.format(hatDay) and hatDay.format(f)"
+        },
+        {
+          "letter": "F",
+          "text": "f.formatDate(hatDay) and hatDay.formatDate(f)"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Both LocalDate and DateTimeFormatter have a format() method. While it is\ntricky, you do need to know that the format() method can be called on either object.\nTherefore, option E is the answer."
+    },
+    {
+      "id": 28,
+      "question": "Assuming the Forest.properties file is the only resource file available, what is the\noutput of calling the hike() method?\nForest.properties\ntrees=evergreen {0}\nanimals=squirrels\nstatic void hike() {\nLocale.setDefault(new Locale.Builder()\n.setLanguage(\"en\").build());\nvar rb = ResourceBundle\n.getBundle(\"Forest\", new Locale(\"fr\"));\nSystem.out.print(MessageFormat.format(\"trees\",\"pretty\"));\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "trees"
+        },
+        {
+          "letter": "B",
+          "text": "trees pretty"
+        },
+        {
+          "letter": "C",
+          "text": "trees {0}"
+        },
+        {
+          "letter": "D",
+          "text": "trees null"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime.364 Chapter 11 ■ Implementing Localization"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles, so option E is incorrect. Java starts out by looking for a properties\nfile with the requested locale, which in this case is the fr language. It doesn’t find\nForest_fr.properties, so it moves onto the default locale en. It also doesn’t find\nForest_en.properties. It settles on Forest.properties without throwing an\nexception, so option F is incorrect. The first argument to MessageFormat.format()\nshould be a pattern String value. Since trees is sent, the output of the formatting string is\ntrees, making option A correct. If rb.getString(\"trees\") was passed instead of just\ntrees, then the output would be evergreen pretty."
+    },
+    {
+      "id": 29,
+      "question": "What does the following print?\nimport java.time.*;\nimport java.time.format.*;\npublic class Cat {\npublic static void main(String[] args) {\nLocalDate catDay = LocalDate.of(2022, 10, 29);\nvar formatter = DateTimeFormatter\n.ofPattern(\"Holiday: yyyy dd MMM\");\nSystem.out.println(catDay.format(formatter));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Holiday: 2022 29 Sept"
+        },
+        {
+          "letter": "B",
+          "text": "Holiday: 2022 29 Oct"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The format of the pattern is incorrect. You can’t just put literal text in there without\nescaping it. Most of the characters of Holiday: are not defined formatting symbols. The\ncode throws an IllegalArgumentException, so option D is correct."
+    },
+    {
+      "id": 30,
+      "question": "Which of the following is not an expected output printed by the following code?\ndouble p = 1_909.2;\nvar nf1 = NumberFormat.getCompactNumberInstance(Locale.getDefault());\nvar nf2 = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.SHORT);\nvar nf3 = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.LONG);\nSystem.out.println(nf1.format(p));\nSystem.out.println(nf2.format(p));\nSystem.out.println(nf3.format(p));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1909.2"
+        },
+        {
+          "letter": "B",
+          "text": "2K"
+        },
+        {
+          "letter": "C",
+          "text": "2 thousand"
+        },
+        {
+          "letter": "D",
+          "text": "All of the above will be printed."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above, as the code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because the first formatter requires both a Locale and a\nStyle. You can omit both values, but not one."
+    }
+  ]
+}

@@ -1,0 +1,2702 @@
+{
+  "chapter": "Chapter 7 - Packaging and Deploying Java Code and Use the Java Platform",
+  "totalQuestions": 90,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the name of a file that declares a module?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "mod.java"
+        },
+        {
+          "letter": "B",
+          "text": "mod-data.java"
+        },
+        {
+          "letter": "C",
+          "text": "mod-info.java"
+        },
+        {
+          "letter": "D",
+          "text": "module.java"
+        },
+        {
+          "letter": "E",
+          "text": "module-data.java"
+        },
+        {
+          "letter": "F",
+          "text": "module-info.java"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The module-info.java file is used to declare a module, making option F the answer.\nYou must memorize the name of this file."
+    },
+    {
+      "id": 2,
+      "question": "Suppose you have a module that calls exports(ChocolateLab.class) using a service\nlocator. Which part of the module service contains this class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The service locator contains a load() method, not an exports() method, making\noption E the answer."
+    },
+    {
+      "id": 3,
+      "question": "Which are considered part of a service? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "A service consists of the interface, any classes the interface references, and a way to\nlook up implementations of the interface. Option B covers the lookup, and option D covers\nthe interface itself."
+    },
+    {
+      "id": 4,
+      "question": "Given the following diagram, how many of the following are named modules?\nclasspath module path\ndog.fluffy.jar\ndog.fluffy\ndog.hair.jar\ndog.hair\ndog.husky.jar\ndog.husky\nmodule-info\ndog.bark.jar\ndog.bark\nmodule-info",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 269"
+        }
+      ],
+      "correct": "B",
+      "explanation": "A named module must be on the module path and contain a module-info file. Only\ndog.bark meets this criterion, making option B the answer."
+    },
+    {
+      "id": 5,
+      "question": "Given the diagram from the previous question, which is an automatic module?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "dog.bark"
+        },
+        {
+          "letter": "B",
+          "text": "dog.fluffy"
+        },
+        {
+          "letter": "C",
+          "text": "dog.hair"
+        },
+        {
+          "letter": "D",
+          "text": "dog.husky"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "An automatic module must be on the module path but does not contain a module-info\nfile. Option C is correct because dog.hair matches this description."
+    },
+    {
+      "id": 6,
+      "question": "Given the diagram from Question 4, which is a default module?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "dog.bark"
+        },
+        {
+          "letter": "B",
+          "text": "dog.fluffy"
+        },
+        {
+          "letter": "C",
+          "text": "dog.hair"
+        },
+        {
+          "letter": "D",
+          "text": "dog.husky"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "You need to know about three types of modules for the exam: automatic, named, and\nunnamed. There is no such thing as a default module. The question was trying to trick you,\nand option E is correct."
+    },
+    {
+      "id": 7,
+      "question": "Given the diagram from Question 4, how many are unnamed modules?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "C",
+      "explanation": "An unnamed module must be on the classpath. It is rare to have a module-info file in\nan unnamed module, but it is allowed. Therefore, dog.fluffy and dog.husky both meet\nthis criterion, making option C correct."
+    },
+    {
+      "id": 8,
+      "question": "Which of the following statements are true? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It is a good practice to add the --add-exports option to your java command."
+        },
+        {
+          "letter": "B",
+          "text": "It is permitted, but not recommended, to add the --add-exports option to your java command."
+        },
+        {
+          "letter": "C",
+          "text": "There is no --add-exports option on the java command."
+        },
+        {
+          "letter": "D",
+          "text": "It is a good practice to add the --add-requires option to your java command."
+        },
+        {
+          "letter": "E",
+          "text": "It is permitted, but not recommended, to add the --add-requires option to your java command."
+        },
+        {
+          "letter": "F",
+          "text": "There is no --add-requires option on the java command."
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "It is recommended to specify all exports directives in the module-info file. While it\nis legal to use the --add-exports option, it is not recommended, making option B correct.\nYou do not need to know how to use it for the exam, just that it is not a good idea. There is\nno equivalent option for requires, making option F correct."
+    },
+    {
+      "id": 9,
+      "question": "How many of the following are legal module-info.java files?\nmodule com.koala {\nexports cute;\n}\nmodule com-koala {\nexports cute;\n}\npublic module com.koala {\nexports cute;\n}270 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform\npublic module com-koala {\nexports cute;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Since Java does not allow dashes in identifier names, the second and fourth declarations\nare invalid. Additionally, access modifiers like public are not permitted in module declarations, making the third and fourth declarations invalid. The only one that is legal is the first\ndeclaration, so option B is correct."
+    },
+    {
+      "id": 10,
+      "question": "Which two would be best to combine into a single module?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer and service locator"
+        },
+        {
+          "letter": "B",
+          "text": "Consumer and service provider"
+        },
+        {
+          "letter": "C",
+          "text": "Consumer and service provider interface"
+        },
+        {
+          "letter": "D",
+          "text": "Service locator and service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "Service locator and service provider"
+        },
+        {
+          "letter": "F",
+          "text": "Service provider and service provider interface"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The consumer is generally separate, ruling out options A, B, and C. The service provider is\ndecoupled from the service provider interface, ruling out option F. It is most logical to combine the service locator and service provider interface because neither has a direct reference\nto the service provider. Therefore, option D is correct."
+    },
+    {
+      "id": 11,
+      "question": "Which command could you run to print output similar to the following?\njava.base@17\njava.compiler@17\njava.datatransfer@17\njava.desktop@17\n...",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java --all-modules"
+        },
+        {
+          "letter": "B",
+          "text": "java --describe-modules"
+        },
+        {
+          "letter": "C",
+          "text": "java --list-modules"
+        },
+        {
+          "letter": "D",
+          "text": "java --output-modules"
+        },
+        {
+          "letter": "E",
+          "text": "java --show-modules"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The java command has an option to list all the modules that come with the JDK. Option\nC is correct since that option is called --list-modules. The other options are not\nsupported by the java command. Options B and E are similar to options that exist:\n--describe-module and --show-module-resolution. But neither gives a list of all\nthe modules that come with the JDK."
+    },
+    {
+      "id": 12,
+      "question": "Suppose we have an automatic module on the module path named dog-arthur2.jar and\nno Automatic-Module-Name specified. What module name should named modules use to\nreference it?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "dog-arthur"
+        },
+        {
+          "letter": "B",
+          "text": "dog-arthur2"
+        },
+        {
+          "letter": "C",
+          "text": "dog.arthur"
+        },
+        {
+          "letter": "D",
+          "text": "dog.arthur2"
+        },
+        {
+          "letter": "E",
+          "text": "None of the aboveChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 271"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The rules for determining the name include removing the extension and changing special\ncharacters to periods (.). This leaves us with dog.arthur2, which is option D."
+    },
+    {
+      "id": 13,
+      "question": "Each box in the diagram corresponds to a module. Given the module dependencies in the diagram, which boxes represent the service provider interface and service provider, respectively?\nW\nX Z\nY",
+      "options": [
+        {
+          "letter": "A",
+          "text": "W and X"
+        },
+        {
+          "letter": "B",
+          "text": "W and Z"
+        },
+        {
+          "letter": "C",
+          "text": "X and Y"
+        },
+        {
+          "letter": "D",
+          "text": "X and Z"
+        },
+        {
+          "letter": "E",
+          "text": "Y and Z"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "All parts of a module’s service must point to the service provider interface. This tells us\nthe service provider interface must be X, ruling out options A, B, and E. Now we have to\ndecide if Y or Z is the service provider. We can tell because nothing has a direct dependency\non the service provider. Since this makes the service provider Y, the answer is option C."
+    },
+    {
+      "id": 14,
+      "question": "Using the diagram in the previous question, which boxes represent the consumer and service\nlocator, respectively?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "W and X"
+        },
+        {
+          "letter": "B",
+          "text": "W and Z"
+        },
+        {
+          "letter": "C",
+          "text": "X and Y"
+        },
+        {
+          "letter": "D",
+          "text": "X and Z"
+        },
+        {
+          "letter": "E",
+          "text": "Y and Z"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The consumer depends on the service provider interface and service locator, but not on\nthe service provider. Only W has two arrows starting from it, so it must be the consumer.\nThis rules out options C, D, and E. The service locator references the service provider interface directly and the service provider indirectly, making the service locator Z and option B\nthe answer."
+    },
+    {
+      "id": 15,
+      "question": "What is the minimum number of JAR files you need for a cyclic dependency?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "C",
+      "explanation": "A cyclic dependency is when two things directly or indirectly depend on each other. If\nchicken.jar depends on egg.jar, and egg.jar depends on chicken.jar, we have\na cyclic dependency. Since only two JAR files are needed to create this situation, option C is\nthe answer."
+    },
+    {
+      "id": 16,
+      "question": "Fill in the blank with code to look up and call a service.\nString cheese = ServiceLoader.load(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");272 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Mouse.get()"
+        },
+        {
+          "letter": "B",
+          "text": "Mouse::get"
+        },
+        {
+          "letter": "C",
+          "text": "Provider.get()"
+        },
+        {
+          "letter": "D",
+          "text": "Provider::get"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The ServiceLoader class has a load() method that returns a Collection of\nProvider, not a stream. Since the call to stream() is missing, option E is the answer. If the\ncall to stream() were added, option D would be the answer."
+    },
+    {
+      "id": 17,
+      "question": "Suppose we want to have two modules: com.ny and com.sf. Which is true about the\nplacement of the module-info.java file(s)?\nmodule com.ny\nV\npackage com.ny.city\nmodule com.sf\npackage com.sf.city\nW\nX\nY\nZ",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One module-info.java file is required in position Z."
+        },
+        {
+          "letter": "B",
+          "text": "Two module-info.java files are required, in positions V and X."
+        },
+        {
+          "letter": "C",
+          "text": "Two module-info.java files are required, in positions W and Y."
+        },
+        {
+          "letter": "D",
+          "text": "Three module-info.java files are required, in positions V, X, and Z."
+        },
+        {
+          "letter": "E",
+          "text": "Three module-info.java files are required, in positions W, Y, and Z."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Each module is required to have its own module-info.java file in the root directory\nof the module. For module com.ny, that is location W, and for module com.sf, that is location Y. Therefore, option C is correct."
+    },
+    {
+      "id": 18,
+      "question": "Consider the modules in the previous diagram. Suppose we want the code in module com.sf\nto depend on code in module com.ny. Which of the following directives goes into module\ncom.sf’s module-info file to configure that behavior?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "export com.ny;"
+        },
+        {
+          "letter": "B",
+          "text": "exports com.ny;"
+        },
+        {
+          "letter": "C",
+          "text": "require com.ny;"
+        },
+        {
+          "letter": "D",
+          "text": "require com.ny.city;"
+        },
+        {
+          "letter": "E",
+          "text": "requires com.ny;"
+        },
+        {
+          "letter": "F",
+          "text": "requires com.ny.city;Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 273"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Options A, C, and D are incorrect because export and require are not directives in\nmodules. Option B is incorrect because that directive goes in the com.ny module, not the\ncom.sf one. Option E is correct rather than option F because the requires directive references a module name rather than a package."
+    },
+    {
+      "id": 19,
+      "question": "Consider the modules diagram in Question 17. Suppose we want the code in module com.sf\nto depend on code in module com.ny. Which of the following directives goes into module\ncom.ny’s module-info file to configure that behavior?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "export com.ny;"
+        },
+        {
+          "letter": "B",
+          "text": "export com.ny.city;"
+        },
+        {
+          "letter": "C",
+          "text": "exports com.ny;"
+        },
+        {
+          "letter": "D",
+          "text": "exports com.ny.city;"
+        },
+        {
+          "letter": "E",
+          "text": "requires com.ny;"
+        },
+        {
+          "letter": "F",
+          "text": "requires com.ny.city;"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A and B are incorrect because export is not a directive in modules. Option\nE belongs in the com.sf module, not the com.ny one. Option F is incorrect because the\nrequires directive should reference a module name rather than a package. Finally, option\nD is the answer rather than option C because the exports directive should reference a\npackage name rather than a module."
+    },
+    {
+      "id": 20,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface\nare each in separate modules. Which of the following best describes the following\nmodule-info file?\nmodule nature.tree {\nprovides nature.sapling.Tree with nature.tree.Maple;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The Maple class is intended to be an implementation of the Tree interface. However, this\ninterface needs to be accessible. This module is missing a requires nature.sapling;\nstatement, making option E the correct answer."
+    },
+    {
+      "id": 21,
+      "question": "Which options are commonly used when compiling a module with the javac command?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-c and -d"
+        },
+        {
+          "letter": "B",
+          "text": "-d and -p"
+        },
+        {
+          "letter": "C",
+          "text": "-c and -p"
+        },
+        {
+          "letter": "D",
+          "text": "-c, -d, and -p"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The –c option is not on the javac command. The –d option specifies the directory. The\n–p option specifies the module path. Therefore, option B is correct."
+    },
+    {
+      "id": 22,
+      "question": "Which of the following are modules supplied by the JDK? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java.base"
+        },
+        {
+          "letter": "B",
+          "text": "java.basic"
+        },
+        {
+          "letter": "C",
+          "text": "java.desktop"
+        },
+        {
+          "letter": "D",
+          "text": "java.sdk"
+        },
+        {
+          "letter": "E",
+          "text": "java.sql"
+        },
+        {
+          "letter": "F",
+          "text": "java.swing274 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+        }
+      ],
+      "correct": "A,C,E",
+      "explanation": "The java.base module is automatically available to any module without specifying it, making option A correct. Options C and E are also correct because java.desktop\nand java.sql are modules supplied with the JDK. You do need to be able to identify builtin modules for the exam."
+    },
+    {
+      "id": 23,
+      "question": "Which best describes a top-down migration? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first step is to move all the modules to the module path."
+        },
+        {
+          "letter": "B",
+          "text": "The first step is to move a single module to the module path."
+        },
+        {
+          "letter": "C",
+          "text": "Most steps consist of changing an automatic module to a named module."
+        },
+        {
+          "letter": "D",
+          "text": "Most steps consist of changing an automatic module to an unnamed module."
+        },
+        {
+          "letter": "E",
+          "text": "Most steps consist of changing an unnamed module to an automatic module."
+        },
+        {
+          "letter": "F",
+          "text": "Most steps consist of changing an unnamed module to a named module."
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "Option A is correct because a top-down migration starts by moving all the modules to\nthe module path as automatic modules. Then, the migration changes each module from an\nautomatic module to a named module, making option C the other correct answer."
+    },
+    {
+      "id": 24,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface\nare each in separate modules. Which of the following best describes the following\nmodule-info file?\nmodule nature.tree {\nrequires nature.sapling;\nrequires nature.bush;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is correct because a consumer has two dependencies. It requires both the service provider interface and the service locator."
+    },
+    {
+      "id": 25,
+      "question": "Suppose you have these two JARs that are not modules. Which steps, when taken together,\nwould be the best way to make them modules? (Choose two.)\nbaby.otter\nfood.fish",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Add a module-info.java to each."
+        },
+        {
+          "letter": "B",
+          "text": "Add them to the classpath."
+        },
+        {
+          "letter": "C",
+          "text": "Create a third module to contain the common code."
+        },
+        {
+          "letter": "D",
+          "text": "Merge them into one module to break the cyclic dependency."
+        },
+        {
+          "letter": "E",
+          "text": "Rename the modules to use dashes instead of dots.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 275"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "Option A is correct, and option B is incorrect as we want to create named modules\nwhen possible. We also need to be on the lookout for cyclic dependencies. While option\nD would work, it is better to be more granular and create a third module as in option\nC. Option E is incorrect because dots are used as separators in names.26. B. The jdeps command lists information about dependencies within a module. The –s\noption provides a summary of output rather than verbose output, making option B the\ncorrect answer. There is no –d option. The jmod command is for working with JMOD files.\n27. C. Option C is correct because a service provider requires the interface. It also provides\nthe implementation.\n28. E. When running a module, the module name is listed before the slash, and the fully qualified\nclass name is after the slash. Option E is the only one that meets this criterion.\n29. B. An unnamed module is on the classpath. While it is permitted to have a module-info\nfile, the file is ignored if present. An automatic module is on the module path and does not\nhave a module-info file. A named module is required to have a module-info file, making option B the correct answer.\n30. B. Option B is correct because a service locator uses the interface. It also requires the\nservice provider interface module and exports the package with the locator.\n31. D. Option D is correct because the jlink command creates a Java runtime using the modules you require and have specified.\n32. E. A consumer requires both the service locator and service provider interface. A service\nlocator and service provider interface need to have an exports statement. A service provider\nneeds a provides directive. Since none of them match, option E is the answer.\n33. F. An unnamed module is permitted to have a module-info file, but the file is ignored\nif present. An automatic module does not have a module-info file. A named module is\nrequired to have a module-info file. Therefore, option F is correct.\n34. A. A module-info file is required to start with module rather than class. Therefore, the\nfirst line doesn’t compile, and option A is correct.\n35. B. You need to know these directives: exports, requires, requires transitive,\nprovides, opens, and uses. Of these, only uses is in the list of candidates in the\nquestion, which means option B is correct. Note that export and require are invalid\nbecause they should be exports and requires, respectively.\n36. D. Option D is correct because a service provider interface exposes the interface without\ndepending on any of the other options.\n37. D, E, F. The java.base module is automatically available to any module without specifying\nit. However, this question tries to trick you with option A by specifying jdk.base instead.\nSimilarly, java.desktop exists, but not jdk.deskop, making option C wrong. Options D,\nE, and F are correct because jdk.javadoc , jdk.jdeps, and jdk.net are modules supplied with the JDK. You do need to be able to recognize the names of built-in modules.\n38. B, C, F. A top-down migration starts by moving all the modules to the module path as\nautomatic modules, making options B and F correct. A bottom-up migration moves each\nmodule after all the modules it depends on have been migrated, making option C correct.\n39. B. The service locator contains a load() method, making option B correct.\n40. E. Module names are permitted to be any valid variable name with the addition of dot separators (.). The only one that is problematic is com-leaf because dashes are not allowed,\nmaking option E correct. As a reminder, numbers are permitted as long as they are not the\nfirst character in a segment. Capital letters are discouraged but allowed.\n41. A. Option A is correct because ServiceLoader allows you to make your application\nextensible. A service can be added without recompiling the entire application. It is a class, but\nthe service provider implementation does not reference it, making options C and D incorrect.\nOption B is not a feature of modules.\n42. A, F. Code on the classpath has not yet been migrated to modules and can reference any code\nin the application. This is true whether that code is in automatic, named, or unnamed modules, matching option A. Code on the module path operates in a stricter world and cannot\nreference code on the classpath. Since unnamed modules cannot be accessed in this situation,\noption F is the second answer.\n43. C. Option A is incorrect because it exports the package to all modules. Option C is correct\nbecause it limits package sharing to the com.park module. Option E is incorrect because a\npackage must be exported from the module that contains it. Options B and D are incorrect\nbecause from is not valid syntax.\n44. F. It is not possible to provide access outside the module while also limiting access within\nthe com.duck module. Options A and C are tempting because they do provide access in\ncom.park. However, they do not prevent the Egg class in the com.egg package from\naccessing the com.duckling package. Remember that the com.egg package is in the\ncom.duck module, so the access cannot be restricted. Therefore, option F is correct.\n45. E. The correct way to specify this is requires com.duck; requires com.bread;.\nThere is no way to combine two module requires statements into one. Additionally, note\nthat the requires statement works with a module name, not a package name. Since none of\nthese are correct, option E is the answer.\n46. E. Only the service provider has a provides directive. Since it is not part of the service,\noption E is the correct answer.\n47. C. Both options A and B note that the JAR depends on the jdk.unsupported module.\nHowever, they do not list suggested replacements. Option C is correct and option F is incorrect because the desired flag is -jdkinternals.\n48. C. Option C is correct because only unnamed modules are on the classpath.\n49. D. The service locator contains a ServiceLoader call to look up the service implementations. It takes the type of class to look up as a parameter and returns a generic, making\noption D the correct answer.\n50. B, D. Option B is correct because it depends on the change. If a method is added to the service provider interface or a public method is changed, the service providers must be recompiled. However, if a change is made that does not affect the service provider, such as a new\nstatic method, recompilation is not needed. Option D is also correct because return types\nand parameter types are considered part of the service.51. D. Unnamed modules are on the classpath. Option D is correct because automatic and\nnamed modules are on the module path.\n52. F. The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. However, the service provider should\nnot know about the consumer and the dotted line in the diagram does not make sense. This\nmeans none of the options can create a valid scenario, and option F is the answer.\n53. B. Without any command-line flags, jdeps lists packages and module dependencies. The\n-s flag provides a summary and omits the package name, which means option B is the\ncorrect answer.\n54. E. The --output flag provides the desired output directory. There is no abbreviated form\nfor this option, making option E the answer.\n55. F. The first clue is that the -m and -p options are on the java command. Beyond that, you\nneed to memorize the name of the --show-module-resolution option. This makes\noption F correct.\n56. B. This module is a service provider interface. The only requirement is that the module\nneeds to export the package containing the interface. In this case, that is the\nanimal.insect.api.bugs package, which matches option B.\n57. A, E. This module is a service provider. It needs a requires directive for the service provider interface, which is option A. It also needs a provides directive, which specifies both\nthe interface and implementation. Option E has both in the correct order.\n58. C, F. This module is a service locator. It needs three directives: exports, requires, and\nuses. The requires directive specifies the module it depends on, which is option C. The\nuses directive specifies the service provider interface it references, which is option F.\n59. A, B. This module is a consumer. It needs two requires directives. Option A is correct\nbecause it represents the service provider interface. Additionally, option B is correct as it\nrepresents the service locator. The uses directive should be in the service locator, not the\nconsumer.\n60. A. Without any command-line flags, jdeps lists packages and module dependencies, making\noption A correct. Option D will also list the packages; however, it is longer than option A.\n61. C. The com.light module does not have any dependencies, so it is fine. However,\ncom.animal and com.plant depend on each other, giving us a cyclic dependency. Finally,\ncom.worm depends on all the modules but does not introduce any more problems. It will\nnot compile until com.animal or com.plant are fixed but is not part of the cycle itself.\nOption C is correct, since only two modules are part of the cycle.\n62. C. The -d option is shorthand for --describe-module on both the jar and java\ncommands. Therefore, option C is correct.\n63. C. The javac command takes -p for the module path rather than -m. Therefore, option C\nis the correct answer.\n64. A. Option B is tempting because the java.lang package is available to all classes. However, the question asks about modules. Option A is the answer because the java.base\nmodule is available to all modules. The other options are incorrect because those modules do\nnot exist.\n65. A, B, C. The jmod command has five possible modes: create, extract, describe,\nlist, and hash. This makes options A, B, and C the answer.\n66. A. There is no such thing as a side-to-side migration, ruling out option B. In a top-down\nmigration, all modules are moved to the module path first, making option C incorrect. In a\nbottom-up migration, modules are moved, starting with those without dependencies. Therefore, option A is correct.\n67. C, E. In a bottom-up migration, the lowest-level modules are migrated to named modules on\nthe module path first. This makes option E one of the answers. The modules that remain on\nthe classpath are unnamed modules, making option C the other answer.\n68. D. The com.magic module exports only one package. This makes the com.magic.\nunicorn package accessible, but not the com.magic.dragon package. Both packages\nin com.science are accessible because it is an automatic module. When a module on the\nmodule path does not contain a module-info file, all packages are exported. This gives us\nthree packages that are accessible and an answer of option D.\n69. A. Modules on the module path cannot access anything from the classpath, making option A\nthe answer.\n70. E. Option E is correct as this code does compile. Although it is uncommon, a module is not\nrequired to have any directives in the body. Similarly, module names are lowercase and have\nmore than one component by convention. None of these problems prevent the file from compiling, though.\n71. E. One of the benefits of services is not having to recompile existing code when adding a\nnew implementation. This makes option E the answer.\n72. C. The java command uses -m and --module to supply the module name. The jdeps\ncommand uses -s and --summary to specify that the output should be limited. Option C\nmatches both of these.\n73. B. A service consists of the interface, any classes the interface references, and a way to look\nup implementations of the interface. It does not include the implementation. This makes\noption B the answer.\n74. A. Option A is correct because only jdeps uses this -s.\n75. A, E. This question is tricky because the service provider code is shown, but the question\nasks about the service locator, and you need to infer information about the service provider\ninterface. Option B is incorrect because the requires directive references a module name\nrather than an interface. Option C is incorrect because we need the service provider interface\nmodule, and it refers to the service provider module. The requires directive is option A dueto process of elimination. Option E is easier, since the uses directive works with an interface\nname. Therefore, options A and E are the answers.\n76. A, F. A bottom-up migration leaves unnamed modules on the classpath until they are\nmigrated to the module path, making option A correct and option D incorrect. A top-down\nmigration immediately moves all modules to the module path as automatic modules, making\noptions B and E incorrect. Therefore, option F is the other answer.\n77. D. The ServiceLoader class has a load() method that returns a Collection of\nProvider. Option D is correct because we need to convert the Provider into a Mouse.\n78. B, C, E. The mammal module depends on two other modules. Since requires references\nmodule names, options C and E are correct. The module also has one package, which is\nreferenced in the exports directive. This makes option B correct as well.\n79. C. The transitive keyword goes after requires, ruling out all but options C and\nD. Just like requires, requires transitive references a module name, narrowing it\ndown to option C.\n80. D. Any requires directives must reference unique modules. Using the transitive keyword does not change this requirement, making option D the answer.\n81. D. There can be multiple service providers for a single service provider interface, making\noption D the answer.\n82. A, D, E. The java.logging, java.management, and java.naming modules exist,\nmaking options A, D, and E correct. Option B is tempting. However, jdk.javadoc exists,\nnot java.javadoc. Options C and F are completely made up.\n83. B, E. Option E is correct because all modules on the classpath are unnamed modules. On\nthe module path, we can have automatic or named modules. In this case, it is an automatic\nmodule because there is no module-info.class at the root of the JAR. Having that file in\nanother directory is ignored. This makes option B the other answer.\n84. A. The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. This makes option A correct.\n85. B, D. The method call of ServiceLoader.load() takes a parameter, making option B\ncorrect and option A incorrect. When using a Stream, you call Provider::get, making\noption D the other answer. Option C is incorrect because you don’t need to call the get()\nmethod when using a loop.\n86. B. The rules for determining the name include removing the extension, removing numbers, and changing special characters to periods (.). Additionally, we remove the version\ninformation from the end, which is 1.0.0-SNAPSHOT. Finally, we normalize the duplicate\ndots, which gives us option B: lizard.cricket.\n87. D. The jar file format is the most common. The JMOD jmod format is used as well. Therefore, option D is correct.\n88. B. Option B is correct because a service provider should not contain an exports directive.\nThe service locator is used to reference any implementation exposed by provides.\n89. A. The com.light module is a dependency for all the other modules but does not depend\non them. Similarly, the com.animal module is a dependency for the two higher-level modules but does not depend on them. Finally, the com.plant module is a dependency for the\ncom.worm module but does not depend on it. While the modules are not defined in this\norder, the question is about cyclic dependencies and not order of compilation. There is no\ncyclic dependency, making option A correct.\n90. C, E. The jdeps command outputs requires mandated java.base except when run\nin summary mode, making option C correct. Since this module is an implicit dependency in\nall modules, option E is also correct."
+    },
+    {
+      "id": 26,
+      "question": "Which command produces output such as the following?\nanimal.puppy -> animal.dog",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps –d zoo.animal.puppy.jar"
+        },
+        {
+          "letter": "B",
+          "text": "jdeps –s zoo.animal.puppy.jar"
+        },
+        {
+          "letter": "C",
+          "text": "jmod –d zoo.animal.puppy.jar"
+        },
+        {
+          "letter": "D",
+          "text": "jmod –s zoo.animal.puppy.jar"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The jdeps command lists information about dependencies within a module. The –s\noption provides a summary of output rather than verbose output, making option B the\ncorrect answer. There is no –d option. The jmod command is for working with JMOD files."
+    },
+    {
+      "id": 27,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface\nare each in separate modules. Which of the following best describes the following\nmodule-info file?\nmodule nature.tree{\nrequires nature.sapling;\nprovides nature.sapling.Tree with nature.tree.Maple\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option C is correct because a service provider requires the interface. It also provides\nthe implementation."
+    },
+    {
+      "id": 28,
+      "question": "Suppose we have a com.bird module that contains a com.bird.tweet package and a\nTweety class with a main() method. Which of the following can fill in the blank to run this\nprogram?\njava --module-path mods –module",
+      "options": [
+        {
+          "letter": "A",
+          "text": "com.bird.Tweety"
+        },
+        {
+          "letter": "B",
+          "text": "com.bird.tweety.Tweety"
+        },
+        {
+          "letter": "C",
+          "text": "com.bird/Tweety"
+        },
+        {
+          "letter": "D",
+          "text": "com.bird.tweet/Tweety"
+        },
+        {
+          "letter": "E",
+          "text": "com.bird/com.bird.tweet.Tweety"
+        },
+        {
+          "letter": "F",
+          "text": "com.bird.tweet/com.bird.Tweety"
+        }
+      ],
+      "correct": "E",
+      "explanation": "When running a module, the module name is listed before the slash, and the fully qualified\nclass name is after the slash. Option E is the only one that meets this criterion."
+    },
+    {
+      "id": 29,
+      "question": "Which types of modules are required to contain a module-info file?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Automatic only"
+        },
+        {
+          "letter": "B",
+          "text": "Named only"
+        },
+        {
+          "letter": "C",
+          "text": "Unnamed only"
+        },
+        {
+          "letter": "D",
+          "text": "Automatic and named"
+        },
+        {
+          "letter": "E",
+          "text": "Automatic and unnamed"
+        },
+        {
+          "letter": "F",
+          "text": "Named and unnamed276 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+        }
+      ],
+      "correct": "B",
+      "explanation": "An unnamed module is on the classpath. While it is permitted to have a module-info\nfile, the file is ignored if present. An automatic module is on the module path and does not\nhave a module-info file. A named module is required to have a module-info file, making option B the correct answer."
+    },
+    {
+      "id": 30,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface\nare each in separate modules. Which of the following best describes the following\nmodule-info file?\nmodule nature.tree {\nexports nature.tree.leaf;\nrequires nature.sapling;\nuses nature.tree.Photosynthesis;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Option B is correct because a service locator uses the interface. It also requires the\nservice provider interface module and exports the package with the locator."
+    },
+    {
+      "id": 31,
+      "question": "Which command allows you to create a Java runtime image?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps"
+        },
+        {
+          "letter": "B",
+          "text": "jmod"
+        },
+        {
+          "letter": "C",
+          "text": "jimage"
+        },
+        {
+          "letter": "D",
+          "text": "jlink"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Option D is correct because the jlink command creates a Java runtime using the modules you require and have specified."
+    },
+    {
+      "id": 32,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface are\neach in separate modules. Which of the following best describes the following\nmodule-info file?\nmodule nature.tree{\nrequires nature.sapling;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "A consumer requires both the service locator and service provider interface. A service\nlocator and service provider interface need to have an exports statement. A service provider\nneeds a provides directive. Since none of them match, option E is the answer."
+    },
+    {
+      "id": 33,
+      "question": "Which types of modules are allowed to contain a module-info file?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Automatic only"
+        },
+        {
+          "letter": "B",
+          "text": "Named only"
+        },
+        {
+          "letter": "C",
+          "text": "Unnamed only"
+        },
+        {
+          "letter": "D",
+          "text": "Automatic and named"
+        },
+        {
+          "letter": "E",
+          "text": "Automatic and unnamed"
+        },
+        {
+          "letter": "F",
+          "text": "Named and unnamedChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 277"
+        }
+      ],
+      "correct": "F",
+      "explanation": "An unnamed module is permitted to have a module-info file, but the file is ignored\nif present. An automatic module does not have a module-info file. A named module is\nrequired to have a module-info file. Therefore, option F is correct."
+    },
+    {
+      "id": 34,
+      "question": "Which of the following is true of this module declaration?\n1: class com.mammal {\n2: exports com.mammal.cat;\n3: exports cat.mammal.mouse to com.mice;\n4: uses com.animal;\n5: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first line that fails to compile is line 1."
+        },
+        {
+          "letter": "B",
+          "text": "The first line that fails to compile is line 2."
+        },
+        {
+          "letter": "C",
+          "text": "The first line that fails to compile is line 3."
+        },
+        {
+          "letter": "D",
+          "text": "The first line that fails to compile is line 4."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles."
+        }
+      ],
+      "correct": "A",
+      "explanation": "A module-info file is required to start with module rather than class. Therefore, the\nfirst line doesn’t compile, and option A is correct."
+    },
+    {
+      "id": 35,
+      "question": "How many of these directives can be used in a module-info.java file: closes, export,\nimport, require, and uses?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "B",
+      "explanation": "You need to know these directives: exports, requires, requires transitive,\nprovides, opens, and uses. Of these, only uses is in the list of candidates in the\nquestion, which means option B is correct. Note that export and require are invalid\nbecause they should be exports and requires, respectively."
+    },
+    {
+      "id": 36,
+      "question": "Suppose the consumer, service locator, service provider, and service provider interface are\neach in separate modules. Which of the following best describes this module-info file?\nmodule nature.tree{\nexports nature.tree.leaf;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Option D is correct because a service provider interface exposes the interface without\ndepending on any of the other options."
+    },
+    {
+      "id": 37,
+      "question": "Which of the following are modules supplied by the JDK? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdk.base"
+        },
+        {
+          "letter": "B",
+          "text": "jdk.basic"
+        },
+        {
+          "letter": "C",
+          "text": "jdk.desktop"
+        },
+        {
+          "letter": "D",
+          "text": "jdk.javadoc"
+        },
+        {
+          "letter": "E",
+          "text": "jdk.jdeps"
+        },
+        {
+          "letter": "F",
+          "text": "jdk.net278 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+        }
+      ],
+      "correct": "D,E,F",
+      "explanation": "The java.base module is automatically available to any module without specifying\nit. However, this question tries to trick you with option A by specifying jdk.base instead.\nSimilarly, java.desktop exists, but not jdk.deskop, making option C wrong. Options D,\nE, and F are correct because jdk.javadoc , jdk.jdeps, and jdk.net are modules supplied with the JDK. You do need to be able to recognize the names of built-in modules."
+    },
+    {
+      "id": 38,
+      "question": "Which are true statements about types of migration? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "All modules are immediately moved to the module path in a bottom-up migration."
+        },
+        {
+          "letter": "B",
+          "text": "All modules are immediately moved to the module path in a top-down migration."
+        },
+        {
+          "letter": "C",
+          "text": "Modules migrate before the modules that depend on them in a bottom-up migration."
+        },
+        {
+          "letter": "D",
+          "text": "Modules migrate before the modules that depend on them in a top-down migration."
+        },
+        {
+          "letter": "E",
+          "text": "Modules that are not yet named modules are automatic modules in a bottom-up migration."
+        },
+        {
+          "letter": "F",
+          "text": "Modules that are not yet named modules are automatic modules in a top-down migration."
+        }
+      ],
+      "correct": "B,C,F",
+      "explanation": "A top-down migration starts by moving all the modules to the module path as\nautomatic modules, making options B and F correct. A bottom-up migration moves each\nmodule after all the modules it depends on have been migrated, making option C correct."
+    },
+    {
+      "id": 39,
+      "question": "A class in which of the following parts of a module service should include a method call to\nload(ChocolateLab.class) that would allow callers to use it?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The service locator contains a load() method, making option B correct."
+    },
+    {
+      "id": 40,
+      "question": "How many of these module declarations are valid?\nmodule com.leaf {}\nmodule com.leaf2 {}\nmodule com-leaf { }\nmodule LEAF {}\nmodule leaf2 {}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Module names are permitted to be any valid variable name with the addition of dot separators (.). The only one that is problematic is com-leaf because dashes are not allowed,\nmaking option E correct. As a reminder, numbers are permitted as long as they are not the\nfirst character in a segment. Capital letters are discouraged but allowed."
+    },
+    {
+      "id": 41,
+      "question": "Which is a benefit of ServiceLoader?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It allows you to add functionality without recompiling the application."
+        },
+        {
+          "letter": "B",
+          "text": "It allows you to load a service written in C++."
+        },
+        {
+          "letter": "C",
+          "text": "It is an interface."
+        },
+        {
+          "letter": "D",
+          "text": "When implementing a service, it references the ServiceLoader.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 279"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is correct because ServiceLoader allows you to make your application\nextensible. A service can be added without recompiling the entire application. It is a class, but\nthe service provider implementation does not reference it, making options C and D incorrect.\nOption B is not a feature of modules."
+    },
+    {
+      "id": 42,
+      "question": "Which are true statements? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Code on the classpath can reference code in automatic, named, and unnamed modules."
+        },
+        {
+          "letter": "B",
+          "text": "Code on the classpath can reference code in named modules, but not automatic and unnamed modules."
+        },
+        {
+          "letter": "C",
+          "text": "Code on the classpath can reference code in automatic and named modules, but not unnamed modules."
+        },
+        {
+          "letter": "D",
+          "text": "Code on the module path can reference code in automatic, named, and unnamed modules."
+        },
+        {
+          "letter": "E",
+          "text": "Code on the module path can reference code in named modules, but not automatic and unnamed modules."
+        },
+        {
+          "letter": "F",
+          "text": "Code on the module path can reference code in automatic and named modules, but not unnamed modules."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "Code on the classpath has not yet been migrated to modules and can reference any code\nin the application. This is true whether that code is in automatic, named, or unnamed modules, matching option A. Code on the module path operates in a stricter world and cannot\nreference code on the classpath. Since unnamed modules cannot be accessed in this situation,\noption F is the second answer."
+    },
+    {
+      "id": 43,
+      "question": "Suppose we have the packages in the diagram. What could we add to the\nmodule-info.java in com.duck to allow the com.park module to reference the\nDuckling class but not allow the com.bread module to do the same?\ncom.duck com.bread\ncom.park\ncom\nduckling\nbread\nDuckling.java\nEgg.java\nmodule-info.java\nFood.java\nGrass.java\nmodule-info.java\nmodule-info.java\negg\ncom\ncom\npark280 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "options": [
+        {
+          "letter": "A",
+          "text": "exports com.duckling;"
+        },
+        {
+          "letter": "B",
+          "text": "exports com.duckling from com.park;"
+        },
+        {
+          "letter": "C",
+          "text": "exports com.duckling to com.park;"
+        },
+        {
+          "letter": "D",
+          "text": "exports com.park from com.duckling;"
+        },
+        {
+          "letter": "E",
+          "text": "exports com.park to com.duckling;"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option A is incorrect because it exports the package to all modules. Option C is correct\nbecause it limits package sharing to the com.park module. Option E is incorrect because a\npackage must be exported from the module that contains it. Options B and D are incorrect\nbecause from is not valid syntax."
+    },
+    {
+      "id": 44,
+      "question": "Given the diagram in the previous question, what could we add to module-info.java in\ncom.duck to allow the com.park package to reference the Duckling class, but not allow\nthe Egg class to reference the Duckling class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "exports com.duckling;"
+        },
+        {
+          "letter": "B",
+          "text": "exports com.duckling from com.park;"
+        },
+        {
+          "letter": "C",
+          "text": "exports com.duckling to com.park;"
+        },
+        {
+          "letter": "D",
+          "text": "exports com.park from com.duckling;"
+        },
+        {
+          "letter": "E",
+          "text": "exports com.park to com.duckling;"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "It is not possible to provide access outside the module while also limiting access within\nthe com.duck module. Options A and C are tempting because they do provide access in\ncom.park. However, they do not prevent the Egg class in the com.egg package from\naccessing the com.duckling package. Remember that the com.egg package is in the\ncom.duck module, so the access cannot be restricted. Therefore, option F is correct."
+    },
+    {
+      "id": 45,
+      "question": "Given the diagram in Question 43 and the correct export statement to share only\ncom.duckling, which of the following should be included in the module-info.java file\nof com.park to specify that com.park should have access to the com.duckling and\ncom.bread packages, but not the com.egg package?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "require com.duck, com.bread;"
+        },
+        {
+          "letter": "B",
+          "text": "requires com.duck; com.bread;"
+        },
+        {
+          "letter": "C",
+          "text": "require com.duckling, com.bread;"
+        },
+        {
+          "letter": "D",
+          "text": "requires com.duckling; com.bread;"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The correct way to specify this is requires com.duck; requires com.bread;.\nThere is no way to combine two module requires statements into one. Additionally, note\nthat the requires statement works with a module name, not a package name. Since none of\nthese are correct, option E is the answer."
+    },
+    {
+      "id": 46,
+      "question": "Which is part of the service and has a provides directive?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Service provider"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Only the service provider has a provides directive. Since it is not part of the service,\noption E is the correct answer."
+    },
+    {
+      "id": 47,
+      "question": "Which command is the simplest way to list suggestions for classes in jdk.unsupported?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps cookie.jar"
+        },
+        {
+          "letter": "B",
+          "text": "jdeps –s cookie.jar"
+        },
+        {
+          "letter": "C",
+          "text": "jdeps –jdkinternals cookie.jar"
+        },
+        {
+          "letter": "D",
+          "text": "jdeps --jdkinternals cookie.jar"
+        },
+        {
+          "letter": "E",
+          "text": "jdeps -jdkunsupported cookie.jar"
+        },
+        {
+          "letter": "F",
+          "text": "jdeps --jdkunsupported cookie.jarChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 281"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Both options A and B note that the JAR depends on the jdk.unsupported module.\nHowever, they do not list suggested replacements. Option C is correct and option F is incorrect because the desired flag is -jdkinternals."
+    },
+    {
+      "id": 48,
+      "question": "Which modules are on the classpath?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Automatic only"
+        },
+        {
+          "letter": "B",
+          "text": "Named only"
+        },
+        {
+          "letter": "C",
+          "text": "Unnamed only"
+        },
+        {
+          "letter": "D",
+          "text": "Automatic and named"
+        },
+        {
+          "letter": "E",
+          "text": "Automatic and unnamed"
+        },
+        {
+          "letter": "F",
+          "text": "Named and unnamed"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option C is correct because only unnamed modules are on the classpath."
+    },
+    {
+      "id": 49,
+      "question": "Which line of code belongs in a service locator?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ServiceLoader loader = ServiceLoader.load();"
+        },
+        {
+          "letter": "B",
+          "text": "ServiceLoader loader = ServiceLoader.load(Mouse.class);"
+        },
+        {
+          "letter": "C",
+          "text": "ServiceLoader<Mouse> loader = ServiceLoader.load();"
+        },
+        {
+          "letter": "D",
+          "text": "ServiceLoader<Mouse> loader = ServiceLoader.load(Mouse.class);"
+        },
+        {
+          "letter": "E",
+          "text": "Mouse loader = ServiceLoader.load();"
+        },
+        {
+          "letter": "F",
+          "text": "Mouse loader = ServiceLoader.load(Mouse.class);"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The service locator contains a ServiceLoader call to look up the service implementations. It takes the type of class to look up as a parameter and returns a generic, making\noption D the correct answer."
+    },
+    {
+      "id": 50,
+      "question": "Which are true about a service? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Changing the service provider interface always requires recompiling the service provider."
+        },
+        {
+          "letter": "B",
+          "text": "Changing the service provider interface sometimes requires recompiling the service provider."
+        },
+        {
+          "letter": "C",
+          "text": "Changing the service provider interface never requires recompiling the service provider."
+        },
+        {
+          "letter": "D",
+          "text": "If the service provider interface references other classes in the method signatures, they are considered part of the service."
+        },
+        {
+          "letter": "E",
+          "text": "If the service provider interface references other classes in the method signatures, they are not considered part of the service."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Option B is correct because it depends on the change. If a method is added to the service provider interface or a public method is changed, the service providers must be recompiled. However, if a change is made that does not affect the service provider, such as a new\nstatic method, recompilation is not needed. Option D is also correct because return types\nand parameter types are considered part of the service.51. D. Unnamed modules are on the classpath. Option D is correct because automatic and\nnamed modules are on the module path.\n52. F. The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. However, the service provider should\nnot know about the consumer and the dotted line in the diagram does not make sense. This\nmeans none of the options can create a valid scenario, and option F is the answer.\n53. B. Without any command-line flags, jdeps lists packages and module dependencies. The\n-s flag provides a summary and omits the package name, which means option B is the\ncorrect answer.\n54. E. The --output flag provides the desired output directory. There is no abbreviated form\nfor this option, making option E the answer.\n55. F. The first clue is that the -m and -p options are on the java command. Beyond that, you\nneed to memorize the name of the --show-module-resolution option. This makes\noption F correct.\n56. B. This module is a service provider interface. The only requirement is that the module\nneeds to export the package containing the interface. In this case, that is the\nanimal.insect.api.bugs package, which matches option B.\n57. A, E. This module is a service provider. It needs a requires directive for the service provider interface, which is option A. It also needs a provides directive, which specifies both\nthe interface and implementation. Option E has both in the correct order.\n58. C, F. This module is a service locator. It needs three directives: exports, requires, and\nuses. The requires directive specifies the module it depends on, which is option C. The\nuses directive specifies the service provider interface it references, which is option F.\n59. A, B. This module is a consumer. It needs two requires directives. Option A is correct\nbecause it represents the service provider interface. Additionally, option B is correct as it\nrepresents the service locator. The uses directive should be in the service locator, not the\nconsumer.\n60. A. Without any command-line flags, jdeps lists packages and module dependencies, making\noption A correct. Option D will also list the packages; however, it is longer than option A.\n61. C. The com.light module does not have any dependencies, so it is fine. However,\ncom.animal and com.plant depend on each other, giving us a cyclic dependency. Finally,\ncom.worm depends on all the modules but does not introduce any more problems. It will\nnot compile until com.animal or com.plant are fixed but is not part of the cycle itself.\nOption C is correct, since only two modules are part of the cycle.\n62. C. The -d option is shorthand for --describe-module on both the jar and java\ncommands. Therefore, option C is correct.\n63. C. The javac command takes -p for the module path rather than -m. Therefore, option C\nis the correct answer.\n64. A. Option B is tempting because the java.lang package is available to all classes. However, the question asks about modules. Option A is the answer because the java.base\nmodule is available to all modules. The other options are incorrect because those modules do\nnot exist.\n65. A, B, C. The jmod command has five possible modes: create, extract, describe,\nlist, and hash. This makes options A, B, and C the answer.\n66. A. There is no such thing as a side-to-side migration, ruling out option B. In a top-down\nmigration, all modules are moved to the module path first, making option C incorrect. In a\nbottom-up migration, modules are moved, starting with those without dependencies. Therefore, option A is correct.\n67. C, E. In a bottom-up migration, the lowest-level modules are migrated to named modules on\nthe module path first. This makes option E one of the answers. The modules that remain on\nthe classpath are unnamed modules, making option C the other answer.\n68. D. The com.magic module exports only one package. This makes the com.magic.\nunicorn package accessible, but not the com.magic.dragon package. Both packages\nin com.science are accessible because it is an automatic module. When a module on the\nmodule path does not contain a module-info file, all packages are exported. This gives us\nthree packages that are accessible and an answer of option D.\n69. A. Modules on the module path cannot access anything from the classpath, making option A\nthe answer.\n70. E. Option E is correct as this code does compile. Although it is uncommon, a module is not\nrequired to have any directives in the body. Similarly, module names are lowercase and have\nmore than one component by convention. None of these problems prevent the file from compiling, though.\n71. E. One of the benefits of services is not having to recompile existing code when adding a\nnew implementation. This makes option E the answer.\n72. C. The java command uses -m and --module to supply the module name. The jdeps\ncommand uses -s and --summary to specify that the output should be limited. Option C\nmatches both of these.\n73. B. A service consists of the interface, any classes the interface references, and a way to look\nup implementations of the interface. It does not include the implementation. This makes\noption B the answer.\n74. A. Option A is correct because only jdeps uses this -s.\n75. A, E. This question is tricky because the service provider code is shown, but the question\nasks about the service locator, and you need to infer information about the service provider\ninterface. Option B is incorrect because the requires directive references a module name\nrather than an interface. Option C is incorrect because we need the service provider interface\nmodule, and it refers to the service provider module. The requires directive is option A dueto process of elimination. Option E is easier, since the uses directive works with an interface\nname. Therefore, options A and E are the answers.\n76. A, F. A bottom-up migration leaves unnamed modules on the classpath until they are\nmigrated to the module path, making option A correct and option D incorrect. A top-down\nmigration immediately moves all modules to the module path as automatic modules, making\noptions B and E incorrect. Therefore, option F is the other answer.\n77. D. The ServiceLoader class has a load() method that returns a Collection of\nProvider. Option D is correct because we need to convert the Provider into a Mouse.\n78. B, C, E. The mammal module depends on two other modules. Since requires references\nmodule names, options C and E are correct. The module also has one package, which is\nreferenced in the exports directive. This makes option B correct as well.\n79. C. The transitive keyword goes after requires, ruling out all but options C and\nD. Just like requires, requires transitive references a module name, narrowing it\ndown to option C.\n80. D. Any requires directives must reference unique modules. Using the transitive keyword does not change this requirement, making option D the answer.\n81. D. There can be multiple service providers for a single service provider interface, making\noption D the answer.\n82. A, D, E. The java.logging, java.management, and java.naming modules exist,\nmaking options A, D, and E correct. Option B is tempting. However, jdk.javadoc exists,\nnot java.javadoc. Options C and F are completely made up.\n83. B, E. Option E is correct because all modules on the classpath are unnamed modules. On\nthe module path, we can have automatic or named modules. In this case, it is an automatic\nmodule because there is no module-info.class at the root of the JAR. Having that file in\nanother directory is ignored. This makes option B the other answer.\n84. A. The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. This makes option A correct.\n85. B, D. The method call of ServiceLoader.load() takes a parameter, making option B\ncorrect and option A incorrect. When using a Stream, you call Provider::get, making\noption D the other answer. Option C is incorrect because you don’t need to call the get()\nmethod when using a loop.\n86. B. The rules for determining the name include removing the extension, removing numbers, and changing special characters to periods (.). Additionally, we remove the version\ninformation from the end, which is 1.0.0-SNAPSHOT. Finally, we normalize the duplicate\ndots, which gives us option B: lizard.cricket.\n87. D. The jar file format is the most common. The JMOD jmod format is used as well. Therefore, option D is correct.\n88. B. Option B is correct because a service provider should not contain an exports directive.\nThe service locator is used to reference any implementation exposed by provides.\n89. A. The com.light module is a dependency for all the other modules but does not depend\non them. Similarly, the com.animal module is a dependency for the two higher-level modules but does not depend on them. Finally, the com.plant module is a dependency for the\ncom.worm module but does not depend on it. While the modules are not defined in this\norder, the question is about cyclic dependencies and not order of compilation. There is no\ncyclic dependency, making option A correct.\n90. C, E. The jdeps command outputs requires mandated java.base except when run\nin summary mode, making option C correct. Since this module is an implicit dependency in\nall modules, option E is also correct."
+    },
+    {
+      "id": 51,
+      "question": "Which modules are on the module path?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Automatic only"
+        },
+        {
+          "letter": "B",
+          "text": "Named only"
+        },
+        {
+          "letter": "C",
+          "text": "Unnamed only"
+        },
+        {
+          "letter": "D",
+          "text": "Automatic and named"
+        },
+        {
+          "letter": "E",
+          "text": "Automatic and unnamed"
+        },
+        {
+          "letter": "F",
+          "text": "Named and unnamed"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Unnamed modules are on the classpath. Option D is correct because automatic and\nnamed modules are on the module path."
+    },
+    {
+      "id": 52,
+      "question": "Each box in the diagram corresponds to a module. The service locator and service provider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY282 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "options": [
+        {
+          "letter": "A",
+          "text": "X and Y"
+        },
+        {
+          "letter": "B",
+          "text": "X and Z"
+        },
+        {
+          "letter": "C",
+          "text": "Y and Z"
+        },
+        {
+          "letter": "D",
+          "text": "Z and Z"
+        },
+        {
+          "letter": "E",
+          "text": "Z and Y"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. However, the service provider should\nnot know about the consumer and the dotted line in the diagram does not make sense. This\nmeans none of the options can create a valid scenario, and option F is the answer."
+    },
+    {
+      "id": 53,
+      "question": "Which command is the simplest way to list what modules a JAR depends on without listing\npackage names?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps cookie.jar"
+        },
+        {
+          "letter": "B",
+          "text": "jdeps –s cookie.jar"
+        },
+        {
+          "letter": "C",
+          "text": "jdeps –jdkinternals cookie.jar"
+        },
+        {
+          "letter": "D",
+          "text": "jdeps --jdkinternals cookie.jar"
+        },
+        {
+          "letter": "E",
+          "text": "jdeps -jdk-unsupported cookie.jar"
+        },
+        {
+          "letter": "F",
+          "text": "jdeps --jdk-unsupported cookie.jar"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Without any command-line flags, jdeps lists packages and module dependencies. The\n-s flag provides a summary and omits the package name, which means option B is the\ncorrect answer."
+    },
+    {
+      "id": 54,
+      "question": "What flag do you use on jlink in order to specify the directory where the generated runtime image should be placed?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-d"
+        },
+        {
+          "letter": "B",
+          "text": "--directory"
+        },
+        {
+          "letter": "C",
+          "text": "-d or --directory"
+        },
+        {
+          "letter": "D",
+          "text": "-o"
+        },
+        {
+          "letter": "E",
+          "text": "--output"
+        },
+        {
+          "letter": "F",
+          "text": "-o or --output"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The --output flag provides the desired output directory. There is no abbreviated form\nfor this option, making option E the answer."
+    },
+    {
+      "id": 55,
+      "question": "Fill in the blanks to list a way of getting a lot of useful information in debugging modules.\n-m x –p y --",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jar and show-modules"
+        },
+        {
+          "letter": "B",
+          "text": "jar and show-module-detail"
+        },
+        {
+          "letter": "C",
+          "text": "jar and show-module-resolution"
+        },
+        {
+          "letter": "D",
+          "text": "java and show-modules"
+        },
+        {
+          "letter": "E",
+          "text": "java and show-module-detail"
+        },
+        {
+          "letter": "F",
+          "text": "java and show-module-resolution"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The first clue is that the -m and -p options are on the java command. Beyond that, you\nneed to memorize the name of the --show-module-resolution option. This makes\noption F correct."
+    },
+    {
+      "id": 56,
+      "question": "Suppose you have the following interface in a module named animal.insect.api. What\nneeds to be included in the module-info file for it to be a service provider interface?\npackage animal.insect.api.bugs;\npublic interface Bug {\nint crawl();\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 283",
+      "options": [
+        {
+          "letter": "A",
+          "text": "exports animal.insect.api;"
+        },
+        {
+          "letter": "B",
+          "text": "exports animal.insect.api.bugs;"
+        },
+        {
+          "letter": "C",
+          "text": "exports animal.insect.api.bugs.Bug;"
+        },
+        {
+          "letter": "D",
+          "text": "requires animal.insect.api;"
+        },
+        {
+          "letter": "E",
+          "text": "requires animal.insect.api.bugs;"
+        },
+        {
+          "letter": "F",
+          "text": "requires animal.insect.api.bugs.Bug;"
+        }
+      ],
+      "correct": "B",
+      "explanation": "This module is a service provider interface. The only requirement is that the module\nneeds to export the package containing the interface. In this case, that is the\nanimal.insect.api.bugs package, which matches option B."
+    },
+    {
+      "id": 57,
+      "question": "Suppose you have the following class in a module named animal.insect.impl and\nthe service provider interface module from Question 56. What needs to be included in the\nmodule-info for it to be a service provider? (Choose two.)\npackage animal.insect.impl;\nimport animal.insect.api.bugs.Bug;\npublic class Worm implements Bug {\n@Override\npublic int crawl() {\nreturn 1;\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "requires animal.insect.api;"
+        },
+        {
+          "letter": "B",
+          "text": "requires animal.insect.lookup;"
+        },
+        {
+          "letter": "C",
+          "text": "requires animal.printer;"
+        },
+        {
+          "letter": "D",
+          "text": "provides animal.insect.impl.Worm;"
+        },
+        {
+          "letter": "E",
+          "text": "provides animal.insect.api.bugs.Bug with animal.insect.impl.Worm;"
+        },
+        {
+          "letter": "F",
+          "text": "provides animal.insect.impl.Worm with animal.insect.api.bugs.Bug;"
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "This module is a service provider. It needs a requires directive for the service provider interface, which is option A. It also needs a provides directive, which specifies both\nthe interface and implementation. Option E has both in the correct order."
+    },
+    {
+      "id": 58,
+      "question": "Suppose you have the following class in a module named animal.insect.lookup, the\nservice provider interface from Question 56, and the service provider from Question 57.\nWhat needs to be included in the module-info file besides an exports directive for it to\nbe a service locator? (Choose two.)\npackage animal.insect.lookup;\nimport animal.insect.api.bugs.Bug;\nimport java.util.List;\nimport java.util.ServiceLoader;\nimport java.util.stream.Collectors;\npublic class InsectFinder {\npublic static List<Bug> findAllBugs() {\nreturn ServiceLoader.load(Bug.class)284 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform\n.stream()\n.map(ServiceLoader.Provider::get)\n.collect(Collectors.toList());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "provides animal.insect.lookup;"
+        },
+        {
+          "letter": "B",
+          "text": "provides animal.insect.lookup.InsectFinder;"
+        },
+        {
+          "letter": "C",
+          "text": "requires animal.insect.api;"
+        },
+        {
+          "letter": "D",
+          "text": "requires animal.insect.api.Bug;"
+        },
+        {
+          "letter": "E",
+          "text": "uses animal.insect.api.bugs;"
+        },
+        {
+          "letter": "F",
+          "text": "uses animal.insect.api.bugs.Bug;"
+        }
+      ],
+      "correct": "C,F",
+      "explanation": "This module is a service locator. It needs three directives: exports, requires, and\nuses. The requires directive specifies the module it depends on, which is option C. The\nuses directive specifies the service provider interface it references, which is option F."
+    },
+    {
+      "id": 59,
+      "question": "Suppose you have the following class in a module named animal.insect.printer, the\nservice provider interface from Question 56, the service provider from Question 57, and the\nservice locator from Question 58. What needs to be included in the module-info for it to\nbe a consumer? (Choose two.)\npackage animal.printer;\nimport animal.insect.lookup.InsectFinder;\npublic class Print {\npublic static void main(String[] args) {\nvar bugs = InsectFinder.findAllBugs();\nbugs.forEach(System.out::println);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "requires animal.insect.api.bugs;"
+        },
+        {
+          "letter": "B",
+          "text": "requires animal.insect.lookup;"
+        },
+        {
+          "letter": "C",
+          "text": "requires animal.printer;"
+        },
+        {
+          "letter": "D",
+          "text": "uses animal.insect.api.bugs;"
+        },
+        {
+          "letter": "E",
+          "text": "uses animal.insect.api.bugs.Bug;"
+        },
+        {
+          "letter": "F",
+          "text": "uses animal.insect.lookup.InsectFinder;"
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "This module is a consumer. It needs two requires directives. Option A is correct\nbecause it represents the service provider interface. Additionally, option B is correct as it\nrepresents the service locator. The uses directive should be in the service locator, not the\nconsumer."
+    },
+    {
+      "id": 60,
+      "question": "Which command is the simplest way to list what modules a JAR depends on, including\npackage names?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps cookie.jar"
+        },
+        {
+          "letter": "B",
+          "text": "jdeps –s cookie.jar"
+        },
+        {
+          "letter": "C",
+          "text": "jdeps –jdkinternals cookie.jar"
+        },
+        {
+          "letter": "D",
+          "text": "jdeps --jdkinternals cookie.jar"
+        },
+        {
+          "letter": "E",
+          "text": "jdeps -jdk-unsupported cookie.jar"
+        },
+        {
+          "letter": "F",
+          "text": "jdeps --jdk-unsupported cookie.jarChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 285"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Without any command-line flags, jdeps lists packages and module dependencies, making\noption A correct. Option D will also list the packages; however, it is longer than option A."
+    },
+    {
+      "id": 61,
+      "question": "How many modules are part of the cyclic dependency?\nmodule com.light {\nexports com.light;\n}\nmodule com.animal {\nexports com.animal;\nrequires com.light;\nrequires com.plant;\n}\nmodule com.plant {\nexports com.plant;\nrequires com.light;\nrequires com.animal;\n}\nmodule com.worm {\nexports com.worm;\nrequires com.light;\nrequires com.animal;\nrequires com.plant;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The com.light module does not have any dependencies, so it is fine. However,\ncom.animal and com.plant depend on each other, giving us a cyclic dependency. Finally,\ncom.worm depends on all the modules but does not introduce any more problems. It will\nnot compile until com.animal or com.plant are fixed but is not part of the cycle itself.\nOption C is correct, since only two modules are part of the cycle."
+    },
+    {
+      "id": 62,
+      "question": "What is true about the -d option?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It can be used with the jar command, but not the java command."
+        },
+        {
+          "letter": "B",
+          "text": "It can be used with the java command, but not the jar command."
+        },
+        {
+          "letter": "C",
+          "text": "It can be used with the jar and java commands and serves the same purpose for both."
+        },
+        {
+          "letter": "D",
+          "text": "It can be used with the jar and java commands, but means “directory” for the former and “describe module” for the latter."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The -d option is shorthand for --describe-module on both the jar and java\ncommands. Therefore, option C is correct."
+    },
+    {
+      "id": 63,
+      "question": "Assuming all referenced files and directories exist and are correct, what does this code do?\njavac –m mods –d mouse mouse/com/mouse/*.java\nmouse/module-info.java\njar –cvf mods/com.mouse.jar –C mouse/ .286 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Creates a JAR file representing the com.mouse module"
+        },
+        {
+          "letter": "B",
+          "text": "Creates a JAR file that is not a module"
+        },
+        {
+          "letter": "C",
+          "text": "Fails on the javac command"
+        },
+        {
+          "letter": "D",
+          "text": "Fails on the jar command"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The javac command takes -p for the module path rather than -m. Therefore, option C\nis the correct answer."
+    },
+    {
+      "id": 64,
+      "question": "Which module is always in the jdeps output?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java.base"
+        },
+        {
+          "letter": "B",
+          "text": "java.lang"
+        },
+        {
+          "letter": "C",
+          "text": "java.self"
+        },
+        {
+          "letter": "D",
+          "text": "jdk.base"
+        },
+        {
+          "letter": "E",
+          "text": "jdk.lang"
+        },
+        {
+          "letter": "F",
+          "text": "jdk.self"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option B is tempting because the java.lang package is available to all classes. However, the question asks about modules. Option A is the answer because the java.base\nmodule is available to all modules. The other options are incorrect because those modules do\nnot exist."
+    },
+    {
+      "id": 65,
+      "question": "Which are valid modes on the jmod command? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "create"
+        },
+        {
+          "letter": "B",
+          "text": "list"
+        },
+        {
+          "letter": "C",
+          "text": "hash"
+        },
+        {
+          "letter": "D",
+          "text": "show"
+        },
+        {
+          "letter": "E",
+          "text": "verbose"
+        },
+        {
+          "letter": "F",
+          "text": "version"
+        }
+      ],
+      "correct": "A,B,C",
+      "explanation": "The jmod command has five possible modes: create, extract, describe,\nlist, and hash. This makes options A, B, and C the answer."
+    },
+    {
+      "id": 66,
+      "question": "This diagram shows the second step of a migration to modules. What type of migration\nis this?\nbutterfly\ncaterpillar\nclasspath module path",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Bottom-up"
+        },
+        {
+          "letter": "B",
+          "text": "Side-to-side"
+        },
+        {
+          "letter": "C",
+          "text": "Top-down"
+        },
+        {
+          "letter": "D",
+          "text": "There is not enough information to determine which type it is.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 287"
+        }
+      ],
+      "correct": "A",
+      "explanation": "There is no such thing as a side-to-side migration, ruling out option B. In a top-down\nmigration, all modules are moved to the module path first, making option C incorrect. In a\nbottom-up migration, modules are moved, starting with those without dependencies. Therefore, option A is correct."
+    },
+    {
+      "id": 67,
+      "question": "Which are true statements about the diagram and scenario in the previous question?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "butterfly is an automatic module."
+        },
+        {
+          "letter": "B",
+          "text": "butterfly is a named module."
+        },
+        {
+          "letter": "C",
+          "text": "butterfly is an unnamed module."
+        },
+        {
+          "letter": "D",
+          "text": "caterpillar is an automatic module."
+        },
+        {
+          "letter": "E",
+          "text": "caterpillar is a named module."
+        },
+        {
+          "letter": "F",
+          "text": "caterpillar is an unnamed module."
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "In a bottom-up migration, the lowest-level modules are migrated to named modules on\nthe module path first. This makes option E one of the answers. The modules that remain on\nthe classpath are unnamed modules, making option C the other answer."
+    },
+    {
+      "id": 68,
+      "question": "Suppose we have the two JARs in the diagram on the module path and the module-info\nin the com.magic JAR only exports one package: com.magic.unicorn. There is no\nmodule-info file in the com.science JAR. How many of the four packages in the\ndiagram can a third module on the module path access?\ncom.magic\nmodule-info\ncom.magic.dragon\ncom.magic.unicorn\ncom.science\ncom.science.bio\ncom.science.chem",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The com.magic module exports only one package. This makes the com.magic.\nunicorn package accessible, but not the com.magic.dragon package. Both packages\nin com.science are accessible because it is an automatic module. When a module on the\nmodule path does not contain a module-info file, all packages are exported. This gives us\nthree packages that are accessible and an answer of option D."
+    },
+    {
+      "id": 69,
+      "question": "Suppose the two JARs described in the previous question are on the classpath. How many of\nthe four packages in the diagram can a module on the module path access?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4288 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Modules on the module path cannot access anything from the classpath, making option A\nthe answer."
+    },
+    {
+      "id": 70,
+      "question": "What is true about the following module-info.java file?\nmodule Book { }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It does not compile because it is empty."
+        },
+        {
+          "letter": "B",
+          "text": "It does not compile because the module name is uppercase."
+        },
+        {
+          "letter": "C",
+          "text": "It does not compile because the module name has only one component."
+        },
+        {
+          "letter": "D",
+          "text": "It does not compile for another reason."
+        },
+        {
+          "letter": "E",
+          "text": "It compiles."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Option E is correct as this code does compile. Although it is uncommon, a module is not\nrequired to have any directives in the body. Similarly, module names are lowercase and have\nmore than one component by convention. None of these problems prevent the file from compiling, though."
+    },
+    {
+      "id": 71,
+      "question": "When adding a new service provider, which of these do you need to recompile?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Consumer"
+        },
+        {
+          "letter": "B",
+          "text": "Service locator"
+        },
+        {
+          "letter": "C",
+          "text": "Existing service providers"
+        },
+        {
+          "letter": "D",
+          "text": "Service provider interface"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "One of the benefits of services is not having to recompile existing code when adding a\nnew implementation. This makes option E the answer."
+    },
+    {
+      "id": 72,
+      "question": "When working with modules, what option names are equivalent to -m and -s?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "--module and --short"
+        },
+        {
+          "letter": "B",
+          "text": "--module and --statistics"
+        },
+        {
+          "letter": "C",
+          "text": "--module and --summary"
+        },
+        {
+          "letter": "D",
+          "text": "--module-path and --short"
+        },
+        {
+          "letter": "E",
+          "text": "--module-path and --statistics"
+        },
+        {
+          "letter": "F",
+          "text": "--module-path and --summary"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The java command uses -m and --module to supply the module name. The jdeps\ncommand uses -s and --summary to specify that the output should be limited. Option C\nmatches both of these."
+    },
+    {
+      "id": 73,
+      "question": "Which are considered part of a service?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Classes referenced by the implementation, but not the interface"
+        },
+        {
+          "letter": "B",
+          "text": "Classes referenced by the interface, but not the implementation"
+        },
+        {
+          "letter": "C",
+          "text": "Classes referenced by either the implementation or the interface"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "A service consists of the interface, any classes the interface references, and a way to look\nup implementations of the interface. It does not include the implementation. This makes\noption B the answer."
+    },
+    {
+      "id": 74,
+      "question": "Which command uses –s to represent summary?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jdeps"
+        },
+        {
+          "letter": "B",
+          "text": "jlink"
+        },
+        {
+          "letter": "C",
+          "text": "jmod"
+        },
+        {
+          "letter": "D",
+          "text": "Both jdeps and jlink"
+        },
+        {
+          "letter": "E",
+          "text": "Both jlink and jmod"
+        },
+        {
+          "letter": "F",
+          "text": "All of the above"
+        },
+        {
+          "letter": "G",
+          "text": "None of the aboveChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 289"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A is correct because only jdeps uses this -s."
+    },
+    {
+      "id": 75,
+      "question": "Suppose you have the following class in a module named animal.insect.impl. Which\ntwo most likely go in the module-info of the service locator? (Choose two.)\npackage animal.insect.impl;\nimport animal.insect.api.bugs.Bug;\npublic class Worm implements Bug {\n@Override\npublic int crawl() {\nreturn 1;\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "requires animal.insect.api.bugs;"
+        },
+        {
+          "letter": "B",
+          "text": "requires animal.insect.api.bugs.Bug;"
+        },
+        {
+          "letter": "C",
+          "text": "requires animal.insect.impl;"
+        },
+        {
+          "letter": "D",
+          "text": "uses animal.insect.api.bugs;"
+        },
+        {
+          "letter": "E",
+          "text": "uses animal.insect.api.bugs.Bug;"
+        },
+        {
+          "letter": "F",
+          "text": "uses animal.insect.api.bugs.Bug with animal.insect.impl.Worm;"
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "This question is tricky because the service provider code is shown, but the question\nasks about the service locator, and you need to infer information about the service provider\ninterface. Option B is incorrect because the requires directive references a module name\nrather than an interface. Option C is incorrect because we need the service provider interface\nmodule, and it refers to the service provider module. The requires directive is option A dueto process of elimination. Option E is easier, since the uses directive works with an interface\nname. Therefore, options A and E are the answers."
+    },
+    {
+      "id": 76,
+      "question": "Which of the following statements are true? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A bottom-up migration has more steps involving the classpath than a top-down migration."
+        },
+        {
+          "letter": "B",
+          "text": "A top-down migration has more steps involving the classpath than a bottom-up migration."
+        },
+        {
+          "letter": "C",
+          "text": "Both types of migration have the same number of steps involving the classpath."
+        },
+        {
+          "letter": "D",
+          "text": "A bottom-up migration has unnamed modules on the module path."
+        },
+        {
+          "letter": "E",
+          "text": "A top-down migration has unnamed modules on the module path."
+        },
+        {
+          "letter": "F",
+          "text": "Neither migration type has unnamed modules on the module path."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "A bottom-up migration leaves unnamed modules on the classpath until they are\nmigrated to the module path, making option A correct and option D incorrect. A top-down\nmigration immediately moves all modules to the module path as automatic modules, making\noptions B and E incorrect. Therefore, option F is the other answer."
+    },
+    {
+      "id": 77,
+      "question": "Fill in the blank with code to look up and call a service.\nString cheese = ServiceLoader.load(Mouse.class)\n.stream()\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Mouse.get()"
+        },
+        {
+          "letter": "B",
+          "text": "Mouse::get"
+        },
+        {
+          "letter": "C",
+          "text": "Provider.get()"
+        },
+        {
+          "letter": "D",
+          "text": "Provider::get"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above290 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The ServiceLoader class has a load() method that returns a Collection of\nProvider. Option D is correct because we need to convert the Provider into a Mouse."
+    },
+    {
+      "id": 78,
+      "question": "Given the following diagram, with each box representing a module, what statements need to\nbe in module-info.java for the mammal module? (Choose three.)\nanimal\nanimal.util\nmilk\nmilk.store\nmammal\nmammal.eat\npanda\npanda.food",
+      "options": [
+        {
+          "letter": "A",
+          "text": "exports mammal;"
+        },
+        {
+          "letter": "B",
+          "text": "exports mammal.eat;"
+        },
+        {
+          "letter": "C",
+          "text": "requires animal;"
+        },
+        {
+          "letter": "D",
+          "text": "requires animal.util;"
+        },
+        {
+          "letter": "E",
+          "text": "requires milk;"
+        },
+        {
+          "letter": "F",
+          "text": "requires milk.store;"
+        }
+      ],
+      "correct": "B,C,E",
+      "explanation": "The mammal module depends on two other modules. Since requires references\nmodule names, options C and E are correct. The module also has one package, which is\nreferenced in the exports directive. This makes option B correct as well."
+    },
+    {
+      "id": 79,
+      "question": "Given the previous diagram and the following module-info.java for the panda module,\nwhat change can be made to the requires statement?\nmodule panda {\nrequires mammal;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "exports transitive mammal;"
+        },
+        {
+          "letter": "B",
+          "text": "exports transitive mammal.eat;"
+        },
+        {
+          "letter": "C",
+          "text": "requires transitive animal;"
+        },
+        {
+          "letter": "D",
+          "text": "requires transitive animal.util;"
+        },
+        {
+          "letter": "E",
+          "text": "transitive requires animal;"
+        },
+        {
+          "letter": "F",
+          "text": "transitive requires animal.util;"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The transitive keyword goes after requires, ruling out all but options C and\nD. Just like requires, requires transitive references a module name, narrowing it\ndown to option C."
+    },
+    {
+      "id": 80,
+      "question": "Given the diagram in Question 78 and the following module-info.java for the panda\nmodule, what is the result of including line m1?\nmodule panda {\nrequires mammal;\nrequires transitive mammal; // line m1\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 291",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Any modules that require mammal will automatically get panda as well."
+        },
+        {
+          "letter": "B",
+          "text": "Any modules that require panda will automatically get mammal as well."
+        },
+        {
+          "letter": "C",
+          "text": "There is no change in behavior."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Any requires directives must reference unique modules. Using the transitive keyword does not change this requirement, making option D the answer."
+    },
+    {
+      "id": 81,
+      "question": "How many service providers are allowed to implement a service provider interface?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Exactly one"
+        },
+        {
+          "letter": "B",
+          "text": "Exactly two"
+        },
+        {
+          "letter": "C",
+          "text": "One or two"
+        },
+        {
+          "letter": "D",
+          "text": "One or more"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "There can be multiple service providers for a single service provider interface, making\noption D the answer."
+    },
+    {
+      "id": 82,
+      "question": "Which of the following are modules supplied by the JDK? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java.logging"
+        },
+        {
+          "letter": "B",
+          "text": "java.javadoc"
+        },
+        {
+          "letter": "C",
+          "text": "java.jdk"
+        },
+        {
+          "letter": "D",
+          "text": "java.management"
+        },
+        {
+          "letter": "E",
+          "text": "java.naming"
+        },
+        {
+          "letter": "F",
+          "text": "java.scripts"
+        }
+      ],
+      "correct": "A,D,E",
+      "explanation": "The java.logging, java.management, and java.naming modules exist,\nmaking options A, D, and E correct. Option B is tempting. However, jdk.javadoc exists,\nnot java.javadoc. Options C and F are completely made up."
+    },
+    {
+      "id": 83,
+      "question": "Which are true of a JAR file that has only one module-info.class file, placed in the\nMETA-INF directory? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It is an automatic module if on the classpath."
+        },
+        {
+          "letter": "B",
+          "text": "It is an automatic module if on the module path."
+        },
+        {
+          "letter": "C",
+          "text": "It is a named module if on the classpath."
+        },
+        {
+          "letter": "D",
+          "text": "It is a named module if on the module path."
+        },
+        {
+          "letter": "E",
+          "text": "It is an unnamed module if on the classpath."
+        },
+        {
+          "letter": "F",
+          "text": "It is an unnamed module if on the module path."
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "Option E is correct because all modules on the classpath are unnamed modules. On\nthe module path, we can have automatic or named modules. In this case, it is an automatic\nmodule because there is no module-info.class at the root of the JAR. Having that file in\nanother directory is ignored. This makes option B the other answer."
+    },
+    {
+      "id": 84,
+      "question": "Each box in the following diagram corresponds to a module. The service locator and service\nprovider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY292 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "options": [
+        {
+          "letter": "A",
+          "text": "X and Y"
+        },
+        {
+          "letter": "B",
+          "text": "X and Z"
+        },
+        {
+          "letter": "C",
+          "text": "Y and Z"
+        },
+        {
+          "letter": "D",
+          "text": "Z and Z"
+        },
+        {
+          "letter": "E",
+          "text": "Z and Y"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The consumer needs to depend on the shared module, making it X. The shared module\nthen has to be Z, and the service provider has to be Y. This makes option A correct."
+    },
+    {
+      "id": 85,
+      "question": "Which of the following statements are most accurate about the ServiceLoader class?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "load() does not take any parameters."
+        },
+        {
+          "letter": "B",
+          "text": "load() takes the class type as a parameter."
+        },
+        {
+          "letter": "C",
+          "text": "When looping through the results of load(), you need to call the get() method on Provider."
+        },
+        {
+          "letter": "D",
+          "text": "When using the results of load() in a Stream, you need to call the get() method on Provider."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "The method call of ServiceLoader.load() takes a parameter, making option B\ncorrect and option A incorrect. When using a Stream, you call Provider::get, making\noption D the other answer. Option C is incorrect because you don’t need to call the get()\nmethod when using a loop."
+    },
+    {
+      "id": 86,
+      "question": "Suppose we have an automatic module on the module path named\nlizard-^-cricket-^-1.0.0-SNAPSHOT.jar and no Automatic-Module-Name\nspecified. What module name should named modules use to reference it?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "lizard-cricket"
+        },
+        {
+          "letter": "B",
+          "text": "lizard.cricket"
+        },
+        {
+          "letter": "C",
+          "text": "lizard-cricket-SNAPSHOT"
+        },
+        {
+          "letter": "D",
+          "text": "lizard-cricket.SNAPSHOT"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The rules for determining the name include removing the extension, removing numbers, and changing special characters to periods (.). Additionally, we remove the version\ninformation from the end, which is 1.0.0-SNAPSHOT. Finally, we normalize the duplicate\ndots, which gives us option B: lizard.cricket."
+    },
+    {
+      "id": 87,
+      "question": "What file formats are legal for a module to be distributed in?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "jar"
+        },
+        {
+          "letter": "B",
+          "text": "jmod"
+        },
+        {
+          "letter": "C",
+          "text": "zip"
+        },
+        {
+          "letter": "D",
+          "text": "jar and jmod"
+        },
+        {
+          "letter": "E",
+          "text": "jar and zip"
+        },
+        {
+          "letter": "F",
+          "text": "jmod and zip"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The jar file format is the most common. The JMOD jmod format is used as well. Therefore, option D is correct."
+    },
+    {
+      "id": 88,
+      "question": "Why is this module-info incorrect for a service provider?\nmodule plant.flower {\nexports plant.flower.impl;\nrequires plant.flower.api;\nprovides plant.flower.api.Petal\nwith plant.flower.impl.PetalImpl;\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 293",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The exports directive should be export."
+        },
+        {
+          "letter": "B",
+          "text": "The exports directive should not be present because all calls to the service provider should use the service locator."
+        },
+        {
+          "letter": "C",
+          "text": "The provides directive should be uses instead."
+        },
+        {
+          "letter": "D",
+          "text": "The provides directive has the implementation and interface in the wrong order."
+        },
+        {
+          "letter": "E",
+          "text": "The requires directive should be exports instead."
+        },
+        {
+          "letter": "F",
+          "text": "The requires directive should not be present because provides implies it."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Option B is correct because a service provider should not contain an exports directive.\nThe service locator is used to reference any implementation exposed by provides."
+    },
+    {
+      "id": 89,
+      "question": "How many modules are part of the cyclic dependency?\nmodule.com.light {\nexports com.light;\n}\nmodule com.plant {\nexports com.plant;\nrequires com.light;\nrequires com.animal;\n}\nmodule com.animal {\nexports com.animal;\nrequires com.light;\n}\nmodule com.worm {\nexports com.worm;\nrequires com.light;\nrequires com.animal;\nrequires com.plant;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The com.light module is a dependency for all the other modules but does not depend\non them. Similarly, the com.animal module is a dependency for the two higher-level modules but does not depend on them. Finally, the com.plant module is a dependency for the\ncom.worm module but does not depend on it. While the modules are not defined in this\norder, the question is about cyclic dependencies and not order of compilation. There is no\ncyclic dependency, making option A correct."
+    },
+    {
+      "id": 90,
+      "question": "Which statements are true about requires mandated java.base? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "This output is expected when running the java --list-modules command."
+        },
+        {
+          "letter": "B",
+          "text": "This output is expected when running the java --show-module-resolution command."
+        },
+        {
+          "letter": "C",
+          "text": "This output is expected when running the jdeps command."
+        },
+        {
+          "letter": "D",
+          "text": "This output is expected when running the jmod command."
+        },
+        {
+          "letter": "E",
+          "text": "All modules will include this in the output."
+        },
+        {
+          "letter": "F",
+          "text": "Some modules will include this in the output."
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "The jdeps command outputs requires mandated java.base except when run\nin summary mode, making option C correct. Since this module is an implicit dependency in\nall modules, option E is also correct."
+    }
+  ]
+}

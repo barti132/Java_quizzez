@@ -1,0 +1,2010 @@
+{
+  "chapter": "Chapter 1 - Handling Date, Time, Text, Numeric and Boolean Values",
+  "totalQuestions": 70,
+  "questions": [
+    {
+      "id": 1,
+      "question": "How many of the Duration, LocalDateTime, and LocalTime classes have the concept\nof a time zone?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The Duration class is used to reflect an amount of time using small units like minutes.\nSince it just uses units of time it does not involve time zones. The LocalTime class contains\nunits of hours, minutes, seconds, and fractional seconds. The LocalDateTime class contains\nall the data in a LocalTime and adds on a year, month, and date. Since none of the three\nclasses listed includes a time zone, option A is correct."
+    },
+    {
+      "id": 2,
+      "question": "How many lines does this print?\nSystem.out.print(\"\"\"\n\"ape\"\n\"baboon\"\n\"gorilla\"\n\"\"\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Three"
+        },
+        {
+          "letter": "B",
+          "text": "Four"
+        },
+        {
+          "letter": "C",
+          "text": "Five"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This is a valid text block. Since the closing triple quotes (\"\"\") are on a new line, the code\nprints the three lines of text followed by a blank line and option B is the answer."
+    },
+    {
+      "id": 3,
+      "question": "Which of the following are not valid variable names? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "_"
+        },
+        {
+          "letter": "B",
+          "text": "_blue"
+        },
+        {
+          "letter": "C",
+          "text": "2blue"
+        },
+        {
+          "letter": "D",
+          "text": "blue$"
+        },
+        {
+          "letter": "E",
+          "text": "Blue"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "An identifier name must begin with a letter, currency symbol (such as $), or underscore\n(_). Numbers are permitted only for subsequent characters. Therefore, option C is not a valid\nvariable name. Additionally, an identifier may not be a single underscore, making option A an\ninvalid variable name."
+    },
+    {
+      "id": 4,
+      "question": "Which class has a getSeconds() method?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only the Duration class"
+        },
+        {
+          "letter": "B",
+          "text": "Only the Period class"
+        },
+        {
+          "letter": "C",
+          "text": "Both the Duration and Period classes"
+        },
+        {
+          "letter": "D",
+          "text": "Neither class"
+        }
+      ],
+      "correct": "A",
+      "explanation": "A Period is measured in days, weeks, months, or years. A Duration is measured in\nsmaller units like minutes or seconds. Only Duration has a getSeconds() method, making option A correct."
+    },
+    {
+      "id": 5,
+      "question": "Most of the United States observes daylight saving time on March 13, 2022, by moving the\nclocks forward an hour at 2 a.m. What does the following code output?\nvar localDate = LocalDate.of(2022, 3, 13);\nvar localTime = LocalTime.of(1, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar z = ZonedDateTime.of(localDate, localTime, zone);\nvar offset = z.getOffset();\nvar duration = Duration.ofHours(3);\nvar later = z.plus(duration);\nSystem.out.println(later.getHour() + \" \"\n+ offset.equals(later.getOffset()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "4 false"
+        },
+        {
+          "letter": "B",
+          "text": "4 true"
+        },
+        {
+          "letter": "C",
+          "text": "5 false"
+        },
+        {
+          "letter": "D",
+          "text": "5 true"
+        },
+        {
+          "letter": "E",
+          "text": "6 false"
+        },
+        {
+          "letter": "F",
+          "text": "6 true"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "On a normal night, adding three hours to 1 a.m. makes it 4 a.m. However, this date\nbegins daylight saving time. This means we add an extra hour to skip the 2 a.m. hour. This\nmakes later contain 05:00 instead of 04:00 and the offset changes. Therefore, the code\nprints 5 false, and option C is correct."
+    },
+    {
+      "id": 6,
+      "question": "What is the value of tip after executing the following code snippet?\nint meal = 5;\nint tip = 2;\nvar total = meal + (meal>6 ? tip++ : tip--);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "7"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "In a ternary expression, only one of the two right-most expressions is evaluated. Since\nmeal>6 is false, tip-- is evaluated, and tip++ is skipped. The result is that tip is\nchanged from 2 to 1, making option A the correct answer. The value of total is 7, since the\npost-decrement operator was used on tip, although you did not need to know this to solve\nthe question."
+    },
+    {
+      "id": 7,
+      "question": "What does the following output?\nint year = 1874;\nint month = Month.MARCH;\nint day = 24;\nLocalDate date = LocalDate.of(year, month, day);\nSystem.out.println(date.isBefore(LocalDate.now()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "LocalDate allows passing the month as an int or Month enum parameter. However,\nMonth.MARCH is an enum. It cannot be assigned to an int variable, so the declaration of\nmonth does not compile, and option C is correct."
+    },
+    {
+      "id": 8,
+      "question": "What is the output of the following?\n12: var b = \"12\";\n13: b += \"3\";\n14: b.reverse();\n15: System.out.println(b.toString());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "12"
+        },
+        {
+          "letter": "B",
+          "text": "21"
+        },
+        {
+          "letter": "C",
+          "text": "123"
+        },
+        {
+          "letter": "D",
+          "text": "321"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Trick question. There is no reverse method on the String class. There is one on the\nStringBuilder class. Therefore, the code does not compile, and option E is correct."
+    },
+    {
+      "id": 9,
+      "question": "What is the output of the following?\n5: var line = new StringBuilder(\"-\");\n6: var anotherLine = line.append(\"-\");\n7: System.out.print(line == anotherLine);\n8: System.out.print(\" \");\n9: System.out.print(line.length());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false 1"
+        },
+        {
+          "letter": "B",
+          "text": "false 2"
+        },
+        {
+          "letter": "C",
+          "text": "true 1"
+        },
+        {
+          "letter": "D",
+          "text": "true 2"
+        },
+        {
+          "letter": "E",
+          "text": "It does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "A StringBuilder is mutable, so the length is 2 after line 6 completes. The\nStringBuilder methods return a reference to the same object, so you can chain method\ncalls. Therefore, line and anotherLine refer to the same object. This means that line 7\nprints true. Then on line 9, both references point to the same object of length 2, and option\nD is correct."
+    },
+    {
+      "id": 10,
+      "question": "Given that daylight saving time starts on March 13, 2022, at 2 a.m. and clocks jump from\n1:59 a.m. to 03:00 a.m., which of the following can fill in the blank so the code doesn’t\nthrow an exception?\nvar localDate = LocalDate.of(2022, 3, 13);\nvar localTime = LocalTime.of( );\nvar zone = ZoneId.of(\"America/New_York\");\nvar z = ZonedDateTime.of(localDate, localTime, zone);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2, 0"
+        },
+        {
+          "letter": "B",
+          "text": "3, 0"
+        },
+        {
+          "letter": "C",
+          "text": "Either of the above will run without throwing an exception."
+        },
+        {
+          "letter": "D",
+          "text": "Both of these will cause an exception to be thrown."
+        }
+      ],
+      "correct": "C",
+      "explanation": "While there is no 2 a.m. on the clock that night, Java adjusts the time to 3 a.m. automatically and changes the time zone. It does not throw an exception, so option D is incorrect.\nOption B is a valid time, since any value after the time adjustment is just a normal time on\nthe clock. Since both options A and B are valid times, option C is the correct answer."
+    },
+    {
+      "id": 11,
+      "question": "Which statement is true of this text block?\nvar block = \"\"\"\ngreen\nyellow\n\"\"\";",
+      "options": [
+        {
+          "letter": "A",
+          "text": "There is only essential whitespace."
+        },
+        {
+          "letter": "B",
+          "text": "There is only incidental whitespace."
+        },
+        {
+          "letter": "C",
+          "text": "There is both essential and incidental whitespace."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Since the closing triple quotes (\"\"\") are at the beginning of the line, there is no incidental\nwhitespace. By contrast, there is essential whitespace before both green and yellow, making option A correct."
+    },
+    {
+      "id": 12,
+      "question": "What are the return types of cat, moose, and penguin, respectively?\nvar cat = Math.ceil(65);\nvar moose = Math.max(7,8);\nvar penguin = Math.pow(2, 3);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "double, double, double"
+        },
+        {
+          "letter": "B",
+          "text": "double, int, double"
+        },
+        {
+          "letter": "C",
+          "text": "double, int, int"
+        },
+        {
+          "letter": "D",
+          "text": "int, double, double"
+        },
+        {
+          "letter": "E",
+          "text": "int, int, double"
+        },
+        {
+          "letter": "F",
+          "text": "int, int, int"
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code is tricky because only int values are passed in. However, the parameters passed\nto ceil() and pow() are implicitly cast to double since those two methods take double\nparameters and return a double result. The max() method returns an int, giving us\noption B."
+    },
+    {
+      "id": 13,
+      "question": "What is the result of the following?\n11: var waffleDay = LocalDate.of(2022, Month.MARCH, 25);\n12: var period = Period.of(1, 6, 3);\n13: var later = waffleDay.plus(period);\n14: later.plusDays(1);\n15: var thisOne = LocalDate.of(2023, Month.SEPTEMBER, 28);\n16: var thatOne = LocalDate.of(2023, Month.SEPTEMBER, 29);\n17: System.out.println(later.isBefore(thisOne) + \" \"\n18: + later.isBefore(thatOne));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false false"
+        },
+        {
+          "letter": "B",
+          "text": "false true"
+        },
+        {
+          "letter": "C",
+          "text": "true true"
+        },
+        {
+          "letter": "D",
+          "text": "true false"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Line 12 creates a Period representing a year, six months, and three days. Adding this to\nwaffleDay gives us the year 2023, the month of September, and a day of 28. This new date\nis stored in later on line 13 and represents September 28, 2023. Line 14 has no effect, as\nthe return value is ignored. Line 17 checks that you know that isBefore() returns false\nif the value is an exact match. Since thisOne is an exact match but thatOne is a whole day\nbefore, the output is false true, making option B correct."
+    },
+    {
+      "id": 14,
+      "question": "Which operators work with one or more boolean types? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "^"
+        },
+        {
+          "letter": "B",
+          "text": "~"
+        },
+        {
+          "letter": "C",
+          "text": "&"
+        },
+        {
+          "letter": "D",
+          "text": "+"
+        },
+        {
+          "letter": "E",
+          "text": "||"
+        },
+        {
+          "letter": "F",
+          "text": "@"
+        }
+      ],
+      "correct": "A,C,E",
+      "explanation": "Options A, C, and E are correct because they all operate on boolean values.\nOptions B and D operate on numbers. Option F is not an operator, although it is used to\nindicate an annotation."
+    },
+    {
+      "id": 15,
+      "question": "What is a possible result of the following?\nvar montyPythonDay = LocalDate.of(2023, Month.MAY, 10);\nvar aprilFools = LocalDate.of(2023, Month.APRIL, 1);\nvar duration = Duration.ofDays(1);\nvar result = montyPythonDay.minus(duration);\nSystem.out.println(result + \" \" + aprilFools.isBefore(result));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2023-05-09 false"
+        },
+        {
+          "letter": "B",
+          "text": "2023-05-09 true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Duration is supposed to be used with objects that contain times. While it has an\nofDays() method, this is a convenience method to represent a large number of seconds.\nThis means that calling Duration.ofDays(1) is fine. However, this code throws an\nUnsupportedTemporalTypeException when you try to pass it to the minus() method\non LocalDate, making option D correct. Note that the question asks about a possible result\nrather than the definitive result because the format of dates varies by region."
+    },
+    {
+      "id": 16,
+      "question": "What is the output of the following?\n5: var line = new String(\"-\");\n6: var anotherLine = line.concat(\"-\");\n7: System.out.print(line == anotherLine);\n8: System.out.print(\" \");\n9: System.out.print(line.length());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false 1"
+        },
+        {
+          "letter": "B",
+          "text": "false 2"
+        },
+        {
+          "letter": "C",
+          "text": "true 1"
+        },
+        {
+          "letter": "D",
+          "text": "true 2"
+        },
+        {
+          "letter": "E",
+          "text": "Does not compile"
+        }
+      ],
+      "correct": "A",
+      "explanation": "A String is immutable, so a different object is returned on line 6. The object\nanotherLine points to is of length 2 after line 6 completes. However, the original line\nreference still points to an object of length 1. Therefore, option A is correct."
+    },
+    {
+      "id": 17,
+      "question": "How many of these lines contain a compiler error?\npublic void pi() {\nbyte b = 3.14;\ndouble d = 3.14;\nfloat f = 3.14;\nshort s = 3.14;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Both byte and short do not compile since they do not store values with decimal points.\nNext, note that 3.14 is automatically a double. It requires casting to float or writing\n3.14f to be assigned to a float. Since only double compiles, option D is the answer."
+    },
+    {
+      "id": 18,
+      "question": "In the United States, daylight saving time ends on November 6, 2022 at 02:00 a.m. and we\nrepeat the previous hour. What is the output of the following?\nvar localDate = LocalDate.of(2022, Month.NOVEMBER, 6);\nvar localTime = LocalTime.of(1, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar z = ZonedDateTime.of(localDate, localTime, zone);\nvar offset = z.getOffset();\nfor (int i = 0; i < 6; i++)\nz.plusHours(1);\nSystem.out.print(z.getHour() + \" \"\n+ offset.equals(z.getOffset()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "5 false"
+        },
+        {
+          "letter": "B",
+          "text": "5 true"
+        },
+        {
+          "letter": "C",
+          "text": "6 false"
+        },
+        {
+          "letter": "D",
+          "text": "6 true"
+        },
+        {
+          "letter": "E",
+          "text": "7 false"
+        },
+        {
+          "letter": "F",
+          "text": "7 true"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "G",
+      "explanation": "This question is tricky. It appears to be about daylight saving time. However, the result of\nz.plusHours(1) is never stored in a variable or used. Since ZonedDateTime is immutable, the time remains at 01:00. The code prints out 1 true, making none of these correct\nand option G the answer."
+    },
+    {
+      "id": 19,
+      "question": "What does the following code output?\nvar baa = 8;\nvar bleat = ~baa;\nvar sheep = ~bleat;\nSystem.out.printf(bleat + \" \" + sheep);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-8 8"
+        },
+        {
+          "letter": "B",
+          "text": "-8 9"
+        },
+        {
+          "letter": "C",
+          "text": "-9 8"
+        },
+        {
+          "letter": "D",
+          "text": "-9 9"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The bitwise complement operator (~) inverts all bits in the number. You can calculate this\nby negating the number and subtracting one, which is -9 in this case. Applying the bitwise\ncomplement operator twice gives you the original number, which is 8. Therefore, option C is\nthe answer."
+    },
+    {
+      "id": 20,
+      "question": "The author of this method forgot to include the data type. Which of the following reference\ntypes can best fill in the blank to complete this method?\npublic static void secret( mystery) {\nchar ch = mystery.charAt(3);\nmystery = mystery.insert(1, \"more\");\nint num = mystery.length();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "String"
+        },
+        {
+          "letter": "B",
+          "text": "StringBuilder"
+        },
+        {
+          "letter": "C",
+          "text": "Both"
+        },
+        {
+          "letter": "D",
+          "text": "Neither"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The charAt() and length() methods are declared on both String and\nStringBuilder. However, the insert() method is declared only on a StringBuilder\nand not a String. Therefore, option B is correct."
+    },
+    {
+      "id": 21,
+      "question": "LocalTime.of() has a number of overloads. Which of the following is not one of them?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "LocalTime.of(int hour, int minute)"
+        },
+        {
+          "letter": "B",
+          "text": "LocalTime.of(int hour, int minute, int second)"
+        },
+        {
+          "letter": "C",
+          "text": "LocalTime.of(int hour, int minute, int second, int nanoOfSecond)"
+        },
+        {
+          "letter": "D",
+          "text": "LocalTime.of(int hour, int minute, int second, int nanoOfSecond, int picoSeconds)"
+        }
+      ],
+      "correct": "D",
+      "explanation": "There are three overloads for LocalTime.of(). Options A, B, and C are all valid overloads. Option D is not because Java only allows passing one fractional second parameter.\nJava does support nanoseconds, but not the further granularity of picoseconds."
+    },
+    {
+      "id": 22,
+      "question": "Which statements are true about the output of this code? (Choose three.)\nvar text = \"\"\"\nant antelope \\s \\n\ncat \"kitten\" \\\nseal sea lion\n\"\"\";\nSystem.out.print(text);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It contains two quotes."
+        },
+        {
+          "letter": "B",
+          "text": "It contains eight quotes."
+        },
+        {
+          "letter": "C",
+          "text": "It is three lines."
+        },
+        {
+          "letter": "D",
+          "text": "One line is blank."
+        },
+        {
+          "letter": "E",
+          "text": "Two lines are blank."
+        },
+        {
+          "letter": "F",
+          "text": "The first line contains trailing whitespace."
+        },
+        {
+          "letter": "G",
+          "text": "The first line does not contain trailing whitespace."
+        }
+      ],
+      "correct": "A,E,F",
+      "explanation": "The triple quotes (\"\"\") are the text block syntax. Option A is correct, as only the\ntwo quotes around \"kitten\" are output. The \\n gives a blank line since it is at the end of\nthe line. The last line is also blank, making option E correct. Finally, option F is correct, as \\s\npreserves trailing whitespace."
+    },
+    {
+      "id": 23,
+      "question": "Fill in the blanks: The operators !=, , , , and\n++ are listed in the same or increasing levels of operator precedence. (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "==, *, !"
+        },
+        {
+          "letter": "B",
+          "text": "/, %, *"
+        },
+        {
+          "letter": "C",
+          "text": "*, --, /"
+        },
+        {
+          "letter": "D",
+          "text": "!, *, %"
+        },
+        {
+          "letter": "E",
+          "text": "+=, &&, *"
+        },
+        {
+          "letter": "F",
+          "text": "*, <, /"
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "Option A is correct and lists the operators in the same or increasing level of operator\nprecedence. In option B, the three operators actually have the same operator precedence, so\nit is correct. Option C is incorrect, as division (/) has a lower precedence than the decrement operator (--). Option D is incorrect because the logical complement operator (!) has\na higher order of precedence than the other two operators. Option E lists the operators in\nthe correct order, but they don’t fit within not equals (!=) and the increment operator (++)\nas listed in the question. In particular, the compound addition operator (+=) and the shortcircuit logical operator (&&) have a lower precedence than the not equals operator (!=).\nFinally, option F is incorrect because the relational operator (<) does not fit between the multiplication operator (*) and the division operator (/) in order of precedence."
+    },
+    {
+      "id": 24,
+      "question": "How many of the LocalDate, Period, and ZonedDate classes have a method to get the year?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The LocalDate class represents a date using year, month, and day fields. There is a\ngetYear() method to get the year. The Period class holds units of years, months, and\ndays. It has a getYears() method. There is not a date/time class called ZonedDate.\nThere is a class called ZonedDateTime, which does have a getYear() method. Since only\nLocalDate and Period have a method to get the year, option C is correct."
+    },
+    {
+      "id": 25,
+      "question": "Given the following Venn diagram and the boolean variables, apples, oranges, and bananas,\nwhich expression most closely represents the filled-in region of the diagram?\noranges\nbananas\napples",
+      "options": [
+        {
+          "letter": "A",
+          "text": "apples && oranges && !bananas"
+        },
+        {
+          "letter": "B",
+          "text": "orange || (oranges && !bananas)"
+        },
+        {
+          "letter": "C",
+          "text": "(apples || bananas) && oranges"
+        },
+        {
+          "letter": "D",
+          "text": "oranges && apples"
+        },
+        {
+          "letter": "E",
+          "text": "(apples || oranges) && !bananas"
+        },
+        {
+          "letter": "F",
+          "text": "apples ^ oranges"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The diagram represents all cases where apples or oranges is true, but bananas is\nfalse, making option E correct. Option A is close but is correct only if the top overlapping\nportion of apples and oranges was filled in. For fun, you should try to draw the diagrams\nthat would represent the other answers."
+    },
+    {
+      "id": 26,
+      "question": "What is a possible output of this code?\nvar time = LocalTime.of(1,2,3,4);\nSystem.out.println(time);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "01:02:03.4"
+        },
+        {
+          "letter": "B",
+          "text": "01:02:03.000000004"
+        },
+        {
+          "letter": "C",
+          "text": "01/01/1970 01:02:03.4"
+        },
+        {
+          "letter": "D",
+          "text": "01/01/1970 01:02:03.000000004"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The first thing to notice is that this is a LocalTime object. Since there is no date component, options C and D are incorrect. Four parameters are passed to this LocalTime method.\nThe first three are the hour, minute, and second. The fourth is nanoseconds, which are fractions of a second. While you aren’t expected to do calculations with nanoseconds, you should\nknow that a fraction of a second is at the end of the output. Option A is incorrect because .4\nis 40 percent of a second. That’s far larger than 4 nanoseconds. Therefore, option B is correct."
+    },
+    {
+      "id": 27,
+      "question": "What is the output of the following?\nvar teams = new StringBuilder(\"333\");\nteams.append(\" 806\");\nteams.append(\" 1601\");\nSystem.out.print(teams);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "333"
+        },
+        {
+          "letter": "B",
+          "text": "333 806 1601"
+        },
+        {
+          "letter": "C",
+          "text": "The code compiles but outputs something else."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Since StringBuilder is mutable, each call to append adds to the value. When calling\nprint, toString() is automatically called, and 333 806 1601 is output. Therefore,\noption B is correct."
+    },
+    {
+      "id": 28,
+      "question": "Which of the following local variable declarations does not compile?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "double num1, int num2 = 0;"
+        },
+        {
+          "letter": "B",
+          "text": "int num1, num2;"
+        },
+        {
+          "letter": "C",
+          "text": "int num1, num2 = 0;"
+        },
+        {
+          "letter": "D",
+          "text": "int num1 = 0, num2 = 0;"
+        },
+        {
+          "letter": "E",
+          "text": "All of the above"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "Option A does not compile because Java does not allow declaring different types as\npart of the same declaration. The other three options show various legal combinations of\ncombining multiple variables in the same declarations with optional default values."
+    },
+    {
+      "id": 29,
+      "question": "Which contains a constant named HOURS?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ChronoUnit"
+        },
+        {
+          "letter": "B",
+          "text": "Duration"
+        },
+        {
+          "letter": "C",
+          "text": "Instant"
+        },
+        {
+          "letter": "D",
+          "text": "Period"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The ChronoUnit enum contains values for various measures of time, including HOURS,\nso option A is correct."
+    },
+    {
+      "id": 30,
+      "question": "Which methods, when combined, match the functionality of the strip() method?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "stripAfter()"
+        },
+        {
+          "letter": "B",
+          "text": "stripBefore()"
+        },
+        {
+          "letter": "C",
+          "text": "stripEnding()"
+        },
+        {
+          "letter": "D",
+          "text": "stripIndent()"
+        },
+        {
+          "letter": "E",
+          "text": "stripLeaders()"
+        },
+        {
+          "letter": "F",
+          "text": "stripTrailing()"
+        }
+      ],
+      "correct": "D,F",
+      "explanation": "Options D and F are correct since only the stripIndent() and stripTrailing()\nmethods exist."
+    },
+    {
+      "id": 31,
+      "question": "The United States observes daylight saving time on March 13, 2022, by moving the clocks\nforward an hour at 2 a.m. What does the following code output?\nvar localDate = LocalDate.of(2022, 3, 13);\nvar localTime = LocalTime.of(13, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar z = ZonedDateTime.of(localDate, localTime, zone);\nvar offset = z.getOffset();\nvar duration = Duration.ofHours(3);\nvar later = z.plus(duration);\nSystem.out.println(later.getHour() + \" \"\n+ offset.equals(later.getOffset()));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "13 false"
+        },
+        {
+          "letter": "B",
+          "text": "13 true"
+        },
+        {
+          "letter": "C",
+          "text": "16 false"
+        },
+        {
+          "letter": "D",
+          "text": "16 true"
+        },
+        {
+          "letter": "E",
+          "text": "17 false"
+        },
+        {
+          "letter": "F",
+          "text": "17 true"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Adding three hours to 13:00 makes it 16:00. While this date happens to be the start of\ndaylight saving time, the change occurs at 2 a.m. This code uses 13:00, which is 1 p.m. Since\nthe calculation does not cross 2 a.m., the fact that it is the date that starts daylight saving\ntime is irrelevant. Option D is correct because the hour is 16 and there is no offset."
+    },
+    {
+      "id": 32,
+      "question": "Which of the following can fill in the blank so the code prints true?\nvar happy = \" :) - (: \";\nvar really = happy.trim();\nvar question = happy.substring( );\nSystem.out.println(really.equals(question));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0, happy.length() - 1"
+        },
+        {
+          "letter": "B",
+          "text": "0, happy.length()"
+        },
+        {
+          "letter": "C",
+          "text": "1, happy.length() - 1"
+        },
+        {
+          "letter": "D",
+          "text": "1, happy.length()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The trim() method returns a String with all leading and trailing white space removed.\nIn this question, that’s the seven-character String: \":) - (:\". Options A and B are\nincorrect because they do not remove the first blank space in happy. Option D is incorrect\nbecause it does not remove the last character in happy. Therefore, option C is correct."
+    },
+    {
+      "id": 33,
+      "question": "How many of the following lines contain a compiler error?\ndouble num1 = 2.718;\ndouble num2 = 2._718;\ndouble num3 = 2.7_1_8;\ndouble num4 = _2.718;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Underscores are allowed between any two digits in a numeric literal, causing num4 to fail\nto compile. Additionally, underscores are not allowed adjacent to a decimal point, causing a\ncompiler error in num2. Since two lines have errors, option C is the correct answer."
+    },
+    {
+      "id": 34,
+      "question": "What is a possible result of the following?\nvar montyPythonDay = LocalDate.of(2022, Month.MAY, 10);\nvar time = LocalTime.of(5, 40);\nvar dateTime = LocalDateTime.of(montyPythonDay, time);\nvar duration = Duration.ofDays(1);\nvar result = dateTime.minus(duration);\nSystem.out.println(result);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-05-09"
+        },
+        {
+          "letter": "B",
+          "text": "2022-05-09T05:40"
+        },
+        {
+          "letter": "C",
+          "text": "2022-05-10T05:40"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code correctly subtracts a day from montyPythonDay. It then outputs a\nLocalDateTime value. Option A is incorrect because it omits the time. Option B is correct\nbecause it represents one day earlier than the original date and includes a time in the output."
+    },
+    {
+      "id": 35,
+      "question": "What is true of the following code? (Choose two.)\nvar numPigeons = Long. (\"100\");\nSystem.out.println(numPigeons.toString());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "When parseLong fills in the blank, the code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "When parseLong fills in the blank, the code throws an exception."
+        },
+        {
+          "letter": "C",
+          "text": "When parseLong fills in the blank, the output is 100."
+        },
+        {
+          "letter": "D",
+          "text": "When valueOf fills in the blank, the code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "When valueOf fills in the blank, the code throws an exception."
+        },
+        {
+          "letter": "F",
+          "text": "When valueOf fills in the blank, the output is 100."
+        }
+      ],
+      "correct": "A,F",
+      "explanation": "The parseLong() method returns a long. Since this is a primitive, we cannot call a\nmethod on it. Therefore, it does not compile, and option A is one answer. By contrast,\nvalueOf() returns a Long wrapper class and gives the desired output, which is option F."
+    },
+    {
+      "id": 36,
+      "question": "What is the output of the following application?\npublic class Airplane {\nstatic int start = 2;\nfinal int end;\npublic Airplane(int x) {\nx = 4;\nend = x;\n}\npublic void fly(int distance) {\nSystem.out.print(end-start+\" \");\nSystem.out.print(distance);\n}\npublic static void main(String... start) {\nnew Airplane(10).fly(5);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2 5"
+        },
+        {
+          "letter": "B",
+          "text": "8 5"
+        },
+        {
+          "letter": "C",
+          "text": "6 5"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles, so option D is incorrect. The input to the constructor is ignored, making the assignment of end to be 4. Since start is 2, the subtraction of 2 from 4 results in\nthe application printing 2, followed by 5, making option A the correct answer."
+    },
+    {
+      "id": 37,
+      "question": "What is the output of the following?\nvar date1 = LocalDate.of(2022, Month.MARCH, 3);\nvar date2 = LocalDate.of(2022, Month.FEBRUARY, 31);\nSystem.out.println(date1.equals(date2));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "February has 28 or 29 days, depending on the year. There is never a February 31. Java\nthrows a DateTimeException when you try to create an invalid date, making option D\ncorrect."
+    },
+    {
+      "id": 38,
+      "question": "How many lines does this print?\nSystem.out.print(\"\"\"\n\"ape\"\n\"baboon\"\n\"gorilla\" \"\"\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Three"
+        },
+        {
+          "letter": "B",
+          "text": "Four"
+        },
+        {
+          "letter": "C",
+          "text": "Five"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "A",
+      "explanation": "This is a valid text block. Since the closing triple quotes (\"\"\") are on the same line as\nthe text, the code prints the three lines of text without adding a blank line and option A is\nthe answer."
+    },
+    {
+      "id": 39,
+      "question": "What is the output of the following class?\n1: package rocket;\n2: public class Countdown {\n3: public static void main(String[] blastOff) {\n4: var builder = \"54321\";\n5: builder = builder.substring(4);\n6: System.out.println(builder.charAt(2));\n7: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2"
+        },
+        {
+          "letter": "B",
+          "text": "3"
+        },
+        {
+          "letter": "C",
+          "text": "4"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Line 4 creates a String of length 5. Since String is immutable, line 5 creates a new\nString with the value 1 and assigns it to builder. Remember that indexes in Java begin\nwith 0, so the substring() method is taking the values from the fifth element through the\nend. Since the first element is the last element, there’s only one character in there. Then line\n6 tries to retrieve the second indexed element. Since there is only one element, this gives a\nStringIndexOutOfBoundsException, and option E is correct."
+    },
+    {
+      "id": 40,
+      "question": "In the United States, daylight saving time for 2022 starts at 2 a.m. on March 13th and ends\nat 2 a.m. on November 6th. Given the sequence in the following image, what time comes\nnext on March 13th, July 4th, and November 6th, respectively?\n01:58 01:59 ?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "01:00, 01:00, 01:00"
+        },
+        {
+          "letter": "B",
+          "text": "01:00, 02:00, 01:00"
+        },
+        {
+          "letter": "C",
+          "text": "01:00, 02:00, 03:00"
+        },
+        {
+          "letter": "D",
+          "text": "02:00, 02:00, 02:00"
+        },
+        {
+          "letter": "E",
+          "text": "03:00, 02:00, 01:00"
+        },
+        {
+          "letter": "F",
+          "text": "03:00, 02:00, 03:00"
+        }
+      ],
+      "correct": "E",
+      "explanation": "In the first time change of the year, clocks “spring ahead” and skip the 02:00–03:00\nhour entirely. This means 1:59 is followed by 03:00 on March 13, 2022. By contrast, July\n4 is a normal day and 01:59 is followed by 02:00. In the second time change of the year,\nclocks “fall back” and repeat an hour, so 01:59 is followed by 01:00. Granted, you can’t tell\nwhether this is the first or second 01:59 from the image. If this information is relevant to a\nquestion’s context, the question will specify this fact. In this case, 03:00, 02:00, 02:00 is not a\nchoice. Option E is the answer."
+    },
+    {
+      "id": 41,
+      "question": "What does the following code output?\nvar baa = false;\nvar bleat = ~baa;\nvar sheep = ~bleat;\nSystem.out.printf(bleat + \" \" + sheep);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false false"
+        },
+        {
+          "letter": "B",
+          "text": "false true"
+        },
+        {
+          "letter": "C",
+          "text": "true false"
+        },
+        {
+          "letter": "D",
+          "text": "true true"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The bitwise complement operator (~) works on numeric types, not a boolean. Since the\ncode does not compile, option E is correct."
+    },
+    {
+      "id": 42,
+      "question": "What is a possible output of the following?\nvar trainDay = LocalDate.of(2022, 5, 13);\nvar time = LocalTime.of(10, 0);\nvar zone = ZoneId.of(\"America/Los_Angeles\");\nvar zdt = ZonedDateTime.of(trainDay, time, zone);\nvar instant = zdt.toInstant();\ninstant = instant.plus(1, ChronoUnit.DAYS);\nSystem.out.println(instant);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-05-13T10:00-07:00[America/Los_Angeles]"
+        },
+        {
+          "letter": "B",
+          "text": "2022-05-13T00:00:00Z"
+        },
+        {
+          "letter": "C",
+          "text": "2022-05-13T17:00:00Z"
+        },
+        {
+          "letter": "D",
+          "text": "2022-05-14T10:00-07:00[America/Los_Angeles]"
+        },
+        {
+          "letter": "E",
+          "text": "2022-05-14T00:00:00Z"
+        },
+        {
+          "letter": "F",
+          "text": "2022-05-14T17:00:00Z"
+        }
+      ],
+      "correct": "F",
+      "explanation": "An Instant represents a specific moment in time using GMT. Since there are no time\nzones included, options A and C are incorrect. This code correctly adds one day to the\ninstant. It includes the date, making option F correct."
+    },
+    {
+      "id": 43,
+      "question": "What is the output of the following application?\npackage transporter;\npublic class Rematerialize {\npublic static void main(String[] input) {\nint init = 11;\nint split = 3;\nint partA = init / split;\nint partB = init % split;\nint result = split * (partB + partA);\nSystem.out.print(result);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "9"
+        },
+        {
+          "letter": "B",
+          "text": "11"
+        },
+        {
+          "letter": "C",
+          "text": "12"
+        },
+        {
+          "letter": "D",
+          "text": "15"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code compiles and runs without issue, making option E incorrect. In this example,\npartA is the integer division of the two numbers. Since 3 does not divide 11 evenly, the\nresult is rounded down to 3. The variable partB is the remainder from the first expression,\nwhich is 2. The results are added together, resulting in the expression 3 * 5, or 15, and\nmaking option D correct."
+    },
+    {
+      "id": 44,
+      "question": "What is the output of the following code?\nvar math = new Math();\nvar sum = 0;\nsum += math.min(3, 5);\nsum += math.floor(1.8);\nsum += math.round(5.6);\nSystem.out.println(sum);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "9"
+        },
+        {
+          "letter": "B",
+          "text": "9.0"
+        },
+        {
+          "letter": "C",
+          "text": "10"
+        },
+        {
+          "letter": "D",
+          "text": "10.0"
+        },
+        {
+          "letter": "E",
+          "text": "11"
+        },
+        {
+          "letter": "F",
+          "text": "11.0"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "G",
+      "explanation": "The methods on Math are static. Since the class cannot be instantiated, the code does\nnot compile and the answer is option G."
+    },
+    {
+      "id": 45,
+      "question": "What is the output of the following?\nvar date = LocalDate.of(2022, Month.JULY, 17);\nvar time = LocalTime.of(10, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar iceCreamDay = ZonedDateTime.of(date, time, zone);\ntime = time.plusMonths(1);\nSystem.out.println(iceCreamDay.getMonthValue());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "7"
+        },
+        {
+          "letter": "C",
+          "text": "8"
+        },
+        {
+          "letter": "D",
+          "text": "9"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Make sure to pay attention to date types. This code attempts to add a month to a\nLocalTime value. There is no plusMonths() method on LocalTime, so option E is\ncorrect."
+    },
+    {
+      "id": 46,
+      "question": "Which of these can replace isEmpty() and trim() to produce the same output? (Choose two.)\nString curious = \"george likes bananas \";\nSystem.out.println(curious.isEmpty());\nSystem.out.println(curious.trim());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "empty()"
+        },
+        {
+          "letter": "B",
+          "text": "isBlank()"
+        },
+        {
+          "letter": "C",
+          "text": "isMissing()"
+        },
+        {
+          "letter": "D",
+          "text": "removeBlanks()"
+        },
+        {
+          "letter": "E",
+          "text": "shorten()"
+        },
+        {
+          "letter": "F",
+          "text": "strip()"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "The original sample prints false, followed by george likes bananas with a\ntrailing space. Options B and F are correct because isBlank() and strip() work the\nsame way as the originals. The key difference is that the replacements can handle an extended\nrange of whitespace characters."
+    },
+    {
+      "id": 47,
+      "question": "What is the result of the following code?\nvar sb = new StringBuilder(\"radical\")\n.insert(sb.length(), \"robots\");\nSystem.out.println(sb);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "radicarobots"
+        },
+        {
+          "letter": "B",
+          "text": "radicalrobots"
+        },
+        {
+          "letter": "C",
+          "text": "radical robots"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Calling the constructor and then insert() is an example of method chaining. However,\nthe sb.length() call is a problem. The sb reference doesn’t exist until after the chained\ncalls complete. Just because it happens to be on a separate line doesn’t change when the reference is created. Since the code does not compile, option D is correct."
+    },
+    {
+      "id": 48,
+      "question": "Given the following code snippet, what is the value of dinner after it is executed?\nint time = 9;\nint day = 3;\nvar dinner = ++time >= 10 ? day-- <= 2\n? \"Takeout\" : \"Salad\" : \"Leftovers\";",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Takeout"
+        },
+        {
+          "letter": "B",
+          "text": "Leftovers"
+        },
+        {
+          "letter": "C",
+          "text": "Salad"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile but would compile if parentheses were added."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "While parentheses are recommended for ternary operations, especially embedded ones,\nthey are not required, so option D is incorrect. The first expression evaluates to 10 >= 10,\nso the first branch of the ternary operation is selected, and \"Leftovers\" can be eliminated.\nThe expression in the second ternary operation evaluates to 3 <= 2, which is false, so\n\"Salad\" is selected, and option C is correct."
+    },
+    {
+      "id": 49,
+      "question": "What is the result of the following?\n11: var waffleDay = LocalDate.of(2022, Month.MARCH, 25);\n12: var period = Period.ofYears(1).ofMonths(6).ofDays(3);\n13: var later = waffleDay.plus(period);\n14: later.plusDays(1);\n15: var thisOne = LocalDate.of(2022, Month.SEPTEMBER, 28);\n16: var thatOne = LocalDate.of(2022, Month.SEPTEMBER, 29);\n17: System.out.println(later.isBefore(thisOne) + \" \"\n18: + later.isBefore(thatOne));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false false"
+        },
+        {
+          "letter": "B",
+          "text": "false true"
+        },
+        {
+          "letter": "C",
+          "text": "true true"
+        },
+        {
+          "letter": "D",
+          "text": "true false"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 12 creates a Period representing three days. Period objects do not chain, so only\nthe last method call, which is ofDays(3), is used in determining the value. Adding three\ndays sets later to March 28, 2022. Line 14 has no effect, as the return value is not assigned.\nMarch 28, 2022 is before both thisOne and thatOne, so option C is correct."
+    },
+    {
+      "id": 50,
+      "question": "How many pairs of parentheses can be removed and have the code print 6?\nSystem.out.println((((1+1))*((1+2))));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One pair"
+        },
+        {
+          "letter": "C",
+          "text": "Two pairs"
+        },
+        {
+          "letter": "D",
+          "text": "Three pairs"
+        },
+        {
+          "letter": "E",
+          "text": "Four pairs"
+        },
+        {
+          "letter": "F",
+          "text": "Five pairs"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The simplest way of writing the numbers to be evaluated is (1+1)*(1+2). These two\npairs of parentheses must remain so that the addition gets done before the multiplication and\nthe answer remains 6. The two pairs around the numbers and the additional pair around the\nwhole expression are redundant, giving us option D. Remember, the println() method call\nstill requires a set of parentheses."
+    },
+    {
+      "id": 51,
+      "question": "What is the output of the following?\nvar teams = new String(\"694\");\nteams.concat(\" 1155\");\nteams.concat(\" 2265\");\nteams.concat(\" 2869\");\nSystem.out.println(teams);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "694"
+        },
+        {
+          "letter": "B",
+          "text": "694 1155 2265 2869"
+        },
+        {
+          "letter": "C",
+          "text": "The code compiles but outputs something else."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Since String is immutable, each call to concat() returns a new object with the new\nvalue. However, that return value is ignored, and the teams variable never changes in value.\nTherefore, it stays as 694, and option A is correct."
+    },
+    {
+      "id": 52,
+      "question": "Which of the following is not a valid wrapper class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Boolean"
+        },
+        {
+          "letter": "B",
+          "text": "Char"
+        },
+        {
+          "letter": "C",
+          "text": "Double"
+        },
+        {
+          "letter": "D",
+          "text": "Integer"
+        },
+        {
+          "letter": "E",
+          "text": "Long"
+        },
+        {
+          "letter": "F",
+          "text": "All of these are valid wrapper classes."
+        }
+      ],
+      "correct": "B",
+      "explanation": "While char has a wrapper class, it is Character rather than Char. Therefore, option B\nis the answer."
+    },
+    {
+      "id": 53,
+      "question": "What is the output of the following?\nvar date = LocalDate.of(2022, Month.JULY, 17);\nvar time = LocalTime.of(10, 0);\nvar zone = ZoneId.of(\"America/New_York\");\nvar iceCreamDay = ZonedDateTime.of(date, time, zone);\ndate = date.plusMonths(1);\nSystem.out.println(iceCreamDay.getMonthValue());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "7"
+        },
+        {
+          "letter": "C",
+          "text": "8"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code begins by correctly creating four objects. It then adds a month to date. Since\nthese classes are immutable, this does not affect the value of iceCreamDay. Therefore,\niceCreamDay remains in July. Since months count from one, option B is correct."
+    },
+    {
+      "id": 54,
+      "question": "How many of these lines print the same number?\n6: var phrase = \"prickly \\nporcupine\";\n7: System.out.println(phrase.length());\n8: System.out.println(phrase.indent(1).length());\n9: System.out.println(phrase.indent(0).length());\n10: System.out.println(phrase.indent(-1).length());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 7 prints 18 due to the 16 letters, one blank space, and one newline character. Line\n8 prints 21 since it indents each of the two lines by a single character and normalizes the\noutput by adding a line break to the end. Line 9 prints 19 because it does not change the\nindentation, but still adds the normalizing line break. Line 10 requests decreasing the indentation by 1. Since there isn’t any indentation in the original value, this behaves the same way\nas line 9, printing 19. Option C is correct because lines 9 and 10 print the same number."
+    },
+    {
+      "id": 55,
+      "question": "How many of the following lines compile?\nbool b = null;\nBool bl = null;\nint i = null;\nInteger in = null;\nString s = null;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "C",
+      "explanation": "First, bool and Bool are not valid Java types. They should be boolean and Boolean,\nrespectively. Next, objects are allowed to have a null reference while primitives cannot.\nSince Integer and String are objects, those lines compile. Finally, the line with int is a\nprimitive, so assigning null to it does not compile. Therefore, option C is correct."
+    },
+    {
+      "id": 56,
+      "question": "How many lines does this print?\nSystem.out.print(\"\"\" \"ape\"\n\"baboon\"\n\"gorilla\"\n\"\"\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Three"
+        },
+        {
+          "letter": "B",
+          "text": "Four"
+        },
+        {
+          "letter": "C",
+          "text": "Five"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "This is not a valid text block, as the text starts on the same line as the opening triple\nquotes (\"\"\"). Therefore, option D is correct."
+    },
+    {
+      "id": 57,
+      "question": "Which of the following can fill in the blank to make this code compile?\npublic boolean isItMyBirthday(LocalDateTime dateTime) {\n;\nreturn now.getMonth() == dateTime.getMonth()\n&& now.getDayOfMonth() == dateTime.getDayOfMonth();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "LocalDate now = LocalDate.now()"
+        },
+        {
+          "letter": "B",
+          "text": "LocalDate now = new LocalDate()"
+        },
+        {
+          "letter": "C",
+          "text": "ZonedDate now = ZonedDate.now()"
+        },
+        {
+          "letter": "D",
+          "text": "ZonedDate now = new ZonedDate()"
+        }
+      ],
+      "correct": "A",
+      "explanation": "These classes are immutable. They use a static factory method to get the object reference rather than a constructor. This makes options B and D incorrect. Further, there is not a\nZonedDate class. There is a ZonedDateTime class. As a result, option C is incorrect, and\noption A is the answer."
+    },
+    {
+      "id": 58,
+      "question": "How many of these print two lines?\n18: System.out.println(\"cheetah\\ncub\");\n19: System.out.println(\"cheetah\\\\ncub\");\n20: System.out.println(\"cheetah\\ncub\".translateEscapes());\n21: System.out.println(\"cheetah\\\\ncub\".translateEscapes());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Lines 18 and 20 treat the \\n as a newline and print two lines. By contrast, line\n19 sees \\\\n as literal text and prints a single line. Line 21 also prints two lines since\ntranslateEscapes() turns \\\\n into the newline escape character. Since three of these\nprint two lines, option D is the answer."
+    },
+    {
+      "id": 59,
+      "question": "What is the output of the following code snippet?\nint height = 2, length = 3;\nboolean w = height > 1 | --length < 4;\nvar x = height!=2 ? length++ : height;\nboolean z = height % length == 0;\nSystem.out.println(w + \"-\" + x + \"-\" + z);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "true-2-true"
+        },
+        {
+          "letter": "B",
+          "text": "false-2-false"
+        },
+        {
+          "letter": "C",
+          "text": "true-2-false"
+        },
+        {
+          "letter": "D",
+          "text": "true-3-false"
+        },
+        {
+          "letter": "E",
+          "text": "true-3-true"
+        },
+        {
+          "letter": "F",
+          "text": "false-3-false"
+        }
+      ],
+      "correct": "A",
+      "explanation": "In the first expression, height > 1 is true. Since it uses the logical operator (|), which\nevaluates both sides, the right side is still executed, resulting in length being assigned a\nvalue of 2 and w assigned a value of true. In the second expression, only the right-hand side\nof the expression is evaluated, so x is assigned a value of 2, and length is unchanged. The\nlast expression evaluates to 2 % 2, which is 0, so z is assigned a value of true and option\nA is correct."
+    },
+    {
+      "id": 60,
+      "question": "How many backslashes can be removed without changing the value of the text block?\n12: var quotes = \"\"\"\n13: \\\"The Quotes that Could\\\"\n14: \\\"\\\"\\\"\n15: \"\"\";",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Both backslashes on line 13 can be removed since this is a text block. Additionally, the\nsecond and third backslashes on line 14 can be removed. The first one must be retained since\nthere are three quotes in a row. Since four backslashes can be removed, option E is correct."
+    },
+    {
+      "id": 61,
+      "question": "What is the output of the following?\nvar date1 = LocalDate.of(2022, Month.MARCH, 3);\nvar date2 = date1.plusDays(2).minusDays(1).minusDays(1);\nSystem.out.println(date1.equals(date2));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The first line of code correctly creates a LocalDate object representing March 3, 2022.\nThe second line adds two days to it, making it March 5. It then subtracts a day, making it\nMarch 4. Finally, it subtracts yet another day, ending at March 3. The outcome of all this is\nthat we have two dates that have the same value, and option B is correct."
+    },
+    {
+      "id": 62,
+      "question": "What is the output of the following?\n1: public class Legos {\n2: public static void main(String[] duplo) {\n3: var sb = new StringBuilder();\n4: sb.append(\"red\");\n5: sb.deleteCharAt(0);\n6: sb.delete(1, 2);\n7: System.out.println(sb);\n8: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "e"
+        },
+        {
+          "letter": "B",
+          "text": "d"
+        },
+        {
+          "letter": "C",
+          "text": "ed"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Line 3 creates an empty StringBuilder. Line 4 adds three characters to it. Line 5\nremoves the first character, resulting in ed. Line 6 deletes the characters starting at position\n1 and ending right before position 2, which removes the character at index 1, which is d. The\nonly character left is e, so option A is correct."
+    },
+    {
+      "id": 63,
+      "question": "How many of these lines compile?\n35: Boolean.valueOf(\"8\").booleanValue();\n36: Character.valueOf('x').byteValue();\n37: Double.valueOf(\"9_.3\").byteValue();\n38: Long.valueOf(88).byteValue();",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 36 does not compile because Character is not a numeric type and therefore\ndoesn’t supply a byteValue() method. All the other lines compile, making option D the\nanswer. Note that line 37 throws an exception since this is not a valid double value, but it\ndoes compile. Additionally, line 35 runs successfully and evaluates to false, since Boolean\nis accommodating."
+    },
+    {
+      "id": 64,
+      "question": "Which is a true statement?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If s.contains(\"abc\") is true, then s.equals(\"abc\") is also true."
+        },
+        {
+          "letter": "B",
+          "text": "If s.contains(\"abc\") is true, then s.startsWith(\"abc\") is also true."
+        },
+        {
+          "letter": "C",
+          "text": "If s.startsWith(\"abc\") is true, then s.equals(\"abc\") is also true."
+        },
+        {
+          "letter": "D",
+          "text": "If s.startsWith(\"abc\") is true, then s.contains(\"abc\") is also true."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A and B are not true if the String is \"deabc\". Option C is not true if the\nString is \"abcde\". Option D is true in all cases."
+    },
+    {
+      "id": 65,
+      "question": "What is a possible output of the following?\nvar date = LocalDate.of(2022, 5, 13);\nvar time = LocalTime.of(10, 0);\nvar trainDay = LocalDateTime.of(date, time);\nvar instant = trainDay.toInstant();\ninstant = instant.plus(1, ChronoUnit.DAYS);\nSystem.out.println(instant);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-05-14T10:00-07:00[America/Los_Angeles]"
+        },
+        {
+          "letter": "B",
+          "text": "2022-05-14T17:00:00Z"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "An Instant represents a specific moment in time using GMT. Since LocalDateTime\ndoes not have a time zone, it cannot be converted to a specific moment in time. Therefore,\nthe toInstant() call does not compile, and option C is correct."
+    },
+    {
+      "id": 66,
+      "question": "Which statement is true of this text block?\nvar block = \"\"\"\ngreen\nyellow\n\"\"\";",
+      "options": [
+        {
+          "letter": "A",
+          "text": "There is only essential whitespace."
+        },
+        {
+          "letter": "B",
+          "text": "There is only incidental whitespace."
+        },
+        {
+          "letter": "C",
+          "text": "There is both essential and incidental whitespace."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The whitespace to the left of the closing triple quotes (\"\"\") is incidental whitespace.\nAdditionally, there is essential whitespace before yellow, making option C correct."
+    },
+    {
+      "id": 67,
+      "question": "What is the output of the following code snippet?\nboolean carrot = true;\nBoolean potato = false;\nvar broccoli = true;\ncarrot = carrot & potato;\nbroccoli = broccoli ? !carrot : potato;\npotato = !broccoli ^ carrot;\nSystem.out.println(carrot + \",\" + potato + \",\" + broccoli);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "true,false,true"
+        },
+        {
+          "letter": "B",
+          "text": "true,true,true"
+        },
+        {
+          "letter": "C",
+          "text": "false,false,false"
+        },
+        {
+          "letter": "D",
+          "text": "false,true,true"
+        },
+        {
+          "letter": "E",
+          "text": "false,false,true"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code compiles, so option F is incorrect. The first expression evaluates to\ntrue & false, which sets carrot to false. The next expression resolves to\ntrue ? true : false, which results in broccoli being set to true. The last expression reduces to false ^ false, which sets potato to false. Therefore, option E is the\ncorrect output."
+    },
+    {
+      "id": 68,
+      "question": "Daylight saving time ends on November 6, 2022 at 2 a.m., when we repeat the hour. Suppose\nwe have a ZonedDateTime that outputs\n2012-11-06T01:00-04:00[America/New_York] when calling toString(). What is\na possible value of the ZonedDateTime obtained by adding an hour to this value?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2022-11-06T01:00-04:00[America/New_York]"
+        },
+        {
+          "letter": "B",
+          "text": "2022-11-06T02:00-04:00[America/New_York]"
+        },
+        {
+          "letter": "C",
+          "text": "2022-11-06T01:00-05:00[America/New_York]"
+        },
+        {
+          "letter": "D",
+          "text": "2022-11-06T02:00-05:00[America/New_York]"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Normally, adding an hour would result in 02:00 in the same time zone offset of -05:00.\nSince the hour is repeated, it is 01:00 again. However, the time zone offset changes instead.\nTherefore, option C is correct."
+    },
+    {
+      "id": 69,
+      "question": "What is the output of the following class?\n1: package rocket;\n2: public class Countdown {\n3: public static void main(String[] fuel) {\n4: var builder = new StringBuilder(\"54321\");\n5: builder.substring(2);\n6: System.out.println(builder.charAt(1));\n7: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1"
+        },
+        {
+          "letter": "B",
+          "text": "2"
+        },
+        {
+          "letter": "C",
+          "text": "3"
+        },
+        {
+          "letter": "D",
+          "text": "4"
+        },
+        {
+          "letter": "E",
+          "text": "5"
+        },
+        {
+          "letter": "F",
+          "text": "Does not compile"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 4 creates a StringBuilder of length 5. Pay attention to the substring()\nmethod in StringBuilder. It returns a String with the value 321. It does not change the\nStringBuilder itself. Then line 6 retrieves the element at index 1 from that unchanged\nvalue, which is 4. Therefore, option D is correct."
+    },
+    {
+      "id": 70,
+      "question": "What is the output of the following code?\nvar sum = 0.0;\nsum = sum + Math.min(3, 5);\nsum = sum + Math.floor(1.8);\nsum = sum + Math.round(5.6);\nSystem.out.println(sum);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "9"
+        },
+        {
+          "letter": "B",
+          "text": "9.0"
+        },
+        {
+          "letter": "C",
+          "text": "10"
+        },
+        {
+          "letter": "D",
+          "text": "10.0"
+        },
+        {
+          "letter": "E",
+          "text": "11"
+        },
+        {
+          "letter": "F",
+          "text": "11.0"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Since sum is a double, we can rule out options A, C, and E. Now tracking the code,\nmin() returns 3. The floor() method finds the next lowest non-fractional number, which\nis 1.0, and turns sum into 4.0. Finally, the round() method rounds up, which is 6, and\nturns sum into 10.0. Therefore, option D is correct."
+    }
+  ]
+}

@@ -1,0 +1,1862 @@
+{
+  "chapter": "Chapter 4 - Handling Exceptions",
+  "totalQuestions": 60,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Fill in the blanks: The ___________________ keyword is used in method declarations,\nwhereas the ___________________ keyword is used to send an exception to the surrounding\nprocess.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "throwing, catch"
+        },
+        {
+          "letter": "B",
+          "text": "throws, throw"
+        },
+        {
+          "letter": "C",
+          "text": "catch, throw"
+        },
+        {
+          "letter": "D",
+          "text": "throws, catch"
+        },
+        {
+          "letter": "E",
+          "text": "throw, throws"
+        },
+        {
+          "letter": "F",
+          "text": "catch, throwing"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The throws keyword is used in method declarations, whereas the throw keyword is\nused to send an exception to the surrounding process, making option B the correct answer.\nThe catch keyword is used to handle exceptions. There is no throwing keyword in Java."
+    },
+    {
+      "id": 2,
+      "question": "What is the output of the following application?\npackage paper;\nimport java.io.Closeable;\npublic class PrintCompany {\nclass Printer implements Closeable { // r1\npublic void print() {\nSystem.out.println(\"This just in!\");\n}\npublic void close() {}\n}\npublic void printHeadlines() {\ntry {Printer p = new Printer()} { // r2\np.print();\n}\n}\npublic static void main(String[] headlines) {\nnew PrintCompany().printHeadlines(); // r3\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "This just in!"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of line r1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line r2."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line r3."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The class does not compile because in line r2, curly braces, {}, are used instead of parentheses, (), in the try-with-resources statement, making option C the correct answer. If this\nline was fixed to use parentheses, (), then the rest of the class would compile without issue\nand print This just in! at runtime."
+    },
+    {
+      "id": 3,
+      "question": "What is the result of compiling and executing the following application?\npackage mind;\nimport java.io.*;\npublic class Remember {\npublic static void think() throws IOException { // k1\ntry {\nthrow Exception();\n} catch (RuntimeException r) {} // k2\n}\npublic static void main(String[] ideas) throws Exception {\nthink();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles and runs without printing anything."
+        },
+        {
+          "letter": "B",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line k1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line k2."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "To throw an exception with the throw keyword, an existing or new exception must be\nprovided. In this case, the new keyword is missing in front of Exception() in the think()\nmethod. It is treated as a method call that does not exist, and this line does not compile, making option E correct. If the new keyword were added, though, the line would still not compile, as the checked exception is not handled or declared within the think() method."
+    },
+    {
+      "id": 4,
+      "question": "Given the following keywords, in which order could they be used? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "try, finally"
+        },
+        {
+          "letter": "B",
+          "text": "catch, try, finally"
+        },
+        {
+          "letter": "C",
+          "text": "try, catch, catch, finally"
+        },
+        {
+          "letter": "D",
+          "text": "finally, catch, try"
+        },
+        {
+          "letter": "E",
+          "text": "try, finally, catch"
+        },
+        {
+          "letter": "F",
+          "text": "try, catch, finally, finally"
+        }
+      ],
+      "correct": "A,C",
+      "explanation": "The correct order of blocks is try, catch, and finally. For a traditional\ntry/catch block at least one catch or finally must be used. In addition, multiple\ncatch blocks are allowed, although at most one finally block is allowed. For these reasons, options A and C are correct and the rest are incorrect."
+    },
+    {
+      "id": 5,
+      "question": "Assuming -g:vars is used when the code is compiled to include debug information, what is the\noutput of the following code snippet?\n13: String cogsworth = null;\n14: Integer lumiere = null;\n15: Object mrsPotts = null;\n16: if(lumiere > cogsworth.length()) {\n17: System.out.println(mrsPotts.toString());\n18: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A NullPointerException that does not include any variable names in the stack trace"
+        },
+        {
+          "letter": "B",
+          "text": "A NullPointerException naming cogsworth in the stack trace"
+        },
+        {
+          "letter": "C",
+          "text": "A NullPointerException naming lumiere in the stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "A NullPointerException naming mrsPotts in the stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "A NullPointerException naming cogsworth and lumiere in the stack trace"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "With a helpful NullPointerException, the program will print the variable that triggered the exception. In this case, the first exception is when lumiere is unboxed to an int\non line 16, making option C correct. Note that only one NullPointerException can be\nthrown at a time, making option E incorrect."
+    },
+    {
+      "id": 6,
+      "question": "What is the output of the following application?\npackage park;\nclass LostBallException extends Exception {}\npublic class Ball {\npublic void toss() throws LostBallException {\nvar windUp = new int[1];\nSystem.out.println(windUp[1]);\n}\npublic static void main(String[] bouncy) {\ntry {\nnew Ball().toss();\n} catch (Throwable e) {\nSystem.out.print(\"Caught!\");\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "Caught!"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because LostBallException is not handled or declared in the main() method."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because ArrayIndexOutOfBoundsException is not handled or declared in the toss() method."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles just fine. The toss() method creates an array with one element, but\ntries to read the second element. This triggers an ArrayIndexOutOfBoundsException,\nwhich is caught by the catch block in the main() method. At runtime, Caught! is printed,\nmaking option B correct."
+    },
+    {
+      "id": 7,
+      "question": "Assuming Scanner is a valid class that implements AutoCloseable, what is the expected output\nof the following code?\ntry (Scanner s = new Scanner(System.in)) {\nSystem.out.print(1);\ns.nextLine();\nSystem.out.print(2);\n} catch (IllegalArgumentException | NullPointerException x) {\ns.nextLine();\nSystem.out.print(3);\n} finally {\ns.nextLine();\nSystem.out.print(4);\n}\nSystem.out.print(5);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1245"
+        },
+        {
+          "letter": "B",
+          "text": "125"
+        },
+        {
+          "letter": "C",
+          "text": "1234 followed by a stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "124 followed by a stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "Does not compile"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because s is defined within the try-with-resources block. It is\nout of scope by the time it reaches the catch and finally blocks, making option E correct."
+    },
+    {
+      "id": 8,
+      "question": "How many constructors in WhaleSharkException compile in the following class?\npackage friendly;\npublic class WhaleSharkException extends Exception {\npublic WhaleSharkException() {\nsuper(\"Friendly shark!\");\n}\npublic WhaleSharkException(String message) {\nsuper(new Exception(new WhaleSharkException()));\n}\npublic WhaleSharkException(Exception cause) {}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The Exception class contains multiple constructors, including one that takes\nThrowable, one that takes String, and a no-argument constructor. The first\nWhaleSharkException constructor compiles, using the Exception constructor that\ntakes a String. The second WhaleSharkException constructor also compiles. The two\nstatements, super() and new Exception(), actually call the same constructor in the\nException class, one after another. The last WhaleSharkException compiles, with the\ncompiler inserting the default no-argument constructor super(), because it exists in the\nException class. For these reasons, all of the constructors compile, and option D is the\ncorrect answer."
+    },
+    {
+      "id": 9,
+      "question": "What is the output of the following application?\npackage game;\npublic class Football {\npublic static void main(String officials[]) {\ntry {\nSystem.out.print('W');\nthrow new ArrayIndexOutOfBoundsException();\n} catch (RuntimeException r) {\nSystem.out.print('X');\nthrow r;\n} catch (Exception e) {\nSystem.out.print('Y');\n} finally {\nSystem.out.print('Z');\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "WXY"
+        },
+        {
+          "letter": "B",
+          "text": "WXZ"
+        },
+        {
+          "letter": "C",
+          "text": "WXY followed by a stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "WXZ followed by a stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "WZ followed by a stack trace"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The application first enters the try block and prints W. It then throws an\nArrayIndexOutOfBoundsException, which is caught by the first catch block since\nArrayIndexOutOfBoundsException is a subclass of RuntimeException, printing\nX. The exception is then rethrown, but since there isn’t a separate try/catch block around\nit, it does not get caught by the second catch block. Before printing the stack trace, though,\nthe finally block is called, and Z is printed. For these reasons, option D is correct."
+    },
+    {
+      "id": 10,
+      "question": "Which of the following types are not recommended to catch in your application? (Choose\ntwo.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Exception"
+        },
+        {
+          "letter": "B",
+          "text": "CheckedException"
+        },
+        {
+          "letter": "C",
+          "text": "Throwable"
+        },
+        {
+          "letter": "D",
+          "text": "RuntimeException"
+        },
+        {
+          "letter": "E",
+          "text": "UncheckedException"
+        },
+        {
+          "letter": "F",
+          "text": "Error"
+        }
+      ],
+      "correct": "C,F",
+      "explanation": "While Exception and RuntimeException are commonly caught in Java applications, it is not recommended that Error and Throwable (which includes Error) be\ncaught. An Error often indicates a failure of the JVM, which cannot be recovered from. For\nthese reasons, options C and F are correct, and options A and D are incorrect. Options B and\nE are class names that are not part of the standard Java API."
+    },
+    {
+      "id": 11,
+      "question": "What is the output of the following program?\npackage buffet;\nclass Garden implements AutoCloseable {\nprivate final int g;\nGarden(int g) { this.g = g; }\npublic void close() throws Exception {\nSystem.out.print(g);\n} }\npublic class Salad {\npublic static void main(String[] u) throws Exception {\nvar g = new Garden(5);\ntry (g;\nvar h = new Garden(4);\nvar i = new Garden(2)) {\n} finally {\nSystem.out.println(9);\n}\ng = null;\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2459"
+        },
+        {
+          "letter": "B",
+          "text": "9245"
+        },
+        {
+          "letter": "C",
+          "text": "5429"
+        },
+        {
+          "letter": "D",
+          "text": "9542"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "A variable declared before the start of a try-with-resources statement may be used if it\nis final or effectively final. Since g is modified after it is set, it is neither; therefore, the\nclass does not compile, and option E is correct. If the last line of the main() method were\nremoved, then the code would compile and print 2459 at runtime."
+    },
+    {
+      "id": 12,
+      "question": "How many of these custom exceptions are unchecked exceptions?\nclass ColoringException extends IOException {}\nclass CursiveException extends WritingException {}\nclass DrawingException extends IllegalStateException {}\nclass SketchingException extends DrawingException {}\nclass WritingException extends Exception {}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Since IOException and Exception are checked exceptions, ColoringException\nand WritingException are checked exceptions. Further, CursiveException is also\nchecked since it extends a checked exception. By contrast, IllegalStateException is an\nunchecked exception. This means that DrawingException and SketchingException\nare also unchecked, and option C is the answer."
+    },
+    {
+      "id": 13,
+      "question": "How many lines of text does the following program print?\npackage lighting;\nimport java.io.IOException;\npublic class Light {\npublic static void main(String[] v) throws Exception {\ntry {\nnew Light().turnOn();\n} catch (RuntimeException v) { // y1\nSystem.out.println(v);\nthrow new IOException(); // y2\n} finally {\nSystem.out.println(\"complete\");\n}\n}\npublic void turnOn() throws IOException {\nnew IOException(\"Not ready\"); // y3\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One."
+        },
+        {
+          "letter": "B",
+          "text": "Two."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line y1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line y2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile because of line y3."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code does not compile because the variable v is used twice in the main() method,\nboth in the method declaration and in the catch block, making option C the correct answer.\nIf a different variable name were used in one of the locations, the program would compile\nand print complete. Note that while an exception is created inside the turnOn() method,\nit is not thrown."
+    },
+    {
+      "id": 14,
+      "question": "Which statements about try-with-resources are true? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If more than one resource is used, the resources are closed in the order they were created."
+        },
+        {
+          "letter": "B",
+          "text": "Parentheses are used for the resource declaration section, even if more than one resource is used."
+        },
+        {
+          "letter": "C",
+          "text": "If the try block and close() method both throw an exception, then the one thrown by the close() method is suppressed."
+        },
+        {
+          "letter": "D",
+          "text": "A resource may be declared before it is used in a try-with-resources statement."
+        },
+        {
+          "letter": "E",
+          "text": "Resources declarations are separated by commas."
+        },
+        {
+          "letter": "F",
+          "text": "A catch block is required."
+        }
+      ],
+      "correct": "B,C,D",
+      "explanation": "When more than one resource is used in a try-with-resources statement, they are\nclosed in the reverse order in which they are declared, making option A incorrect. Option B\nis correct and describes how resources are listed. Option C is also correct and describes how\nsuppressed exceptions are handled. Option D is the third correct answer, as final or effectively final resources may be used in try-with-resources statements. Option E is incorrect,\nas resources are separated by semicolons, not commas. Option F is also incorrect, as catch\nblocks are optional for try-with-resources statements."
+    },
+    {
+      "id": 15,
+      "question": "How many lines of text does the following program print?\npackage bee;\nclass SpellingException extends RuntimeException {}\npublic class SpellChecker {\npublic final static void main(String[] participants) {\ntry {\nif(!\"cat\".equals(\"kat\")) {\nnew SpellingException();\n}\n} catch (SpellingException | NullPointerException e) {\nSystem.out.println(\"Spelling problem!\");\n} catch (Exception e) {\nSystem.out.println(\"Unknown Problem!\");\n} finally {\nSystem.out.println(\"Done!\");\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One."
+        },
+        {
+          "letter": "B",
+          "text": "Two."
+        },
+        {
+          "letter": "C",
+          "text": "Three."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The program compiles without issue, so option D is incorrect. The narrower\nSpellingException and NullPointerException, which inherit from\nException, are correctly presented in the first catch block, with the broader Exception\nbeing in the second catch block. The if statement evaluates to true, and a new\nSpellingException instance is created, but it is not thrown because it is missing the\nthrow keyword. For this reason, the try block ends without any of the catch blocks being\nexecuted. The finally block is then called, making Done! the only line printed. For this\nreason, option A is the correct answer."
+    },
+    {
+      "id": 16,
+      "question": "Which of the following exception types must be handled or declared by the method in which\nthey are thrown? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "FileNotFoundException"
+        },
+        {
+          "letter": "B",
+          "text": "ClassCastException"
+        },
+        {
+          "letter": "C",
+          "text": "Error"
+        },
+        {
+          "letter": "D",
+          "text": "IOException"
+        },
+        {
+          "letter": "E",
+          "text": "NullPointerException"
+        },
+        {
+          "letter": "F",
+          "text": "Exception"
+        }
+      ],
+      "correct": "A,D,F",
+      "explanation": "Any class that inherits Exception but not RuntimeException is a checked\nexception and must be handled or declared. For this reason, option F is trivially correct.\nOptions A and D are also checked exceptions. Options B and E are incorrect since they\ninherit RuntimeException. Finally, option C is incorrect as Error inherits Throwable\nbut not Exception."
+    },
+    {
+      "id": 17,
+      "question": "What is the output of the following application?\npackage bed;\npublic class Sleep {\npublic static void snore() {\ntry {\nString sheep[] = new String[3];\nSystem.out.print(sheep[3]);\n} catch (RuntimeException | Error e) {\nSystem.out.print(\"Awake!\");\nthrow e; // x1\n} finally {\nthrow new Exception(); // x2\n}\n}\npublic static void main(String[] sheep) {\nnew Sleep().snore(); // x3\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Awake!"
+        },
+        {
+          "letter": "B",
+          "text": "Awake! followed by a stack trace"
+        },
+        {
+          "letter": "C",
+          "text": "Does not compile because of line x1"
+        },
+        {
+          "letter": "D",
+          "text": "Does not compile because of line x2"
+        },
+        {
+          "letter": "E",
+          "text": "Does not compile because of line x3"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The finally block of the snore() method throws a new checked exception on line x2,\nbut there is no try-catch block around it to handle it, nor does the snore() method declare\nany checked exceptions. For these reasons, line x2 does not compile, and option D is the\ncorrect answer. Note that line x1 compiles because it is rethrowing an unchecked exception."
+    },
+    {
+      "id": 18,
+      "question": "What is the output of the following code?\nclass ProblemException extends Exception {\nProblemException(Exception e) { super(e); }\n}\nclass MajorProblemException extends ProblemException {\nMajorProblemException(String message) { super(message); }\n}\npublic class Unfortunate {\npublic static void main(String[] args) throws Exception {\ntry {\nSystem.out.print(1);\nthrow new MajorProblemException(\"Uh oh\");\n} catch (ProblemException | RuntimeException e) {\nSystem.out.print(2);\ntry {\nthrow new MajorProblemException(\"yikes\");\n} finally {\nSystem.out.print(3);\n}\n} finally {\nSystem.out.print(4);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "123"
+        },
+        {
+          "letter": "B",
+          "text": "123 followed by an exception stack trace"
+        },
+        {
+          "letter": "C",
+          "text": "1234"
+        },
+        {
+          "letter": "D",
+          "text": "1234 followed by an exception stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The ProblemException class compiles without error. However, the\nMajorProblemException class has, well, a major problem. The constructor attempts to\ncall a superclass constructor with a String parameter, but the ProblemException class\nonly has a constructor with an Exception parameter. This causes a compiler error, making\noption E correct."
+    },
+    {
+      "id": 19,
+      "question": "Which statements best describe how a class that implements the AutoCloseable interface\nshould be written? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The close()method is optional since the AutoCloseableinterface defines a defaultimplementation."
+        },
+        {
+          "letter": "B",
+          "text": "The close() method should avoid modifying data after it has been run once."
+        },
+        {
+          "letter": "C",
+          "text": "The close() method should not throw any exceptions."
+        },
+        {
+          "letter": "D",
+          "text": "The close() method should throw an exception if there is a problem closing the resource."
+        },
+        {
+          "letter": "E",
+          "text": "The close() method should return a status code."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "First, option A is an incorrect statement, because the AutoCloseable interface does\nnot define a default implementation of close(). Next, the close() method should\nbe idempotent, which means it is able to be run multiple times without triggering any side\neffects. For this reason, option B is correct. After being run once, future calls to close()\nshould not change any data. Option D is correct, and option C is incorrect because the\nclose() method is fully capable of throwing exceptions if there is a problem. In fact, the\nsignature of the method in AutoCloseable throws a checked Exception. Option E is\nincorrect because the return type of close() is void, which means no return value can be\nreturned."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following diagrams of java.lang classes shows the inheritance model\nproperly?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "RuntimeException Throwable Error Object Exception"
+        },
+        {
+          "letter": "B",
+          "text": "Error Throwable Exception Object RuntimeException"
+        },
+        {
+          "letter": "C",
+          "text": "Throwable RuntimeException Error Object Exception"
+        },
+        {
+          "letter": "D",
+          "text": "RuntimeException Exception Error Object Throwable"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Option D is the correct model. The class RuntimeException extends Exception,\nand both Exception and Error extend Throwable. Finally, like all Java classes, they\nall inherit from Object. Notice that Error does not extend Exception, even though we\noften refer to these generally as exceptions."
+    },
+    {
+      "id": 21,
+      "question": "Which exception classes, when inserted into the blank in the Problems class, allow the code\nto compile?\nclass MissingMoneyException {}\nclass MissingFoodException {}\npublic class Problems {\npublic void doIHaveAProblem()\nthrows MissingMoneyException, MissingFoodException {\nSystem.out.println(\"No problems\");\n}\npublic static void main(String[] s) throws {\ntry {\nfinal Problems p = new Problems();\np.doIHaveAProblem();\n} catch (Exception e) {\nthrow e;\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Exception"
+        },
+        {
+          "letter": "B",
+          "text": "RuntimeException"
+        },
+        {
+          "letter": "C",
+          "text": "MissingFoodException"
+        },
+        {
+          "letter": "D",
+          "text": "MissingMoneyException, MissingFoodException"
+        },
+        {
+          "letter": "E",
+          "text": "MissingMoneyException"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The classes MissingMoneyException and MissingFoodException do not extend\nany exception classes; therefore, they cannot be used in a method declaration. The code does\nnot compile regardless of what is placed in the blank, making option F correct."
+    },
+    {
+      "id": 22,
+      "question": "Which statements about Closeable and AutoCloseable are true? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "AutoCloseable extends Closeable."
+        },
+        {
+          "letter": "B",
+          "text": "Closeable extends AutoCloseable."
+        },
+        {
+          "letter": "C",
+          "text": "The close() method in a class that implements AutoCloseable cannot throw an IOException."
+        },
+        {
+          "letter": "D",
+          "text": "The close() method in a class that implements Closeable cannot throw an Exception."
+        },
+        {
+          "letter": "E",
+          "text": "There is no difference; one was added for backward compatibility."
+        },
+        {
+          "letter": "F",
+          "text": "Both have a generic return type."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Closeable extends AutoCloseable, making option B correct and option A incorrect. The close() method in AutoCloseable throws Exception, while the close()\nmethod in Closeable throws IOException, making option E incorrect. Since\nIOException is a subclass of Exception, both close() methods can throw an\nIOException, making option C incorrect. On the other hand, Exception is not a\nsubclass of IOException. For this reason, the close() method in a class that implements\nCloseable cannot throw an instance of the Exception class, because it is an invalid override using a broader exception type. This makes option D the correct answer. Finally, the\nreturn type for both is void, making option F incorrect."
+    },
+    {
+      "id": 23,
+      "question": "Which expressions, when inserted into the blank in the following class, allow the code to\ncompile? (Choose two.)\npackage sun;\nimport java.io.*;\npublic class Beach {\nclass TideException extends Exception {}\npublic void surf() throws RuntimeException {\ntry {\nthrow new TideException();\n} catch ( ) {}\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Exception a | RuntimeException f"
+        },
+        {
+          "letter": "B",
+          "text": "IllegalStateException | TideException t"
+        },
+        {
+          "letter": "C",
+          "text": "TideException | IOException i"
+        },
+        {
+          "letter": "D",
+          "text": "TideException | Exception x"
+        },
+        {
+          "letter": "E",
+          "text": "Error e"
+        },
+        {
+          "letter": "F",
+          "text": "Exception z"
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "Option A does not compile because a multi-catch expression uses a single variable, not\ntwo variables. Since the TideException is handled and neither exception class is a subtype\nof the other, option B is correct. Option C does not compile because the compiler notices\nthat it is not possible to throw a checked IOException in this try block. Option D does\nnot compile because multi-catch blocks cannot contain two exceptions in which one is a subclass of the other. If it did, one of the two exceptions would be redundant. Option E does not\ncompile because the checked TideException is not handled or declared by the surf()\nmethod. Remember, Error and Exception are not subclasses of each other, although they\nboth inherit Throwable. Option F is correct because TideException is a subclass of\nException, so both are handled by Exception."
+    },
+    {
+      "id": 24,
+      "question": "Which of the following are the best scenarios in which to use and catch an exception?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The computer caught fire."
+        },
+        {
+          "letter": "B",
+          "text": "A network connection goes down."
+        },
+        {
+          "letter": "C",
+          "text": "A caller passes invalid data to a method."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "A method finishes sooner than expected."
+        },
+        {
+          "letter": "F",
+          "text": "The program runs out of memory."
+        },
+        {
+          "letter": "G",
+          "text": "A search returned no results."
+        }
+      ],
+      "correct": "B,C",
+      "explanation": "Option A is incorrect. You should probably seek help if the computer is on fire!\nOptions B and C are correct answers, as invalid or missing data/resources should be expected\nof most programs. Option D is incorrect because code that does not compile cannot run and\ntherefore cannot throw any exceptions. Option E is incorrect; finishing sooner is rarely considered a problem. Option F is incorrect because an Error is thrown in this situation, and it\nshould not be caught, as the JVM cannot usually recover from this scenario. Option G is also\nincorrect. While it is possible to throw an exception if a search fails, it is not recommended\nand options B and C are better options."
+    },
+    {
+      "id": 25,
+      "question": "Which statement about the following program is correct?\n1: package dogpark;\n2: public class Fetch {\n3: public int play(String name) throws RuntimeException {\n4: try {\n5: throw new RuntimeException(name);\n6: } catch (Throwable e) {\n7: throw new RuntimeException(e);\n8: }\n9: }\n10: public static final void main(String[] ball)\n11: throws RuntimeException {\n12: new Fetch().play(\"Webby\");\n13: new Fetch().play(\"Georgette\");\n14: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One exception is thrown to the caller at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "Two exceptions are thrown to the caller at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "More than two exceptions are thrown to the caller at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "The class does not compile because of the play() method."
+        },
+        {
+          "letter": "E",
+          "text": "The class does not compile because of the main() method."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The program compiles, making options D and E incorrect. At runtime, line 12 is executed,\ncalling the play() method. Line 5 then throws an exception that is immediately caught on\nline 6. Line 7 throws a new unchecked exception that is not caught by the program, with\nthis exception being thrown to the caller, and making option A correct. In this case, line 13 is\nnever executed. Even though the stack trace for the exception may include information about\nthe cause, only one exception is actually thrown to the caller."
+    },
+    {
+      "id": 26,
+      "question": "What is the output of the following application?\npackage body;\nimport java.io.IOException;\nclass Organ {\npublic void operate() throws IOException {\nthrow new RuntimeException(\"Not supported\");\n}\n}\npublic class Heart extends Organ {\npublic void operate() throws Exception {\nSystem.out.print(\"beat\");\n}\npublic static void main(String[] c) throws Exception {\ntry {\nnew Heart().operate();\n} finally {\nSystem.out.print(\"!\");\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "beat"
+        },
+        {
+          "letter": "B",
+          "text": "beat!"
+        },
+        {
+          "letter": "C",
+          "text": "Not supported"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code does not compile due to an invalid override of the operate() method. An\noverridden method must not throw any new or broader checked exceptions than the method\nit inherits. While both IOException and Exception are checked exceptions, Exception\nis broader than IOException. For this reason, the declaration of operate() in Heart\ndoes not compile, and option D is correct."
+    },
+    {
+      "id": 27,
+      "question": "Which of the following are true of using a try-with-resources statement? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It shortens the amount of code a developer must write."
+        },
+        {
+          "letter": "B",
+          "text": "It is possible to manually close a resource before the end of the try block."
+        },
+        {
+          "letter": "C",
+          "text": "Associated catch blocks are run before the declared resources have been closed."
+        },
+        {
+          "letter": "D",
+          "text": "It is only compatible with all classes that implement the Close interface."
+        },
+        {
+          "letter": "E",
+          "text": "It is only compatible with all classes that implement the AutoClose interface."
+        },
+        {
+          "letter": "F",
+          "text": "It cannot be used with a finally block."
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "Option A is correct and is one of the primary motivations for using a try-with-resources\nstatement. Option B is also correct, although it is recommended that you let the try-withresources statement automatically close the resource. The catch blocks are run after the\ndeclared resources have been closed, making option C incorrect. Options D and E are both\nincorrect, as a try-with-resources statement is compatible with Closeable or AutoCloseable. A try-with-resources statement can be used with a finally block, making option F\nincorrect."
+    },
+    {
+      "id": 28,
+      "question": "What is the output of the following application?\npackage zoo;\nclass BigCat {\nvoid roar(int level) throws RuntimeException {\nif(level<3) throw new IllegalArgumentException();\nSystem.out.print(\"Roar!\");\n} }\npublic class Lion extends BigCat {\npublic void roar() { System.out.print(\"Roar!!!\"); }\n@Override void roar(int sound) throws IllegalStateException {\nSystem.out.print(\"Meow\");\n}\npublic static void main(String[] cubs) {\nfinal BigCat kitty = new Lion();\nkitty.roar(2);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Meow"
+        },
+        {
+          "letter": "B",
+          "text": "Roar!"
+        },
+        {
+          "letter": "C",
+          "text": "Roar!!!"
+        },
+        {
+          "letter": "D",
+          "text": "MeowRoar!"
+        },
+        {
+          "letter": "E",
+          "text": "A stack trace is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The application compiles and runs, printing Meow at runtime and making option A\ncorrect. The override in Lion is valid, as overridden methods are free to declare new\nunchecked exceptions."
+    },
+    {
+      "id": 29,
+      "question": "What is the result of compiling and executing the following class?\npackage wind;\npublic class Storm {\npublic static void main(String[] rain) throws Exception {\nvar weatherTracker = new AutoCloseable() {\npublic void close() throws RuntimeException {\nSystem.out.println(\"Thunder\");\n}\n};\ntry (weatherTracker) {\nSystem.out.println(\"Tracking\");\n} catch (Exception e) {\nSystem.out.println(\"Lightning\");\n} finally {\nSystem.out.println(\"Storm gone\");\nweatherTracker.close();\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It prints one line."
+        },
+        {
+          "letter": "B",
+          "text": "It prints two lines."
+        },
+        {
+          "letter": "C",
+          "text": "It prints three lines."
+        },
+        {
+          "letter": "D",
+          "text": "It prints four lines."
+        },
+        {
+          "letter": "E",
+          "text": "It does not compile due to an error in the declaration of the weatherTracker resource."
+        },
+        {
+          "letter": "F",
+          "text": "It does not compile for a different reason."
+        },
+        {
+          "letter": "G",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code compiles without issue. It first prints Tracking from the try block. Upon the\ncompletion of the try block, the close() method is called, and Thunder is printed. No\nexception is thrown so the catch block is skipped. In the finally block, Storm gone is\nprinted, followed by Thunder. Since four lines were printed, option D is correct. Although it\nis not recommended to close a resource twice, it is allowed."
+    },
+    {
+      "id": 30,
+      "question": "How many of the following are valid exception declarations?\nclass Error extends Exception {}\nclass _X extends IllegalArgumentException {}\nclass 2BeOrNot2Be extends RuntimeException {}\nclass NumberException<Integer> extends NumberFormatException {}\ninterface Worry implements NumberFormatException {}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "Five"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Error is a terrible name for an exception since it is a built-in class. However, it is legal.\nNext, _X is also a bad choice, but it is a valid exception, as Java identifiers can begin with\nunderscores. By contrast, 2BeOrNot2Be does not compile because identifiers are not\nallowed to begin with a number. NumberException is not a valid exception, because it uses\ngenerics and the parent class does not. Finally, Worry is not an exception, because it is an\ninterface. Since only two are valid exceptions, option C is the answer."
+    },
+    {
+      "id": 31,
+      "question": "If a try statement has catch blocks for both ClassCastException and\nRuntimeException, then which of the following statements is correct?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The catch blocks for these two exception types can be declared in any order."
+        },
+        {
+          "letter": "B",
+          "text": "A try statement cannot be declared with these two catch block types because they are incompatible."
+        },
+        {
+          "letter": "C",
+          "text": "The catch block for ClassCastException must appear before the catch block for RuntimeException."
+        },
+        {
+          "letter": "D",
+          "text": "The catch block for RuntimeException must appear before the catch block for ClassCastException."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "ClassCastException is a subclass of RuntimeException, so it must appear first in\nany related catch blocks. For this reason, option C is correct."
+    },
+    {
+      "id": 32,
+      "question": "Assuming Scanner is a valid class that implements AutoCloseable, what is the expected output\nof the following application?\npackage castles;\nimport java.util.Scanner;\npublic class Fortress {\npublic void openDrawbridge() throws Exception { // p1\ntry {\nthrow new Exception(\"Circle\"); // p2\n} catch (Exception | Error e) {\nSystem.out.print(\"Opening!\");\n} finally {\nSystem.out.print(\"Walls\");\n}\n}\npublic static void main(String[] moat) {\ntry (var e = new Scanner(System.in)) {\nnew Fortress().openDrawbridge(); // p3\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Opening!Walls"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of line p1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line p2."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line p3."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The openDrawbridge() method declares a checked exception that is not handled or\ndeclared in the main() method where it is called. For this reason, line p3 does not compile, and option D is correct. The rest of the lines do not contain any compiler errors. If the\nmain() method were changed to declare Exception, then the class would compile and\nprint Opening!Walls at runtime."
+    },
+    {
+      "id": 33,
+      "question": "What is the output of the following application?\npackage game;\npublic class BasketBall {\npublic static void main(String[] dribble) {\ntry {\nSystem.out.print(1);\nthrow new ClassCastException();\n} catch (ArrayIndexOutOfBoundsException ex) {\nSystem.out.print(2);\n} catch (Throwable ex) {\nSystem.out.print(3);\n} finally {\nSystem.out.print(4);\n}\nSystem.out.print(5);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "145"
+        },
+        {
+          "letter": "B",
+          "text": "1345"
+        },
+        {
+          "letter": "C",
+          "text": "1235"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles and runs without issues. The try block throws a\nClassCastException. Since ClassCastException is not a subclass of\nArrayIndexOutOfBoundsException, the first catch block is skipped. For the second\ncatch block, ClassCastException is a subclass of Throwable so that block is executed. Afterward, the finally block is executed, and then control returns to the main()\nmethod with no exception being thrown. The result is that 1345 is printed, making option B\nthe correct answer."
+    },
+    {
+      "id": 34,
+      "question": "Assuming -g:vars is used when the code is compiled to include debug information, what is the\noutput of the following code snippet?\n41: String mode = null;\n42: int grade = (Integer)null;\n43: Integer average = null;\n44: if(grade >= average && Integer.parseInt(mode) > 0) {\n45: System.out.println(\"You passed!\");\n46: }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A NullPointerException naming mode in the stack trace"
+        },
+        {
+          "letter": "B",
+          "text": "A NullPointerException naming grade in the stack trace"
+        },
+        {
+          "letter": "C",
+          "text": "A NullPointerException naming average in the stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "A NullPointerException naming grade, average, and mode in the stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "With a helpful NullPointerException, the program will print the variable that triggered the exception. In this case, the first exception is on line 42. The Integer value of\nnull is unboxed to an int, but since this fails, a NullPointerException is thrown at\nruntime. Since the exception happens on the right side of the assignment, the name of the\nvariable printed is null, making option E correct."
+    },
+    {
+      "id": 35,
+      "question": "What is the output of the following application?\npackage signlanguage;\nimport java.io.Closeable;\nclass ReadSign implements Closeable {\npublic void close() {}\npublic String get() { return \"Hello\"; } }\nclass MakeSign implements AutoCloseable {\npublic void close() {}\npublic void send(String message) {\nSystem.out.print(message);\n} }\npublic class Translate {\npublic static void main(String[] hands) {\ntry (ReadSign r = new ReadSign();\nMakeSign w = new MakeSign();) {\nw.send(r.get());\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Hello"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of the ReadSign class."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the MakeSign class."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the try-with-resources statement."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The application compiles without issue and prints Hello, making option A the correct\nanswer. The ReadSign and MakeSign classes are both correctly implemented, with both\noverridden versions of close() dropping the checked exceptions. The try-with-resources\nstatement is also correctly implemented for two resources and does not cause any compilation errors or runtime exceptions. Note that the semicolon (;) after the second resource declaration is optional."
+    },
+    {
+      "id": 36,
+      "question": "What is the output of the following application?\npackage what;\nclass FunEvent implements AutoCloseable {\nprivate final int value;\nFunEvent(int value) { this.value = value; }\npublic void close() {\nSystem.out.print(value);\n}\n}\npublic class Happening {\npublic static void main(String[] lots) {\nFunEvent e = new FunEvent(1);\ntry (e; var f = new FunEvent(8)) {\nSystem.out.print(\"2\");\nthrow new ArithmeticException();\n} catch (Exception x) {\nSystem.out.print(\"3\");\n} finally {\nSystem.out.print(\"4\");\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "24"
+        },
+        {
+          "letter": "B",
+          "text": "21834"
+        },
+        {
+          "letter": "C",
+          "text": "23418"
+        },
+        {
+          "letter": "D",
+          "text": "23481"
+        },
+        {
+          "letter": "E",
+          "text": "28134"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The try block is entered and 2 is printed, followed by an exception. Upon completion\nof the try block, the resources are closed in the reverse order in which they are declared,\nprinting 8 followed by 1. Next, the catch block executes, printing 3, followed by the\nfinally block printing 4. For these reasons, option E is correct."
+    },
+    {
+      "id": 37,
+      "question": "What is the output of the following application?\npackage office;\nimport java.io.*;\npublic class Printer {\npublic void print() {\ntry {\nthrow new FileNotFoundException();\n} catch (Exception | RuntimeException e) {\nSystem.out.print(\"Z\");\n} catch (Throwable f) {\nSystem.out.print(\"X\");\n} finally {\nSystem.out.print(\"Y\");\n}\n}\npublic static void main(String[] ink) {\nnew Printer().print();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Y"
+        },
+        {
+          "letter": "B",
+          "text": "XY"
+        },
+        {
+          "letter": "C",
+          "text": "ZY"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "A multi-catch block cannot contain two exception types in which one inherits from the\nother. Since RuntimeException inherits Exception, RuntimeException is redundant.\nFor this reason, the code does not compile, and option D is correct."
+    },
+    {
+      "id": 38,
+      "question": "What is the output of the following program?\nclass ProblemException extends Exception {\nProblemException(Exception e) { super(e); }\n}\nclass MajorProblemException extends ProblemException {\nMajorProblemException(Exception e) { super(e); }\n}\npublic class Unfortunate {\npublic static void main(String[] args) throws Exception {\ntry {\nSystem.out.print(1);\nthrow new MajorProblemException(\nnew IllegalStateException());\n} catch (ProblemException | RuntimeException e) {\nSystem.out.print(2);\ntry {\nthrow new MajorProblemException(e);\n} finally {\nSystem.out.print(3);\n}\n} finally {\nSystem.out.print(4);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "123"
+        },
+        {
+          "letter": "B",
+          "text": "123 followed by an exception stack trace"
+        },
+        {
+          "letter": "C",
+          "text": "1234"
+        },
+        {
+          "letter": "D",
+          "text": "1234 followed by an exception stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "Does not compile"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "In the try block, the code prints 1 and throws an exception. The catch block successfully handles it by printing 2 and throwing another exception. Both the inner and outer\nfinally blocks run printing 3 and 4, respectively. Then the stack trace for the exception\nthrown by the inner try block is printed. For this reason, option D is correct."
+    },
+    {
+      "id": 39,
+      "question": "What is the output of the following application?\n1: package robots.are.real;\n2: public class Computer {\n3: public void compute() throws Exception {\n4: throw new NullPointerException(\"Does not compute!\");\n5: }\n6: public static void main(String[] b) throws Exception {\n7: try {\n8: new Computer().compute();\n9: } catch (RuntimeException e) {\n10: System.out.print(\"zero\");\n11: throw e;\n12: } catch (Exception e) {\n13: System.out.print(\"one\");\n14: throw e;\n15: } } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "zero"
+        },
+        {
+          "letter": "B",
+          "text": "one"
+        },
+        {
+          "letter": "C",
+          "text": "zero followed by a stack trace"
+        },
+        {
+          "letter": "D",
+          "text": "one followed by a stack trace"
+        },
+        {
+          "letter": "E",
+          "text": "Does not compile"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code compiles without issue. Line 8 calls the compute() method, which throws a\nNullPointerException on line 4. This is caught in the main() method on line 9, since\nNullPointerException is a subclass of RuntimeException, printing zero followed\nby rethrowing to the caller and making option C correct."
+    },
+    {
+      "id": 40,
+      "question": "Given the following class diagram, which two classes are missing in the hierarchy at positions\n1 and 2?\n2 1\nThrowable\nUnsupportedOperationException\nError",
+      "options": [
+        {
+          "letter": "A",
+          "text": "IOException at position 1, Exception at position 2"
+        },
+        {
+          "letter": "B",
+          "text": "Exception at position 1, RuntimeException at position 2"
+        },
+        {
+          "letter": "C",
+          "text": "IllegalArgumentException at position 1, RuntimeException at position 2"
+        },
+        {
+          "letter": "D",
+          "text": "IllegalStateException at position 1, RuntimeException at position 2"
+        },
+        {
+          "letter": "E",
+          "text": "Exception at position 1, FileNotFoundException at position 2"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The UnsupportedOperationException class is an unchecked exception that is a\ndirect child of RuntimeException. For this reason, we can eliminate any answer that does\nnot inherit from RuntimeException, including options A and E. Options C and\nD are close, but UnsupportedOperationException is a direct subclass of\nRuntimeException. Option B is incorrect because RuntimeException is a subclass,\nnot a superclass, of Exception. The correct diagram would be to reverse option B and put\nRuntimeException at position 1 and Exception at position 2. Since this is not available,\noption F is correct."
+    },
+    {
+      "id": 41,
+      "question": "What is the output of the following application?\npackage vortex;\nclass TimeException extends Exception {}\nclass TimeMachine implements AutoCloseable {\nint v;\npublic TimeMachine(int v) {this.v = v;}\npublic void close() throws Exception {\nSystem.out.print(v);\n} }\npublic class TimeTraveler {\npublic static void main(String[] twelve) {\ntry (var timeSled = new TimeMachine(1);\nvar delorean = new TimeMachine(2);\nvar tardis = new TimeMachine(3)) {\n} catch (TimeException e) {\nSystem.out.print(4);\n} finally {\nSystem.out.print(5);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1235"
+        },
+        {
+          "letter": "B",
+          "text": "3215"
+        },
+        {
+          "letter": "C",
+          "text": "5123"
+        },
+        {
+          "letter": "D",
+          "text": "5321"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The close() method in each of the resources throws an Exception, which must be\nhandled or declared in the main() method. The catch block supports TimeException,\nbut it is too narrow to catch Exception. Since there are no other catch blocks present and\nthe main() method does not declare Exception, the try-with-resources statement does\nnot compile, and option E is the correct answer. If the catch block were modified to handle\nException instead of TimeException, the code would compile without issue and print\n3215 at runtime, closing the resources in the reverse order in which they were declared."
+    },
+    {
+      "id": 42,
+      "question": "Which of the following are common reasons to add a checked exception to a method signature? (Choose three.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "To alert developers that the state of the JVM has been corrupted"
+        },
+        {
+          "letter": "B",
+          "text": "To force a caller to handle or declare potential problems"
+        },
+        {
+          "letter": "C",
+          "text": "To ensure that exceptions never cause the application to terminate"
+        },
+        {
+          "letter": "D",
+          "text": "To notify the caller of potential types of problems"
+        },
+        {
+          "letter": "E",
+          "text": "To give the caller a chance to recover from a problem"
+        },
+        {
+          "letter": "F",
+          "text": "To annoy other developers"
+        }
+      ],
+      "correct": "B,D,E",
+      "explanation": "Checked exceptions are commonly used to notify or force a caller to deal with an\nexpected type of problem, such as the inability to write a file to the file system and give them\nthe opportunity to recover without terminating the program. For these reasons, options B, D,\nand E are correct. Option A is incorrect as a corrupted JVM is likely an Error that cannot\nbe recovered from. Option C is also incorrect, as some problems should result in the application terminating. Finally, option F is incorrect and is ideally never the motivation for adding\na checked exception to a method signature!"
+    },
+    {
+      "id": 43,
+      "question": "Which statement about the following application is correct?\npackage highway;\nimport java.io.*;\nclass CarCrash extends Error {\nCarCrash(Exception e) {} // w1\n}\npublic class Car {\npublic static void main(String[] s) throws Exception { // w2\ntry {\nthrow new IOException(\"Auto-pilot error\");\n} catch (IOException | CarCrash e) { // w3\nthrow e;\n} catch (FileNotFoundException a) { // w4\nthrow a;\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile because of line w1."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of line w2."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line w3."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line w4."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles and prints a stack trace at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "First off, lines w1 and w2 compile without issue. On line w3, the multi-catch block can\ncontain two exceptions, provided they are not subtypes of each other. Since one is a checked\nException and the other is an Error, line w3 compiles without issue. Line w4 contains\na compilation error. Since FileNotFoundException is a subclass of the already caught\nIOException, it is not reachable on line w4, making option D correct."
+    },
+    {
+      "id": 44,
+      "question": "Which of the following exception classes must be handled or declared in the method in which\nthey are thrown? (Choose three.)\npublic class Happy extends IOException {}\npublic class Dopey extends Grumpy {}\npublic class Sleepy extends IllegalStateException {}\npublic class Sneezy extends UnsupportedOperationException {}\npublic class Doc extends AssertionError {}\npublic class Grumpy extends SQLException {}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Happy"
+        },
+        {
+          "letter": "B",
+          "text": "Dopey"
+        },
+        {
+          "letter": "C",
+          "text": "Sleepy"
+        },
+        {
+          "letter": "D",
+          "text": "Sneezy"
+        },
+        {
+          "letter": "E",
+          "text": "Doc"
+        },
+        {
+          "letter": "F",
+          "text": "Grumpy"
+        }
+      ],
+      "correct": "A,B,F",
+      "explanation": "Since IOException and SQLException are checked exceptions, Happy and\nGrumpy are checked exceptions, respectively, making options A and F correct. Since Dopey\ninherits Grumpy, option B is also a checked exception. Options C and D are unchecked\nexceptions because those classes inherit RuntimeException. Option E is also an\nunchecked exception because all Error classes are unchecked."
+    },
+    {
+      "id": 45,
+      "question": "What is the output of the following application?\npackage pond;\nimport java.io.*;\nabstract class Duck {\nprotected int count;\npublic abstract int getDuckies() throws IOException;\n}\npublic class Ducklings extends Duck {\nprivate int age;\npublic Ducklings(int age) { this.age = age; }\npublic int getDuckies() { return this.age/count; }\npublic static void main(String[] pondInfo) throws Exception {\nvar itQuacks = new Ducklings(5);\nSystem.out.print(itQuacks.getDuckies());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "5"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code compiles without issue, so option D is incorrect. First off, the override of\ngetDuckies() in Ducklings is valid, as checked exceptions can be dropped (but not\nadded). The key here is noticing that count, an instance variable, is initialized with a value\nof 0. The getDuckies() method ends up computing 5/0, which leads to an unchecked\nArithmeticException at runtime, making option E the correct answer."
+    },
+    {
+      "id": 46,
+      "question": "Which statements about the following line of code are correct? (Choose three.)\nthrow new IllegalArgumentException();",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The method where this is called must declare a compatible exception."
+        },
+        {
+          "letter": "B",
+          "text": "The code where this is called can include a try-with-resources block that handles this exception."
+        },
+        {
+          "letter": "C",
+          "text": "This exception should not be handled or declared."
+        },
+        {
+          "letter": "D",
+          "text": "The code where this is called can include a try/catch block that handles this exception."
+        },
+        {
+          "letter": "E",
+          "text": "This exception should be thrown only at the start of a method."
+        },
+        {
+          "letter": "F",
+          "text": "This exception does not need to be handled by the method in which it is called."
+        }
+      ],
+      "correct": "B,D,F",
+      "explanation": "An IllegalArgumentException is an unchecked exception. It can be handled\nor declared in the method in which it is defined, although it is optional and not required. For\nthis reason, options B, D, and F are correct, and options A and C are incorrect. Option E is\nincorrect, as there is no requirement where in a method this exception can be thrown."
+    },
+    {
+      "id": 47,
+      "question": "What is the output of the following application?\npackage storage;\nimport java.io.*;\npublic class Backup {\npublic void performBackup() {\ntry {\nthrow new IOException(\"Disk not found\"); // z1\n} catch (Exception e) {\ntry {\nthrow new FileNotFoundException(\"File not found\");\n} catch (FileNotFoundException e) { // z2\nSystem.out.print(\"Failed\");\n} } }\npublic static void main(String[] files) {\nnew Backup().performBackup(); // z3\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Failed"
+        },
+        {
+          "letter": "B",
+          "text": "The application compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line z1."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line z2."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile because of line z3."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "While a catch block is permitted to include an embedded try-catch block, the issue here\nis that the variable name e is already used by the first catch block. In the second catch\nblock, it is equivalent to declaring a variable e twice. For this reason, line z2 does not compile, and option D is the correct answer. If a different variable name was used for either\ncatch block, then the code would compile without issue, printing Failed at runtime."
+    },
+    {
+      "id": 48,
+      "question": "What is the output of the following?\npackage com.tps;\nimport java.io.IOException;\npublic class IncidentReportException extends RuntimeException {\npublic static void main(String[] args) throws Exception {\ntry {\nthrow new IncidentReportException(new IOException());\n} catch (RuntimeException e) {\nSystem.out.println(e.getCause());\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "com.tps.IncidentReportException"
+        },
+        {
+          "letter": "B",
+          "text": "java.lang.IOException"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because IOException is a checked exception."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to the declaration of the IncidentReportException object."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The declaration of IncidentReportException does not provide any constructors,\nwhich means only the default constructor is available. Since the code attempts to pass an\nIOException as a parameter, the main() method does not compile, so the correct answer\nis option D."
+    },
+    {
+      "id": 49,
+      "question": "Which expressions, when inserted into the blank in the following class, allow the code to\ncompile? (Choose two.)\npackage music;\nimport java.sql.*;\npublic class Bells {\nclass Player implements AutoCloseable {\n@Override public void close() throws RingException {}\n}\nclass RingException extends Exception {\npublic RingException(String message) {}\n}\npublic static void main(String[] notes) throws Throwable {\ntry (Player p = null) {\nthrow new Exception();\n} catch (Exception e) {\n} catch ( q) {\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Error"
+        },
+        {
+          "letter": "B",
+          "text": "IllegalStateException"
+        },
+        {
+          "letter": "C",
+          "text": "RingException"
+        },
+        {
+          "letter": "D",
+          "text": "SQLException"
+        },
+        {
+          "letter": "E",
+          "text": "Throwable"
+        },
+        {
+          "letter": "F",
+          "text": "RuntimeException"
+        }
+      ],
+      "correct": "A,E",
+      "explanation": "The try-catch block already catches Exception, so the correct answer would be the\none that is not a subtype of Exception. In this case, Error and Throwable are the only\nchoices that allow the code to compile, making options A and E correct."
+    },
+    {
+      "id": 50,
+      "question": "Which statement about the following program is true?\npackage tag;\nclass MissedCallException extends Exception {}\npublic class Phone {\nstatic void makeCall() throws RuntimeException {\nthrow new ArrayIndexOutOfBoundsException(\"Call\");\n}\npublic static void main(String[] messages) {\ntry {\nmakeCall();\n} catch (MissedCallException e) {\nthrow new RuntimeException(\"Voicemail\");\n} finally {\nthrow new RuntimeException(\"Text\");\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "An exception is printed at runtime with Call in the message."
+        },
+        {
+          "letter": "B",
+          "text": "An exception is printed at runtime with Voicemail in the message."
+        },
+        {
+          "letter": "C",
+          "text": "An exception is printed at runtime with Text in the message."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The MissedCallException is a checked exception since it extends Exception and\ndoes not inherit RuntimeException. For this reason, the first catch block fails to compile, since the compiler detects that it is not possible to throw this checked exception inside\nthe try block, making option D the correct answer. Note that if MissedCallException\nwas changed to extend the unchecked RuntimeException class, then the code would\ncompile and the RuntimeException from the finally block would replace the\nArrayIndexOutOfBoundsException from the try block and Text would be in the\nmessage to the caller."
+    },
+    {
+      "id": 51,
+      "question": "If a try statement has catch blocks for both IllegalArgumentException and\nNullPointerException, then which of the following statements is correct?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The catch blocks for these two exception types can be declared in any order."
+        },
+        {
+          "letter": "B",
+          "text": "A try statement cannot be declared with these two catch block types because they are incompatible."
+        },
+        {
+          "letter": "C",
+          "text": "The catch block for IllegalArgumentException must appear before the catch block for NullPointerException."
+        },
+        {
+          "letter": "D",
+          "text": "The catch block for NullPointerException must appear before the catch block for IllegalArgumentException."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Both IllegalArgumentException and NullPointerException inherit\nRuntimeException, but neither inherits from each other. For this reason, they can be listed\nin catch blocks in either order, making option A the correct statement."
+    },
+    {
+      "id": 52,
+      "question": "What is the output of the following application?\npackage furniture;\nclass Chair {\npublic void sit() throws IllegalArgumentException {\nSystem.out.print(\"creak\");\nthrow new RuntimeException();\n}\n}\npublic class Stool extends Chair {\npublic void sit() throws RuntimeException {\nSystem.out.print(\"thud\");\n}\npublic static void main(String[] c) throws Exception {\ntry {\nnew Stool().sit();\n} finally {\nSystem.out.print(\"?\");\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "creak"
+        },
+        {
+          "letter": "B",
+          "text": "thud"
+        },
+        {
+          "letter": "C",
+          "text": "thud?"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "While RuntimeException is broader than IllegalArgumentException, the\nrestriction on overriding methods applies only to checked exceptions, not unchecked exceptions. In other words, the code would not compile if both of the exceptions were checked.\nSince they are unchecked, though, the method override is valid. The program compiles and\nprints thud? at runtime, making option C correct."
+    },
+    {
+      "id": 53,
+      "question": "What is the output of the following application?\nimport java.io.*;\nimport java.sql.*;\npublic class DatabaseHelper {\nstatic class MyDatabase implements Closeable {\npublic void close() throws SQLException {\nSystem.out.print(\"2\");\n}\npublic void write(String data) {}\npublic String read() {return null;}\n}\npublic static void main(String[] files) throws Exception {\ntry (MyDatabase myDb = new MyDatabase()) {\n// TODO: Decide what to read/rite\n} finally {\nSystem.out.print(\"1\");\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "12"
+        },
+        {
+          "letter": "B",
+          "text": "21"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the MyDatabase nested class."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the try-with-resources statement."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The Closeable interface defines a close() method that throws IOException. The\noverridden implementation of MyDatabase, which implements Closeable, declares a\nSQLException. This is a new checked exception not found in the inherited method signature. Therefore, the method override is invalid, and the close() method in MyDatabase\ndoes not compile, making option C the correct answer."
+    },
+    {
+      "id": 54,
+      "question": "What constructors are capable of being called on a custom exception class that directly\nextends the Exception class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One that takes a single Exception"
+        },
+        {
+          "letter": "B",
+          "text": "One that takes a single String"
+        },
+        {
+          "letter": "C",
+          "text": "Both of these"
+        },
+        {
+          "letter": "D",
+          "text": "Neither of these"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Custom exception classes may simply use the default constructor. It is also common to\noverride the constructors that take a single Exception or a single String, making option\nC correct."
+    },
+    {
+      "id": 55,
+      "question": "What is the result of compiling and running the following application?\npackage dinner;\npublic class Pizza {\nException order(RuntimeException e) { // h1\nthrow e; // h2\n}\npublic static void main(String[] u) {\nvar p = new Pizza();\ntry {\np.order(new IllegalArgumentException()); // h3\n} catch(RuntimeException e) { // h4\nSystem.out.print(e);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java.lang.IllegalArgumentException is printed."
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile because of line h1."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of line h2."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of line h3."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile because of line h4."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles, but a stack trace is printed at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "While this code looks a bit strange, it does compile. An exception can be passed to\na method or set as the return type of a method. In this case, the exception passed to the\norder() method is thrown and caught on line h4. The output is just the name of the class,\nmaking option A correct."
+    },
+    {
+      "id": 56,
+      "question": "Given an application that hosts a website, which of the following would most likely result in\na java.lang.Error being thrown? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A user tries to sign in too many times."
+        },
+        {
+          "letter": "B",
+          "text": "Two users try to register an account at the same time."
+        },
+        {
+          "letter": "C",
+          "text": "An order update page calls itself infinitely."
+        },
+        {
+          "letter": "D",
+          "text": "The application temporarily loses connection to the network."
+        },
+        {
+          "letter": "E",
+          "text": "A user enters their password incorrectly."
+        },
+        {
+          "letter": "F",
+          "text": "The connections to a database are never released and keep accumulating."
+        }
+      ],
+      "correct": "C,F",
+      "explanation": "A Java application tends to only throw an Error when the application has encountered an unrecoverable error. Failure of a user to sign in or register are common occurrences,\nmaking options A, B, and E incorrect. On the other hand, calling a method infinitely can lead\nto an unrecoverable StackOverflowError, making option C correct. Option D uses the\nword temporarily, meaning the network connection could come back up allowing the application to recover. Option F is the other correct answer. Over time, failing to release database\nconnections could result in the application running out of available database connections or\nworse, out of memory, and being unable to recover."
+    },
+    {
+      "id": 57,
+      "question": "How many lines of text does the following program print?\npackage tron;\nclass DiskPlayer implements AutoCloseable {\npublic void close() {}\n}\npublic class LightCycle {\npublic static void main(String[] bits) {\ntry (DiskPlayer john = new DiskPlayer()) {\nSystem.out.println(\"ping\");\njohn.close();\n} finally {\nSystem.out.println(\"pong\");\njohn.close();\n}\nSystem.out.println(\"return\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One."
+        },
+        {
+          "letter": "B",
+          "text": "Two."
+        },
+        {
+          "letter": "C",
+          "text": "Three."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the DiskPlayer class."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for a different reason."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The code does not compile because john is declared in the try-with-resources statement\nand not in scope in the finally block. For this reason, option E is correct."
+    },
+    {
+      "id": 58,
+      "question": "What is the output of the following?\npackage com.tps;\nimport java.io.IOException;\npublic class OfficeException extends RuntimeException {\npublic OfficeException(Exception e) {\nsuper(e);\n}\npublic static void main(String[] args) throws Exception {\ntry {\nthrow new OfficeException(new IOException());\n} catch (RuntimeException e) {\nSystem.out.println(e.getCause());\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "com.tps.OfficeException"
+        },
+        {
+          "letter": "B",
+          "text": "java.lang.IOException"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because IOException is a checked exception."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile due to the declaration of OfficeException."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code does compile, making options C and D incorrect. The catch block successfully\ncatches the OfficeException and prints the IOException passed to its constructor,\nmaking option B the correct answer."
+    },
+    {
+      "id": 59,
+      "question": "Given the following application, what is the name of the class printed at line e1?\npackage canyon;\nfinal class FallenException extends Exception {}\nfinal class HikingGear implements AutoCloseable {\n@Override public void close() throws Exception {\nthrow new FallenException();\n} }\npublic class Cliff {\npublic final void climb() throws Exception {\ntry (HikingGear gear = new HikingGear()) {\nthrow new RuntimeException();\n} }\npublic static void main(String[] rocks) {\ntry {\nnew Cliff().climb();\n} catch (Throwable t) {\nSystem.out.println(t); // e1\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "java.lang.RuntimeException"
+        },
+        {
+          "letter": "B",
+          "text": "canyon.FallenException"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles, but the answer cannot be determined until runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles without issue, making option C incorrect. In the climb() method,\ntwo exceptions are thrown. The RuntimeException thrown in the try block is considered the primary exception, while the FallenException thrown by the close() method\nis suppressed. For this reason, java.lang.RuntimeException is reported to the caller in\nthe main() method, and option A is the correct answer."
+    },
+    {
+      "id": 60,
+      "question": "Given the following application, which specific type of exception will be printed in the stack\ntrace at runtime?\npackage carnival;\npublic class WhackAnException {\npublic static void main(String[] hammer) {\ntry {\nthrow new ClassCastException();\n} catch (IllegalArgumentException e) {\nthrow new IllegalArgumentException();\n} catch (RuntimeException e) {\nthrow new NullPointerException();\n} finally {\nthrow new RuntimeException();\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ClassCastException"
+        },
+        {
+          "letter": "B",
+          "text": "IllegalArgumentException"
+        },
+        {
+          "letter": "C",
+          "text": "NullPointerException"
+        },
+        {
+          "letter": "D",
+          "text": "RuntimeException"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "For this question, notice that all the exceptions thrown or caught are unchecked\nexceptions. First, the ClassCastException is thrown in the try block and caught\nby the second catch block since it inherits from RuntimeException, not\nIllegalArgumentException. Next, a NullPointerException is thrown, but before\nit can be returned the finally block is executed and a RuntimeException replaces it.\nThe application exits, and the caller sees the RuntimeException in the stack trace, making option D the correct answer. If the finally block did not throw any exceptions, then\nNullPointerException would be printed at runtime."
+    }
+  ]
+}

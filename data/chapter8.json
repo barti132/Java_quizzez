@@ -1,0 +1,1246 @@
+{
+  "chapter": "Chapter 8 - Managing Concurrent Code Execution",
+  "totalQuestions": 40,
+  "questions": [
+    {
+      "id": 1,
+      "question": "How many times does the following code print How rude! at runtime?\npublic class Speaking {\nvoid talk() {\ntry {\nThread.sleep(10_000);\n} catch (InterruptedException e) {\nSystem.out.println(\"How rude!\");\n} }\npublic static void main(String[] args) {\nvar s = new Speaking();\nvar t = new Thread(() -> s.talk());\nt.run();\nt.interrupt();\nt.interrupt();\nt.interrupt();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but an exception is printed at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles, making option E incorrect. The Thread.run() method is called\ninstead of Thread.start(), so the program is single-threaded. The calls to interrupt()\nhave no effect, and nothing is printed at runtime, making option A correct. If start() were\nused instead of run(), then the code would print How rude! once, as it only catches one\nInterruptedException."
+    },
+    {
+      "id": 2,
+      "question": "What is the output of the following code snippet?\nCallable c = new Callable() {\npublic Object run() {\nSystem.out.print(\"X\");\nreturn 10;\n}\n};\nvar s = Executors.newScheduledThreadPool(1);\nfor(int i=0; i<10; i++) {\nFuture f = s.submit(c);\nf.get();\n}\ns.shutdown();\nSystem.out.print(\"Done!\");Chapter 8 ■ Managing Concurrent Code Execution 297",
+      "options": [
+        {
+          "letter": "A",
+          "text": "XXXXXXXXXXDone!"
+        },
+        {
+          "letter": "B",
+          "text": "Done!XXXXXXXXXX"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code does not compile because Callable must define a call() method, not a\nrun() method, so option C is the correct answer. If the code was fixed to use the correct\nmethod name, then it would complete without issue, printing XXXXXXXXXXDone! at runtime. The f.get() call will block and wait for the results before moving on to the next iteration of the for loop."
+    },
+    {
+      "id": 3,
+      "question": "Which of the following methods is not available on an ExecutorService instance?\n(Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "execute(Callable)"
+        },
+        {
+          "letter": "B",
+          "text": "shutdownNow()"
+        },
+        {
+          "letter": "C",
+          "text": "submit(Runnable)"
+        },
+        {
+          "letter": "D",
+          "text": "exit()"
+        },
+        {
+          "letter": "E",
+          "text": "submit(Callable)"
+        },
+        {
+          "letter": "F",
+          "text": "execute(Runnable)"
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "Option A is correct, as ExecutorService does not define nor inherit an overloaded method execute() that takes a Callable parameter. ExecutorService defines\ntwo shutdown methods, shutdown() and shutdownNow(), one of which is shown in\noption B. Option D is correct, as exit() does not exist and is not one of the shutdown\nmethods. The ExecutorService interface defines the two submit() methods shown\nin options C and E. Because ExecutorService extends Executor, it also inherits the\nexecute(Runnable) method presented in option F."
+    },
+    {
+      "id": 4,
+      "question": "The following program simulates flipping a coin an even number of times. Assuming five\nseconds is enough time for all of the tasks to finish, what is the output of the following\napplication?\nimport java.util.concurrent.*;\nimport java.util.concurrent.atomic.*;\npublic class Luck {\nprivate AtomicBoolean coin = new AtomicBoolean(false);\nvoid flip() {\ncoin.getAndSet(!coin.get());\n}\npublic static void main(String[] gamble) throws Exception {\nvar luck = new Luck();\nExecutorService s = Executors.newCachedThreadPool();\nfor(int i=0; i<1000; i++) {\ns.execute(() -> luck.flip());\n}\ns.shutdown();\nThread.sleep(5000);\nSystem.out.println(luck.coin.get());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false"
+        },
+        {
+          "letter": "B",
+          "text": "true"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time.298 Chapter 8 ■ Managing Concurrent Code Execution"
+        }
+      ],
+      "correct": "F",
+      "explanation": "The code compiles and runs without issue. Even though the thread-safe\nAtomicBoolean is used, it is not used in a thread-safe manner. The flip() method first\nretrieves the value and then sets a new value. These two calls are not executed together in an\natomic or synchronized manner. For this reason, the output could be true or false, with\none or more of the flips possibly being lost, and making option F correct."
+    },
+    {
+      "id": 5,
+      "question": "Which of the following is a recommended way to define an asynchronous task?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Create a Callable expression and pass it to an instance of an Executor."
+        },
+        {
+          "letter": "B",
+          "text": "Create a class that extends Thread and override the start() method."
+        },
+        {
+          "letter": "C",
+          "text": "Create a Runnable lambda expression and pass it to a Thread constructor."
+        },
+        {
+          "letter": "D",
+          "text": "Create an anonymous Runnable class that overrides the begin() method."
+        },
+        {
+          "letter": "E",
+          "text": "All of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option A is incorrect, although it would be correct if Executor were replaced with\nExecutorService. Option B is also incorrect, but it would be correct if start() were\nreplaced with run(). Option C is correct and is a common way to define an asynchronous\ntask using a lambda expression. Option D is incorrect, as Runnable does not inherit a\nbegin() method."
+    },
+    {
+      "id": 6,
+      "question": "Assuming five seconds is enough time for the threads in this program to complete, what is\nthe expected result of executing the following program?\nimport java.util.*;\npublic class Dance {\nint count = 0;\nsynchronized int step() { return count++; }\npublic static void main(String[] args) throws InterruptedException {\nvar waltz = new Dance();\nvar dancers = new ArrayList<Thread>();\nfor(int i=0; i<10; i++)\ndancers.add(new Thread(() -> waltz.step()));\nfor(Thread dancer : dancers)\ndancer.start();\ndancers.forEach(d -> d.interrupt());\nThread.sleep(5_000);\nSystem.out.print(waltz.count);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It always prints a number less than 10."
+        },
+        {
+          "letter": "B",
+          "text": "It always prints 10."
+        },
+        {
+          "letter": "C",
+          "text": "It may print 10 or a number less than 10."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but an exception is printed at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The code compiles and is thread-safe, since the call to step() is synchronized on the\nsame object. The calls to interrupt() have no effect because the threads are never in a\nwaiting state. For this reason, the output is always 10, making option B correct."
+    },
+    {
+      "id": 7,
+      "question": "Given the following program, how many times is Locked! expected to be printed?\nimport java.util.concurrent.locks.*;\npublic class Padlock {\nprivate Lock lock = new ReentrantLock();\npublic void lockUp() {\nif (lock.tryLock()) {Chapter 8 ■ Managing Concurrent Code Execution 299\nlock.lock();\nSystem.out.println(\"Locked!\");\nlock.unlock();\n}\n}\npublic static void main(String... unused) throws Exception {\nvar gate = new Padlock();\nfor(int i=0; i<5; i++) {\nnew Thread(() -> gate.lockUp()).start();\nThread.sleep(1_000);\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One time."
+        },
+        {
+          "letter": "B",
+          "text": "Five times."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time."
+        }
+      ],
+      "correct": "A",
+      "explanation": "If the tryLock() method returns true, then a lock is acquired that must be released.\nThat means the lockUp() method actually contains two calls to lock the object and only\none call to unlock it. For this reason, the first thread to reach tryLock() obtains a lock that\nis never released. For this reason, Locked! is printed only once, and option A is correct. If\nthe call to lock() inside the if statement were removed, then the expected output would be\nto print the statement five times."
+    },
+    {
+      "id": 8,
+      "question": "Which statements about the following application are correct? (Choose two.)\nimport java.util.concurrent.atomic.*;\nimport java.util.stream.*;\npublic class TicketTaker {\nlong ticketsSold;\nfinal AtomicInteger ticketsTaken;\npublic TicketTaker() {\nticketsSold = 0;\nticketsTaken = new AtomicInteger(0);\n}\npublic void performJob() {\nIntStream.iterate(1, p -> p+1)\n.parallel()\n.limit(100)\n.forEach(i -> ticketsTaken.getAndIncrement());\nIntStream.iterate(1, q -> q+1)\n.parallel()\n.limit(500)\n.forEach(i -> ++ticketsSold);\nSystem.out.print(ticketsTaken+\" \"+ticketsSold);\n}300 Chapter 8 ■ Managing Concurrent Code Execution\npublic static void main(String[] matinee) {\nnew TicketTaker().performJob();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The TicketTaker constructor does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The performJob() method does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "The class compiles."
+        },
+        {
+          "letter": "D",
+          "text": "The first number printed is consistently 100."
+        },
+        {
+          "letter": "E",
+          "text": "The second number printed is consistently 500."
+        },
+        {
+          "letter": "F",
+          "text": "A ConcurrentModificationException is thrown at runtime."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "The class compiles and runs without throwing an exception, making option C correct\nand options A, B, and F incorrect. The class defines two values that are incremented by multiple threads in parallel. The first IntStream statement uses an atomic class to update a\nvariable. Since updating an atomic numeric instance is thread-safe by design, the first number\nprinted is always 100, making option D correct. The second IntStream statement uses an\nint with the pre-increment operator (++), which is not thread-safe. It is possible two threads\ncould update and set the same value at the same time, a form of race condition, resulting in a\nvalue less than 500 and making option E incorrect."
+    },
+    {
+      "id": 9,
+      "question": "Given the original array, how many of the following for statements result in an\nexception at runtime, assuming each is executed independently?\nvar original = List.of(1,2,3,4,5);\nvar copy1 = new CopyOnWriteArrayList<Integer>(original);\nfor(Integer w : copy1)\ncopy1.remove(w);\nvar copy2 = Collections.synchronizedList(original);\nfor(Integer w : copy2)\ncopy2.remove(w);\nvar copy3 = new ArrayList<Integer>(original);\nfor(Integer w : copy3)\ncopy3.remove(w);\nvar copy4 = new ConcurrentLinkedQueue<Integer>(original);\nfor(Integer w : copy4)\ncopy4.remove(w);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile.Chapter 8 ■ Managing Concurrent Code Execution 301"
+        }
+      ],
+      "correct": "C",
+      "explanation": "CopyOnWriteArrayList makes a copy of the array every time it is modified,\npreserving the original list of values the iterator is using, even as the array is modified.\nFor this reason, the for loop using copy1 does not throw an exception at runtime.\nOn the other hand, the for loops using copy2 and copy3 both throw\nConcurrentModificationException at runtime since neither allows modification\nwhile they are being iterated upon. Finally, the ConcurrentLinkedQueue used in copy4\ncompletes without throwing an exception at runtime. For the exam, remember that the\nConcurrent classes order read/write access such that access to the class is consistent across\nall threads and processes, while the synchronized classes do not. Because exactly two of the\nfor statements produce exceptions at runtime, option C is the correct answer."
+    },
+    {
+      "id": 10,
+      "question": "Fill in the blanks: ______________ is a special case of ______________, in which two or more\nactive threads try to acquire the same set of locks and are repeatedly unsuccessful.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Deadlock, livelock"
+        },
+        {
+          "letter": "B",
+          "text": "Deadlock, resource starvation"
+        },
+        {
+          "letter": "C",
+          "text": "Livelock, resource starvation"
+        },
+        {
+          "letter": "D",
+          "text": "Resource starvation, race conditions"
+        },
+        {
+          "letter": "E",
+          "text": "Resource starvation, livelock"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Resource starvation is when a single active thread is perpetually unable to gain access to a\nshared resource. Livelock is a special case of resource starvation, in which two or more active\nthreads are unable to gain access to shared resources, repeating the process over and over\nagain. For these reasons, option C is the correct answer. Deadlock and livelock are similar,\nalthough in a deadlock situation the threads are stuck waiting, rather than being active or\nperforming any work. Finally, a race condition is an undesirable result when two tasks that\nshould be completed sequentially are completed at the same time."
+    },
+    {
+      "id": 11,
+      "question": "What is the output of the following program?\nimport java.util.stream.*;\npublic class Bull {\nvoid charge() {\nIntStream.range(1,6)\n.parallel()\n.forEachOrdered(System.out::print);\n}\npublic static void main(String[] args) {\nvar b = new Bull();\nb.charge();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "12345"
+        },
+        {
+          "letter": "B",
+          "text": "54321"
+        },
+        {
+          "letter": "C",
+          "text": "The output cannot be determined ahead of time."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Even though a parallel stream is used, the forEachOrdered() method forces the\nstream to operate in the order of its data source. The code compiles and runs without issue,\nprinting 12345 every time and making option A correct. If forEach() were used instead,\nthen the output would vary at runtime."
+    },
+    {
+      "id": 12,
+      "question": "What is the output of the following application?\n3: public class TpsReport {\n4: public void submitReports() {\n5: var s = Executors.newCachedThreadPool();\n6: Future bosses = s.submit(() -> System.out.print(\"1\"));\n7: s.shutdown();\n8: System.out.print(bosses.get());\n9: }302 Chapter 8 ■ Managing Concurrent Code Execution\n10: public static void main(String[] memo) {\n11: new TpsReport().submitReports();\n12: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "null"
+        },
+        {
+          "letter": "B",
+          "text": "1null"
+        },
+        {
+          "letter": "C",
+          "text": "1"
+        },
+        {
+          "letter": "D",
+          "text": "Line 6 does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "Line 8 does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The class does not compile because the bosses.get() on line 8 throws a checked\nInterruptedException and a checked ExecutionException, neither of which is handled nor declared by the submitReports() method. For this reason, option E is correct."
+    },
+    {
+      "id": 13,
+      "question": "Which of the following static methods do not exist in the Executors class? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "newFixedScheduledThreadPool()"
+        },
+        {
+          "letter": "B",
+          "text": "newThreadPool()"
+        },
+        {
+          "letter": "C",
+          "text": "newFixedThreadPool(int)"
+        },
+        {
+          "letter": "D",
+          "text": "newSingleThreadExecutor()"
+        },
+        {
+          "letter": "E",
+          "text": "newScheduledThreadPool(int)"
+        },
+        {
+          "letter": "F",
+          "text": "newSingleThreadScheduledExecutor()"
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "Options C, D, E, and F are all proper ways to obtain instances of\nExecutorService. Remember that newSingleThreadExecutor() is equivalent to\ncalling newFixedThreadPool(int) with a value of 1. The correct answers are options A\nand B, as neither of these methods exists."
+    },
+    {
+      "id": 14,
+      "question": "How many times does the following application print Ready at runtime?\npackage parade;\nimport java.util.concurrent.*;\npublic class CartoonCat {\nprivate void await(CyclicBarrier c) {\ntry {\nc.await();\n} catch (Exception e) {}\n}\npublic void march(CyclicBarrier c) {\nvar s = Executors.newSingleThreadExecutor();\nfor(int i=0; i<12; i++)\ns.execute(() -> await(c));\ns.shutdown();\n}\npublic static void main(String... strings) {\nnew CartoonCat().march(new CyclicBarrier(4,\n() -> System.out.println(\"Ready\")));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "OneChapter 8 ■ Managing Concurrent Code Execution 303"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code compiles without issue but hangs indefinitely at runtime. The application defines\na thread executor with a single thread and 12 submitted tasks. Because only one thread is\navailable to work at a time, the first thread will wait endlessly on the call to await(). Since\nthe CyclicBarrier requires four threads to release it, the application waits endlessly in a\nfrozen condition. Since the barrier is never reached and the code hangs, the application will\nnever output Ready, making option A the correct answer."
+    },
+    {
+      "id": 15,
+      "question": "Let’s say you needed a thread executor to create tasks for a CyclicBarrier that has a barrier\nlimit of five threads. Which static method in ExecutorService should you use to obtain it?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "newSingleThreadExecutor()"
+        },
+        {
+          "letter": "B",
+          "text": "newSingleThreadScheduledExecutor()"
+        },
+        {
+          "letter": "C",
+          "text": "newCachedThreadPool()"
+        },
+        {
+          "letter": "D",
+          "text": "newFixedThreadPool(2)"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Trick question! ExecutorService does not contain any of these methods. To obtain an\ninstance of a thread executor, you need to use the Executors factory class. For this reason,\noption E is the correct answer. If the question had instead asked which Executors method\nto use, then the correct answer would be option C."
+    },
+    {
+      "id": 16,
+      "question": "The following diagrams represent the order of read/write operations of two threads sharing\na common variable. Each thread first reads the value of the variable from memory and then\nwrites a new value of the variable back to memory. Which diagram demonstrates proper\nsynchronization?",
+      "options": [
+        {
+          "letter": "A",
+          "text": ""
+        },
+        {
+          "letter": "B",
+          "text": "Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared Memory304 Chapter 8 ■ Managing Concurrent Code Execution"
+        },
+        {
+          "letter": "C",
+          "text": ""
+        },
+        {
+          "letter": "D",
+          "text": ""
+        }
+      ],
+      "correct": "C",
+      "explanation": "Part of synchronizing access to a variable is ensuring that read/write operations are\natomic or happen without interruption. For example, an increment operation requires\nreading a value and then immediately writing it. If any thread interrupts this process, then\ndata could be lost. In this regard, option C shows proper synchronized access. Thread 2 reads\na value and then writes it without interruption. Thread 1 then reads the new value and writes\nit. The rest of the answers are incorrect because one thread writes data to the variable in between another thread reading and writing to the same variable."
+    },
+    {
+      "id": 17,
+      "question": "What is the output of the following program? (Choose three.)\nimport java.util.concurrent.atomic.*;\nimport java.util.stream.*;\npublic class Circus {\nprivate static int seal = 0;\nprivate static volatile int tiger = 0;\nprivate static AtomicInteger lion = new AtomicInteger(0);\npublic static void main(String[] tent) {\nStream.iterate(0, x -> x + 1)\n.parallel()\n.limit(100)\n.forEach(q -> {seal++; tiger++; lion.incrementAndGet();});\nSystem.out.println(seal + \",\" + tiger + \",\"+ lion);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first number printed may be less than 100."
+        },
+        {
+          "letter": "B",
+          "text": "The first number printed is always 100. Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared MemoryChapter 8 ■ Managing Concurrent Code Execution 305"
+        },
+        {
+          "letter": "C",
+          "text": "The second number printed may be less than 100."
+        },
+        {
+          "letter": "D",
+          "text": "The second number printed is always 100."
+        },
+        {
+          "letter": "E",
+          "text": "The third number printed may be less than 100."
+        },
+        {
+          "letter": "F",
+          "text": "The third number printed is always 100."
+        }
+      ],
+      "correct": "A,C,F",
+      "explanation": "The increment operators on the first two numbers are not thread-safe, so the output\ncould be 100 or a number less than 100, making options A and C correct. Remember, the\nvolatile attribute does not guarantee thread safety. The last number printed is incremented in a thread-safe manner, making option F the other correct answer."
+    },
+    {
+      "id": 18,
+      "question": "What is the output of the following application?\nimport java.util.*;\nimport java.util.concurrent.*;\npublic class Race {\nExecutorService service = Executors.newFixedThreadPool(8);\npublic static int sleep() {\ntry { Thread.sleep(1000); } catch (Exception e) {}\nreturn 1;\n}\npublic void hare() {\ntry {\nCallable<Integer> c = () -> sleep();\nfinal var r = List.of(c,c,c);\nvar results = service.invokeAll(r);\nSystem.out.println(\"Hare won the race!\");\n} catch (Exception e) {e.printStackTrace();}\n}\npublic void tortoise() {\ntry {\nCallable<Integer> c = () -> sleep();\nfinal var r = List.of(c,c,c);\nInteger result = service.invokeAny(r);\nSystem.out.println(\"Tortoise won the race!\");\n} catch (Exception e) {e.printStackTrace();}\n}\npublic static void main(String[] p) throws Exception {\nvar race = new Race();\nrace.service.execute(() -> race.hare());\nrace.service.execute(() -> race.tortoise());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Hare won the race! is printed first."
+        },
+        {
+          "letter": "B",
+          "text": "Tortoise won the race! is printed first.306 Chapter 8 ■ Managing Concurrent Code Execution"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The code compiles and runs without issue. The two methods hare() and tortoise()\nare nearly identical, with one calling invokeAll() and the other calling invokeAny().\nCalling the invokeAll() method causes the current thread to wait until all tasks are finished, while calling the invokeAny() method will cause the current thread to wait until\nat least one task is complete. Both ExecutorService methods operate synchronously,\nwaiting for a result from one or more tasks, but each method call has been submitted to the\nthread executor as an asynchronous task. For this reason, both methods will take about one\nsecond to complete, and since either can finish first, the output will vary at runtime, making\noption F correct. Note that this program does not terminate, since the ExecutorService is\nnot shut down."
+    },
+    {
+      "id": 19,
+      "question": "Which of the following concurrent collections is sorted? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ConcurrentSkipList"
+        },
+        {
+          "letter": "B",
+          "text": "ConcurrentSkipListSet"
+        },
+        {
+          "letter": "C",
+          "text": "CopyOnWriteArrayList"
+        },
+        {
+          "letter": "D",
+          "text": "ConcurrentSkipListMap"
+        },
+        {
+          "letter": "E",
+          "text": "ConcurrentLinkedQueue"
+        },
+        {
+          "letter": "F",
+          "text": "LinkedBlockingQueue"
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "ConcurrentSkipList does not exist as a concurrent collection, making option A\nincorrect. ConcurrentSkipListSet implements the SortedSet interface, in which the\nelements are kept sorted, making option B correct. ConcurrentSkipListMap implements\nthe SortedMap interface, in which the keys are kept sorted, making option D correct. The\nother options define structures that are ordered, but not sorted. Remember, if you see\nSkipList as part of a concurrent class name, it means it is sorted in some way."
+    },
+    {
+      "id": 20,
+      "question": "What is the output of the following application?\npackage taxes;\nimport java.util.concurrent.*;\npublic class Accountant {\npublic static void completePaperwork() {\nSystem.out.print(\"[Filing]\");\n}\npublic static double getPi() {\nreturn 3.14159;\n}\npublic static void main(String[] args) throws Exception {\nExecutorService x = Executors.newSingleThreadExecutor();\nFuture<?> f1 = x.submit(() -> completePaperwork());\nFuture<Object> f2 = x.submit(() -> getPi());\nSystem.out.print(f1.get()+\" \"+f2.get());\nx.shutdown();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[Filing]"
+        },
+        {
+          "letter": "B",
+          "text": "[Filing]3.14159"
+        },
+        {
+          "letter": "C",
+          "text": "[Filing]null 3.14159"
+        },
+        {
+          "letter": "D",
+          "text": "The declaration of f1 does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The declaration of f2 does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time.Chapter 8 ■ Managing Concurrent Code Execution 307"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The code compiles without issue, so options D and E are incorrect. The f1 declaration\nuses the version of submit() in ExecutorService, which takes a Runnable and returns\na Future<?>, while the f2 declaration uses an overloaded version of submit(), which\ntakes a Callable expression and returns a generic Future object. The call f1.get()\nwaits until the task is finished and always returns null, since Runnable expressions have a\nvoid return type, so [Filing]null is printed first. The call to the f2.get() return then\nprints 3.14159. For these reasons, option C is the correct answer."
+    },
+    {
+      "id": 21,
+      "question": "Assuming 10 seconds is enough time for all the tasks to finish, what statements about the following program are correct? (Choose two.)\nimport java.util.concurrent.*;\nimport java.util.concurrent.atomic.*;\npublic class Clock {\nprivate AtomicLong bigHand = new AtomicLong(0);\nvoid incrementBy10() {\nbigHand.getAndSet(bigHand.get() + 10);\n}\npublic static void main(String[] c) throws Exception {\nvar smartWatch = new Clock();\nExecutorService s = Executors.newCachedThreadPool();\nfor(int i=0; i<100; i++) {\ns.submit(() -> smartWatch.incrementBy10()).get();\n}\ns.shutdown();\ns.awaitTermination(10, TimeUnit.SECONDS);\nSystem.out.println(smartWatch.bigHand.get());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "The incrementBy10() method is thread-safe."
+        },
+        {
+          "letter": "C",
+          "text": "The incrementBy10() method is not thread-safe."
+        },
+        {
+          "letter": "D",
+          "text": "The output is 1000 on every execution."
+        },
+        {
+          "letter": "E",
+          "text": "The output cannot be determined ahead of time."
+        },
+        {
+          "letter": "F",
+          "text": "The code hangs indefinitely at runtime."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "The code compiles and runs without issue. While an AtomicLong is used, there are\ntwo calls on this variable, the first to retrieve the value and the second to set the new value.\nThese two calls are not executed together in an atomic or synchronized manner. For this\nreason, the incrementBy10() method is not thread-safe, and option C is correct. That\nsaid, the code performs in single-threaded manner at runtime because the call to get() in\nthe main() method waits for each thread to finish. For this reason, the output is consistently\n1000, making option D correct."
+    },
+    {
+      "id": 22,
+      "question": "What is the most likely result of executing the following application?\npackage jokes;\nimport java.util.concurrent.*;\npublic class Riddle {\npublic void sleep() {\ntry { Thread.sleep(5000); } catch (Exception e) {}\n}\npublic String getQuestion(Riddle r) {\nsynchronized {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"How many programmers does it take \"\n+ \"to change a light bulb?\";\n} }308 Chapter 8 ■ Managing Concurrent Code Execution\npublic synchronized String getAnswer(Riddle r) {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"None, that's a hardware problem\";\n}\npublic static void main(String... ununused) {\nvar r1 = new Riddle();\nvar r2 = new Riddle();\nvar s = Executors.newFixedThreadPool(2);\ns.submit(() -> r1.getQuestion(r2));\ns.execute(() -> r2.getAnswer(r1));\ns.shutdown();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A deadlock is produced at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "A livelock is produced at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "The application completes successfully."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The synchronized block used in the getQuestion() method requires an object to\nsynchronize on. Without it, the code does not compile, and option D is the correct answer."
+    },
+    {
+      "id": 23,
+      "question": "Which ScheduledExecutorServicemethod can result in the same action being executed by two\nthreads at the same time?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "scheduleAtFixedDelay()"
+        },
+        {
+          "letter": "B",
+          "text": "scheduleAtFixedRate()"
+        },
+        {
+          "letter": "C",
+          "text": "scheduleWithFixedDelay()"
+        },
+        {
+          "letter": "D",
+          "text": "scheduleAtSameRate()"
+        },
+        {
+          "letter": "E",
+          "text": "scheduleWithRate()"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options A, D, and E include method names that do not exist in\nScheduledExecutorService. The scheduleAtFixedRate() method creates a new\ntask for the associated action at a set time interval, even if previous tasks for the same\naction are still active. In this manner, multiple threads working on the same action could\nbe executing at the same time, making option B the correct answer. On the other hand,\nscheduleWithFixedDelay() waits until each task is completed before scheduling the\nnext task, guaranteeing at most one thread working on the action is active in the thread pool."
+    },
+    {
+      "id": 24,
+      "question": "What is the output of the following application?\npackage olympics;\nimport java.util.concurrent.*;\npublic class Athlete {\nint stroke = 0;\npublic synchronized void swimming() {\nstroke++;\n}Chapter 8 ■ Managing Concurrent Code Execution 309\nprivate int getStroke() {\nsynchronized(this) { return stroke; }\n}\npublic static void main(String... laps) {\nExecutorService s = Executors.newFixedThreadPool(10);\nAthlete a = new Athlete();\nfor(int i=0; i<1000; i++) {\ns.execute(() -> a.swimming());\n}\ns.shutdown();\nSystem.out.print(a.getStroke());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A deadlock is produced at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "A livelock is produced at runtime."
+        },
+        {
+          "letter": "C",
+          "text": "1000"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The result is unknown until runtime because stroke is not written in a thread-safe manner and a write may be lost."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The application compiles, so option D is incorrect. The stroke variable is thread-safe\nin the sense that no write is lost since all writes are wrapped in a synchronized method,\nmaking option E incorrect. The issue here is that the main() method reads the value of\ngetStroke() while tasks may still be executing within the ExecutorService. The\nshutdown() method stops new tasks from being submitted but does not wait for\npreviously submitted tasks to complete. Therefore, the result may output 0, 1000, or\nanything in between, making option F the correct answer. If the ExecutorService method\nawaitTermination() is called before the value of stroke is printed and enough time\nelapses, then the result would be 1000 every time."
+    },
+    {
+      "id": 25,
+      "question": "Which of the following is most likely to be caused by a race condition?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A thread perpetually denied access to a resource"
+        },
+        {
+          "letter": "B",
+          "text": "A program hanging indefinitely"
+        },
+        {
+          "letter": "C",
+          "text": "An int variable incorrectly reporting the number of times an operation was performed"
+        },
+        {
+          "letter": "D",
+          "text": "Two threads actively trying to restart a blocked process that is guaranteed to always end the same way"
+        },
+        {
+          "letter": "E",
+          "text": "Two threads endlessly waiting on each other to release shared locks"
+        }
+      ],
+      "correct": "C",
+      "explanation": "A race condition is an undesirable result when two tasks that should be completed\nsequentially are completed at the same time. The result is often corruption of data in some\nway. If two threads are both modifying the same int variable and there is no synchronization, then a race condition can occur with one of the writes being lost. For this reason, option\nC is the correct answer. Option A is the description of resource starvation. Options D and\nE are describing livelock and deadlock, respectively, while option B is the potential result of\neither of those events occurring.528 Appendix ■ Answers to Review Questions"
+    },
+    {
+      "id": 26,
+      "question": "Which statement about the following class is correct?\npackage my;\nimport java.util.*;\npublic class ThreadSafeList {\nprivate List<Integer> data = new ArrayList<>();\npublic synchronized void addValue(int value) {\ndata.add(value);\n}\npublic int getValue(int index) {\nreturn data.get(index);\n}310 Chapter 8 ■ Managing Concurrent Code Execution\npublic int size() {\nsynchronized(ThreadSafeList.class) {\nreturn data.size();\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles and is thread-safe."
+        },
+        {
+          "letter": "B",
+          "text": "The code compiles and is not thread-safe."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile because of the size() method."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile because of the getValue() method."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile for another reason."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The class compiles without issue. The class attempts to create a synchronized version of a\nList<Integer>. The size() and addValue() methods help synchronize the read/write\noperations. Unfortunately, the getValue() method is not synchronized so the class is not\nthread-safe, and option B is the correct answer. It is possible that one thread could add to the\ndata object while another thread is reading from the object, leading to an unexpected result."
+    },
+    {
+      "id": 27,
+      "question": "Which two method names, when filled into the print2() method, produce the same output\nas the print1() method? Assume the input arguments for each represent the same non-null\nnumeric value.\npublic static synchronized void print1(int counter) {\nSystem.out.println(counter--);\nSystem.out.println(++counter);\n}\npublic static synchronized void print2(AtomicInteger counter) {\nSystem.out.println(counter. );\nSystem.out.println(counter. );\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "decrementAndGet() and getAndIncrement()"
+        },
+        {
+          "letter": "B",
+          "text": "decrementAndGet() and incrementAndGet()"
+        },
+        {
+          "letter": "C",
+          "text": "getAndDecrement() and getAndIncrement()"
+        },
+        {
+          "letter": "D",
+          "text": "getAndDecrement() and incrementAndGet()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The post-decrement operator (––) decrements a value but returns the original value.\nIt is equivalent to the atomic getAndDecrement() method. The pre-increment operator\n(++) increments a value and then returns the new value. It is equivalent to the\nincrementAndGet() atomic operation. For these reasons, option D is the correct answer."
+    },
+    {
+      "id": 28,
+      "question": "What is the result of executing the following application multiple times?\npackage bears;\nimport java.util.*;\npublic class Bounce {\npublic static void main(String... legend) {\nList.of(1,2,3,4).stream()\n.forEach(System.out::println);\nList.of(1,2,3,4).parallel()\n.forEach(System.out::println);Chapter 8 ■ Managing Concurrent Code Execution 311\nList.of(1,2,3,4).parallel()\n.forEachOrdered(System.out::println);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Only the first stream prints the same order every time."
+        },
+        {
+          "letter": "B",
+          "text": "Only the first and second streams print the same order every time."
+        },
+        {
+          "letter": "C",
+          "text": "Only the first and third streams print the same order every time."
+        },
+        {
+          "letter": "D",
+          "text": "All of the streams print the same order every time."
+        },
+        {
+          "letter": "E",
+          "text": "None of the streams prints the same order every time."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "F",
+      "explanation": "A List instance, which inherits the Collection interface, does not have a parallel()\nmethod. Instead, parallelStream() must be used, making option F correct. If the code\nwas corrected to use parallelStream(), then the first and third streams would be consistently printed in the same order. Remember that the forEachOrdered() method forces\nparallel streams to run in sequential order. The order of the second operation would be\nunknown ahead of time, since it uses a parallel stream."
+    },
+    {
+      "id": 29,
+      "question": "How many lines of the following code snippet contain compilation errors?\n11: ScheduledExecutorService t = Executors\n12: .newSingleThreadScheduledExecutor();\n13: Future result = t.execute(System.out::println);\n14: t.invokeAll(null);\n15: t.scheduleAtFixedRate(() -> {return;},5,TimeUnit.MINUTES);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 13 does not compile because the execute() method has a return type of void, not\nFuture. Line 15 does not compile because scheduleAtFixedRate() requires four arguments that include an initial delay and period value. For these two reasons, option C is the\ncorrect answer."
+    },
+    {
+      "id": 30,
+      "question": "How many times does the following application print W at runtime?\npackage crew;\nimport java.util.concurrent.*;\nimport java.util.stream.*;\npublic class Boat {\nprivate void waitTillFinished(CyclicBarrier c) {\ntry {\nc.await();\nSystem.out.print(\"W\");\n} catch (Exception e) {}\n}\npublic void row(ExecutorService s) {\nvar cb = new CyclicBarrier(5);\nIntStream.iterate(1, i-> i+1)\n.limit(12)\n.forEach(i -> s.submit(() -> waitTillFinished(cb)));\n}312 Chapter 8 ■ Managing Concurrent Code Execution\npublic static void main(String[] oars) {\nExecutorService service = null;\ntry {\nservice = Executors.newCachedThreadPool();\nnew Boat().row(service);\n} finally {\nservice.isShutdown();\n} } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero."
+        },
+        {
+          "letter": "B",
+          "text": "Ten."
+        },
+        {
+          "letter": "C",
+          "text": "Twelve."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The output cannot be determined ahead of time."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "When a CyclicBarrier goes over its limit, the barrier count is reset to zero. The application defines a CyclicBarrier with a barrier limit of five threads. The application then\nsubmits 12 tasks to a cached executor service. In this scenario, a cached thread executor\nwill use between five and 12 threads, reusing existing threads as they become available. In\nthis manner, there is no worry about running out of available threads. The barrier will then\ntrigger twice, printing five values for each of the sets of threads, for a total of ten W characters. For this reason, option B is the correct answer."
+    },
+    {
+      "id": 31,
+      "question": "Using the Boat class from the previous question, what is the final state of the application?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The application produces an exception at runtime."
+        },
+        {
+          "letter": "B",
+          "text": "The application terminates successfully."
+        },
+        {
+          "letter": "C",
+          "text": "The application hangs indefinitely because the ExecutorService is never shut down."
+        },
+        {
+          "letter": "D",
+          "text": "The application hangs at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The application does not terminate successfully nor does it produce an exception at runtime, making options A and B incorrect. It hangs at runtime because the CyclicBarrier\nlimit is 5, while the number of tasks submitted and awaiting activation is 12. This means that\ntwo of the tasks will be left over, stuck in a deadlocked state, waiting for the barrier limit\nto be reached but with no more tasks available to trigger it. For this reason, option D is the\ncorrect answer. If the number of tasks were a multiple of the barrier limit, such as 15 instead\nof 12, then the application would still hang because the ExecutorService is never shut\ndown, and option C would be correct. The isShutdown() call in the application finally\nblock does not trigger a shutdown. Instead, shutdown() should have been used."
+    },
+    {
+      "id": 32,
+      "question": "Given the following code snippet, what statement about the values printed on lines p1 and p2\nis correct?\nvar db = Collections.synchronizedList(new ArrayList<>());\nIntStream.range(1,6)\n.parallel()\n.map(i -> {db.add(i); return i;})\n.forEachOrdered(System.out::print); // p1\nSystem.out.println();\ndb.forEach(System.out::print); // p2",
+      "options": [
+        {
+          "letter": "A",
+          "text": "They are always the same."
+        },
+        {
+          "letter": "B",
+          "text": "They are sometimes the same."
+        },
+        {
+          "letter": "C",
+          "text": "They are never the same."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code will produce a ConcurrentModificationException at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above.Chapter 8 ■ Managing Concurrent Code Execution 313"
+        }
+      ],
+      "correct": "B",
+      "explanation": "First, the class uses a synchronized list, which is thread-safe and allows modification from\nmultiple threads, making option E incorrect. The process generates a stream of numbers from\n1 to 5 and sends them into a parallel stream where the map() is applied, possibly out of\norder. This results in elements being written to db in a random order. The stream then applies\nthe forEachOrdered() method to its elements, which will force the parallel stream into a\nsingle-threaded state. At runtime, line p1 will print the results in order every time as 12345.\nOn the other hand, since the elements were added to db in a random order, the output of line\np2 is random and cannot be predicted ahead of time. Since the results may sometimes be the\nsame, option B is the correct answer. Part of the reason that the results are indeterminate is\nthat the question uses a stateful lambda expression, which based on your studies should be\navoided!"
+    },
+    {
+      "id": 33,
+      "question": "Given the following program, how many times is TV Time expected to be printed? Assume\n10 seconds is enough time for each task created by the program to complete.\nimport java.util.concurrent.*;\nimport java.util.concurrent.locks.*;\npublic class Television {\nprivate static Lock myTurn = new ReentrantLock();\npublic void watch() {\ntry {\nif (myTurn.lock(5, TimeUnit.SECONDS)) {\nSystem.out.println(\"TV Time\");\nmyTurn.unlock();\n}\n} catch (InterruptedException e) {}\n}\npublic static void main(String[] t) throws Exception {\nvar newTv = new Television();\nfor (int i = 0; i < 3; i++) {\nnew Thread(() -> newTv.watch()).start();\nThread.sleep(10*1000);\n}\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One time."
+        },
+        {
+          "letter": "B",
+          "text": "Three times."
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code hangs indefinitely at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "The output cannot be determined ahead of time."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The Lock interface does not include an overloaded version of lock() that takes a timeout value and returns a boolean. For this reason, the code does not compile, and option\nC is correct. If tryLock(long,TimeUnit) had been used instead of lock(), then the\nprogram would have been expected to print TV Time three times at runtime."
+    },
+    {
+      "id": 34,
+      "question": "Given the original array, how many of the following for statements enter an infinite loop at\nruntime, assuming each is executed independently?\nvar original = new ArrayList<Integer>(List.of(1,2,3));\nvar copy1 = new ArrayList<Integer>(original);\nfor(Integer q : copy1)\ncopy1.add(1);\nvar copy2 = new CopyOnWriteArrayList<Integer>(original);\nfor(Integer q : copy2)\ncopy2.add(2);314 Chapter 8 ■ Managing Concurrent Code Execution\nvar copy3 = new LinkedBlockingQueue<Integer>(original);\nfor(Integer q : copy3)\ncopy3.offer(3);\nvar copy4 = Collections.synchronizedList(original);\nfor(Integer q : copy4)\ncopy4.add(4);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B",
+      "explanation": "The for loops using copy1 and copy4 both throw a ConcurrentModification\nException at runtime, since neither allows modification while they are being iterated upon.\nNext, CopyOnWriteArrayList makes a copy of the collection every time it is modified,\npreserving the original list of values the iterator is using. For this reason, the for loop using\ncopy2 completes without throwing an exception or creating an infinite loop. On the other\nhand, the loop with copy3 enters an infinite loop at runtime. Each time a new value is\ninserted, the iterator is updated, and the process repeats. Since this is the only statement that\nproduces an infinite loop, option B is correct."
+    },
+    {
+      "id": 35,
+      "question": "Which ExecutorService method guarantees all running tasks are stopped in an\norderly fashion?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "shutdown()"
+        },
+        {
+          "letter": "B",
+          "text": "shutdownNow()"
+        },
+        {
+          "letter": "C",
+          "text": "halt()"
+        },
+        {
+          "letter": "D",
+          "text": "shutdownAndTerminate()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "The shutdown() method prevents new tasks from being added but allows existing\ntasks to finish. In addition to preventing new tasks from being added, the shutdownNow()\nmethod also attempts to stop all running tasks. Neither of these methods guarantees any task\nwill be stopped, making option E the correct answer. Options C and D are incorrect because\nthey name methods that do not exist in ExecutorService."
+    },
+    {
+      "id": 36,
+      "question": "Assuming 10 seconds is enough time for all of the tasks to finish, what is the output of the\nfollowing application?\nimport java.util.concurrent.*;\npublic class Bank {\nstatic int cookies = 0;\npublic synchronized void deposit(int amount) {\ncookies += amount;\n}\npublic static synchronized void withdrawal(int amount) {\ncookies -= amount;\n}\npublic static void main(String[] amount) throws Exception {\nvar teller = Executors.newScheduledThreadPool(50);\nBank bank = new Bank();\nfor(int i=0; i<25; i++) {\nteller.submit(() -> bank.deposit(5));\nteller.submit(() -> bank.withdrawal(5));\n}\nteller.shutdown();Chapter 8 ■ Managing Concurrent Code Execution 315\nteller.awaitTermination(10, TimeUnit.SECONDS);\nSystem.out.print(bank.cookies);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "125"
+        },
+        {
+          "letter": "C",
+          "text": "-125"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The result is unknown until runtime."
+        },
+        {
+          "letter": "F",
+          "text": "An exception is thrown."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The program compiles and does not throw an exception at runtime. The class attempts\nto add and remove values from a single cookie variable in a thread-safe manner but fails\nto do so because the deposit() and withdrawal() methods synchronize on different objects. The instance method deposit() synchronizes on the bank object, while the\nstatic method withdrawal() synchronizes on the static Bank.class object. Since the\ncompound assignment operators (+=) and (-=) are not thread-safe, it is possible for one call\nto modify the value of cookies while the other is already operating on it, resulting in a loss\nof information. For this reason, the output cannot be predicted, and option E is the correct\nanswer. If the two methods were synchronized on the same object, then the cookies variable would be protected from concurrent modifications, printing 0 at runtime."
+    },
+    {
+      "id": 37,
+      "question": "What is the output of the following application?\nimport java.util.*;\npublic class SearchList<T> {\nprivate List<T> data;\nprivate boolean foundMatch = false;\npublic SearchList(List<T> list) {\nthis.data = list;\n}\npublic void exists(T v,int start, int end) {\nif(end-start==0) {}\nelse if(end-start==1) {\nfoundMatch = foundMatch || v.equals(data.get(start));\n} else {\nfinal int middle = start + (end-start)/2;\nnew Thread(() -> exists(v,start,middle)).run();\nnew Thread(() -> exists(v,middle,end)).run();\n}\n}\npublic static void main(String[] a) throws Exception {\nList<Integer> data = List.of(1,2,3,4,5,6);\nSearchList<Integer> t = new SearchList<Integer>(data);\nt.exists(5, 0, data.size());\nSystem.out.print(t.foundMatch);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "true"
+        },
+        {
+          "letter": "B",
+          "text": "false"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The result is unknown until runtime."
+        },
+        {
+          "letter": "E",
+          "text": "An exception is thrown."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above.316 Chapter 8 ■ Managing Concurrent Code Execution"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The code attempts to search for a matching element in an array using multiple threads.\nWhile it does not contain any compilation problems, it does contain an error. Despite creating Thread instances, it is not a multithreaded program. Calling run() on a Thread runs\nthe process as part of the current thread. To be a multithreaded execution, it would need to\ninstead call the start() method. For this reason, the code completes synchronously, waiting\nfor each method call to return before moving on to the next and printing true at the end of\nthe execution, making option A the correct answer. On the other hand, if start() had been\nused, then the application would be multithreaded but not thread-safe. The calls to update\nfoundMatch are not synchronized, and even if they were, the result might not be available\nby the time print() in the main() method was called. For this reason, the result would\nnot be known until runtime.530 Appendix ■ Answers to Review Questions"
+    },
+    {
+      "id": 38,
+      "question": "Given the following code snippet, what statement about the values printed on lines q1 and q2\nis correct?\nvar mitchsWorkout = new CopyOnWriteArrayList<Integer>();\nList.of(1,5,7,9).stream().parallel()\n.forEach(mitchsWorkout::add);\nmitchsWorkout\n.forEachOrdered(System.out::print); // q1\nList.of(1,5,7,9).stream().parallel()\n.forEachOrdered(System.out::print); // q2",
+      "options": [
+        {
+          "letter": "A",
+          "text": "They are always the same."
+        },
+        {
+          "letter": "B",
+          "text": "They are sometimes the same."
+        },
+        {
+          "letter": "C",
+          "text": "They are never the same."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code will produce a ConcurrentModificationException at runtime."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The forEachOrdered() method is available on streams, not collections. For this\nreason, line q1 does not compile, and option D is correct. If the forEach() method were\nused instead, then the code would compile with the values printed on line q1 varying at runtime and the values printed on line q2 being consistent."
+    },
+    {
+      "id": 39,
+      "question": "What is the output of the following program? (Choose three.)\nimport java.util.concurrent.atomic.*;\nimport java.util.stream.*;\npublic class Moon {\nprivate volatile AtomicLong green = new AtomicLong(0);\nprivate volatile int cheese = 0;\nprivate volatile int rocket = 0;\nprivate void takeOff() {\nStream.iterate(0, x -> x + 1).parallel().limit(1000).forEach(q -> {\ngreen.getAndIncrement();\ncheese++;\nsynchronized (this) {\n++rocket;\n}\n});\nSystem.out.println(green + \",\" + cheese + \",\" + rocket);\n}\npublic static void main(String[] tent) {\nnew Moon().takeOff();\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first number printed may be less than 1000."
+        },
+        {
+          "letter": "B",
+          "text": "The first number printed is always 1000.Chapter 8 ■ Managing Concurrent Code Execution 317"
+        },
+        {
+          "letter": "C",
+          "text": "The second number printed may be less than 1000."
+        },
+        {
+          "letter": "D",
+          "text": "The second number printed is always 1000."
+        },
+        {
+          "letter": "E",
+          "text": "The third number printed may be less than 1000."
+        },
+        {
+          "letter": "F",
+          "text": "The third number printed is always 1000."
+        }
+      ],
+      "correct": "B,C,F",
+      "explanation": "The use of the volatile attribute in this program does not have any impact, as\nvolatile does not guarantee thread-safety. The first operation is thread-safe because an\nAtomicInteger is used, making option B correct. The second operation is not threadsafe because ++ is used in an unsafe manner, making option C correct. The last operation is\nthread-safe because it is synchronized on the same object, making option F correct."
+    },
+    {
+      "id": 40,
+      "question": "Assuming the two stream operators are compiled and executed independently, which\nstatements are correct? (Choose two.)\nvar drink = List.of(\"coke\", \"soda\", \"pop\");\nSystem.out.print(drink.parallelStream()\n.parallel()\n.reduce(0, (c1, c2) -> c1 + c2.length(), (s1, s2) -> s1 + s2));\nSystem.out.print(drink.stream()\n.reduce(0, (c1, c2) -> c1 + c2.length(), (s1, s2) -> s1 + s2));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The first number printed is sometimes 11."
+        },
+        {
+          "letter": "B",
+          "text": "The first number printed is always 11."
+        },
+        {
+          "letter": "C",
+          "text": "The second number printed is sometimes 11."
+        },
+        {
+          "letter": "D",
+          "text": "The second number printed is always 11."
+        },
+        {
+          "letter": "E",
+          "text": "The first stream operation does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The second stream operation does not compile."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "The reduce() operation used is safe for both serial and parallel streams; therefore,\nthe output for both operations is always 11, making options B and D correct."
+    }
+  ]
+}

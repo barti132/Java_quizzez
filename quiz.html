@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Quiz - Multi Chapter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        /* MENU SCREEN */
+        #menuScreen {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .menu-header {
+            text-align: center;
+        }
+
+        .menu-header h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .menu-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .menu-section h2 {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .chapter-btn {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .chapter-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .random-btn {
+            padding: 18px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .random-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* QUIZ SCREEN */
+        #quizScreen {
+            display: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .back-button {
+            background: #764ba2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background: #5f3a86;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .score-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background-color: #f9f9ff;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background-color: #f0f4ff;
+        }
+
+        .option.correct {
+            border-color: #28a745;
+            background-color: #e8f5e9;
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background-color: #ffebee;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .feedback-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+            color: #004085;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .summary {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .summary h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .summary-score {
+            font-size: 48px;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .summary-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .summary-details {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .summary-details p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .menu-header h1 {
+                font-size: 24px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .chapters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- MENU SCREEN -->
+        <div id="menuScreen">
+            <div class="menu-header">
+                <h1>☕ Java Quiz</h1>
+                <p>Wybierz rozdział lub stwórz losowy quiz</p>
+            </div>
+
+            <div class="menu-section">
+                <h2>📚 Wybierz Rozdział</h2>
+                <div class="chapters-grid" id="chaptersGrid"></div>
+            </div>
+
+            <div class="menu-section">
+                <h2>🎲 Tryb Losowy</h2>
+                <button class="random-btn" onclick="startRandomQuiz()">
+                    🎯 50 Losowych Pytań z Całego Materiału
+                </button>
+            </div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quizScreen">
+            <div class="header">
+                <h1 id="chapterTitle">Java Quiz</h1>
+                <p id="chapterSubtitle"></p>
+                <button class="back-button" onclick="backToMenu()">← Wróć do Menu</button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="score-info">
+                <span>Pytanie <span id="currentQuestion">1</span> z <span id="totalQuestions">0</span></span>
+                <span>Poprawne: <span id="correctCount">0</span>/<span id="totalQuestions">0</span></span>
+            </div>
+
+            <div class="question-container">
+                <div class="question-number" id="questionNumber"></div>
+                <div class="question-text" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="feedback" id="feedback"></div>
+                <div class="explanation" id="explanation" style="display: none;"></div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">← Poprzednie</button>
+                <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">Sprawdź odpowiedź</button>
+                <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Następne →</button>
+            </div>
+
+            <div id="summarySection" style="display: none;">
+                <div class="summary">
+                    <h2>Quiz Ukończony!</h2>
+                    <div class="summary-score" id="finalScore"></div>
+                    <div class="summary-text" id="summaryMessage"></div>
+                    <div class="summary-details" id="summaryDetails"></div>
+                    <div class="buttons">
+                        <button class="btn btn-primary" onclick="backToMenu()">Powrót do Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+        let currentQuestion = 0;
+        let userAnswers = {};
+        let correctCount = 0;
+        let currentMode = null;
+        let answeredCorrectly = {};
+
+        // Inicjalizacja - pokaż menu
+        function initMenu() {
+            const chaptersGrid = document.getElementById('chaptersGrid');
+            chaptersGrid.innerHTML = '';
+
+            for (let i = 1; i <= 14; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'chapter-btn';
+                btn.onclick = () => startChapterQuiz(i);
+                btn.textContent = `Chapter ${i}`;
+                chaptersGrid.appendChild(btn);
+            }
+        }
+
+        async function startChapterQuiz(chapterNum) {
+            try {
+                const response = await fetch(`data/chapter${chapterNum}.json`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                
+                quizData = data.questions;
+                currentMode = 'chapter';
+                resetQuiz();
+
+                document.getElementById('menuScreen').style.display = 'none';
+                document.getElementById('quizScreen').style.display = 'block';
+                document.getElementById('summarySection').style.display = 'none';
+                document.getElementById('chapterTitle').textContent = data.chapter;
+                document.getElementById('chapterSubtitle').textContent = `${quizData.length} pytań`;
+                document.getElementById('totalQuestions').textContent = quizData.length;
+
+                displayQuestion();
+            } catch (error) {
+                alert(`Błąd przy ładowaniu chapter: ${error.message}`);
+            }
+        }
+
+        async function startRandomQuiz() {
+            try {
+                let allQuestions = [];
+                
+                for (let i = 1; i <= 14; i++) {
+                    const response = await fetch(`data/chapter${i}.json`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        allQuestions = allQuestions.concat(data.questions);
+                    }
+                }
+
+                if (allQuestions.length < 50) {
+                    alert(`Dostępnych jest tylko ${allQuestions.length} pytań. Potrzebujesz co najmniej 50.`);
+                    return;
+                }
+
+                quizData = shuffleArray(allQuestions).slice(0, 50);
+                currentMode = 'random';
+                resetQuiz();
+
+                document.getElementById('menuScreen').style.display = 'none';
+                document.getElementById('quizScreen').style.display = 'block';
+                document.getElementById('summarySection').style.display = 'none';
+                document.getElementById('chapterTitle').textContent = '🎲 Quiz Losowy';
+                document.getElementById('chapterSubtitle').textContent = `50 losowych pytań z całego materiału`;
+                document.getElementById('totalQuestions').textContent = quizData.length;
+
+                displayQuestion();
+            } catch (error) {
+                alert(`Błąd przy ładowaniu losowych pytań: ${error.message}`);
+            }
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = {};
+            correctCount = 0;
+            answeredCorrectly = {};
+            document.getElementById('correctCount').textContent = '0';
+        }
+
+        function backToMenu() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('menuScreen').style.display = 'flex';
+            quizData = [];
+            resetQuiz();
+        }
+
+        function displayQuestion() {
+            if (currentQuestion >= quizData.length) {
+                showSummary();
+                return;
+            }
+
+            const question = quizData[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Pytanie ${currentQuestion + 1}`;
+            document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+            document.getElementById('questionText').innerHTML = formatText(question.question);
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach(option => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                if (userAnswers[currentQuestion] && userAnswers[currentQuestion].includes(option.letter)) {
+                    optionDiv.classList.add('selected');
+                }
+
+                optionDiv.innerHTML = `
+                    <input type="radio" id="option${option.letter}" name="answer" value="${option.letter}" 
+                           ${userAnswers[currentQuestion] && userAnswers[currentQuestion].includes(option.letter) ? 'checked' : ''}>
+                    <label for="option${option.letter}"><strong>${option.letter}.</strong> ${option.text}</label>
+                `;
+
+                optionDiv.addEventListener('click', () => {
+                    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    optionDiv.classList.add('selected');
+                    document.getElementById(`option${option.letter}`).checked = true;
+                });
+
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            document.getElementById('feedback').innerHTML = '';
+            document.getElementById('feedback').classList.remove('show');
+            document.getElementById('explanation').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'block';
+            document.getElementById('nextBtn').style.display = 'none';
+
+            updateProgressBar();
+            updateNavigationButtons();
+        }
+
+        function formatText(text) {
+            return text.replace(/\n/g, '<br>');
+        }
+
+        function submitAnswer() {
+            const question = quizData[currentQuestion];
+            const selectedOptions = document.querySelectorAll('input[name="answer"]:checked');
+
+            if (selectedOptions.length === 0) {
+                alert('Proszę wybrać odpowiedź!');
+                return;
+            }
+
+            let selectedAnswer = Array.from(selectedOptions).map(o => o.value).sort().join(',');
+            userAnswers[currentQuestion] = selectedAnswer;
+
+            const isCorrect = selectedAnswer === question.correct;
+
+            if (isCorrect) {
+                if (!answeredCorrectly[currentQuestion]) {
+                    correctCount++;
+                    answeredCorrectly[currentQuestion] = true;
+                }
+                document.querySelectorAll('.option').forEach(option => {
+                    const radio = option.querySelector('input');
+                    if (radio.value === question.correct.split(',')[0]) {
+                        option.classList.add('correct');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+                showFeedback(true, `Poprawnie! Odpowiedź to ${question.correct}`);
+            } else {
+                document.querySelectorAll('.option').forEach(option => {
+                    const radio = option.querySelector('input');
+                    const values = question.correct.split(',');
+                    if (values.includes(radio.value)) {
+                        option.classList.add('correct');
+                    } else if (radio.checked) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+                showFeedback(false, `Źle! Prawidłowa odpowiedź to ${question.correct}`);
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('explanation').style.display = 'block';
+            document.getElementById('explanation').innerHTML = question.explanation;
+        }
+
+        function showFeedback(isCorrect, message) {
+            const feedback = document.getElementById('feedback');
+            feedback.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<div class="feedback-title">${isCorrect ? '✓ Poprawnie!' : '✗ Niepoprawnie!'}</div><div>${message}</div>`;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                showSummary();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showSummary() {
+            document.getElementById('summarySection').style.display = 'block';
+            document.getElementById('questionContainer').style.display = 'none';
+            document.querySelector('.buttons:not(.summary .buttons)').style.display = 'none';
+
+            const percentage = Math.round((correctCount / quizData.length) * 100);
+            document.getElementById('finalScore').textContent = `${correctCount}/${quizData.length} (${percentage}%)`;
+
+            let message = '';
+            if (percentage === 100) {
+                message = 'Doskonały wynik! Opanowałeś ten temat!';
+            } else if (percentage >= 80) {
+                message = 'Świetna praca! Dobry wynik!';
+            } else if (percentage >= 60) {
+                message = 'Niezły wynik, ale jest pole do poprawy.';
+            } else {
+                message = 'Powinieneś przejrzeć materiał i spróbować ponownie.';
+            }
+
+            document.getElementById('summaryMessage').textContent = message;
+            document.getElementById('summaryDetails').innerHTML = `
+                <p><strong>Poprawne odpowiedzi:</strong> ${correctCount} z ${quizData.length}</p>
+                <p><strong>Procent:</strong> ${percentage}%</p>
+                <p><strong>Tryb:</strong> ${currentMode === 'random' ? '🎲 Quiz Losowy' : '📚 Quiz Rozdziałowy'}</p>
+            `;
+
+            document.getElementById('questionContainer').style.display = 'none';
+            const buttons = document.querySelectorAll('.buttons:not(.summary .buttons)');
+            buttons.forEach(btn => btn.style.display = 'none');
+        }
+
+        // Inicjalizacja
+        initMenu();
+    </script>
+</body>
+</html>

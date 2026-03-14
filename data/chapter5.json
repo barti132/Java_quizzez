@@ -1,0 +1,2346 @@
+{
+  "chapter": "Chapter 5 - Working with Arrays and Collections",
+  "totalQuestions": 80,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the output of the following?\nList<String> museums = new ArrayList<>(1);\nmuseums.add(\"Natural History\");\nmuseums.add(\"Science\");\nmuseums.add(\"Art\");\nmuseums.remove(2);\nSystem.out.println(museums);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[Natural History, Science]"
+        },
+        {
+          "letter": "B",
+          "text": "[Natural History, Art, Science]"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "While the ArrayList is declared with an initial capacity of one element, it is free to\nexpand as more elements are added. Each of the three calls to the add() method adds an\nelement to the end of the ArrayList. The remove() method call deletes the element at\nindex 2, which is Art. Therefore, option A is correct."
+    },
+    {
+      "id": 2,
+      "question": "How many of the following are legal declarations?\n[]String lions = new String[];\nString[] tigers = new String[1] {\"tiger\"};\nString bears[] = new String[] {};\nString ohMy [] = new String[0] {};",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The array brackets, [], are not allowed to appear before the type, making the lions\ndeclaration incorrect. When using an array initializer with braces, {}, you are not allowed\nto specify the size separately. The size is inferred from the number of elements listed. Therefore, tigers and ohMy are incorrect. When you’re not using an array initializer, the size\nis required. An empty array initializer is allowed. Option B is correct because only bears\nis legal."
+    },
+    {
+      "id": 3,
+      "question": "Which of the following can fill in the blank to make the code compile?\npublic class News< > {}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "? only"
+        },
+        {
+          "letter": "B",
+          "text": "N only"
+        },
+        {
+          "letter": "C",
+          "text": "? and N"
+        },
+        {
+          "letter": "D",
+          "text": "News, and Object"
+        },
+        {
+          "letter": "E",
+          "text": "N, News, and Object"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "When declaring a class that uses generics, you must specify a name for the formal type\nparameter. Java uses the standard rules for naming a variable or class. A question mark is not\nallowed in a variable name, making options A and C incorrect. While it is common practice\nto use a single uppercase letter for the type parameter, this is not required. It certainly isn’t a\ngood idea to use existing class names like the News class being declared here or the Object\nclass built into Java. However, both are allowed, making option E the correct answer."
+    },
+    {
+      "id": 4,
+      "question": "Which of the following are true about this code? (Choose two.)\n26: List<String> strings = new ArrayList<?>();\n27: var ints = new HashSet<Integer>();\n28: Double dbl = 5.0;\n29: ints.add(2);\n30: ints.add(null);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code compiles as is."
+        },
+        {
+          "letter": "B",
+          "text": "One line needs to be removed for the code to compile."
+        },
+        {
+          "letter": "C",
+          "text": "Two lines need to be removed for the code to compile."
+        },
+        {
+          "letter": "D",
+          "text": "One line of code uses autoboxing."
+        },
+        {
+          "letter": "E",
+          "text": "Two lines of code use autoboxing"
+        },
+        {
+          "letter": "F",
+          "text": "Three lines of code use autoboxing"
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "Option B is one answer because line 26 does not compile. The ? wildcard cannot be\nused when instantiating a type on the right side of the assignment operator. The other lines\ndo compile. Additionally, option E is correct because lines 28 and 29 use autoboxing. They\nconvert a primitive to a wrapper object, in this case Double and Integer, respectively. Line\n30 is correct and does not use autoboxing. It places a null reference as the Integer object."
+    },
+    {
+      "id": 5,
+      "question": "Which of the following creates an empty two-dimensional array with dimensions 2×2?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "int[][] blue = new int[2, 2];"
+        },
+        {
+          "letter": "B",
+          "text": "int[][] blue = new int[2], [2];"
+        },
+        {
+          "letter": "C",
+          "text": "int[][] blue = new int[2][2];"
+        },
+        {
+          "letter": "D",
+          "text": "int[][] blue = new int[2 x 2];"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "A two-dimensional array is declared by listing both sizes in separate pairs of brackets, [].\nOption C correctly shows this syntax."
+    },
+    {
+      "id": 6,
+      "question": "What is the output of the following?\nvar q = new ArrayDeque<String>();\nq.offer(\"snowball\");\nq.offer(\"minnie\");\nq.offer(\"sugar\");\nSystem.out.print(q.peek() + \" \" + q.peek() + \" \" + q.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "sugar sugar 3"
+        },
+        {
+          "letter": "B",
+          "text": "sugar minnie 1"
+        },
+        {
+          "letter": "C",
+          "text": "snowball minnie 1"
+        },
+        {
+          "letter": "D",
+          "text": "snowball snowball 3"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The offer() method inserts an element at the end of the queue. This means the queue\ncontains [snowball, minnie, sugar]. The peek() method returns the element at the\nfront of the queue without removing it. Therefore, snowball is printed twice, but the queue\nremains with three elements. This matches option D."
+    },
+    {
+      "id": 7,
+      "question": "You are running a library. Patrons select books by name. They get at the back of the checkout\nline. When they get to the front, they scan the book’s ISBN, a unique identification number.\nThe checkout system finds the book based on this number and marks the book as checked\nout. Of these choices, which data structures best represent the line to check out the book and\nthe book lookup to mark it as checked out, respectively?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ArrayList, HashSet"
+        },
+        {
+          "letter": "B",
+          "text": "ArrayList, TreeMap"
+        },
+        {
+          "letter": "C",
+          "text": "ArrayList, TreeSet"
+        },
+        {
+          "letter": "D",
+          "text": "LinkedList, HashSet"
+        },
+        {
+          "letter": "E",
+          "text": "LinkedList, TreeMap"
+        },
+        {
+          "letter": "F",
+          "text": "LinkedList, TreeSet"
+        }
+      ],
+      "correct": "E",
+      "explanation": "Notice how there is unnecessary information in this description. The fact that patrons\nselect books by name is irrelevant. The checkout line is a perfect example of a Queue.\nYou need easy access to one end of the Queue for patrons to add themselves to the queue.\nYou also need easy access for patrons to get off the queue when it is their turn. Since a\nLinkedList is a Queue, this narrows down the answer to options D, E, and F.\nThe book lookup by ISBN is a lookup by key. You need a map for this. A HashMap is probably better here, but it isn’t a choice. So the answer is option E, which does include both a\nQueue and a Map."
+    },
+    {
+      "id": 8,
+      "question": "What is the result of running the following program?\n1: package fun;\n2: public class Sudoku {\n3: static int[][] game;\n4:\n5: public static void main(String[] args) {\n6: game[3][3] = 6;\n7: Object[] obj = game;\n8: game[3][3] = \"X\";\n9: System.out.println(game[3][3]);\n10: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "X"
+        },
+        {
+          "letter": "B",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "The code compiles but throws a NullPointerException at runtime."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws a different exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Line 8 attempts to store a String in an array meant for an int. Line 8 does not compile,\nand option B is correct."
+    },
+    {
+      "id": 9,
+      "question": "Suppose you want to implement a Comparator<String> so that it sorts the longest strings\nfirst. You may assume there are no null values. Which method could implement such a\ncomparator?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "public int compare(String s1, String s2) { return s1.length() - s2.length(); }"
+        },
+        {
+          "letter": "B",
+          "text": "public int compare(String s1, String s2) { return s2.length() - s1.length(); }"
+        },
+        {
+          "letter": "C",
+          "text": "public int compare(Object obj1, Object obj2) { String s1 = (String) obj1; String s2 = (String) obj2; return s1.length() - s2.length(); }"
+        },
+        {
+          "letter": "D",
+          "text": "public int compare(Object obj1, Object obj2) { String s1 = (String) obj1; String s2 = (String) obj2; return s2.length() - s1.length(); }"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options C and D are incorrect because the method signature is incorrect. Unlike the\nequals() method, the method in Comparator<String> takes the type being compared\nas the parameters when using generics. Option A is a valid Comparator<String>. However, it sorts in ascending order by length. Option B is correct. If s1 is three characters and\ns2 is one character, it returns -2. The negative value says that s1 should sort first, which is\ncorrect, because you want the longest String first."
+    },
+    {
+      "id": 10,
+      "question": "How many lines does the following code output?\nvar days = new String[] { \"Sunday\", \"Monday\", \"Tuesday\",\n\"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\" };\nfor (int i = 1; i < days.length; i++)\nSystem.out.println(days[i]);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Zero"
+        },
+        {
+          "letter": "B",
+          "text": "Six"
+        },
+        {
+          "letter": "C",
+          "text": "Seven"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "In Java, arrays are indexed starting with 0. Although it is unusual for the loop to start\nwith 1, this does not cause an error. It does cause the code to output six lines instead of seven\nsince the loop doesn’t cover the first array element. Therefore, option B is correct."
+    },
+    {
+      "id": 11,
+      "question": "Which cannot fill in the blank for this code to compile and print true at runtime?\nvar c = new <String>();\nc.add(\"pen\");\nc.remove(\"pen\");\nSystem.out.println(c.isEmpty());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ArrayDeque"
+        },
+        {
+          "letter": "B",
+          "text": "ArrayList"
+        },
+        {
+          "letter": "C",
+          "text": "TreeMap"
+        },
+        {
+          "letter": "D",
+          "text": "TreeSet"
+        },
+        {
+          "letter": "E",
+          "text": "All of these can fill in the blank."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Java talks about the Collections Framework, but the Map interface does not actually\nimplement the Collection interface. TreeMap has different methods than the other\noptions. It cannot fill in the blank, so option C is correct. The other options compile and\nprint true at runtime."
+    },
+    {
+      "id": 12,
+      "question": "What is true of the following code? (Choose two.)\nimport java.util.*;\npublic class Garden {\nprivate static void sortAndSearch(String x, String y) {\nvar coll = Arrays.asList(x,y);\nCollections.sort(coll);\nresult = Collections.binarySearch(coll, x);\nSystem.out.println(result);\n}\npublic static void main(String[] args) {\nsortAndSearch(\"seed\", \"flower\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If the blank contains int, then the code outputs 0."
+        },
+        {
+          "letter": "B",
+          "text": "If the blank contains int, then the code outputs 1."
+        },
+        {
+          "letter": "C",
+          "text": "If the blank contains int, then the code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "If the blank contains String, then the code outputs flower."
+        },
+        {
+          "letter": "E",
+          "text": "If the blank contains String, then the code outputs seed."
+        },
+        {
+          "letter": "F",
+          "text": "If the blank contains String, then the code does not compile."
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "In Java, Arrays.binarySearch() returns a positive int, representing the index of\na match if one is found. An int cannot be stored in a String variable, making option F one\nof the answers. When using the correct data type and searching for seed, we find it at index\n1. Therefore, option B is the other answer."
+    },
+    {
+      "id": 13,
+      "question": "How many of the following are legal declarations?\npublic void greek() {\n[][]String alpha;\n[]String beta;\nString[][] gamma;\nString[] delta[];\nString epsilon[][];\nvar[][] zeta;\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One"
+        },
+        {
+          "letter": "B",
+          "text": "Two"
+        },
+        {
+          "letter": "C",
+          "text": "Three"
+        },
+        {
+          "letter": "D",
+          "text": "Four"
+        },
+        {
+          "letter": "E",
+          "text": "Five"
+        },
+        {
+          "letter": "F",
+          "text": "Six"
+        }
+      ],
+      "correct": "C",
+      "explanation": "As with a one-dimensional array, the brackets, [], must be after the type, making alpha\nand beta illegal declarations. For a multidimensional array, the brackets may be before and/\nor after the variable name. They do not need to be in the same place. Therefore, gamma,\ndelta, and epsilon are correct. Finally, var can be used as a local variable but not with\narray brackets after it. The code would compile if it said var zeta and it was assigned an\narray of a specified type. Since three options are correct, the answer is option C."
+    },
+    {
+      "id": 14,
+      "question": "What is the result of the following?\nvar list = new ArrayList<Integer>();\nlist.add(56);\nlist.add(56);\nlist.add(3);\nvar set = new TreeSet<Integer>(list);\nSystem.out.print(set.size());\nSystem.out.print(\" \");\nSystem.out.print(set.iterator().next());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2 3"
+        },
+        {
+          "letter": "B",
+          "text": "2 56"
+        },
+        {
+          "letter": "C",
+          "text": "3 3"
+        },
+        {
+          "letter": "D",
+          "text": "3 56"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "First, the code creates an ArrayList of three elements. Then the list is transformed into\na TreeSet. Since sets are not allowed to have duplicates, the set has only two elements.\nRemember that a TreeSet is sorted, which means that the first element in the TreeSet is\n3. Therefore, option A is correct."
+    },
+    {
+      "id": 15,
+      "question": "What is true of this code when run as java Copier.java with no arguments? (Choose\ntwo.)\n1: import java.util.Arrays;\n2:\n3: public class Copier {\n4: public static void main(String... original) {\n5: String... copy = original;\n6: Arrays.linearSort(original);\n7: Arrays.search(original, \"\");\n8: System.out.println(original.size()\n9: + \" \" + original[0]);\n10: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One line contains a compiler error."
+        },
+        {
+          "letter": "B",
+          "text": "Two lines contain a compiler error."
+        },
+        {
+          "letter": "C",
+          "text": "Three lines contain a compiler error."
+        },
+        {
+          "letter": "D",
+          "text": "Four lines contain a compiler error."
+        },
+        {
+          "letter": "E",
+          "text": "If the compiler errors were fixed, the code would throw an exception."
+        },
+        {
+          "letter": "F",
+          "text": "If the compiler errors were fixed, the code would run successfully."
+        }
+      ],
+      "correct": "D,E",
+      "explanation": "Three dots in a row is a varargs parameter. While varargs is used like an array\nfrom within the method, it can only be used as a method parameter. This syntax is not\nallowed for a variable, causing a compiler error on line 5. Line 6 does not compile because\nlinearSort() should be sort(). On line 7, the method name is also incorrect. The\nsearch() method should be binarySearch(). Finally, line 8 uses size() instead of\nlength. Since there are four errors, option D is correct. If all these errors were corrected,\noriginal[0] would cause an exception because the array is empty. Therefore, option E is\nalso correct."
+    },
+    {
+      "id": 16,
+      "question": "What is the output of the following? (Choose three.)\n20: var chars = new <Character>();\n21: chars.add('a');\n22: chars.add(Character.valueOf('b'));\n23: chars.set(1, 'c');\n24: chars.remove(0);\n25: System.out.print(chars.size() + \" \" + chars.contains('b'));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "When inserting ArrayList into the blank, the code prints 1 false."
+        },
+        {
+          "letter": "B",
+          "text": "When inserting ArrayList into the blank, the code does not compile."
+        },
+        {
+          "letter": "C",
+          "text": "When inserting HashMap into the blank, the code prints 1 false."
+        },
+        {
+          "letter": "D",
+          "text": "When inserting HashMap into the blank, the code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "When inserting HashSet into the blank, the code prints 1 false."
+        },
+        {
+          "letter": "F",
+          "text": "When inserting HashSet into the blank, the code does not compile."
+        }
+      ],
+      "correct": "A,D,F",
+      "explanation": "Line 20 does not compile for a Map because it requires two generic types. Line 23\ndoes not compile for a Set because the elements are unordered and do not have an index.\nThis makes options D and F correct. Additionally, option A is correct because line 23 replaces\nthe second element with a new value, making chars contain [a, c]. Then line 24 removes\nthe first element, making it just [c]. There is only one element, but it is not the value b."
+    },
+    {
+      "id": 17,
+      "question": "What is the output of the following?\nimport java.util.*;\nrecord Magazine(String name) {\npublic int compareTo(Magazine m) {\nreturn name.compareTo(m.name);\n}\n}\npublic class Newsstand {\npublic static void main(String[] args) {\nvar set = new TreeSet<Magazine>();\nset.add(new Magazine(\"highlights\"));\nset.add(new Magazine(\"Newsweek\"));\nset.add(new Magazine(\"highlights\"));\nSystem.out.println(set.iterator().next());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Magazine[name=highlights]"
+        },
+        {
+          "letter": "B",
+          "text": "Magazine[name=Newsweek]"
+        },
+        {
+          "letter": "C",
+          "text": "null"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The Magazine class doesn’t implement Comparable<Magazine>. It happens to implement the compareTo() method properly, but it is missing actually writing implements\nComparable. Since TreeSet doesn’t look to see if the object can be compared until runtime, this code throws a ClassCastException when TreeSet calls add(), so option E is\ncorrect."
+    },
+    {
+      "id": 18,
+      "question": "Which is the first line to prevent this code from compiling or running without error?\n11: char[][] ticTacToe = new char[3][3];\n12: ticTacToe[1][3] = 'X';\n13: ticTacToe[2][2] = 'X';\n14: ticTacToe[3][1] = 'X';\n15: System.out.println(ticTacToe.length + \" in a row!\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line 11"
+        },
+        {
+          "letter": "B",
+          "text": "Line 12"
+        },
+        {
+          "letter": "C",
+          "text": "Line 13"
+        },
+        {
+          "letter": "D",
+          "text": "Line 14"
+        },
+        {
+          "letter": "E",
+          "text": "Line 15"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above; the code compiles and runs without issue."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Arrays begin with an index of 0. This array is a 3×3 array, making only\nindexes 0, 1, and 2 valid. All of the lines compile, but line 12 is the first to throw an\nArrayIndexOutOfBoundsException at runtime. Therefore, option B is correct."
+    },
+    {
+      "id": 19,
+      "question": "What is the first line with a compiler error?\nclass Mammal {}\nclass Bat extends Mammal {}\nclass Cat extends Mammal {}\nclass Sat {}\nclass Fur<T extends Mammal> { // line R\nvoid clean() {\nvar bat = new Fur<Bat>(); // line S\nvar cat = new Fur<Cat>(); // line T\nvar sat = new Fur<Sat>(); // line U\n}\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line R"
+        },
+        {
+          "letter": "B",
+          "text": "Line S"
+        },
+        {
+          "letter": "C",
+          "text": "Line T"
+        },
+        {
+          "letter": "D",
+          "text": "Line U"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The generic declaration on line R is valid. It sets a constraint on the generic type used\nwhen declaring a Fur object. Lines S and T compile as they meet this constraint. However,\nline U has a problem since Sat does not extend Mammal. Since this line does not compile,\noption D is the answer."
+    },
+    {
+      "id": 20,
+      "question": "What is a possible result of this code?\n17: var nums = new HashSet<Long>();\n18: nums.add((long) Math.min(5, 3));\n19: nums.add(Math.round(3.14));\n20: nums.add((long) Math.pow(4,2));\n21: System.out.println(nums);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[3]"
+        },
+        {
+          "letter": "B",
+          "text": "[16]"
+        },
+        {
+          "letter": "C",
+          "text": "[16, 3]"
+        },
+        {
+          "letter": "D",
+          "text": "[16, 3, 3]"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Line 18 puts 3 in nums since it is the smaller value. Since a Set must have unique elements, line 19 does not add another value to nums. Line 20 adds the final value of 16. The\nset has a total of two elements, 3 and 16. A HashSet does not commit to an output order,\nmaking option C correct."
+    },
+    {
+      "id": 21,
+      "question": "What is the output of the following?\n5: var x = new ArrayDeque<Integer>();\n6: x.offer(18);\n7: x.offer(5);\n8: x.push(13);\n9: System.out.println(x.poll() + \" \" + x.poll());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "13 5"
+        },
+        {
+          "letter": "B",
+          "text": "13 18"
+        },
+        {
+          "letter": "C",
+          "text": "18 5"
+        },
+        {
+          "letter": "D",
+          "text": "18 13"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but prints something else."
+        }
+      ],
+      "correct": "B",
+      "explanation": "A Deque lets us add elements at both ends. The offer() method adds an element to\nthe back of the queue. After line 7 completes, the queue contains 18 and 5 in that order.\nThe push() method adds an element to the front of the queue. How rude! The element 13\npushes past everyone on the line. After line 8 completes, the queue now contains 13, 18, and\n5, in that order. Then we get the first two elements from the front, which are 13 and 18,\nmaking option B correct."
+    },
+    {
+      "id": 22,
+      "question": "Suppose we want to store JellyBean objects. Which of the following require JellyBean\nto implement the Comparable interface or create a Comparator to add them to the collection? (Choose two.)",
+      "options": [
+        {
+          "letter": "A",
+          "text": "ArrayList"
+        },
+        {
+          "letter": "B",
+          "text": "HashMap"
+        },
+        {
+          "letter": "C",
+          "text": "HashSet"
+        },
+        {
+          "letter": "D",
+          "text": "SortedArray"
+        },
+        {
+          "letter": "E",
+          "text": "TreeMap"
+        },
+        {
+          "letter": "F",
+          "text": "TreeSet"
+        }
+      ],
+      "correct": "E,F",
+      "explanation": "TreeMap and TreeSet sort as you insert elements. TreeMap sorts the keys and\nTreeSet sorts the objects in the set. This makes options E and F correct. Note that\nyou have the option of having JellyBean implement Comparable, or you can pass a\nComparator to the constructor of TreeMap or TreeSet. Option D is trying to trick you,\nas SortedArray is not a class or an interface in the Collections Framework."
+    },
+    {
+      "id": 23,
+      "question": "Which of the following references the first and last elements in a nonempty array?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "trains[0] and trains[trains.length]"
+        },
+        {
+          "letter": "B",
+          "text": "trains[0] and trains[trains.length - 1]"
+        },
+        {
+          "letter": "C",
+          "text": "trains[1] and trains[trains.length]"
+        },
+        {
+          "letter": "D",
+          "text": "trains[1] and trains[trains.length - 1]"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Array indices start with 0, making options C and D incorrect. The length attribute refers\nto the number of elements in an array. It is 1 past the last valid array index. Therefore, option\nB is correct."
+    },
+    {
+      "id": 24,
+      "question": "Which of the following fills in the blank so this code compiles?\npublic static void throwOne(Collection< > coll) {\nvar iter = coll.iterator();\nif (iter.hasNext())\nthrow iter.next();\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "?"
+        },
+        {
+          "letter": "B",
+          "text": "? extends RuntimeException"
+        },
+        {
+          "letter": "C",
+          "text": "? super RuntimeException"
+        },
+        {
+          "letter": "D",
+          "text": "T"
+        },
+        {
+          "letter": "E",
+          "text": "T extends RuntimeException"
+        },
+        {
+          "letter": "F",
+          "text": "T super RuntimeException"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options D, E, and F do not compile because only a wildcard can be used here. Since the\nmethod does not have any declared exceptions, it can only throw unchecked exceptions.\nOption B is correct because it is the only one that requires the elements of coll to be\nRuntimeException or any subclasses."
+    },
+    {
+      "id": 25,
+      "question": "Which of these four array declarations produces a different array than the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "int[][] nums = new int[2][1];"
+        },
+        {
+          "letter": "B",
+          "text": "int[] nums[] = new int[2][1];"
+        },
+        {
+          "letter": "C",
+          "text": "int[] nums[] = new int[][] { { 0 }, { 0 } };"
+        },
+        {
+          "letter": "D",
+          "text": "int[] nums[] = new int[][] { { 0, 0 } };"
+        }
+      ],
+      "correct": "D",
+      "explanation": "Options A and B show that the brackets, [], can be before or after the variable name and\nproduce the same array. Option C specifies the same array the long way with two arrays of\nlength 1. Option D is the answer because it is different from the others. It instead specifies an\narray of length 1 where that element is of length 2."
+    },
+    {
+      "id": 26,
+      "question": "What does the following output?\nvar laptops = new String[] { \"Linux\", \"Mac\", \"Windows\" };\nvar desktops = new String[] { \"Mac\", \"Linux\", \"Windows\" };\nvar search = Arrays.binarySearch(laptops, \"Linux\");\nvar mismatch1 = Arrays.mismatch(laptops, desktops);\nvar mismatch2 = Arrays.mismatch(desktops, desktops);\nSystem.out.println(search + \" \" + mismatch1 + \" \" + mismatch2);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-1 0 -1 is guaranteed"
+        },
+        {
+          "letter": "B",
+          "text": "-1 -1 0 is guaranteed"
+        },
+        {
+          "letter": "C",
+          "text": "0 -1 0 is guaranteed"
+        },
+        {
+          "letter": "D",
+          "text": "0 0 -1 is guaranteed"
+        },
+        {
+          "letter": "E",
+          "text": "The output is not defined."
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Java requires having a sorted array before calling the binarySearch() method. You do\nnot have to call Arrays.sort to perform the sort, though. This array happens to already be\nsorted, so it meets the precondition. The target string of \"Linux\" is the first element in the\narray. Since Java uses zero-based indexing, search is 0. The Arrays.mismatch() method\nreturns -1 if the arrays are the same and returns the index of the first difference if they are\nnot. In our example, mismatch1 is 0 because the first element differs, and mismatch2 is -1\nbecause the arrays are the same. This makes option D the answer."
+    },
+    {
+      "id": 27,
+      "question": "Which line in the main() method doesn’t compile or points to a class that doesn’t compile?\n1: interface Comic<S> {\n2: void draw(S s);\n3: }\n4: class ComicClass<S> implements Comic<S> {\n5: public void draw(S s) {\n6: System.out.println(s);\n7: }\n8: }\n9: class SnoopyClass implements Comic<Snoopy> {\n10: public void draw(Snoopy s) {\n11: System.out.println(s);\n12: }\n13: }\n14: class SnoopyComic implements Comic<Snoopy> {\n15: public void draw(S s) {\n16: System.out.println(s);\n17: }\n18: }\n19: public class Snoopy {\n20: public static void main(String[] args) {\n21: Comic<Snoopy> s1 = s -> System.out.println(s);\n22: Comic<Snoopy> s2 = new ComicClass<>();\n23: Comic<Snoopy> s3 = new SnoopyClass();\n24: Comic<Snoopy> s4 = new SnoopyComic();\n25: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line 21"
+        },
+        {
+          "letter": "B",
+          "text": "Line 22"
+        },
+        {
+          "letter": "C",
+          "text": "Line 23"
+        },
+        {
+          "letter": "D",
+          "text": "Line 24"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above. All of the code compiles."
+        }
+      ],
+      "correct": "D",
+      "explanation": "The Comic<S> interface declares a formal type parameter. This means that a class implementing it needs to specify this type. The code on line 21 compiles because the lambda reference supplies the necessary context, making option A incorrect. Option B declares a generic\nclass. Although this doesn’t tell us the type is Snoopy, it punts the problem to the caller of\nthe class. The declaration of s2 on line 22 compiles because it supplies the type, making\noption B incorrect. The code on line 23 compiles because the SnoopyClass itself supplies\nthe type, making option C incorrect.\nOption D has a problem. SnoopyClass and SnoopyComic appear similar. However,\nSnoopyComic refers to S. This type parameter exists in the interface. It isn’t available in the\nclass because the class has said it is using Snoopy as the type. Since the SnoopyComic class\nitself doesn’t compile, the line with s4 can’t instantiate it, and option D is the answer."
+    },
+    {
+      "id": 28,
+      "question": "Fill in the blank to make this code compile:\npublic class Truck implements Comparable<Truck> {\nprivate int id;\npublic Truck(int id) {\nthis.id = id;\n}\n@Override\npublic int {\nreturn id - t.id;\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "compare(Truck t)"
+        },
+        {
+          "letter": "B",
+          "text": "compare(Truck t1, Truck t2)"
+        },
+        {
+          "letter": "C",
+          "text": "compareTo(Truck t)"
+        },
+        {
+          "letter": "D",
+          "text": "compareTo(Truck t1, Truck t2)"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "When implementing Comparable<Truck>, you implement the compareTo() method.\nSince this is an instance method, it already has a reference to itself and only needs the item\nit is comparing. Only one parameter is specified, and option C is correct. By contrast, the\nComparator<Truck> interface uses the compare() method, and the method takes two\nparameters."
+    },
+    {
+      "id": 29,
+      "question": "How many lines does the following code output?\nvar days = new String[] { \"Sunday\", \"Monday\", \"Tuesday\",\n\"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\" };\nfor (int i = 0; i < days.length; i++)\nSystem.out.println(days[i]);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Six"
+        },
+        {
+          "letter": "B",
+          "text": "Seven"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "There is nothing wrong or tricky about this code. It correctly creates a seven-element\narray. The loop starts with index 0 and ends with index 6. Each line is correctly output.\nTherefore, option B is correct."
+    },
+    {
+      "id": 30,
+      "question": "Which of the following fill in the blank to print out true? (Choose two.)\nString[] array = {\"Natural History\", \"Science\"};\nvar museums = ;\nmuseums.set(0, \"Art\");\nSystem.out.println(museums.contains(\"Art\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Arrays.asList(array)"
+        },
+        {
+          "letter": "B",
+          "text": "Arrays.asList(\"Natural History, Science\")"
+        },
+        {
+          "letter": "C",
+          "text": "List.of(array)"
+        },
+        {
+          "letter": "D",
+          "text": "List.of(\"Natural History\", \"Science\")"
+        },
+        {
+          "letter": "E",
+          "text": "new ArrayList<String>(\"Natural History\", \"Science\")"
+        },
+        {
+          "letter": "F",
+          "text": "new List<String>(\"Natural History\", \"Science\")"
+        }
+      ],
+      "correct": "A,B",
+      "explanation": "Options E and F are incorrect because they do not compile. List is an interface and\ndoes not have a constructor. ArrayList has a constructor but not one that takes individual\nelements as parameters. Options C and D are incorrect because List.of() creates an\nimmutable list. Trying to change one of its values causes an exception at runtime.\nOptions A and B are correct. Since we are creating the list from an array, it is a fixed size. We\nare allowed to change elements. When successfully completing this code, museums is [Art,\nScience] for both solutions."
+    },
+    {
+      "id": 31,
+      "question": "Which option cannot fill in the blank to print Clean socks?\nclass Wash<T> {\nT item;\npublic void clean(T item) {\nSystem.out.println(\"Clean \" + item);\n} }\npublic class LaundryTime {\npublic static void main(String[] args) {\nwash.clean(\"socks\");\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "var wash = new Wash<String>();"
+        },
+        {
+          "letter": "B",
+          "text": "var wash = new Wash<>();"
+        },
+        {
+          "letter": "C",
+          "text": "Wash wash = new Wash();"
+        },
+        {
+          "letter": "D",
+          "text": "Wash wash = new Wash<String>();"
+        },
+        {
+          "letter": "E",
+          "text": "Wash<String> wash = new Wash<>();"
+        },
+        {
+          "letter": "F",
+          "text": "All of these can fill in the blank."
+        }
+      ],
+      "correct": "F",
+      "explanation": "The Wash class takes a formal type parameter named T. Options A and E show the\nbest ways to call it. These options declare a generic reference type that specifies the type is\nString. Option A uses local variable type inference, whereas option E uses the diamond\nsyntax to avoid redundantly specifying the type of the assignment.\nOptions B, C, and D show that you can omit the generic type in the reference and still have\nthe code compile. You do get a compiler warning, scolding you for having a raw type. But\ncompiler warnings do not prevent compilation. With the raw type, the compiler treats T\nas if it is of type Object. That is okay in this example because the only method we call\nis toString() implicitly when printing the value. Since toString() is defined on the\nObject class, we are safe, and options B, C, and D work. Since all can fill in the blank,\noption F is the answer."
+    },
+    {
+      "id": 32,
+      "question": "Which of the options in the graphic best represent the blocks variable?\nvar blocks = new char[][] {\n{ 'a', 'b', 'c' }, { 'd' }, { 'e', 'f' } };\nOption A\nblocks blocks\nOption B\nOption C\nblocks blocks\nOption D",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Option A"
+        },
+        {
+          "letter": "B",
+          "text": "Option B"
+        },
+        {
+          "letter": "C",
+          "text": "Option C"
+        },
+        {
+          "letter": "D",
+          "text": "Option D"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options A, C, and D represent 3×3 2D arrays. Option B is correct because it best represents the array in the code. It shows there are three different arrays of different lengths."
+    },
+    {
+      "id": 33,
+      "question": "Fill in the blank so the code prints gamma. (Choose two.)\nvar list = Arrays.asList(\"alpha\", \"beta\", \"gamma\");\nCollections.sort(list, );\nSystem.out.println(list.get(0));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(s, t) -> s.compareTo(t)"
+        },
+        {
+          "letter": "B",
+          "text": "(s, t) -> t.compareTo(s)"
+        },
+        {
+          "letter": "C",
+          "text": "Comparator.comparing((String s) -> s.charAt(0))"
+        },
+        {
+          "letter": "D",
+          "text": "Comparator.comparing((String s) -> s.charAt(0)).reverse()"
+        },
+        {
+          "letter": "E",
+          "text": "Comparator.comparing((String s) -> s.charAt(0)).reversed()"
+        }
+      ],
+      "correct": "B,E",
+      "explanation": "The goal is to write code that sorts in descending order. Option A sorts ascendingly and\noption B sorts descendingly. Similarly, option C sorts ascendingly and option E sorts descendingly. Option D attempts to call the reverse() method, which is not defined. Therefore,\noptions B and E are the answers."
+    },
+    {
+      "id": 34,
+      "question": "How many of the following are legal declarations?\nfloat[] lion = new float[];\nfloat[] tiger = new float[1];\nfloat[] bear = new[] float;\nfloat[] ohMy = new[1] float;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "None"
+        },
+        {
+          "letter": "B",
+          "text": "One"
+        },
+        {
+          "letter": "C",
+          "text": "Two"
+        },
+        {
+          "letter": "D",
+          "text": "Three"
+        },
+        {
+          "letter": "E",
+          "text": "Four"
+        }
+      ],
+      "correct": "B",
+      "explanation": "When creating an array object, a set of elements or size is required. Therefore, lion and\nbear are incorrect. The brackets containing the size are required to be after the type, making\nohMy incorrect. The only one that is correct is tiger, making option B the answer."
+    },
+    {
+      "id": 35,
+      "question": "Which is the first line of code that causes an ArrayIndexOutOfBoundsException?\nvar matrix = new String[1][2];\nmatrix[0][0] = \"Don't think you are, know you are.\"; // m1\nmatrix[0][1] = \"I'm trying to free your mind Neo\"; // m2\nmatrix[1][0] = \"Is all around you \"; // m3\nmatrix[1][1] = \"Why oh why didn't I take the BLUE pill?\"; // m4",
+      "options": [
+        {
+          "letter": "A",
+          "text": "m1"
+        },
+        {
+          "letter": "B",
+          "text": "m2"
+        },
+        {
+          "letter": "C",
+          "text": "m3"
+        },
+        {
+          "letter": "D",
+          "text": "m4"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This code creates a two-dimensional array of size 1×2. Lines m1 and m2 assign values to\nboth elements in the inner array. Line m3 attempts to reference the second element of the\nouter array. Since there is no such position, it throws an exception, and option C is correct."
+    },
+    {
+      "id": 36,
+      "question": "Suppose we have list of type List<Integer>. Which method allows you to pass that List and\nreturn an immutable Set containing the same elements?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "List.copyOf(list)"
+        },
+        {
+          "letter": "B",
+          "text": "List.of(list)"
+        },
+        {
+          "letter": "C",
+          "text": "Set.copyOf(list)"
+        },
+        {
+          "letter": "D",
+          "text": "Set.of(list)"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "All four of these return immutable collections. Options B and D take a varargs rather\nthan a List, returning a List<List<Integer>> and Set<List<Integer>>, respectively. Option A returns a List, not a Set. Option C meets both our requirements and is\nthe answer."
+    },
+    {
+      "id": 37,
+      "question": "What does the following output? (Choose two.)\nvar os = new String[] { \"Mac\", \"Linux\", \"Windows\" };\nArrays.sort(os);\nSystem.out.println(Arrays.binarySearch(os, \"RedHat\"));\nSystem.out.println(Arrays.binarySearch(os, \"Mac\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-1"
+        },
+        {
+          "letter": "B",
+          "text": "-2"
+        },
+        {
+          "letter": "C",
+          "text": "-3"
+        },
+        {
+          "letter": "D",
+          "text": "0"
+        },
+        {
+          "letter": "E",
+          "text": "1"
+        },
+        {
+          "letter": "F",
+          "text": "2"
+        }
+      ],
+      "correct": "C,E",
+      "explanation": "The code sorts before calling the binarySearch() method, so it meets the precondition for that method. The target string of \"RedHat\" is not found in the sorted array. If it\nwere found, it would be between the second and third elements. The rule is to take the negative index of where it would be inserted and subtract 1. It would need to be inserted as the\nthird element. Since indexes are zero-based, this is index 2. We take the negative, which is –2,\nand subtract 1, giving -3.\nThe target string of \"Mac\" is the second element in the sorted array. Since array indices begin\nwith 0, the second position is index 1. This makes options C and E the answer."
+    },
+    {
+      "id": 38,
+      "question": "What does the following output?\nvar names = new HashMap<String, String>();\nnames.put(\"peter\", \"pan\");\nnames.put(\"wendy\", \"darling\");\nvar first = names.entrySet(); // line x1\nSystem.out.println(first.getKey()); // line x2",
+      "options": [
+        {
+          "letter": "A",
+          "text": "peter"
+        },
+        {
+          "letter": "B",
+          "text": "wendy"
+        },
+        {
+          "letter": "C",
+          "text": "It does not compile due to line x1."
+        },
+        {
+          "letter": "D",
+          "text": "It does not compile due to line x2."
+        },
+        {
+          "letter": "E",
+          "text": "It does not compile due to another reason."
+        },
+        {
+          "letter": "F",
+          "text": "It throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line x1 returns a Set of map entries. Set does not have a getKey() method, so line x2\ndoes not compile, and option D is the answer."
+    },
+    {
+      "id": 39,
+      "question": "Which of these elements are in the output of the following? (Choose three.)\nvar q = new ArrayDeque<String>();\nq.offerFirst(\"snowball\");\nq.offer(\"sugar\");\nq.offerLast(\"minnie\");\nSystem.out.println(q.poll());\nSystem.out.println(q.removeFirst());\nSystem.out.println(q.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "sugar"
+        },
+        {
+          "letter": "B",
+          "text": "minnie"
+        },
+        {
+          "letter": "C",
+          "text": "snowball"
+        },
+        {
+          "letter": "D",
+          "text": "1"
+        },
+        {
+          "letter": "E",
+          "text": "2"
+        },
+        {
+          "letter": "F",
+          "text": "3"
+        }
+      ],
+      "correct": "A,C,D",
+      "explanation": "The offerLast() and offer() methods insert an element at the back of the\nqueue, while the offerFirst() method inserts the element at the front of the queue. This\nmeans the queue initially contains [snowball, sugar, minnie]. The poll() method\nreturns the element at the front of the queue and removes it. In this case, it prints snowball,\nand the queue is reduced from three elements to [sugar, minnie]. Then, the\nremoveFirst() method removes sugar, leaving the queue containing only [minnie].\nFurther, the queue becomes one smaller, and 1 is printed. Therefore, options A, C, and D are\ncorrect."
+    },
+    {
+      "id": 40,
+      "question": "Which of these pairs of declarations can point to an array that is different from the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "int[][][][] nums1a, nums1b;"
+        },
+        {
+          "letter": "B",
+          "text": "int[][][] nums2a[], nums2b;"
+        },
+        {
+          "letter": "C",
+          "text": "int[][] nums3a[][], nums3b[][];"
+        },
+        {
+          "letter": "D",
+          "text": "int[] nums4a[][][], numbs4b[][][];"
+        }
+      ],
+      "correct": "B",
+      "explanation": "All of the variables point to a 4D array, except nums2b, which points to a 3D array. Don’t\ncreate a 4D array in practice; it’s confusing. The options show that the brackets, [], can be\nbefore or after the variable in any combination. Option B is the answer because nums2b\npoints to a 3D array. It has only three pairs of brackets before the variable and none after. By\ncomparison, nums2a has three pairs of brackets before the variable and the fourth pair of\nbrackets after."
+    },
+    {
+      "id": 41,
+      "question": "Which of the following does not behave the same way as the others?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "var set = new HashSet<>();"
+        },
+        {
+          "letter": "B",
+          "text": "var set = new HashSet<Object>();"
+        },
+        {
+          "letter": "C",
+          "text": "HashSet<> set = new HashSet<Object>();"
+        },
+        {
+          "letter": "D",
+          "text": "HashSet<Object> set = new HashSet<>();"
+        },
+        {
+          "letter": "E",
+          "text": "HashSet<Object> set = new HashSet<Object>();"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Option E is the longest way to specify this code. Options A and D shorten it by using\nthe diamond operator (<>). Options A and B shorten it using var. Option C is the answer\nsince it does not compile because the diamond operator cannot be used on the left side of the\nassignment."
+    },
+    {
+      "id": 42,
+      "question": "What is true about the output of the following code?\nvar ints = new int[] {3,1,4};\nvar others = new int[] {2,7,1,8};\nSystem.out.println(Arrays.compare(ints, others));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It is negative because ints has fewer elements."
+        },
+        {
+          "letter": "B",
+          "text": "It is 0 because the arrays can’t be compared."
+        },
+        {
+          "letter": "C",
+          "text": "It is positive because the first element is larger."
+        },
+        {
+          "letter": "D",
+          "text": "It is undefined."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The Arrays.compare() method looks at each element in turn. Since the first elements\nare different, we get the result of comparing them. In this case, we get a positive number\nbecause 3 is larger than 2 and option C is correct."
+    },
+    {
+      "id": 43,
+      "question": "Fill in the blank so that the code prints beta.\nvar list = List.of(\"alpha\", \"beta\", \"gamma\");\nCollections.sort(list, );\nSystem.out.println(list.get(0));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "(s, t) -> s.compareTo(t)"
+        },
+        {
+          "letter": "B",
+          "text": "(s, t) -> t.compareTo(s)"
+        },
+        {
+          "letter": "C",
+          "text": "Comparator.comparing(String::length)"
+        },
+        {
+          "letter": "D",
+          "text": "Comparator.comparing(String::length).reversed()"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "E",
+      "explanation": "List.of() makes an immutable list. Attempting to sort throws an exception, so option\nE is the answer. If we were calling Arrays.asList() instead, option C would be the\nanswer because it is the only option to sort ascendingly by length."
+    },
+    {
+      "id": 44,
+      "question": "What is the output of the following?\n12: var queue = new ArrayDeque<>();\n13: queue.offer(\"exelsior\");\n14: queue.peekFirst();\n15: queue.addFirst(\"edwin\");\n16: queue.removeLast();\n17: System.out.println(queue);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[edwin]"
+        },
+        {
+          "letter": "B",
+          "text": "[excelsior]"
+        },
+        {
+          "letter": "C",
+          "text": "[edwin, excelsior]"
+        },
+        {
+          "letter": "D",
+          "text": "[excelsior, edwin]"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Line 13 adds excelsior to the double-ended queue. Line 14 checks if an element is\nthere but does not change it. Line 15 adds edwin to the front. Since line 16 removes from\nthe back, we are left with [edwin] and option A is the answer."
+    },
+    {
+      "id": 45,
+      "question": "How many dimensions does the array reference moreBools allow?\nboolean[][] bools[], moreBools;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One dimension"
+        },
+        {
+          "letter": "B",
+          "text": "Two dimensions"
+        },
+        {
+          "letter": "C",
+          "text": "Three dimensions"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "This one is tricky since the array brackets, [], are split up. This means that bools is a\n3D array reference. The brackets both before and after the variable name count. For\nmoreBools, it is only a 2D array reference because there are only two pairs of brackets\nnext to the type. In other words, boolean[][] applies to both variables. Then bools gets\nanother dimension from the brackets right after the variable name. However, moreBools\nstays at 2D, making option B correct."
+    },
+    {
+      "id": 46,
+      "question": "What is the result of the following?\nComparator<Integer> c = (x, y) -> y - x;\nvar ints = Arrays.asList(3, 1, 4);\nCollections.sort(ints, c);\nSystem.out.println(Collections.binarySearch(ints, 1));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "-1 is guaranteed."
+        },
+        {
+          "letter": "B",
+          "text": "0 is guaranteed."
+        },
+        {
+          "letter": "C",
+          "text": "1 is guaranteed."
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The result is not defined."
+        }
+      ],
+      "correct": "E",
+      "explanation": "A custom sort order is specified using a Comparator to sort in descending order. However, this Comparator is not passed when searching. When a different sort order is used for\nsearching and sorting, the result is undefined. Therefore, option E is correct."
+    },
+    {
+      "id": 47,
+      "question": "Which statement most accurately represents the relationship between searching and sorting\nwith respect to the Arrays class?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If the array is not sorted, calling Arrays.binarySearch() will be accurate, but slower than if it were sorted."
+        },
+        {
+          "letter": "B",
+          "text": "The array does not need to be sorted before calling Arrays.binarySearch() to get an accurate result."
+        },
+        {
+          "letter": "C",
+          "text": "The array must be sorted before calling Arrays.binarySearch() to get an accurate result."
+        },
+        {
+          "letter": "D",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The binarySearch() method requires a sorted array in order to return a correct result.\nIf the array is not sorted, the results of a binary search are undefined, making option C\nthe answer."
+    },
+    {
+      "id": 48,
+      "question": "Which statements are true about the following figure while ensuring the code continues to\ncompile? (Choose two.)\nList balloons = new ArrayList ();\nP Q\nvar air = new ArrayList ();\nR S",
+      "options": [
+        {
+          "letter": "A",
+          "text": "<> can be inserted at positions P and R without making any other changes."
+        },
+        {
+          "letter": "B",
+          "text": "<> can be inserted at positions Q and S without making any other changes."
+        },
+        {
+          "letter": "C",
+          "text": "<> can be inserted at all four positions."
+        },
+        {
+          "letter": "D",
+          "text": "Both variables point to an ArrayList<String>."
+        },
+        {
+          "letter": "E",
+          "text": "Only one variable points to an ArrayList<String>."
+        },
+        {
+          "letter": "F",
+          "text": "Neither variable points to an ArrayList<String>."
+        }
+      ],
+      "correct": "B,F",
+      "explanation": "The <> is known as the diamond operator. Here, it works as a shortcut to avoid\nrepeating the generic type twice for the same declaration. On the right side of the expression,\nthis is a handy shortcut. Java still needs the type on the left side, so there is something to\ninfer. Positions Q and S are on the right side, making option B correct. In this question, the\ngeneric type is never specified, so it is Object. Since it is not String, option F is correct."
+    },
+    {
+      "id": 49,
+      "question": "What is the result of the following when called without any command-line arguments?\n(Choose two.)\n1: import java.util.*;\n2: public class Binary {\n3:\n4: public static void main(String... args) {\n5: Arrays.sort(args);\n6: System.out.println(Arrays.toString(args));\n7: System.out.println(args[0]);\n8: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "null"
+        },
+        {
+          "letter": "B",
+          "text": "[]"
+        },
+        {
+          "letter": "C",
+          "text": "Binary"
+        },
+        {
+          "letter": "D",
+          "text": "The code throws an ArrayIndexOutOfBoundsException."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws a NullPointerException."
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "B,D",
+      "explanation": "Since no arguments are passed from the command line, this creates an\nempty array. Sorting an empty array is valid and results in an empty array printed\non line 6. Then line 7 attempts to access an element of the empty array and throws an\nArrayIndexOutOfBoundsException. Therefore, options B and D are correct."
+    },
+    {
+      "id": 50,
+      "question": "What is the first line with a compiler error?\nclass Mammal {}\nclass Bat extends Mammal {}\nclass Cat extends Mammal {}\nclass Sat {}\nclass Fur<? extends Mammal> { // line R\nvoid clean() {\nvar bat = new Fur<Bat>(); // line S\nvar cat = new Fur<Cat>(); // line T\nvar sat = new Fur<Sat>(); // line U\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line R"
+        },
+        {
+          "letter": "B",
+          "text": "Line S"
+        },
+        {
+          "letter": "C",
+          "text": "Line T"
+        },
+        {
+          "letter": "D",
+          "text": "Line U"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "A",
+      "explanation": "The generic declaration on line R is not valid due to the question mark (?) wildcard.\nWhile a question mark is allowed on the left side of a declaration, it is not allowed when\nspecifying a constraint on a class. Since line R does not compile, option A is the answer."
+    },
+    {
+      "id": 51,
+      "question": "What is the result of running the following program?\n1: package fun;\n2: public class Sudoku {\n3: static int[][] game = new int[6][6];\n4:\n5: public static void main(String[] args) {\n6: game[3][3] = 6;\n7: Object[] obj = game;\n8: obj[3] = \"X\";\n9: System.out.println(game[3][3]);\n10: } }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6"
+        },
+        {
+          "letter": "B",
+          "text": "X"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws a NullPointerException at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code compiles but throws a different exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Line 6 assigns an int to a cell in a 2D array. This is fine. Line 7 casts to a general\nObject[]. This is dangerous, but legal. Why is it dangerous, you ask? That brings us to\nline 8. The compiler can’t protect us from assigning a String to the int[] because the reference is more generic. Therefore, line 8 throws an ArrayStoreException because the\ntype is incorrect, and option E is correct. You couldn’t have assigned an int on line 8 either\nbecause obj[3] is really an int[] behind the scenes and not an int."
+    },
+    {
+      "id": 52,
+      "question": "How many of these allow insertingnullvalues:ArrayList,LinkedList,HashSet, andTreeSet?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "4"
+        }
+      ],
+      "correct": "D",
+      "explanation": "TreeSet does not allow null values because it compares the values when they are\nadded, leading to a NullPointerException. A HashSet does support null values,\nalthough you can only have one since HashSet guarantees uniqueness. ArrayList and\nLinkedList both support any number of null entries. Since three of the four collections\nallow inserting null values, option D is correct."
+    },
+    {
+      "id": 53,
+      "question": "What is the output of the following?\nvar threes = Arrays.asList(\"3\", \"three\", \"THREE\");\nCollections.sort(threes);\nSystem.out.println(threes);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[3, three, THREE]"
+        },
+        {
+          "letter": "B",
+          "text": "[3, THREE, three]"
+        },
+        {
+          "letter": "C",
+          "text": "[three, THREE, 3]"
+        },
+        {
+          "letter": "D",
+          "text": "[THREE, three, 3]"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Unfortunately, you do have to memorize two facts about sort order. First, numbers sort\nbefore letters. Second, uppercase sorts before lowercase. Since the first value is 3 and the last\nis three, option B is correct."
+    },
+    {
+      "id": 54,
+      "question": "How many dimensions does the array reference moreBools allow?\nboolean[][][] bools, moreBools;",
+      "options": [
+        {
+          "letter": "A",
+          "text": "One dimension"
+        },
+        {
+          "letter": "B",
+          "text": "Two dimensions"
+        },
+        {
+          "letter": "C",
+          "text": "Three dimensions"
+        },
+        {
+          "letter": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Since the brackets in the declaration are before the variable names, the variable type\nboolean[][][] applies to both variables. Therefore, both bools and moreBools can\nreference a 3D array and option C is correct."
+    },
+    {
+      "id": 55,
+      "question": "What is the output of the following?\n20: List<Character> chars = new ArrayList<>();\n21: chars.add('a');\n22: chars.add('b');\n23: chars.clear();\n24: chars.remove(0);\n25: System.out.print(chars.isEmpty() + \" \" + chars.length());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false 1"
+        },
+        {
+          "letter": "B",
+          "text": "true 0"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Line 25 does not compile, making option D the answer. On an ArrayList, the method\nto get the number of elements is size(). The length() method is used for a String or\nStringBuilder. If this were fixed, the answer would be option E. Line 23 empties the\nArrayList. Then line 24 attempts to access an index that is not present."
+    },
+    {
+      "id": 56,
+      "question": "Which fills in the blank in the method signature to allow this code to compile and print\n[duck, duck, goose] at runtime?\nimport java.util.*;\npublic class ExtendingGenerics {\nprivate static < , U> U add(T list, U element) {\nlist.add(element);\nreturn element;\n}\npublic static void main(String[] args) {\nvar values = new ArrayList<String>();\nadd(values, \"duck\");\nadd(values, \"duck\");\nadd(values, \"goose\");\nSystem.out.println(values);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "? extends Collection<U>"
+        },
+        {
+          "letter": "B",
+          "text": "? implements Collection<U>"
+        },
+        {
+          "letter": "C",
+          "text": "T extends Collection<U>"
+        },
+        {
+          "letter": "D",
+          "text": "T implements Collection<U>"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "C",
+      "explanation": "The ? is an unbounded wildcard. It is used in variable references but is not allowed in\ndeclarations. In a static method, the type parameter specified inside the <> is used in the\nrest of the method declaration. Since it needs an actual name, options A and B are incorrect.\nWe need to specify a type constraint so that we can call the add() method. Regardless of\nwhether the type is a class or interface, Java uses the extends keyword for generics. Therefore, option D is incorrect, and option C is the answer."
+    },
+    {
+      "id": 57,
+      "question": "What does the following output?\nString[] os = new String[] { \"Mac\", \"Linux\", \"Windows\" };\nSystem.out.println(Arrays.binarySearch(os, \"Linux\"));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0 is guaranteed."
+        },
+        {
+          "letter": "B",
+          "text": "1 is guaranteed."
+        },
+        {
+          "letter": "C",
+          "text": "2 is guaranteed"
+        },
+        {
+          "letter": "D",
+          "text": "The output is not defined."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Java requires having a sorted array before calling the binarySearch() method. Since\nthe array is not sorted, the result is undefined, and option D is correct. It may happen that\nyou get 1 as the result, but this behavior is not guaranteed. You need to know for the exam\nthat this is undefined even if you happen to get the “right” answer."
+    },
+    {
+      "id": 58,
+      "question": "Which is the first line to prevent this code from compiling and running without error?\n11: char[][] ticTacToe = new char[3,3];\n12: ticTacToe[1][3] = 'X';\n13: ticTacToe[2][2] = 'X';\n14: ticTacToe[3][1] = 'X';\n15: System.out.println(ticTacToe.length + \" in a row!\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line 11"
+        },
+        {
+          "letter": "B",
+          "text": "Line 12"
+        },
+        {
+          "letter": "C",
+          "text": "Line 13"
+        },
+        {
+          "letter": "D",
+          "text": "Line 14"
+        },
+        {
+          "letter": "E",
+          "text": "Line 15"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above; the code compiles and runs without issue."
+        }
+      ],
+      "correct": "A",
+      "explanation": "A multidimensional array is created with multiple sets of size parameters. Line 11 should\nbe char[] ticTacToe = new char[3][3];. Therefore, option A is the answer."
+    },
+    {
+      "id": 59,
+      "question": "What is the result of the following?\nvar list = new ArrayList<String>();\nlist.add(\"Austin\");\nlist.add(\"Boston\");\nlist.add(\"San Francisco\");\nlist.removeIf(a -> a.length() > 10);\nSystem.out.println(list.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "0"
+        },
+        {
+          "letter": "B",
+          "text": "1"
+        },
+        {
+          "letter": "C",
+          "text": "2"
+        },
+        {
+          "letter": "D",
+          "text": "3"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "On a stream, the filter() method only keeps values matching the lambda. The\nremoveIf() does the reverse on a Collection and keeps the elements that do not match.\nIn this case, that is Austin and Boston, so option C is correct."
+    },
+    {
+      "id": 60,
+      "question": "What happens when calling the following method with a non-null and non-empty array?\npublic static void addStationName(String[] names) {\nnames[names.length] = \"Times Square\";\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "It adds an element to the array whose value is Times Square."
+        },
+        {
+          "letter": "B",
+          "text": "It replaces the last element in the array with the value Times Square."
+        },
+        {
+          "letter": "C",
+          "text": "It throws an exception."
+        },
+        {
+          "letter": "D",
+          "text": "It does not compile regardless of what is passed in."
+        },
+        {
+          "letter": "E",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The names.length value is the number of elements in the array. The last\nvalid index in the array is one less than names.length. Therefore, the code throws an\nArrayIndexOutOfBoundsException, and option C is correct."
+    },
+    {
+      "id": 61,
+      "question": "Which is not a true statement about an array?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "An array expands automatically when it is full."
+        },
+        {
+          "letter": "B",
+          "text": "An array is allowed to contain duplicate values."
+        },
+        {
+          "letter": "C",
+          "text": "An array understands the concept of ordered elements."
+        },
+        {
+          "letter": "D",
+          "text": "An array uses a zero index to reference the first element."
+        }
+      ],
+      "correct": "A",
+      "explanation": "An ArrayList expands automatically when it is full. An array does not, making option\nA the answer. The other three statements are true of both an array and an ArrayList."
+    },
+    {
+      "id": 62,
+      "question": "Which of the following cannot fill in the blank to make the code compile?\nprivate void output( <?> x) {\nx.forEach(System.out::println);\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Collection"
+        },
+        {
+          "letter": "B",
+          "text": "LinkedList"
+        },
+        {
+          "letter": "C",
+          "text": "TreeMap"
+        },
+        {
+          "letter": "D",
+          "text": "None of these can fill in the blank."
+        },
+        {
+          "letter": "E",
+          "text": "All of these can fill in the blank."
+        }
+      ],
+      "correct": "C",
+      "explanation": "The forEach() method that takes one parameter is defined on the Collection interface, allowing options A and B to fill in the blank. Option C requires you to notice that only\none generic parameter is passed. A Map needs two parameters, so option C is the answer."
+    },
+    {
+      "id": 63,
+      "question": "Which of the following fills in the blank so this code compiles?\npublic static void getExceptions(Collection< > coll) {\ncoll.add(new RuntimeException());\ncoll.add(new Exception());\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "?"
+        },
+        {
+          "letter": "B",
+          "text": "? extends RuntimeException"
+        },
+        {
+          "letter": "C",
+          "text": "? super RuntimeException"
+        },
+        {
+          "letter": "D",
+          "text": "T"
+        },
+        {
+          "letter": "E",
+          "text": "T extends RuntimeException"
+        },
+        {
+          "letter": "F",
+          "text": "T super RuntimeException"
+        },
+        {
+          "letter": "G",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "G",
+      "explanation": "Options D, E, and F do not compile because a wildcard must be used here. Option A is\nincorrect because coll could be any type, which doesn’t necessarily allow anything to be\nadded, including exceptions. Option B is incorrect because neither add() method compiles.\nWe could have Collection<IllegalStateException> as a parameter. That would\nnot allow either type to be added. Finally, option C is incorrect as the second add() method\ndoes not compile because broader types than the generic allows are a problem when adding\nto coll. Therefore, option G is the answer."
+    },
+    {
+      "id": 64,
+      "question": "What is the output of the following? (Choose two.)\n35: var mags = new HashMap<String, Integer>();\n36: mags.put(\"People\", 1974);\n37: mags.put(\"Readers Digest\", 1922);\n38: mags.put(\"The Economist\", 1843);\n39:\n40: Collection<Integer> years = mags.values();\n41:\n42: List<Integer> sorted = new ArrayList<>(years);\n43: Collections.sort(sorted);\n44:\n45: int first = sorted.get(0);\n46: System.out.println(first);\n47:\n48: Integer last = sorted.get(sorted.size());\n49: System.out.println(last);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1843"
+        },
+        {
+          "letter": "B",
+          "text": "1922"
+        },
+        {
+          "letter": "C",
+          "text": "1974"
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "A,D",
+      "explanation": "Lines 35–38 create a Map with three key/value pairs. Lines 40–43 sort just the values\nascendingly by year. Lines 45 and 48 show you can assign the Integer values to an int\nvia unboxing or an Integer directly. Line 46 shows the values are properly sorted, making\noption A correct. Finally, line 48 throws an exception because sorted.size() returns 3\nand the maximum index in the List is 2. This makes option D correct as well."
+    },
+    {
+      "id": 65,
+      "question": "How do you access the array element with the value of \"z\"?\n\"one\"\n\"p\"\n\"x\"\n\"y\"\n\"x\"\n\"y\"\n\"z\"\n\"two\" \"three\"\ndimensions",
+      "options": [
+        {
+          "letter": "A",
+          "text": "dimensions[\"three\"][2]"
+        },
+        {
+          "letter": "B",
+          "text": "dimensions[\"three\"][3]"
+        },
+        {
+          "letter": "C",
+          "text": "dimensions[2][2]"
+        },
+        {
+          "letter": "D",
+          "text": "dimensions[3][3]"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Arrays are indexed using numbers, not strings, making options A and B incorrect. Since\narray indexes are zero-based, option C is the answer."
+    },
+    {
+      "id": 66,
+      "question": "What is the output of the following?\nimport java.util.*;\nrecord Magazine(String name) implements Comparable<Magazine> {\npublic int compareTo(Magazine m) {\nreturn name.compareTo(m.name);\n}\n}\npublic class Newsstand {\npublic static void main(String[] args) {\nvar set = new TreeSet<Magazine>();\nset.add(new Magazine(\"highlights\"));\nset.add(new Magazine(\"Newsweek\"));\nset.add(new Magazine(\"highlights\"));\nSystem.out.println(set.iterator().next());\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Magazine[name=highlights]"
+        },
+        {
+          "letter": "B",
+          "text": "Magazine[name=Newsweek]"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "B",
+      "explanation": "This code shows a proper implementation of Comparable. It has the correct method\nsignature. It compares the magazine names in alphabetical order. Remember that uppercase letters sort before lowercase letters. Since Newsweek starts with uppercase, option B is\ncorrect."
+    },
+    {
+      "id": 67,
+      "question": "Which can fill in the blanks to print Cleaned 2 items?\nimport java.util.*;\nclass Wash<T Collection> {\npublic void clean(T items) {\nSystem.out.println(\"Cleaned \" + items.size() + \" items\");\n} }\npublic class LaundryTime {\npublic static void main(String[] args) {\nWash<List> wash = new Wash< >();\nwash.clean(List.of(\"sock\", \"tie\"));\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "extends, ArrayList"
+        },
+        {
+          "letter": "B",
+          "text": "extends, List"
+        },
+        {
+          "letter": "C",
+          "text": "super, ArrayList"
+        },
+        {
+          "letter": "D",
+          "text": "super, List"
+        },
+        {
+          "letter": "E",
+          "text": "None of the above"
+        }
+      ],
+      "correct": "B",
+      "explanation": "Options A and C are incorrect because a generic type cannot be assigned to another direct\ntype unless you are using upper or lower bounds in that statement. Now, we just have to\ndecide whether a lower or upper bound is correct for the T formal type parameter in Wash.\nThe clue is that the method calls size(). This method is available on Collection and all\nclasses that extend/implement it. Therefore, option B is correct."
+    },
+    {
+      "id": 68,
+      "question": "How many lines does the following code output?\nvar days = new String[] { \"Sunday\", \"Monday\", \"Tuesday\",\n\"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\" };\nfor (int i = 1; i <= days.length; i++)\nSystem.out.println(days[i]);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Six"
+        },
+        {
+          "letter": "B",
+          "text": "Seven"
+        },
+        {
+          "letter": "C",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "D",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "D",
+      "explanation": "In Java, arrays are indexed starting with 0. While it is unusual for the loop to start with 1,\nthis does not cause an error. What does cause an error is the loop ending at data.length,\nbecause the <= operator is used instead of the < operator. The last array index is 6, not 7.\nOn the last iteration of the loop, the code throws an\nArrayIndexOutOfBoundsException. Therefore, option D is correct."
+    },
+    {
+      "id": 69,
+      "question": "What is the output of the following?\nvar listing = new String[][] {\n{ \"Book\" }, { \"Game\", \"29.99\" } };\nSystem.out.println(listing.length + \" \" + listing[0].length);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "1 1"
+        },
+        {
+          "letter": "B",
+          "text": "1 2"
+        },
+        {
+          "letter": "C",
+          "text": "2 1"
+        },
+        {
+          "letter": "D",
+          "text": "2 2"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "The code compiles but throws an exception at runtime."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This array has two elements, making listing.length output 2. While each array\nelement does not have the same size, this does not matter because we are only looking at the\nfirst element. The first element has one. This makes option C the answer."
+    },
+    {
+      "id": 70,
+      "question": "What is the output of the following?\nQueue<String> q = new ArrayDeque<>();\nq.add(\"snowball\");\nq.addLast(\"sugar\");\nq.addFirst(\"minnie\");\nSystem.out.println(q.peek() + \" \" + q.peek() + \" \" + q.size());",
+      "options": [
+        {
+          "letter": "A",
+          "text": "sugar sugar 3"
+        },
+        {
+          "letter": "B",
+          "text": "sugar minnie 1"
+        },
+        {
+          "letter": "C",
+          "text": "minnie minnie 3"
+        },
+        {
+          "letter": "D",
+          "text": "minnie snowball 1"
+        },
+        {
+          "letter": "E",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "F",
+          "text": "None of the above."
+        }
+      ],
+      "correct": "E",
+      "explanation": "The addFirst() and addLast() methods are on the Deque interface. While\nArrayDeque does implement this interface, it also implements Queue. Since the q variable\nis of type Queue, these methods do not compile, and option E is the answer."
+    },
+    {
+      "id": 71,
+      "question": "What is the result of the following?\n13: var numbers = Arrays.asList(3, 1, 4);\n14: numbers.set(1, null);\n15: int first = numbers.get(0);\n16: int middle = numbers.get(1);\n17: int last = numbers.get(3);\n18: System.out.println(first + \" \" + middle + \" \" + last);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "Line 14 throws an exception."
+        },
+        {
+          "letter": "C",
+          "text": "Line 15 throws an exception."
+        },
+        {
+          "letter": "D",
+          "text": "Line 16 throws an exception."
+        },
+        {
+          "letter": "E",
+          "text": "Line 17 throws an exception."
+        },
+        {
+          "letter": "F",
+          "text": "3null4"
+        }
+      ],
+      "correct": "D",
+      "explanation": "The code does compile, making option A incorrect. Line 13 creates a fixed-size list. While\nwe are using var, the type is List<Integer>. Line 14 successfully changes the contents of\nthe list to [3, null, 4]. Line 15 automatically unboxes to the primitive 3. Line 16 has\na problem. The list has a null value at index 1. This cannot be unboxed to a primitive and\nthrows a NullPointerException. Therefore, option D is the answer."
+    },
+    {
+      "id": 72,
+      "question": "Fill in the blank so the code prints gamma.\nvar list = Arrays.asList(\"alpha\", \"beta\", \"gamma\");\nCollections.sort(list, );\nSystem.out.println(list.get(0));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Comparator.comparing(String::length) .andCompare(s -> s.charAt(0))"
+        },
+        {
+          "letter": "B",
+          "text": "Comparator.comparing(String::length) .thenCompare(s -> s.charAt(0))"
+        },
+        {
+          "letter": "C",
+          "text": "Comparator.comparing(String::length) .thenComparing(s -> s.charAt(0))"
+        },
+        {
+          "letter": "D",
+          "text": "Comparator.comparing(String::length) .andCompare(s -> s.charAt(0)) .reversed()"
+        },
+        {
+          "letter": "E",
+          "text": "Comparator.comparing(String::length) .thenCompare(s -> s.charAt(0)) .reversed()"
+        },
+        {
+          "letter": "F",
+          "text": "Comparator.comparing(String::length) .thenComparing(s -> s.charAt(0)) .reversed()"
+        }
+      ],
+      "correct": "F",
+      "explanation": "Options A, B, D, and E call the andCompare() and thenCompare() methods, which\ndo not exist. Option C is missing the logic to sort descendingly, printing alpha at runtime.\nThis leaves option F, which correctly sorts the elements, reverses them, and prints gamma at\nruntime."
+    },
+    {
+      "id": 73,
+      "question": "What is the output of the following when run as java FirstName.java Wolfie?\n(Choose two.)\npublic class FirstName {\npublic static void main(String... names) {\nSystem.out.println(names[0]);\nSystem.out.println(names[1]);\n} }",
+      "options": [
+        {
+          "letter": "A",
+          "text": "FirstName"
+        },
+        {
+          "letter": "B",
+          "text": "Wolfie"
+        },
+        {
+          "letter": "C",
+          "text": "The code throws an ArrayIndexOutOfBoundsException."
+        },
+        {
+          "letter": "D",
+          "text": "The code throws a NullPointerException."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws a different exception."
+        }
+      ],
+      "correct": "B,C",
+      "explanation": "Array indexes begin with 0. FirstName is the name of the class, not an argument. The\nfirst argument is Wolfie, making option B correct. There is not a second argument, and the\narray is of size 1, so option C is also correct."
+    },
+    {
+      "id": 74,
+      "question": "What does the following output?\n11: var pennies = new ArrayList<>();\n12: pennies.add(1);\n13: pennies.add(2);\n14: pennies.add(Integer.valueOf(3));\n15: pennies.add(Integer.valueOf(4));\n16: pennies.remove(2);\n17: pennies.remove(Integer.valueOf(1));\n18: System.out.println(pennies);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[1, 2]"
+        },
+        {
+          "letter": "B",
+          "text": "[1, 4]"
+        },
+        {
+          "letter": "C",
+          "text": "[2, 4]"
+        },
+        {
+          "letter": "D",
+          "text": "[2, 3]"
+        },
+        {
+          "letter": "E",
+          "text": "[3, 4]"
+        },
+        {
+          "letter": "F",
+          "text": "The code does not compile."
+        }
+      ],
+      "correct": "C",
+      "explanation": "This one is tricky. Line 11 creates an ArrayList with a generic type Object rather than\nInteger. This is allowed since we aren’t trying to assign any of the values to an int or\nInteger after getting them from pennies. This gives us the list [1, 2, 3, 4].\nThe next trick is that there are two remove() methods available on ArrayList. One\nremoves an element by index and takes an int parameter. The other removes an element by\nvalue and takes an Object. On line 16, the int primitive is a better match, and the element\nwith index 2 is removed, which is the value of 3. At this point, we have [1, 2, 4].\nThen on line 17, the other remove() method is called because we are explicitly using the\nwrapper object. This deletes the object that is equal to 1, and now we have [2, 4]. This\nbrings us to option C as the answer."
+    },
+    {
+      "id": 75,
+      "question": "What is true of the following code? (Choose two.)\nprivate static void sortAndSearch(String... args) {\nvar one = args[1];\nComparator<String> comp = (x, y) -> ;\nArrays.sort(args, comp);\nvar result = Arrays.binarySearch(args, one, comp);\nSystem.out.println(result);\n}\npublic static void main(String[] args) {\nsortAndSearch(\"seed\", \"flower\");\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "If the blank contains -x.compareTo(y), then the code outputs 0."
+        },
+        {
+          "letter": "B",
+          "text": "If the blank contains -x.compareTo(y), then the code outputs -1."
+        },
+        {
+          "letter": "C",
+          "text": "If the blank contains x.compareTo(y), then the code outputs 0."
+        },
+        {
+          "letter": "D",
+          "text": "If the blank contains -y.compareTo(x), then the code outputs 0."
+        },
+        {
+          "letter": "E",
+          "text": "If the blank contains -y.compareTo(x), then the code outputs -1."
+        },
+        {
+          "letter": "F",
+          "text": "If the blank contains y.compareTo(x), then the code outputs 0."
+        },
+        {
+          "letter": "G",
+          "text": "If the blank contains y.compareTo(x), then the code outputs -1."
+        }
+      ],
+      "correct": "C,D",
+      "explanation": "The code will output 0 when the array is sorted in ascending order since flower\nwill be first. Option C is the most straightforward way of doing this, making it one of the\nanswers. Reversing the order of the variables or adding a negative sign sorts in descending\norder making options A, B, E, F, and G incorrect. Doing both is a complicated way of sorting\nin ascending order, making option D the other correct answer."
+    },
+    {
+      "id": 76,
+      "question": "What does this code output?\nString[] nums = new String[] { \"1\", \"9\", \"10\" };\nArrays.sort(nums);\nSystem.out.println(Arrays.toString(nums));",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[1, 9, 10]"
+        },
+        {
+          "letter": "B",
+          "text": "[1, 10, 9]"
+        },
+        {
+          "letter": "C",
+          "text": "[9, 1, 10]"
+        },
+        {
+          "letter": "D",
+          "text": "[9, 10, 1]"
+        },
+        {
+          "letter": "E",
+          "text": "[10, 1, 9]"
+        },
+        {
+          "letter": "F",
+          "text": "[10, 9, 1]"
+        }
+      ],
+      "correct": "B",
+      "explanation": "The elements of the array are of type String rather than int. Therefore, we use alphabetical order when sorting. The character 1 sorts before the character 9, alphabetically making option A incorrect. Shorter strings sort before longer strings when all the other characters\nare the same, making option B the answer."
+    },
+    {
+      "id": 77,
+      "question": "Which is the first line to prevent this code from compiling and running without error?\n11: char[][] ticTacToe = new char[3][3];\n12: ticTacToe[0][0] = 'X';\n13: ticTacToe[1][1] = 'X';\n14: ticTacToe[2][2] = 'X';\n15: System.out.println(ticTacToe.length + \" in a row!\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Line 11"
+        },
+        {
+          "letter": "B",
+          "text": "Line 12"
+        },
+        {
+          "letter": "C",
+          "text": "Line 13"
+        },
+        {
+          "letter": "D",
+          "text": "Line 14"
+        },
+        {
+          "letter": "E",
+          "text": "Line 15"
+        },
+        {
+          "letter": "F",
+          "text": "None of the above; the code compiles and runs without issue."
+        }
+      ],
+      "correct": "F",
+      "explanation": "This code is correct. Line 11 correctly creates a 2D array. The next three lines correctly\nassign a value to an array element. Line 15 correctly outputs 3 in a row!, making option\nF correct."
+    },
+    {
+      "id": 78,
+      "question": "What is true of the following code? (Choose three.)\n36: var names = new HashMap<String, String>();\n37: names.put(\"peter\", \"pan\");\n38: names.put(\"wendy\", \"darling\");\n39:\n40: String w = names.getOrDefault(\"peter\");\n41: String x = names.getOrDefault(\"peter\", \"x\");\n42: String y = names.getOrDefault(\"john\", \"x\");",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Exactly one line does not compile."
+        },
+        {
+          "letter": "B",
+          "text": "Exactly two lines do not compile."
+        },
+        {
+          "letter": "C",
+          "text": "If any lines that do not compile are removed, the String on line 40 is set to null."
+        },
+        {
+          "letter": "D",
+          "text": "If any lines that do not compile are removed, the String on line 41 is set to \"pan\"."
+        },
+        {
+          "letter": "E",
+          "text": "If any lines that do not compile are removed, the String on line 41 is set to \"x\"."
+        },
+        {
+          "letter": "F",
+          "text": "If any lines that do not compile are removed, the String on line 42 is set to \"x\"."
+        }
+      ],
+      "correct": "A,D,F",
+      "explanation": "Line 40 does not compile since getOrDefault() requires two parameters. This\nmakes option A the first answer. The rest of the code does compile. Option D is the next\nanswer because getOrDefault() returns the value from the map when the key is present.\nFinally, option F is correct because getOrDefault() returns the second parameter when\nthe key is not present."
+    },
+    {
+      "id": 79,
+      "question": "What does the following output?\n18: List<String> list = List.of(\n19: \"Mary\", \"had\", \"a\", \"little\", \"lamb\");\n20: Set<String> set = new HashSet<>(list);\n21: set.addAll(list);\n22: for(String sheep : set)\n23: if (sheep.length() > 1)\n24: set.remove(sheep);\n25: System.out.println(set);",
+      "options": [
+        {
+          "letter": "A",
+          "text": "[a, lamb, had, Mary, little]"
+        },
+        {
+          "letter": "B",
+          "text": "[a]"
+        },
+        {
+          "letter": "C",
+          "text": "[a, a]"
+        },
+        {
+          "letter": "D",
+          "text": "The code does not compile."
+        },
+        {
+          "letter": "E",
+          "text": "The code throws an exception at runtime."
+        }
+      ],
+      "correct": "E",
+      "explanation": "Lines 18 and 19 create a list with five elements. Line 20 makes a set with the\nsame five elements. Line 21 does not change the contents of the set since sets must have\nunique elements. The loop on line 22 tries to delete elements but instead throws a\nConcurrentModificationException, making option E the answer."
+    },
+    {
+      "id": 80,
+      "question": "Which of the following fills in the blank so this code compiles?\npublic static void getExceptions(Collection< > coll) {\ncoll.add(new RuntimeException());\ncoll.add(new Exception());\n}",
+      "options": [
+        {
+          "letter": "A",
+          "text": "?"
+        },
+        {
+          "letter": "B",
+          "text": "? extends Exception"
+        },
+        {
+          "letter": "C",
+          "text": "? super Exception"
+        },
+        {
+          "letter": "D",
+          "text": "T"
+        },
+        {
+          "letter": "E",
+          "text": "T extends Exception"
+        },
+        {
+          "letter": "F",
+          "text": "T super Exception"
+        }
+      ],
+      "correct": "C",
+      "explanation": "Options D, E, and F do not compile because only a wildcard can be used here. Option C\nis correct because all the types being added are of type Exception or direct subclasses."
+    }
+  ]
+}
