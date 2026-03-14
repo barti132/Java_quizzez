@@ -36,7 +36,7 @@
     },
     {
       "id": 2,
-      "question": "Which statements about the following class are correct? (Choose two.)\npackage knowledge;\nclass InformationException extends Exception {}\npublic class LackOfInformationException\nextends InformationException {\npublic LackOfInformationException() { // t1\nsuper(\"\");\n}\npublic LackOfInformationException(String s) { // t2\nthis(new Exception(s));\n}\npublic LackOfInformationException(Exception c) { // t3\nsuper();\n}\npublic String getMessage() throws ArithmeticException {\nreturn \"lackOf\";\n} }Chapter 12 ■ Practice Exam 1 367",
+      "question": "Which statements about the following class are correct? (Choose two.)\npackage knowledge;\nclass InformationException extends Exception {}\npublic class LackOfInformationException\nextends InformationException {\npublic LackOfInformationException() { // t1\nsuper(\"\");\n}\npublic LackOfInformationException(String s) { // t2\nthis(new Exception(s));\n}\npublic LackOfInformationException(Exception c) { // t3\nsuper();\n}\npublic String getMessage() throws ArithmeticException {\nreturn \"lackOf\";\n} }",
       "options": [
         {
           "letter": "A",
@@ -132,7 +132,7 @@
     },
     {
       "id": 5,
-      "question": "What does the following code print?\n// Hare.java\npackage com.animal;368 Chapter 12 ■ Practice Exam 1\npublic class Hare {\nvoid init() {\nSystem.out.print(\"init-\");\n}\nprotected void race() {\nSystem.out.print(\"hare-\");\n} }\n// Tortoise.java\npackage com.animal;\npublic class Tortoise {\nprotected void race(Hare hare) {\nhare.init(); // x1\nhare.race(); // x2\nSystem.out.print(\"tortoise-\");\n}\npublic static void main(String[] args) {\nvar tortoise = new Tortoise();\nvar hare = new Hare();\ntortoise.race(hare);\n} }",
+      "question": "What does the following code print?\n// Hare.java\npackage com.animal;\npublic class Hare {\nvoid init() {\nSystem.out.print(\"init-\");\n}\nprotected void race() {\nSystem.out.print(\"hare-\");\n} }\n// Tortoise.java\npackage com.animal;\npublic class Tortoise {\nprotected void race(Hare hare) {\nhare.init(); // x1\nhare.race(); // x2\nSystem.out.print(\"tortoise-\");\n}\npublic static void main(String[] args) {\nvar tortoise = new Tortoise();\nvar hare = new Hare();\ntortoise.race(hare);\n} }",
       "options": [
         {
           "letter": "A",
@@ -188,7 +188,7 @@
         },
         {
           "letter": "F",
-          "text": "z -> zChapter 12 ■ Practice Exam 1 369"
+          "text": "z -> z"
         }
       ],
       "correct": "A,C,F",
@@ -264,7 +264,7 @@
         },
         {
           "letter": "B",
-          "text": "Two370 Chapter 12 ■ Practice Exam 1"
+          "text": "Two"
         },
         {
           "letter": "C",
@@ -352,7 +352,7 @@
     },
     {
       "id": 12,
-      "question": "What does the following do?\npublic class Player {\ninterface Basket {\nboolean needToAim(double angle);\n}\nstatic void prepare(double angle, Basket t) {\nboolean ready = t.needToAim(angle); // k1\nSystem.out.println(ready);\n}\npublic static void main(String[] args) {\nprepare(45, d => d > 5 || d < -5); // k2\n} }Chapter 12 ■ Practice Exam 1 371",
+      "question": "What does the following do?\npublic class Player {\ninterface Basket {\nboolean needToAim(double angle);\n}\nstatic void prepare(double angle, Basket t) {\nboolean ready = t.needToAim(angle); // k1\nSystem.out.println(ready);\n}\npublic static void main(String[] args) {\nprepare(45, d => d > 5 || d < -5); // k2\n} }",
       "options": [
         {
           "letter": "A",
@@ -464,7 +464,7 @@
     },
     {
       "id": 16,
-      "question": "Starting with DoubleBinaryOperator and going downward, fill in the values for the table. The\nmethod signature refers to the abstract method associated with each functional interface.\nFunctional Interface # Parameters in Method Signature\nDoubleBinaryOperator\nLongToIntFunction\nToLongBiFunction372 Chapter 12 ■ Practice Exam 1\nFunctional Interface # Parameters in Method Signature\nIntSupplier\nObjLongConsumer",
+      "question": "Starting with DoubleBinaryOperator and going downward, fill in the values for the table. The\nmethod signature refers to the abstract method associated with each functional interface.\nFunctional Interface # Parameters in Method Signature\nDoubleBinaryOperator\nLongToIntFunction\nToLongBiFunction372 \nFunctional Interface # Parameters in Method Signature\nIntSupplier\nObjLongConsumer",
       "options": [
         {
           "letter": "A",
@@ -524,7 +524,7 @@
     },
     {
       "id": 18,
-      "question": "Suppose cats is an empty table. How many rows are in this table when the code has\ncompleted?\n10: try (var conn = DriverManager.getConnection(url)) {\n11: conn.setAutoCommit(false);\n12: String insert = \"INSERT INTO cats VALUES (? ,?)\";\n13:\n14: var sp1 = conn.setSavepoint();\n15: try (var stmt = conn.prepareStatement(insert)) {\n16: stmt.setInt(1, 1);\n17: stmt.setString(2, \"Kitty\");\n18: stmt.executeUpdate();Chapter 12 ■ Practice Exam 1 373\n19: }\n20: var sp2 = conn.setSavepoint();\n21: conn.rollback(sp1);\n22: try (var stmt = conn.prepareStatement(insert)) {\n23: stmt.setInt(1, 2);\n24: stmt.setString(2, \"Beverly\");\n25: stmt.executeUpdate();\n26: }\n27: conn.rollback(sp2);\n28: conn.commit();\n29: }",
+      "question": "Suppose cats is an empty table. How many rows are in this table when the code has\ncompleted?\n10: try (var conn = DriverManager.getConnection(url)) {\n11: conn.setAutoCommit(false);\n12: String insert = \"INSERT INTO cats VALUES (? ,?)\";\n13:\n14: var sp1 = conn.setSavepoint();\n15: try (var stmt = conn.prepareStatement(insert)) {\n16: stmt.setInt(1, 1);\n17: stmt.setString(2, \"Kitty\");\n18: stmt.executeUpdate();\n19: }\n20: var sp2 = conn.setSavepoint();\n21: conn.rollback(sp1);\n22: try (var stmt = conn.prepareStatement(insert)) {\n23: stmt.setInt(1, 2);\n24: stmt.setString(2, \"Beverly\");\n25: stmt.executeUpdate();\n26: }\n27: conn.rollback(sp2);\n28: conn.commit();\n29: }",
       "options": [
         {
           "letter": "A",
@@ -584,7 +584,7 @@
     },
     {
       "id": 20,
-      "question": "Which sets of lines can be removed without stopping the code from compiling and while\nprinting the same output? (Choose three.)\n14: String race = \"\";\n15: outer:\n16: do {\n17: inner:374 Chapter 12 ■ Practice Exam 1\n18: do\n19: {\n20: race += \"x\";\n21: }\n22: while (race.length() <= 4);\n23: } while (race.length() < 4);\n24: System.out.println(race);",
+      "question": "Which sets of lines can be removed without stopping the code from compiling and while\nprinting the same output? (Choose three.)\n14: String race = \"\";\n15: outer:\n16: do {\n17: inner:374 \n18: do\n19: {\n20: race += \"x\";\n21: }\n22: while (race.length() <= 4);\n23: } while (race.length() < 4);\n24: System.out.println(race);",
       "options": [
         {
           "letter": "A",
@@ -648,7 +648,7 @@
     },
     {
       "id": 22,
-      "question": "Assuming -g:vars is used when the code is compiled to include debug information, what is the\noutput of the following code snippet?\n51: Double tea = null;\n52: Object coffee = (Integer)null;\n53: String juice = \"\";\n54: if(coffee instanceof Integer x) {\n55: System.out.println(x.intValue());\n56: } else if (tea < juice.length()) {\n57: System.out.println(tea);\n58: }Chapter 12 ■ Practice Exam 1 375",
+      "question": "Assuming -g:vars is used when the code is compiled to include debug information, what is the\noutput of the following code snippet?\n51: Double tea = null;\n52: Object coffee = (Integer)null;\n53: String juice = \"\";\n54: if(coffee instanceof Integer x) {\n55: System.out.println(x.intValue());\n56: } else if (tea < juice.length()) {\n57: System.out.println(tea);\n58: }",
       "options": [
         {
           "letter": "A",
@@ -704,7 +704,7 @@
     },
     {
       "id": 24,
-      "question": "Which of the following lambda expressions can be inserted into both blanks while still allowing the application to compile? (Choose three.)\npackage spooky;\nimport java.util.function.*;\nabstract class Phantom {\npublic void bustLater(DoubleConsumer buster, double value) {376 Chapter 12 ■ Practice Exam 1\nbuster.accept(value);\n}\n}\npublic class Ghost extends Phantom {\npublic void bustNow(Consumer<Double> buster, double value) {\nbuster.accept(value);\n}\nvoid call() {\nvar value = 10.0;\nbustNow( , value);\nbustLater( , value);\n} }",
+      "question": "Which of the following lambda expressions can be inserted into both blanks while still allowing the application to compile? (Choose three.)\npackage spooky;\nimport java.util.function.*;\nabstract class Phantom {\npublic void bustLater(DoubleConsumer buster, double value) {376 \nbuster.accept(value);\n}\n}\npublic class Ghost extends Phantom {\npublic void bustNow(Consumer<Double> buster, double value) {\nbuster.accept(value);\n}\nvoid call() {\nvar value = 10.0;\nbustNow( , value);\nbustLater( , value);\n} }",
       "options": [
         {
           "letter": "A",
@@ -764,7 +764,7 @@
     },
     {
       "id": 26,
-      "question": "What is the output of the following application?\npackage rope;\nimport java.util.concurrent.*;\npublic class Jump {\nprivate static void await(CyclicBarrier b) {Chapter 12 ■ Practice Exam 1 377\ntry { b.await(); } catch (Exception e) {}\n}\npublic static void main(String[] chalk) {\nExecutorService s = Executors.newFixedThreadPool(4);\nfinal var b = new CyclicBarrier(4,\n() -> System.out.print(\"Jump!\"));\nfor(int i=0; i<10; i++)\ns.execute(() -> await(b));\ns.shutdown();\n} }",
+      "question": "What is the output of the following application?\npackage rope;\nimport java.util.concurrent.*;\npublic class Jump {\nprivate static void await(CyclicBarrier b) {\ntry { b.await(); } catch (Exception e) {}\n}\npublic static void main(String[] chalk) {\nExecutorService s = Executors.newFixedThreadPool(4);\nfinal var b = new CyclicBarrier(4,\n() -> System.out.print(\"Jump!\"));\nfor(int i=0; i<10; i++)\ns.execute(() -> await(b));\ns.shutdown();\n} }",
       "options": [
         {
           "letter": "A",
@@ -848,7 +848,7 @@
         },
         {
           "letter": "F",
-          "text": "6378 Chapter 12 ■ Practice Exam 1"
+          "text": "6"
         }
       ],
       "correct": "E",
@@ -916,7 +916,7 @@
         },
         {
           "letter": "G",
-          "text": "Adding escape characters to the quotes around toy does not change the value of the text block.Chapter 12 ■ Practice Exam 1 379"
+          "text": "Adding escape characters to the quotes around toy does not change the value of the text block."
         }
       ],
       "correct": "A,E,G",
@@ -956,7 +956,7 @@
     },
     {
       "id": 32,
-      "question": "Which method can fill in the blank that would cause the program to consistently print Tie!\n10 times?\nimport java.util.concurrent.*;\nimport java.util.concurrent.locks.*;\npublic class TieShoes {\nprivate volatile Lock shoes = new ReentrantLock();\npublic void tie() {\ntry {\nif (shoes. ) {\nSystem.out.println(\"Tie!\");\nshoes.unlock();\n}\n} catch (Exception e) {}\n}\npublic static void main(String... unused) {\nvar gate = new TieShoes();\nfor (int i = 0; i < 10; i++) {\nvar t = new Thread(() -> gate.tie());\nt.start();\nt.interrupt();\n} } }380 Chapter 12 ■ Practice Exam 1",
+      "question": "Which method can fill in the blank that would cause the program to consistently print Tie!\n10 times?\nimport java.util.concurrent.*;\nimport java.util.concurrent.locks.*;\npublic class TieShoes {\nprivate volatile Lock shoes = new ReentrantLock();\npublic void tie() {\ntry {\nif (shoes. ) {\nSystem.out.println(\"Tie!\");\nshoes.unlock();\n}\n} catch (Exception e) {}\n}\npublic static void main(String... unused) {\nvar gate = new TieShoes();\nfor (int i = 0; i < 10; i++) {\nvar t = new Thread(() -> gate.tie());\nt.start();\nt.interrupt();\n} } }",
       "options": [
         {
           "letter": "A",
@@ -1040,7 +1040,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.Chapter 12 ■ Practice Exam 1 381"
+          "text": "None of the above."
         }
       ],
       "correct": "F",
@@ -1104,7 +1104,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.382 Chapter 12 ■ Practice Exam 1"
+          "text": "None of the above."
         }
       ],
       "correct": "E",
@@ -1136,7 +1136,7 @@
     },
     {
       "id": 38,
-      "question": "Given the following three class declarations, which sets of access modifiers can be inserted,\nin order, into the following blank lines that would allow all of the classes to compile?\n(Choose three.)\n// Alarm.java\npackage wake;\npublic class Alarm {\nstatic int clock;\nlong getTime() {return clock;}\n}\n// Coffee.java\npackage wake;\npublic class Coffee {\nprivate boolean bringCoffee() {\nreturn new Alarm().clock<10;\n}\n}\n// Snooze.java\npackage sleep;\npublic class Snooze extends wake.Alarm {\nprivate boolean checkTime() { return getTime()>10;}\n}Chapter 12 ■ Practice Exam 1 383",
+      "question": "Given the following three class declarations, which sets of access modifiers can be inserted,\nin order, into the following blank lines that would allow all of the classes to compile?\n(Choose three.)\n// Alarm.java\npackage wake;\npublic class Alarm {\nstatic int clock;\nlong getTime() {return clock;}\n}\n// Coffee.java\npackage wake;\npublic class Coffee {\nprivate boolean bringCoffee() {\nreturn new Alarm().clock<10;\n}\n}\n// Snooze.java\npackage sleep;\npublic class Snooze extends wake.Alarm {\nprivate boolean checkTime() { return getTime()>10;}\n}",
       "options": [
         {
           "letter": "A",
@@ -1168,7 +1168,7 @@
     },
     {
       "id": 39,
-      "question": "How many times does this code print [2, 7, 8]?\n1: import java.util.*;\n2: import java.util.stream.*;\n3:\n4: public class RemoveMe<T> {\n5: private List<T> values;\n6: public RemoveMe(T... values) {\n7: this.values = Arrays.stream(values)\n8: .collect(Collectors.toList());\n9: }\n10: public void remove(T value) {\n11: values.remove(value);\n12: }\n13: public static void main(String[] args) {\n14: var integer = new RemoveMe<Integer>(2, 7, 1, 8);\n15: var longs = new RemoveMe<Long>(2L, 7L, 1L, 8L);\n16: integer.remove(1);\n17: longs.remove(1L);\n18:\n19: System.out.println(integer.values);\n20: System.out.println(longs.values);\n21:\n22: var values = new ArrayList<Integer>();\n23: values.add(2);\n24: values.add(7);\n25: values.add(1);\n26: values.add(8);\n27: values.remove(1);\n28: System.out.println(values);\n29: } }384 Chapter 12 ■ Practice Exam 1",
+      "question": "How many times does this code print [2, 7, 8]?\n1: import java.util.*;\n2: import java.util.stream.*;\n3:\n4: public class RemoveMe<T> {\n5: private List<T> values;\n6: public RemoveMe(T... values) {\n7: this.values = Arrays.stream(values)\n8: .collect(Collectors.toList());\n9: }\n10: public void remove(T value) {\n11: values.remove(value);\n12: }\n13: public static void main(String[] args) {\n14: var integer = new RemoveMe<Integer>(2, 7, 1, 8);\n15: var longs = new RemoveMe<Long>(2L, 7L, 1L, 8L);\n16: integer.remove(1);\n17: longs.remove(1L);\n18:\n19: System.out.println(integer.values);\n20: System.out.println(longs.values);\n21:\n22: var values = new ArrayList<Integer>();\n23: values.add(2);\n24: values.add(7);\n25: values.add(1);\n26: values.add(8);\n27: values.remove(1);\n28: System.out.println(values);\n29: } }",
       "options": [
         {
           "letter": "A",
@@ -1232,7 +1232,7 @@
     },
     {
       "id": 41,
-      "question": "Which are true of the following? (Choose two.)\npublic class Hippo {\nprivate static void hippo(short num1, short num2) {\nSystem.out.println(\"shorts\");\n}\nprivate static void hippo(int... nums) {\nSystem.out.println(\"varargs\");\n}\nprivate static void hippo(Integer num1, Integer num2) {\nSystem.out.println(\"Integers\");\n}\nprivate static void hippo(long num1, long num2) {\nSystem.out.println(\"longs\");\n}\npublic static void main(String... args) {\nhippo(1, 5);\n} }Chapter 12 ■ Practice Exam 1 385",
+      "question": "Which are true of the following? (Choose two.)\npublic class Hippo {\nprivate static void hippo(short num1, short num2) {\nSystem.out.println(\"shorts\");\n}\nprivate static void hippo(int... nums) {\nSystem.out.println(\"varargs\");\n}\nprivate static void hippo(Integer num1, Integer num2) {\nSystem.out.println(\"Integers\");\n}\nprivate static void hippo(long num1, long num2) {\nSystem.out.println(\"longs\");\n}\npublic static void main(String... args) {\nhippo(1, 5);\n} }",
       "options": [
         {
           "letter": "A",
@@ -1312,7 +1312,7 @@
     },
     {
       "id": 43,
-      "question": "What is the result of executing the Clownfish program?\npackage ocean;\nclass BubbleException extends Exception {}\nabstract class Fish {386 Chapter 12 ■ Practice Exam 1\nFish getFish() {\nthrow new RuntimeException(\"fish!\");\n} }\npublic final class Clownfish extends Fish {\npublic final Clownfish getFish() throws BubbleException {\nthrow new RuntimeException(\"clown!\");\n}\npublic static void main(String[] bubbles) throws Exception {\nfinal var v = (Fish)new Clownfish();\nClownfish f = v;\nf.getFish();\nSystem.out.println(\"swim!\");\n} }",
+      "question": "What is the result of executing the Clownfish program?\npackage ocean;\nclass BubbleException extends Exception {}\nabstract class Fish {\nFish getFish() {\nthrow new RuntimeException(\"fish!\");\n} }\npublic final class Clownfish extends Fish {\npublic final Clownfish getFish() throws BubbleException {\nthrow new RuntimeException(\"clown!\");\n}\npublic static void main(String[] bubbles) throws Exception {\nfinal var v = (Fish)new Clownfish();\nClownfish f = v;\nf.getFish();\nSystem.out.println(\"swim!\");\n} }",
       "options": [
         {
           "letter": "A",
@@ -1380,7 +1380,7 @@
     },
     {
       "id": 45,
-      "question": "Given the following classes, what is the output of the Watch program?\n1: class SmartWatch extends Watch {\n2: private String getType() { return \"smart watch\"; }\n3: public String getName() {Chapter 12 ■ Practice Exam 1 387\n4: return getType() + \",\";\n5: }\n6: }\n7: public class Watch {\n8: private String getType() { return \"watch\"; }\n9: public String getName(String suffix) {\n10: return getType() + suffix;\n11: }\n12: public static void main(String[] args) {\n13: Watch watch = new Watch();\n14: Watch smartWatch = new SmartWatch();\n15: System.out.print(watch.getName(\",\"));\n16: System.out.print(smartWatch.getName(\"\"));\n17: } }",
+      "question": "Given the following classes, what is the output of the Watch program?\n1: class SmartWatch extends Watch {\n2: private String getType() { return \"smart watch\"; }\n3: public String getName() {\n4: return getType() + \",\";\n5: }\n6: }\n7: public class Watch {\n8: private String getType() { return \"watch\"; }\n9: public String getName(String suffix) {\n10: return getType() + suffix;\n11: }\n12: public static void main(String[] args) {\n13: Watch watch = new Watch();\n14: Watch smartWatch = new SmartWatch();\n15: System.out.print(watch.getName(\",\"));\n16: System.out.print(smartWatch.getName(\"\"));\n17: } }",
       "options": [
         {
           "letter": "A",
@@ -1436,7 +1436,7 @@
         },
         {
           "letter": "F",
-          "text": "The code does not compile.388 Chapter 12 ■ Practice Exam 1"
+          "text": "The code does not compile."
         }
       ],
       "correct": "B",
@@ -1472,7 +1472,7 @@
     },
     {
       "id": 48,
-      "question": "Given the following class, how many lines contain compilation errors?\n1: import java.io.*;\n2: class StungException extends Exception {}\n3: class Suit implements Closeable {\n4: public void close() throws IOException {}\n5: }Chapter 12 ■ Practice Exam 1 389\n6: public class BeeCatcher {\n7: public static void main(String[] b) throws IOException {\n8: var s = new Suit();\n9: var t = new Suit();\n10: try (s; t) {\n11: throw new StungException();\n12: } catch (StungException | Exception e) {\n13: s = null;\n14: } finally {\n15: } } }",
+      "question": "Given the following class, how many lines contain compilation errors?\n1: import java.io.*;\n2: class StungException extends Exception {}\n3: class Suit implements Closeable {\n4: public void close() throws IOException {}\n5: }\n6: public class BeeCatcher {\n7: public static void main(String[] b) throws IOException {\n8: var s = new Suit();\n9: var t = new Suit();\n10: try (s; t) {\n11: throw new StungException();\n12: } catch (StungException | Exception e) {\n13: s = null;\n14: } finally {\n15: } } }",
       "options": [
         {
           "letter": "A",
@@ -1508,7 +1508,7 @@
         },
         {
           "letter": "B",
-          "text": ".filter(m -> match.get().equals(m)) .peek(System.out::println) .max()390 Chapter 12 ■ Practice Exam 1"
+          "text": ".filter(m -> match.get().equals(m)) .peek(System.out::println) .max()"
         },
         {
           "letter": "C",

@@ -36,7 +36,7 @@
     },
     {
       "id": 2,
-      "question": "What is the output of the following code snippet?\nCallable c = new Callable() {\npublic Object run() {\nSystem.out.print(\"X\");\nreturn 10;\n}\n};\nvar s = Executors.newScheduledThreadPool(1);\nfor(int i=0; i<10; i++) {\nFuture f = s.submit(c);\nf.get();\n}\ns.shutdown();\nSystem.out.print(\"Done!\");Chapter 8 ■ Managing Concurrent Code Execution 297",
+      "question": "What is the output of the following code snippet?\nCallable c = new Callable() {\npublic Object run() {\nSystem.out.print(\"X\");\nreturn 10;\n}\n};\nvar s = Executors.newScheduledThreadPool(1);\nfor(int i=0; i<10; i++) {\nFuture f = s.submit(c);\nf.get();\n}\ns.shutdown();\nSystem.out.print(\"Done!\");",
       "options": [
         {
           "letter": "A",
@@ -124,7 +124,7 @@
         },
         {
           "letter": "F",
-          "text": "The output cannot be determined ahead of time.298 Chapter 8 ■ Managing Concurrent Code Execution"
+          "text": "The output cannot be determined ahead of time."
         }
       ],
       "correct": "F",
@@ -192,7 +192,7 @@
     },
     {
       "id": 7,
-      "question": "Given the following program, how many times is Locked! expected to be printed?\nimport java.util.concurrent.locks.*;\npublic class Padlock {\nprivate Lock lock = new ReentrantLock();\npublic void lockUp() {\nif (lock.tryLock()) {Chapter 8 ■ Managing Concurrent Code Execution 299\nlock.lock();\nSystem.out.println(\"Locked!\");\nlock.unlock();\n}\n}\npublic static void main(String... unused) throws Exception {\nvar gate = new Padlock();\nfor(int i=0; i<5; i++) {\nnew Thread(() -> gate.lockUp()).start();\nThread.sleep(1_000);\n} } }",
+      "question": "Given the following program, how many times is Locked! expected to be printed?\nimport java.util.concurrent.locks.*;\npublic class Padlock {\nprivate Lock lock = new ReentrantLock();\npublic void lockUp() {\nif (lock.tryLock()) {\nlock.lock();\nSystem.out.println(\"Locked!\");\nlock.unlock();\n}\n}\npublic static void main(String... unused) throws Exception {\nvar gate = new Padlock();\nfor(int i=0; i<5; i++) {\nnew Thread(() -> gate.lockUp()).start();\nThread.sleep(1_000);\n} } }",
       "options": [
         {
           "letter": "A",
@@ -224,7 +224,7 @@
     },
     {
       "id": 8,
-      "question": "Which statements about the following application are correct? (Choose two.)\nimport java.util.concurrent.atomic.*;\nimport java.util.stream.*;\npublic class TicketTaker {\nlong ticketsSold;\nfinal AtomicInteger ticketsTaken;\npublic TicketTaker() {\nticketsSold = 0;\nticketsTaken = new AtomicInteger(0);\n}\npublic void performJob() {\nIntStream.iterate(1, p -> p+1)\n.parallel()\n.limit(100)\n.forEach(i -> ticketsTaken.getAndIncrement());\nIntStream.iterate(1, q -> q+1)\n.parallel()\n.limit(500)\n.forEach(i -> ++ticketsSold);\nSystem.out.print(ticketsTaken+\" \"+ticketsSold);\n}300 Chapter 8 ■ Managing Concurrent Code Execution\npublic static void main(String[] matinee) {\nnew TicketTaker().performJob();\n} }",
+      "question": "Which statements about the following application are correct? (Choose two.)\nimport java.util.concurrent.atomic.*;\nimport java.util.stream.*;\npublic class TicketTaker {\nlong ticketsSold;\nfinal AtomicInteger ticketsTaken;\npublic TicketTaker() {\nticketsSold = 0;\nticketsTaken = new AtomicInteger(0);\n}\npublic void performJob() {\nIntStream.iterate(1, p -> p+1)\n.parallel()\n.limit(100)\n.forEach(i -> ticketsTaken.getAndIncrement());\nIntStream.iterate(1, q -> q+1)\n.parallel()\n.limit(500)\n.forEach(i -> ++ticketsSold);\nSystem.out.print(ticketsTaken+\" \"+ticketsSold);\n}\npublic static void main(String[] matinee) {\nnew TicketTaker().performJob();\n} }",
       "options": [
         {
           "letter": "A",
@@ -280,7 +280,7 @@
         },
         {
           "letter": "F",
-          "text": "The code does not compile.Chapter 8 ■ Managing Concurrent Code Execution 301"
+          "text": "The code does not compile."
         }
       ],
       "correct": "C",
@@ -352,7 +352,7 @@
     },
     {
       "id": 12,
-      "question": "What is the output of the following application?\n3: public class TpsReport {\n4: public void submitReports() {\n5: var s = Executors.newCachedThreadPool();\n6: Future bosses = s.submit(() -> System.out.print(\"1\"));\n7: s.shutdown();\n8: System.out.print(bosses.get());\n9: }302 Chapter 8 ■ Managing Concurrent Code Execution\n10: public static void main(String[] memo) {\n11: new TpsReport().submitReports();\n12: } }",
+      "question": "What is the output of the following application?\n3: public class TpsReport {\n4: public void submitReports() {\n5: var s = Executors.newCachedThreadPool();\n6: Future bosses = s.submit(() -> System.out.print(\"1\"));\n7: s.shutdown();\n8: System.out.print(bosses.get());\n9: }\n10: public static void main(String[] memo) {\n11: new TpsReport().submitReports();\n12: } }",
       "options": [
         {
           "letter": "A",
@@ -424,7 +424,7 @@
         },
         {
           "letter": "B",
-          "text": "OneChapter 8 ■ Managing Concurrent Code Execution 303"
+          "text": "One"
         },
         {
           "letter": "C",
@@ -480,7 +480,7 @@
         },
         {
           "letter": "B",
-          "text": "Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared Memory304 Chapter 8 ■ Managing Concurrent Code Execution"
+          "text": "Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared Memory"
         },
         {
           "letter": "C",
@@ -504,7 +504,7 @@
         },
         {
           "letter": "B",
-          "text": "The first number printed is always 100. Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared MemoryChapter 8 ■ Managing Concurrent Code Execution 305"
+          "text": "The first number printed is always 100. Thread 1 Thread 2 Time Shared Memory Thread 1 Thread 2 Time Shared Memory"
         },
         {
           "letter": "C",
@@ -536,7 +536,7 @@
         },
         {
           "letter": "B",
-          "text": "Tortoise won the race! is printed first.306 Chapter 8 ■ Managing Concurrent Code Execution"
+          "text": "Tortoise won the race! is printed first."
         },
         {
           "letter": "C",
@@ -616,7 +616,7 @@
         },
         {
           "letter": "F",
-          "text": "The output cannot be determined ahead of time.Chapter 8 ■ Managing Concurrent Code Execution 307"
+          "text": "The output cannot be determined ahead of time."
         }
       ],
       "correct": "C",
@@ -656,7 +656,7 @@
     },
     {
       "id": 22,
-      "question": "What is the most likely result of executing the following application?\npackage jokes;\nimport java.util.concurrent.*;\npublic class Riddle {\npublic void sleep() {\ntry { Thread.sleep(5000); } catch (Exception e) {}\n}\npublic String getQuestion(Riddle r) {\nsynchronized {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"How many programmers does it take \"\n+ \"to change a light bulb?\";\n} }308 Chapter 8 ■ Managing Concurrent Code Execution\npublic synchronized String getAnswer(Riddle r) {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"None, that's a hardware problem\";\n}\npublic static void main(String... ununused) {\nvar r1 = new Riddle();\nvar r2 = new Riddle();\nvar s = Executors.newFixedThreadPool(2);\ns.submit(() -> r1.getQuestion(r2));\ns.execute(() -> r2.getAnswer(r1));\ns.shutdown();\n} }",
+      "question": "What is the most likely result of executing the following application?\npackage jokes;\nimport java.util.concurrent.*;\npublic class Riddle {\npublic void sleep() {\ntry { Thread.sleep(5000); } catch (Exception e) {}\n}\npublic String getQuestion(Riddle r) {\nsynchronized {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"How many programmers does it take \"\n+ \"to change a light bulb?\";\n} }\npublic synchronized String getAnswer(Riddle r) {\nsleep();\nif(r != null) r.getAnswer(null);\nreturn \"None, that's a hardware problem\";\n}\npublic static void main(String... ununused) {\nvar r1 = new Riddle();\nvar r2 = new Riddle();\nvar s = Executors.newFixedThreadPool(2);\ns.submit(() -> r1.getQuestion(r2));\ns.execute(() -> r2.getAnswer(r1));\ns.shutdown();\n} }",
       "options": [
         {
           "letter": "A",
@@ -720,7 +720,7 @@
     },
     {
       "id": 24,
-      "question": "What is the output of the following application?\npackage olympics;\nimport java.util.concurrent.*;\npublic class Athlete {\nint stroke = 0;\npublic synchronized void swimming() {\nstroke++;\n}Chapter 8 ■ Managing Concurrent Code Execution 309\nprivate int getStroke() {\nsynchronized(this) { return stroke; }\n}\npublic static void main(String... laps) {\nExecutorService s = Executors.newFixedThreadPool(10);\nAthlete a = new Athlete();\nfor(int i=0; i<1000; i++) {\ns.execute(() -> a.swimming());\n}\ns.shutdown();\nSystem.out.print(a.getStroke());\n} }",
+      "question": "What is the output of the following application?\npackage olympics;\nimport java.util.concurrent.*;\npublic class Athlete {\nint stroke = 0;\npublic synchronized void swimming() {\nstroke++;\n}\nprivate int getStroke() {\nsynchronized(this) { return stroke; }\n}\npublic static void main(String... laps) {\nExecutorService s = Executors.newFixedThreadPool(10);\nAthlete a = new Athlete();\nfor(int i=0; i<1000; i++) {\ns.execute(() -> a.swimming());\n}\ns.shutdown();\nSystem.out.print(a.getStroke());\n} }",
       "options": [
         {
           "letter": "A",
@@ -780,7 +780,7 @@
     },
     {
       "id": 26,
-      "question": "Which statement about the following class is correct?\npackage my;\nimport java.util.*;\npublic class ThreadSafeList {\nprivate List<Integer> data = new ArrayList<>();\npublic synchronized void addValue(int value) {\ndata.add(value);\n}\npublic int getValue(int index) {\nreturn data.get(index);\n}310 Chapter 8 ■ Managing Concurrent Code Execution\npublic int size() {\nsynchronized(ThreadSafeList.class) {\nreturn data.size();\n} } }",
+      "question": "Which statement about the following class is correct?\npackage my;\nimport java.util.*;\npublic class ThreadSafeList {\nprivate List<Integer> data = new ArrayList<>();\npublic synchronized void addValue(int value) {\ndata.add(value);\n}\npublic int getValue(int index) {\nreturn data.get(index);\n}\npublic int size() {\nsynchronized(ThreadSafeList.class) {\nreturn data.size();\n} } }",
       "options": [
         {
           "letter": "A",
@@ -840,7 +840,7 @@
     },
     {
       "id": 28,
-      "question": "What is the result of executing the following application multiple times?\npackage bears;\nimport java.util.*;\npublic class Bounce {\npublic static void main(String... legend) {\nList.of(1,2,3,4).stream()\n.forEach(System.out::println);\nList.of(1,2,3,4).parallel()\n.forEach(System.out::println);Chapter 8 ■ Managing Concurrent Code Execution 311\nList.of(1,2,3,4).parallel()\n.forEachOrdered(System.out::println);\n} }",
+      "question": "What is the result of executing the following application multiple times?\npackage bears;\nimport java.util.*;\npublic class Bounce {\npublic static void main(String... legend) {\nList.of(1,2,3,4).stream()\n.forEach(System.out::println);\nList.of(1,2,3,4).parallel()\n.forEach(System.out::println);\nList.of(1,2,3,4).parallel()\n.forEachOrdered(System.out::println);\n} }",
       "options": [
         {
           "letter": "A",
@@ -900,7 +900,7 @@
     },
     {
       "id": 30,
-      "question": "How many times does the following application print W at runtime?\npackage crew;\nimport java.util.concurrent.*;\nimport java.util.stream.*;\npublic class Boat {\nprivate void waitTillFinished(CyclicBarrier c) {\ntry {\nc.await();\nSystem.out.print(\"W\");\n} catch (Exception e) {}\n}\npublic void row(ExecutorService s) {\nvar cb = new CyclicBarrier(5);\nIntStream.iterate(1, i-> i+1)\n.limit(12)\n.forEach(i -> s.submit(() -> waitTillFinished(cb)));\n}312 Chapter 8 ■ Managing Concurrent Code Execution\npublic static void main(String[] oars) {\nExecutorService service = null;\ntry {\nservice = Executors.newCachedThreadPool();\nnew Boat().row(service);\n} finally {\nservice.isShutdown();\n} } }",
+      "question": "How many times does the following application print W at runtime?\npackage crew;\nimport java.util.concurrent.*;\nimport java.util.stream.*;\npublic class Boat {\nprivate void waitTillFinished(CyclicBarrier c) {\ntry {\nc.await();\nSystem.out.print(\"W\");\n} catch (Exception e) {}\n}\npublic void row(ExecutorService s) {\nvar cb = new CyclicBarrier(5);\nIntStream.iterate(1, i-> i+1)\n.limit(12)\n.forEach(i -> s.submit(() -> waitTillFinished(cb)));\n}\npublic static void main(String[] oars) {\nExecutorService service = null;\ntry {\nservice = Executors.newCachedThreadPool();\nnew Boat().row(service);\n} finally {\nservice.isShutdown();\n} } }",
       "options": [
         {
           "letter": "A",
@@ -984,7 +984,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.Chapter 8 ■ Managing Concurrent Code Execution 313"
+          "text": "None of the above."
         }
       ],
       "correct": "B",
@@ -1024,8 +1024,8 @@
     },
     {
       "id": 34,
-      "question": "Given the original array, how many of the following for statements enter an infinite loop at\nruntime, assuming each is executed independently?\nvar original = new ArrayList<Integer>(List.of(1,2,3));\nvar copy1 = new ArrayList<Integer>(original);\nfor(Integer q : copy1)\ncopy1.add(1);\nvar copy2 = new CopyOnWriteArrayList<Integer>(original);\nfor(Integer q : copy2)\ncopy2.add(2);314 Chapter 8 ■ Managing Concurrent Code Execution\nvar copy3 = new LinkedBlockingQueue<Integer>(original);\nfor(Integer q : copy3)\ncopy3.offer(3);\nvar copy4 = Collections.synchronizedList(original);\nfor(Integer q : copy4)\ncopy4.add(4);",
       "options": [
+      "question": "Given the original array, how many of the following for statements enter an infinite loop at\nruntime, assuming each is executed independently?\nvar original = new ArrayList<Integer>(List.of(1,2,3));\nvar copy1 = new ArrayList<Integer>(original);\nfor(Integer q : copy1)\ncopy1.add(1);\nvar copy2 = new CopyOnWriteArrayList<Integer>(original);\nfor(Integer q : copy2)\ncopy2.add(2);\nvar copy3 = new LinkedBlockingQueue<Integer>(original);\nfor(Integer q : copy3)\ncopy3.offer(3);\nvar copy4 = Collections.synchronizedList(original);\nfor(Integer q : copy4)\ncopy4.add(4);",
         {
           "letter": "A",
           "text": "Zero"
@@ -1084,7 +1084,7 @@
     },
     {
       "id": 36,
-      "question": "Assuming 10 seconds is enough time for all of the tasks to finish, what is the output of the\nfollowing application?\nimport java.util.concurrent.*;\npublic class Bank {\nstatic int cookies = 0;\npublic synchronized void deposit(int amount) {\ncookies += amount;\n}\npublic static synchronized void withdrawal(int amount) {\ncookies -= amount;\n}\npublic static void main(String[] amount) throws Exception {\nvar teller = Executors.newScheduledThreadPool(50);\nBank bank = new Bank();\nfor(int i=0; i<25; i++) {\nteller.submit(() -> bank.deposit(5));\nteller.submit(() -> bank.withdrawal(5));\n}\nteller.shutdown();Chapter 8 ■ Managing Concurrent Code Execution 315\nteller.awaitTermination(10, TimeUnit.SECONDS);\nSystem.out.print(bank.cookies);\n} }",
+      "question": "Assuming 10 seconds is enough time for all of the tasks to finish, what is the output of the\nfollowing application?\nimport java.util.concurrent.*;\npublic class Bank {\nstatic int cookies = 0;\npublic synchronized void deposit(int amount) {\ncookies += amount;\n}\npublic static synchronized void withdrawal(int amount) {\ncookies -= amount;\n}\npublic static void main(String[] amount) throws Exception {\nvar teller = Executors.newScheduledThreadPool(50);\nBank bank = new Bank();\nfor(int i=0; i<25; i++) {\nteller.submit(() -> bank.deposit(5));\nteller.submit(() -> bank.withdrawal(5));\n}\nteller.shutdown();\nteller.awaitTermination(10, TimeUnit.SECONDS);\nSystem.out.print(bank.cookies);\n} }",
       "options": [
         {
           "letter": "A",
@@ -1140,7 +1140,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.316 Chapter 8 ■ Managing Concurrent Code Execution"
+          "text": "None of the above."
         }
       ],
       "correct": "A",
@@ -1188,7 +1188,7 @@
         },
         {
           "letter": "B",
-          "text": "The first number printed is always 1000.Chapter 8 ■ Managing Concurrent Code Execution 317"
+          "text": "The first number printed is always 1000."
         },
         {
           "letter": "C",

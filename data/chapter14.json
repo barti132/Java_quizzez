@@ -92,7 +92,7 @@
         },
         {
           "letter": "F",
-          "text": "ServiceLocator<Mouse> sl = ServiceLoader.lookup(Mouse.class);Chapter 14 ■ Practice Exam 3 419"
+          "text": "ServiceLocator<Mouse> sl = ServiceLoader.lookup(Mouse.class);"
         }
       ],
       "correct": "A",
@@ -152,7 +152,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.420 Chapter 14 ■ Practice Exam 3"
+          "text": "None of the above."
         }
       ],
       "correct": "D",
@@ -220,7 +220,7 @@
     },
     {
       "id": 8,
-      "question": "What is the output of the following application?\npackage music;\ninterface DoubleBass {\nvoid strum();\ndefault int getVolume() {return 5;}\n}\ninterface BassGuitar {\nvoid strum();\ndefault int getVolume() {return 10;}\n}\nabstract class ElectricBass implements DoubleBass, BassGuitar {\n@Override public void strum() {System.out.print(\"X\");}\n}Chapter 14 ■ Practice Exam 3 421\npublic class RockBand {\npublic static void main(String[] strings) {\nfinal class MyElectricBass extends ElectricBass {\npublic int getVolume() {return 30;}\npublic void strum() {System.out.print(\"Y\");}\n} } }",
+      "question": "What is the output of the following application?\npackage music;\ninterface DoubleBass {\nvoid strum();\ndefault int getVolume() {return 5;}\n}\ninterface BassGuitar {\nvoid strum();\ndefault int getVolume() {return 10;}\n}\nabstract class ElectricBass implements DoubleBass, BassGuitar {\n@Override public void strum() {System.out.print(\"X\");}\n}\npublic class RockBand {\npublic static void main(String[] strings) {\nfinal class MyElectricBass extends ElectricBass {\npublic int getVolume() {return 30;}\npublic void strum() {System.out.print(\"Y\");}\n} } }",
       "options": [
         {
           "letter": "A",
@@ -312,7 +312,7 @@
     },
     {
       "id": 11,
-      "question": "Which lines fail to compile?\npackage armory;\nimport java.util.function.*;\ninterface Shield {\nvoid protect();\n}\nclass Dragon {\nint addDragon(Integer count) {\nreturn ++count;\n} }422 Chapter 14 ■ Practice Exam 3\npublic class Sword {\npublic static void main(String[] knight) {\nvar dragon = new Dragon();\nFunction<Shield, Sword> func = Shield::protect; // line x\nUnaryOperator<Integer> op = dragon::addDragon; // line y\n} }",
+      "question": "Which lines fail to compile?\npackage armory;\nimport java.util.function.*;\ninterface Shield {\nvoid protect();\n}\nclass Dragon {\nint addDragon(Integer count) {\nreturn ++count;\n} }\npublic class Sword {\npublic static void main(String[] knight) {\nvar dragon = new Dragon();\nFunction<Shield, Sword> func = Shield::protect; // line x\nUnaryOperator<Integer> op = dragon::addDragon; // line y\n} }",
       "options": [
         {
           "letter": "A",
@@ -384,7 +384,7 @@
         },
         {
           "letter": "D",
-          "text": "ThreeChapter 14 ■ Practice Exam 3 423"
+          "text": "Three"
         },
         {
           "letter": "E",
@@ -432,7 +432,7 @@
     },
     {
       "id": 15,
-      "question": "What is the output of the following application?\n1: interface HasHue {String getHue();}\n2: enum COLORS implements HasHue {\n3: red {\n4: public String getHue() {return \"FF0000\";}\n5: }, green {\n6: public String getHue() {return \"00FF00\";}\n7: }, blue {\n8: public String getHue() {return \"0000FF\";}\n9: }\n10: private COLORS() {}424 Chapter 14 ■ Practice Exam 3\n11: }\n12: class Book {\n13: static void main(String[] pencils) {}\n14: }\n15: final public class ColoringBook extends Book {\n16: final void paint(COLORS c) {\n17: System.out.print(\"Painting: \" + c.getHue());\n18: }\n19: final public static void main(String[] crayons) {\n20: new ColoringBook().paint(green);\n21: } }",
+      "question": "What is the output of the following application?\n1: interface HasHue {String getHue();}\n2: enum COLORS implements HasHue {\n3: red {\n4: public String getHue() {return \"FF0000\";}\n5: }, green {\n6: public String getHue() {return \"00FF00\";}\n7: }, blue {\n8: public String getHue() {return \"0000FF\";}\n9: }\n10: private COLORS() {}\n11: }\n12: class Book {\n13: static void main(String[] pencils) {}\n14: }\n15: final public class ColoringBook extends Book {\n16: final void paint(COLORS c) {\n17: System.out.print(\"Painting: \" + c.getHue());\n18: }\n19: final public static void main(String[] crayons) {\n20: new ColoringBook().paint(green);\n21: } }",
       "options": [
         {
           "letter": "A",
@@ -464,7 +464,7 @@
     },
     {
       "id": 16,
-      "question": "Which of the following methods can run without error for a SQL query that returns a count\nof matching rows?\nprivate static void choices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void moreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nrs.next();\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void stillMoreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n} }Chapter 14 ■ Practice Exam 3 425",
+      "question": "Which of the following methods can run without error for a SQL query that returns a count\nof matching rows?\nprivate static void choices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void moreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nrs.next();\nSystem.out.println(rs.getInt(1));\n} }\nprivate static void stillMoreChoices(PreparedStatement ps,\nString sql) throws SQLException {\ntry (var rs = ps.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n} }",
       "options": [
         {
           "letter": "A",
@@ -536,7 +536,7 @@
     },
     {
       "id": 18,
-      "question": "What is the output of the Light program?\npackage physics;\nclass Wave {\npublic int size = 7;\n}\npublic class Light extends Wave {\npublic int size = 5;\npublic static void main(String... emc2) {\nLight v1 = new Light();\nvar v2 = new Light();426 Chapter 14 ■ Practice Exam 3\nWave v3 = new Light();\nSystem.out.println(v1.size+\",\"+v2.size+\",\"+v3.size);\n} }",
+      "question": "What is the output of the Light program?\npackage physics;\nclass Wave {\npublic int size = 7;\n}\npublic class Light extends Wave {\npublic int size = 5;\npublic static void main(String... emc2) {\nLight v1 = new Light();\nvar v2 = new Light();\nWave v3 = new Light();\nSystem.out.println(v1.size+\",\"+v2.size+\",\"+v3.size);\n} }",
       "options": [
         {
           "letter": "A",
@@ -604,7 +604,7 @@
     },
     {
       "id": 20,
-      "question": "What are possible outputs of this code? (Choose two.)\nimport java.time.LocalDate;\npublic class Animal {\nprivate record Baby(String name, LocalDate birth) { }\npublic static void main(String[] args) {\nLocalDate now = LocalDate.now();\nvar b1 = new Baby(\"Teddy\", now);\nvar b2 = new Baby(\"Teddy\", now);\nSystem.out.println((b1 == b2) + \" \" + b1.equals(b2));\nSystem.out.println(b1);\n} }Chapter 14 ■ Practice Exam 3 427",
+      "question": "What are possible outputs of this code? (Choose two.)\nimport java.time.LocalDate;\npublic class Animal {\nprivate record Baby(String name, LocalDate birth) { }\npublic static void main(String[] args) {\nLocalDate now = LocalDate.now();\nvar b1 = new Baby(\"Teddy\", now);\nvar b2 = new Baby(\"Teddy\", now);\nSystem.out.println((b1 == b2) + \" \" + b1.equals(b2));\nSystem.out.println(b1);\n} }",
       "options": [
         {
           "letter": "A",
@@ -696,7 +696,7 @@
         },
         {
           "letter": "F",
-          "text": "Chicken and Egg may be located in the same file or a different file as First.428 Chapter 14 ■ Practice Exam 3"
+          "text": "Chicken and Egg may be located in the same file or a different file as First."
         }
       ],
       "correct": "A,D",
@@ -772,7 +772,7 @@
     },
     {
       "id": 25,
-      "question": "Fill in the blank to make this code compile:\nString cheese = ServiceLoader.stream(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");Chapter 14 ■ Practice Exam 3 429",
+      "question": "Fill in the blank to make this code compile:\nString cheese = ServiceLoader.stream(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");",
       "options": [
         {
           "letter": "A",
@@ -820,7 +820,7 @@
         },
         {
           "letter": "E",
-          "text": "public boolean passed() { return part1.pass && part2.pass; }430 Chapter 14 ■ Practice Exam 3"
+          "text": "public boolean passed() { return part1.pass && part2.pass; }"
         },
         {
           "letter": "F",
@@ -864,7 +864,7 @@
         },
         {
           "letter": "H",
-          "text": "The code does not compile.Chapter 14 ■ Practice Exam 3 431"
+          "text": "The code does not compile."
         }
       ],
       "correct": "D",
@@ -936,7 +936,7 @@
     },
     {
       "id": 30,
-      "question": "Given the following two classes in the same package, which constructors contain compiler\nerrors? (Choose three.)\npublic class Big {\npublic Big(boolean stillIn) {\nsuper();\n} }\npublic class Trouble extends Big {\npublic Trouble() {}\npublic Trouble(int deep) {\nsuper(false);\nthis();\n}\npublic Trouble(String now, int... deep) {\nthis(3);\n}\npublic Trouble(long deep) {\nthis(\"check\", deep);\n}\npublic Trouble(double test) {\nsuper(test>5 ? true : false);\n} }432 Chapter 14 ■ Practice Exam 3",
+      "question": "Given the following two classes in the same package, which constructors contain compiler\nerrors? (Choose three.)\npublic class Big {\npublic Big(boolean stillIn) {\nsuper();\n} }\npublic class Trouble extends Big {\npublic Trouble() {}\npublic Trouble(int deep) {\nsuper(false);\nthis();\n}\npublic Trouble(String now, int... deep) {\nthis(3);\n}\npublic Trouble(long deep) {\nthis(\"check\", deep);\n}\npublic Trouble(double test) {\nsuper(test>5 ? true : false);\n} }",
       "options": [
         {
           "letter": "A",
@@ -1000,7 +1000,7 @@
     },
     {
       "id": 32,
-      "question": "How many lines does this code output?\nimport java.util.*;\npublic class PrintNegative {\npublic static void main(String[] args) {\nList<Integer> list = new ArrayList<>();\nlist.add(-5);\nlist.add(0);\nlist.add(5);\nlist.removeIf(e -> e < 0);\nlist.forEach(x -> System.out.println(x));\n} }Chapter 14 ■ Practice Exam 3 433",
+      "question": "How many lines does this code output?\nimport java.util.*;\npublic class PrintNegative {\npublic static void main(String[] args) {\nList<Integer> list = new ArrayList<>();\nlist.add(-5);\nlist.add(0);\nlist.add(5);\nlist.removeIf(e -> e < 0);\nlist.forEach(x -> System.out.println(x));\n} }",
       "options": [
         {
           "letter": "A",
@@ -1080,7 +1080,7 @@
         },
         {
           "letter": "E",
-          "text": "The code compiles but throws an exception at runtime.434 Chapter 14 ■ Practice Exam 3"
+          "text": "The code compiles but throws an exception at runtime."
         }
       ],
       "correct": "D",
@@ -1152,7 +1152,7 @@
     },
     {
       "id": 37,
-      "question": "Which of the following can fill in the blank to output sea lion, bald eagle?\nString names = Stream.of(\n\"bald eagle\", \"pronghorn\", \"puma\", \"sea lion\")\n.collect(Collectors.joining(\", \"));\nSystem.out.println(names);Chapter 14 ■ Practice Exam 3 435",
+      "question": "Which of the following can fill in the blank to output sea lion, bald eagle?\nString names = Stream.of(\n\"bald eagle\", \"pronghorn\", \"puma\", \"sea lion\")\n.collect(Collectors.joining(\", \"));\nSystem.out.println(names);",
       "options": [
         {
           "letter": "A",
@@ -1168,7 +1168,7 @@
         },
         {
           "letter": "D",
-          "text": ".collect(Collectors.toSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .flatMap(List::stream) .sorted(Comparator.reverseOrder())436 Chapter 14 ■ Practice Exam 3"
+          "text": ".collect(Collectors.toSet()) .stream() .collect(Collectors.groupingBy(s -> s.contains(\" \"))) .entrySet() .stream() .filter(e -> e.getKey()) .map(Entry::getValue) .flatMap(List::stream) .sorted(Comparator.reverseOrder())
         },
         {
           "letter": "E",
@@ -1208,7 +1208,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.Chapter 14 ■ Practice Exam 3 437"
+          "text": "None of the above."
         }
       ],
       "correct": "E",
@@ -1300,7 +1300,7 @@
         },
         {
           "letter": "E",
-          "text": "None of the above438 Chapter 14 ■ Practice Exam 3"
+          "text": "None of the above"
         }
       ],
       "correct": "D",
@@ -1340,7 +1340,7 @@
     },
     {
       "id": 43,
-      "question": "How many lines does the following program output?\nclass Coin {\nenum Side { HEADS, TAILS };\npublic static void main(String[] args) {\nvar sides = Side.values();\nfor (var s : sides)Chapter 14 ■ Practice Exam 3 439\nfor (int i=sides.length; i>0 ; i-=2)\nSystem.out.print(s+\" \"+sides[i]);\nSystem.out.println();\n}\n}",
+      "question": "How many lines does the following program output?\nclass Coin {\nenum Side { HEADS, TAILS };\npublic static void main(String[] args) {\nvar sides = Side.values();\nfor (var s : sides)\nfor (int i=sides.length; i>0 ; i-=2)\nSystem.out.print(s+\" \"+sides[i]);\nSystem.out.println();\n}\n}",
       "options": [
         {
           "letter": "A",
@@ -1400,7 +1400,7 @@
     },
     {
       "id": 45,
-      "question": "What is the output of this code?\n10: var m = new TreeMap<Integer, Integer>();\n11: m.put(1, 4);\n12: m.put(2, 8);\n13:\n14: m.putIfAbsent(2, 10);\n15: m.putIfAbsent(3, 9);\n16:\n17: m.replaceAll((k, v) -> k + 1);\n18:\n19: m.entrySet().stream()440 Chapter 14 ■ Practice Exam 3\n20: .sorted(Comparator.comparing(Entry::getKey))\n21: .limit(1)\n22: .map(Entry::getValue)\n23: .forEach(System.out::println);",
+      "question": "What is the output of this code?\n10: var m = new TreeMap<Integer, Integer>();\n11: m.put(1, 4);\n12: m.put(2, 8);\n13:\n14: m.putIfAbsent(2, 10);\n15: m.putIfAbsent(3, 9);\n16:\n17: m.replaceAll((k, v) -> k + 1);\n18:\n19: m.entrySet().stream()\n20: .sorted(Comparator.comparing(Entry::getKey))\n21: .limit(1)\n22: .map(Entry::getValue)\n23: .forEach(System.out::println);",
       "options": [
         {
           "letter": "A",
@@ -1456,7 +1456,7 @@
         },
         {
           "letter": "F",
-          "text": "An exception is thrown at runtime.Chapter 14 ■ Practice Exam 3 441"
+          "text": "An exception is thrown at runtime."
         }
       ],
       "correct": "B",
@@ -1520,7 +1520,7 @@
         },
         {
           "letter": "F",
-          "text": "Line h6442 Chapter 14 ■ Practice Exam 3"
+          "text": "Line h6"
         }
       ],
       "correct": "A,B,C",

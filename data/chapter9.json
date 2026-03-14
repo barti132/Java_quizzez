@@ -56,7 +56,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.Chapter 9 ■ Using Java I/O API 321"
+          "text": "None of the above."
         }
       ],
       "correct": "A",
@@ -96,7 +96,7 @@
     },
     {
       "id": 4,
-      "question": "What is the expected result when the writeResume() method is called? Assume the directories\nreferenced in the class do not exist prior to the execution and that the file system is available\nand able to be written to.\npackage job;\nimport java.nio.file.*;\npublic class Resume {\npublic void writeResume() throws Exception {\nvar f1 = Path.of(\"/templates/proofs\");\nf1.createDirectories();\nvar f2 = Path.of(\"/templates\");\nf2.createDirectory(); // k1\ntry(var w = Files.newBufferedWriter(\nPath.of(f2.toString(), \"draft.txt\"))) {\nw.append(\"My dream job\");322 Chapter 9 ■ Using Java I/O API\nw.flush();\n}\nf1.delete(f1);\nf2.delete(f2); // k2\n} }",
+      "question": "What is the expected result when the writeResume() method is called? Assume the directories\nreferenced in the class do not exist prior to the execution and that the file system is available\nand able to be written to.\npackage job;\nimport java.nio.file.*;\npublic class Resume {\npublic void writeResume() throws Exception {\nvar f1 = Path.of(\"/templates/proofs\");\nf1.createDirectories();\nvar f2 = Path.of(\"/templates\");\nf2.createDirectory(); // k1\ntry(var w = Files.newBufferedWriter(\nPath.of(f2.toString(), \"draft.txt\"))) {\nw.append(\"My dream job\");\nw.flush();\n}\nf1.delete(f1);\nf2.delete(f2); // k2\n} }",
       "options": [
         {
           "letter": "A",
@@ -216,7 +216,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the aboveChapter 9 ■ Using Java I/O API 323"
+          "text": "None of the above"
         }
       ],
       "correct": "B",
@@ -288,7 +288,7 @@
     },
     {
       "id": 10,
-      "question": "What is the output of the following program? Assume the file paths referenced in the class\nexist and are able to be written to and read from.\nimport java.io.*;\npublic class Vegetable implements Serializable {\nprivate Integer size = 1;\nprivate transient String name = \"Red\";\n{ size = 3; name = \"Purple\"; }\npublic Vegetable() { this.size = 2; name = \"Green\"; }\npublic static void main(String[] love) throws Throwable {\n// Write data\ntry (var o = new ObjectOutputStream(\nnew FileOutputStream(\"healthy.txt\"))) {324 Chapter 9 ■ Using Java I/O API\nfinal var v = new Vegetable();\nv.size = 4;\no.writeObject(v);\n}\n// Read data\ntry (var o = new ObjectInputStream(\nnew FileInputStream(\"healthy.txt\"))) {\nvar v = (Vegetable) o.readObject();\nSystem.out.print(v.size + \",\" + v.name);\n} } }",
+      "question": "What is the output of the following program? Assume the file paths referenced in the class\nexist and are able to be written to and read from.\nimport java.io.*;\npublic class Vegetable implements Serializable {\nprivate Integer size = 1;\nprivate transient String name = \"Red\";\n{ size = 3; name = \"Purple\"; }\npublic Vegetable() { this.size = 2; name = \"Green\"; }\npublic static void main(String[] love) throws Throwable {\n// Write data\ntry (var o = new ObjectOutputStream(\nnew FileOutputStream(\"healthy.txt\"))) {\nfinal var v = new Vegetable();\nv.size = 4;\no.writeObject(v);\n}\n// Read data\ntry (var o = new ObjectInputStream(\nnew FileInputStream(\"healthy.txt\"))) {\nvar v = (Vegetable) o.readObject();\nSystem.out.print(v.size + \",\" + v.name);\n} } }",
       "options": [
         {
           "letter": "A",
@@ -364,7 +364,7 @@
         },
         {
           "letter": "B",
-          "text": "BufferedOutputStream and PrintOutputStreamChapter 9 ■ Using Java I/O API 325"
+          "text": "BufferedOutputStream and PrintOutputStream"
         },
         {
           "letter": "C",
@@ -416,7 +416,7 @@
     },
     {
       "id": 14,
-      "question": "What is the output of the following application?\nimport java.io.*;\npublic class TaffyFactory {\npublic int getPrize(byte[] luck) throws Exception {\ntry (InputStream is = new ByteArrayInputStream(luck)) {\nis.read(new byte[2]);\nif (!is.markSupported()) return -1;\nis.mark(5);\nis.read(); is.read();\nis.skip(3);\nis.reset();\nreturn is.read();\n}\n}\npublic static void main(String[] sticky) throws Exception {\nfinal TaffyFactory p = new TaffyFactory();\nfinal var luck = new byte[] { 1, 2, 3, 4, 5, 6, 7 };\nSystem.out.print(p.getPrize(luck));\n} }326 Chapter 9 ■ Using Java I/O API",
+      "question": "What is the output of the following application?\nimport java.io.*;\npublic class TaffyFactory {\npublic int getPrize(byte[] luck) throws Exception {\ntry (InputStream is = new ByteArrayInputStream(luck)) {\nis.read(new byte[2]);\nif (!is.markSupported()) return -1;\nis.mark(5);\nis.read(); is.read();\nis.skip(3);\nis.reset();\nreturn is.read();\n}\n}\npublic static void main(String[] sticky) throws Exception {\nfinal TaffyFactory p = new TaffyFactory();\nfinal var luck = new byte[] { 1, 2, 3, 4, 5, 6, 7 };\nSystem.out.print(p.getPrize(luck));\n} }",
       "options": [
         {
           "letter": "A",
@@ -472,7 +472,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the aboveChapter 9 ■ Using Java I/O API 327"
+          "text": "None of the above"
         }
       ],
       "correct": "B",
@@ -544,7 +544,7 @@
     },
     {
       "id": 18,
-      "question": "The Rose application is run with an input argument of /flower. The /flower directory\ncontains five subdirectories, each of which contains five files. What is the result of executing\nthe following program?\nimport java.nio.file.*;\npublic class Rose {\npublic void tendGarden(Path p) throws Exception {\nFiles.walk(p,1)\n.map(q -> q.toRealPath())\n.forEach(System.out::println);\n}328 Chapter 9 ■ Using Java I/O API\npublic static void main(String... thorns) throws Exception {\nnew Rose().tendGarden(Paths.get(thorns[0]));\n} }",
+      "question": "The Rose application is run with an input argument of /flower. The /flower directory\ncontains five subdirectories, each of which contains five files. What is the result of executing\nthe following program?\nimport java.nio.file.*;\npublic class Rose {\npublic void tendGarden(Path p) throws Exception {\nFiles.walk(p,1)\n.map(q -> q.toRealPath())\n.forEach(System.out::println);\n}\npublic static void main(String... thorns) throws Exception {\nnew Rose().tendGarden(Paths.get(thorns[0]));\n} }",
       "options": [
         {
           "letter": "A",
@@ -612,7 +612,7 @@
         },
         {
           "letter": "B",
-          "text": "7Chapter 9 ■ Using Java I/O API 329"
+          "text": "7"
         },
         {
           "letter": "C",
@@ -708,7 +708,7 @@
     },
     {
       "id": 23,
-      "question": "What is the result of compiling and executing the following program? Assume the current\ndirectory is /stock and the /stock/sneakers path does not exist prior to execution.\npackage shoe;\nimport java.io.*;\nimport java.nio.file.*;330 Chapter 9 ■ Using Java I/O API\npublic class Sneaker {\npublic void setupInventory(Path d) throws Exception {\nPath suggestedPath = Paths.get(\"sneakers\");\nif(Files.isSameFile(suggestedPath, d) // j1\n&& !Files.exists(suggestedPath))\nFiles.createDirectories(d); // j2\n}\npublic static void main(String[] socks) throws Exception {\nPath w = new File(\"/stock/sneakers\").toPath(); // j3\nnew Sneaker().setupInventory(w);\n} }",
+      "question": "What is the result of compiling and executing the following program? Assume the current\ndirectory is /stock and the /stock/sneakers path does not exist prior to execution.\npackage shoe;\nimport java.io.*;\nimport java.nio.file.*;\npublic class Sneaker {\npublic void setupInventory(Path d) throws Exception {\nPath suggestedPath = Paths.get(\"sneakers\");\nif(Files.isSameFile(suggestedPath, d) // j1\n&& !Files.exists(suggestedPath))\nFiles.createDirectories(d); // j2\n}\npublic static void main(String[] socks) throws Exception {\nPath w = new File(\"/stock/sneakers\").toPath(); // j3\nnew Sneaker().setupInventory(w);\n} }",
       "options": [
         {
           "letter": "A",
@@ -772,7 +772,7 @@
         },
         {
           "letter": "B",
-          "text": "Guarantees performance improvementChapter 9 ■ Using Java I/O API 331"
+          "text": "Guarantees performance improvement"
         },
         {
           "letter": "C",
@@ -860,7 +860,7 @@
     },
     {
       "id": 28,
-      "question": "Assuming the file referenced in the StudentManager class exists and contains at least one\nrecord, which statements about the following class are correct? (Choose two.)\npackage school;\nimport java.io.*;\nrecord Student(String name) { static Integer score = -1; }\npublic class StudentManager {\npublic static void main(String[] grades) {\ntry(var ios = new ObjectInputStream(\nnew FileInputStream(new File(\"s.data\")))) {332 Chapter 9 ■ Using Java I/O API\nStudent record;\nwhile((record = (Student)ios.readObject()) != null) // p1\nSystem.out.print(record);\n} catch (EOFException e) {\n} catch (Exception e) {\nthrow new RuntimeException(e);\n} } }",
+      "question": "Assuming the file referenced in the StudentManager class exists and contains at least one\nrecord, which statements about the following class are correct? (Choose two.)\npackage school;\nimport java.io.*;\nrecord Student(String name) { static Integer score = -1; }\npublic class StudentManager {\npublic static void main(String[] grades) {\ntry(var ios = new ObjectInputStream(\nnew FileInputStream(new File(\"s.data\")))) {\nStudent record;\nwhile((record = (Student)ios.readObject()) != null) // p1\nSystem.out.print(record);\n} catch (EOFException e) {\n} catch (Exception e) {\nthrow new RuntimeException(e);\n} } }",
       "options": [
         {
           "letter": "A",
@@ -952,7 +952,7 @@
     },
     {
       "id": 31,
-      "question": "Assuming the current working directory is /home, then what is the output of the\nfollowing program?\n1: package magic;\n2: import java.nio.file.*;\n3: public class Magician {Chapter 9 ■ Using Java I/O API 333\n4: public String doTrick(Path path) {\n5: return path.subpath(2,3)\n6: .getName(1)\n7: .toAbsolutePath()\n8: .toString();\n9: }\n10: public static void main(String... cards) {\n11: final Magician m = new Magician();\n12: System.out.print(m.doTrick(\n13: Paths.get(\"/bag/of/tricks/.././disappear.txt\")));\n14: } }",
+      "question": "Assuming the current working directory is /home, then what is the output of the\nfollowing program?\n1: package magic;\n2: import java.nio.file.*;\n3: public class Magician {\n4: public String doTrick(Path path) {\n5: return path.subpath(2,3)\n6: .getName(1)\n7: .toAbsolutePath()\n8: .toString();\n9: }\n10: public static void main(String... cards) {\n11: final Magician m = new Magician();\n12: System.out.print(m.doTrick(\n13: Paths.get(\"/bag/of/tricks/.././disappear.txt\")));\n14: } }",
       "options": [
         {
           "letter": "A",
@@ -1016,7 +1016,7 @@
     },
     {
       "id": 33,
-      "question": "Given the following application in which a user enters bone twice, what is the\nexpected result?\nlong start = System.currentTimeMillis();\nvar retriever = new BufferedReader(new InputStreamReader(System.in));\ntry(retriever; var husky = System.err) {\nvar fetch = retriever.readLine();\nSystem.out.printf(\"%s fetched in %5.1f seconds\",fetch, // v1\n(System.currentTimeMillis()-start)/1000.0);\n}\nvar fetchAgain = retriever.readLine();\nSystem.out.println(fetchAgain + \" fetched again!\");334 Chapter 9 ■ Using Java I/O API",
+      "question": "Given the following application in which a user enters bone twice, what is the\nexpected result?\nlong start = System.currentTimeMillis();\nvar retriever = new BufferedReader(new InputStreamReader(System.in));\ntry(retriever; var husky = System.err) {\nvar fetch = retriever.readLine();\nSystem.out.printf(\"%s fetched in %5.1f seconds\",fetch, // v1\n(System.currentTimeMillis()-start)/1000.0);\n}\nvar fetchAgain = retriever.readLine();\nSystem.out.println(fetchAgain + \" fetched again!\");",
       "options": [
         {
           "letter": "A",
@@ -1084,7 +1084,7 @@
       "options": [
         {
           "letter": "A",
-          "text": "while (is.read(data) > 0) os.write(data);Chapter 9 ■ Using Java I/O API 335"
+          "text": "while (is.read(data) > 0) os.write(data);"
         },
         {
           "letter": "B",
@@ -1112,7 +1112,7 @@
     },
     {
       "id": 36,
-      "question": "In this question, an instance of Cereal has been serialized to disk, with the source object\nhaving a name value of CornLoops and sugar value of 5. What is the value of name\nand sugar after this object has been read from disk using the ObjectInputStream’s\nreadObject() method?\npackage breakfast;\nimport java.io.Serializable;\nrecord Bowl(boolean spoon) {}\npublic class Cereal implements Serializable {\nprivate String name = \"CocoaCookies\";\nprivate transient int sugar = 10;\nprivate Bowl bowl;\npublic Cereal() {\nsuper();\nthis.name = \"CaptainPebbles\";\nthis.bowl = new Bowl(true);\nsugar = 2;\n}\n{ name = \"SugarPops\"; }\n// Getters/Setters Omitted\n}336 Chapter 9 ■ Using Java I/O API",
+      "question": "In this question, an instance of Cereal has been serialized to disk, with the source object\nhaving a name value of CornLoops and sugar value of 5. What is the value of name\nand sugar after this object has been read from disk using the ObjectInputStream’s\nreadObject() method?\npackage breakfast;\nimport java.io.Serializable;\nrecord Bowl(boolean spoon) {}\npublic class Cereal implements Serializable {\nprivate String name = \"CocoaCookies\";\nprivate transient int sugar = 10;\nprivate Bowl bowl;\npublic Cereal() {\nsuper();\nthis.name = \"CaptainPebbles\";\nthis.bowl = new Bowl(true);\nsugar = 2;\n}\n{ name = \"SugarPops\"; }\n// Getters/Setters Omitted\n}",
       "options": [
         {
           "letter": "A",
@@ -1204,7 +1204,7 @@
     },
     {
       "id": 39,
-      "question": "Assuming there are no symbolic links involved and file /nursery/sapling.seed exists,\nwhich statements about the following code snippet are correct? (Choose three.)\nFiles.move(\nPaths.get(\"/nursery/sapling.seed\"),\nPaths.get(\"/forest\"),\nStandardCopyOption.ATOMIC_MOVE);Chapter 9 ■ Using Java I/O API 337",
+      "question": "Assuming there are no symbolic links involved and file /nursery/sapling.seed exists,\nwhich statements about the following code snippet are correct? (Choose three.)\nFiles.move(\nPaths.get(\"/nursery/sapling.seed\"),\nPaths.get(\"/forest\"),\nStandardCopyOption.ATOMIC_MOVE);",
       "options": [
         {
           "letter": "A",

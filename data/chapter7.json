@@ -108,7 +108,7 @@
         },
         {
           "letter": "E",
-          "text": "4Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 269"
+          "text": "4"
         }
       ],
       "correct": "B",
@@ -232,7 +232,7 @@
     },
     {
       "id": 9,
-      "question": "How many of the following are legal module-info.java files?\nmodule com.koala {\nexports cute;\n}\nmodule com-koala {\nexports cute;\n}\npublic module com.koala {\nexports cute;\n}270 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform\npublic module com-koala {\nexports cute;\n}",
+      "question": "How many of the following are legal module-info.java files?\nmodule com.koala {\nexports cute;\n}\nmodule com-koala {\nexports cute;\n}\npublic module com.koala {\nexports cute;\n}\npublic module com-koala {\nexports cute;\n}",
       "options": [
         {
           "letter": "A",
@@ -344,7 +344,7 @@
         },
         {
           "letter": "E",
-          "text": "None of the aboveChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 271"
+          "text": "None of the above"
         }
       ],
       "correct": "D",
@@ -444,7 +444,7 @@
     },
     {
       "id": 16,
-      "question": "Fill in the blank with code to look up and call a service.\nString cheese = ServiceLoader.load(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");272 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "question": "Fill in the blank with code to look up and call a service.\nString cheese = ServiceLoader.load(Mouse.class)\n.map( )\n.map(Mouse::favoriteFood)\n.findFirst()\n.orElse(\"\");",
       "options": [
         {
           "letter": "A",
@@ -528,7 +528,7 @@
         },
         {
           "letter": "F",
-          "text": "requires com.ny.city;Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 273"
+          "text": "requires com.ny.city;"
         }
       ],
       "correct": "E",
@@ -648,7 +648,7 @@
         },
         {
           "letter": "F",
-          "text": "java.swing274 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+          "text": "java.swing"
         }
       ],
       "correct": "A,C,E",
@@ -736,7 +736,7 @@
         },
         {
           "letter": "E",
-          "text": "Rename the modules to use dashes instead of dots.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 275"
+          "text": "Rename the modules to use dashes instead of dots."
         }
       ],
       "correct": "A,C",
@@ -856,7 +856,7 @@
         },
         {
           "letter": "F",
-          "text": "Named and unnamed276 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+          "text": "Named and unnamed"
         }
       ],
       "correct": "B",
@@ -972,7 +972,7 @@
         },
         {
           "letter": "F",
-          "text": "Named and unnamedChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 277"
+          "text": "Named and unnamed"
         }
       ],
       "correct": "F",
@@ -1092,7 +1092,7 @@
         },
         {
           "letter": "F",
-          "text": "jdk.net278 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+          "text": "jdk.net"
         }
       ],
       "correct": "D,E,F",
@@ -1208,7 +1208,7 @@
         },
         {
           "letter": "D",
-          "text": "When implementing a service, it references the ServiceLoader.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 279"
+          "text": "When implementing a service, it references the ServiceLoader."
         }
       ],
       "correct": "A",
@@ -1248,7 +1248,7 @@
     },
     {
       "id": 43,
-      "question": "Suppose we have the packages in the diagram. What could we add to the\nmodule-info.java in com.duck to allow the com.park module to reference the\nDuckling class but not allow the com.bread module to do the same?\ncom.duck com.bread\ncom.park\ncom\nduckling\nbread\nDuckling.java\nEgg.java\nmodule-info.java\nFood.java\nGrass.java\nmodule-info.java\nmodule-info.java\negg\ncom\ncom\npark280 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "question": "Suppose we have the packages in the diagram. What could we add to the\nmodule-info.java in com.duck to allow the com.park module to reference the\nDuckling class but not allow the com.bread module to do the same?\ncom.duck com.bread\ncom.park\ncom\nduckling\nbread\nDuckling.java\nEgg.java\nmodule-info.java\nFood.java\nGrass.java\nmodule-info.java\nmodule-info.java\negg\ncom\ncom\npark",
       "options": [
         {
           "letter": "A",
@@ -1392,7 +1392,7 @@
         },
         {
           "letter": "F",
-          "text": "jdeps --jdkunsupported cookie.jarChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 281"
+          "text": "jdeps --jdkunsupported cookie.jar"
         }
       ],
       "correct": "C",
@@ -1524,7 +1524,7 @@
     },
     {
       "id": 52,
-      "question": "Each box in the diagram corresponds to a module. The service locator and service provider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY282 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "question": "Each box in the diagram corresponds to a module. The service locator and service provider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY",
       "options": [
         {
           "letter": "A",
@@ -1656,7 +1656,7 @@
     },
     {
       "id": 56,
-      "question": "Suppose you have the following interface in a module named animal.insect.api. What\nneeds to be included in the module-info file for it to be a service provider interface?\npackage animal.insect.api.bugs;\npublic interface Bug {\nint crawl();\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 283",
+      "question": "Suppose you have the following interface in a module named animal.insect.api. What\nneeds to be included in the module-info file for it to be a service provider interface?\npackage animal.insect.api.bugs;\npublic interface Bug {\nint crawl();\n}",
       "options": [
         {
           "letter": "A",
@@ -1720,7 +1720,7 @@
     },
     {
       "id": 58,
-      "question": "Suppose you have the following class in a module named animal.insect.lookup, the\nservice provider interface from Question 56, and the service provider from Question 57.\nWhat needs to be included in the module-info file besides an exports directive for it to\nbe a service locator? (Choose two.)\npackage animal.insect.lookup;\nimport animal.insect.api.bugs.Bug;\nimport java.util.List;\nimport java.util.ServiceLoader;\nimport java.util.stream.Collectors;\npublic class InsectFinder {\npublic static List<Bug> findAllBugs() {\nreturn ServiceLoader.load(Bug.class)284 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform\n.stream()\n.map(ServiceLoader.Provider::get)\n.collect(Collectors.toList());\n} }",
+      "question": "Suppose you have the following class in a module named animal.insect.lookup, the\nservice provider interface from Question 56, and the service provider from Question 57.\nWhat needs to be included in the module-info file besides an exports directive for it to\nbe a service locator? (Choose two.)\npackage animal.insect.lookup;\nimport animal.insect.api.bugs.Bug;\nimport java.util.List;\nimport java.util.ServiceLoader;\nimport java.util.stream.Collectors;\npublic class InsectFinder {\npublic static List<Bug> findAllBugs() {\nreturn ServiceLoader.load(Bug.class)\n.stream()\n.map(ServiceLoader.Provider::get)\n.collect(Collectors.toList());\n} }",
       "options": [
         {
           "letter": "A",
@@ -1808,7 +1808,7 @@
         },
         {
           "letter": "F",
-          "text": "jdeps --jdk-unsupported cookie.jarChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 285"
+          "text": "jdeps --jdk-unsupported cookie.jar"
         }
       ],
       "correct": "A",
@@ -1872,7 +1872,7 @@
     },
     {
       "id": 63,
-      "question": "Assuming all referenced files and directories exist and are correct, what does this code do?\njavac –m mods –d mouse mouse/com/mouse/*.java\nmouse/module-info.java\njar –cvf mods/com.mouse.jar –C mouse/ .286 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "question": "Assuming all referenced files and directories exist and are correct, what does this code do?\njavac –m mods –d mouse mouse/com/mouse/*.java\nmouse/module-info.java\njar –cvf mods/com.mouse.jar –C mouse/ .",
       "options": [
         {
           "letter": "A",
@@ -1976,7 +1976,7 @@
         },
         {
           "letter": "D",
-          "text": "There is not enough information to determine which type it is.Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 287"
+          "text": "There is not enough information to determine which type it is."
         }
       ],
       "correct": "A",
@@ -2064,7 +2064,7 @@
         },
         {
           "letter": "E",
-          "text": "4288 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+          "text": "4"
         }
       ],
       "correct": "A",
@@ -2212,7 +2212,7 @@
         },
         {
           "letter": "G",
-          "text": "None of the aboveChapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 289"
+          "text": "None of the above"
         }
       ],
       "correct": "A",
@@ -2304,7 +2304,7 @@
         },
         {
           "letter": "E",
-          "text": "None of the above290 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform"
+          "text": "None of the above"
         }
       ],
       "correct": "D",
@@ -2376,7 +2376,7 @@
     },
     {
       "id": 80,
-      "question": "Given the diagram in Question 78 and the following module-info.java for the panda\nmodule, what is the result of including line m1?\nmodule panda {\nrequires mammal;\nrequires transitive mammal; // line m1\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 291",
+      "question": "Given the diagram in Question 78 and the following module-info.java for the panda\nmodule, what is the result of including line m1?\nmodule panda {\nrequires mammal;\nrequires transitive mammal; // line m1\n}",
       "options": [
         {
           "letter": "A",
@@ -2492,7 +2492,7 @@
     },
     {
       "id": 84,
-      "question": "Each box in the following diagram corresponds to a module. The service locator and service\nprovider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY292 Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform",
+      "question": "Each box in the following diagram corresponds to a module. The service locator and service\nprovider interface share a module. Which boxes represent the consumer and service provider,\nrespectively?\nX\nZ\nY",
       "options": [
         {
           "letter": "A",
@@ -2608,7 +2608,7 @@
     },
     {
       "id": 88,
-      "question": "Why is this module-info incorrect for a service provider?\nmodule plant.flower {\nexports plant.flower.impl;\nrequires plant.flower.api;\nprovides plant.flower.api.Petal\nwith plant.flower.impl.PetalImpl;\n}Chapter 7 ■ Packaging and Deploying Java Code and Use the Java Platform 293",
+      "question": "Why is this module-info incorrect for a service provider?\nmodule plant.flower {\nexports plant.flower.impl;\nrequires plant.flower.api;\nprovides plant.flower.api.Petal\nwith plant.flower.impl.PetalImpl;\n}",
       "options": [
         {
           "letter": "A",

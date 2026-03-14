@@ -96,7 +96,7 @@
     },
     {
       "id": 4,
-      "question": "Assuming the following method is called with a double value of 1_900_000.0, which\nvalues are printed? (Choose two.)\npublic void payBill(double t) {\nvar nf1 = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.LONG);\nvar nf2 = NumberFormat.getCompactNumberInstance();\nSystem.out.println(nf1.format(t));\nSystem.out.println(nf2.format(t));\n}Chapter 11 ■ Implementing Localization 355",
+      "question": "Assuming the following method is called with a double value of 1_900_000.0, which\nvalues are printed? (Choose two.)\npublic void payBill(double t) {\nvar nf1 = NumberFormat.getCompactNumberInstance(\nLocale.getDefault(), Style.LONG);\nvar nf2 = NumberFormat.getCompactNumberInstance();\nSystem.out.println(nf1.format(t));\nSystem.out.println(nf2.format(t));\n}",
       "options": [
         {
           "letter": "A",
@@ -192,7 +192,7 @@
     },
     {
       "id": 7,
-      "question": "What does the following program print?\nimport java.time.*;\nimport java.time.format.*;\npublic class PolarBear {\npublic static void main(String[] args) {\nLocalDate polarBearDay = LocalDate.of(2022, 2, 27);356 Chapter 11 ■ Implementing Localization\nvar formatter = DateTimeFormatter.ofPattern(\"yyyy dd MMM\");\nSystem.out.println(polarBearDay.format(formatter));\n} }",
+      "question": "What does the following program print?\nimport java.time.*;\nimport java.time.format.*;\npublic class PolarBear {\npublic static void main(String[] args) {\nLocalDate polarBearDay = LocalDate.of(2022, 2, 27);\nvar formatter = DateTimeFormatter.ofPattern(\"yyyy dd MMM\");\nSystem.out.println(polarBearDay.format(formatter));\n} }",
       "options": [
         {
           "letter": "A",
@@ -284,7 +284,7 @@
     },
     {
       "id": 10,
-      "question": "For currency, the United States uses the $ symbol, the UK uses the £ symbol, and Germany\nuses the € symbol. Given this information, what is the expected output of the following\ncode snippet?\nLocale.setDefault(Locale.US);\nLocale.setDefault(Category.FORMAT, Locale.GERMANY);\nSystem.out.print(NumberFormat.getCurrencyInstance(Locale.UK)\n.format(1.1));Chapter 11 ■ Implementing Localization 357",
+      "question": "For currency, the United States uses the $ symbol, the UK uses the £ symbol, and Germany\nuses the € symbol. Given this information, what is the expected output of the following\ncode snippet?\nLocale.setDefault(Locale.US);\nLocale.setDefault(Category.FORMAT, Locale.GERMANY);\nSystem.out.print(NumberFormat.getCurrencyInstance(Locale.UK)\n.format(1.1));",
       "options": [
         {
           "letter": "A",
@@ -364,7 +364,7 @@
         },
         {
           "letter": "F",
-          "text": "An exception is thrown at runtime.358 Chapter 11 ■ Implementing Localization"
+          "text": "An exception is thrown at runtime."
         }
       ],
       "correct": "D",
@@ -460,7 +460,7 @@
         },
         {
           "letter": "F",
-          "text": "Locale.ITALIANChapter 11 ■ Implementing Localization 359"
+          "text": "Locale.ITALIAN"
         }
       ],
       "correct": "B,D,F",
@@ -552,7 +552,7 @@
         },
         {
           "letter": "F",
-          "text": "123K360 Chapter 11 ■ Implementing Localization"
+          "text": "123K"
         }
       ],
       "correct": "F",
@@ -644,7 +644,7 @@
         },
         {
           "letter": "E",
-          "text": "The code does not compile.Chapter 11 ■ Implementing Localization 361"
+          "text": "The code does not compile."
         }
       ],
       "correct": "D",
@@ -716,7 +716,7 @@
     },
     {
       "id": 24,
-      "question": "Given the following two properties files, what does the loadPod() method output?\ncontainer.properties\nname=generic\nnumber=2\ncontainer_en.properties\nname=Ship\ntype=container\nvoid loadPod() {\nnew Locale.Builder()362 Chapter 11 ■ Implementing Localization\n.setLanguage(\"en\")\n.setRegion(\"US\").build();\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}",
+      "question": "Given the following two properties files, what does the loadPod() method output?\ncontainer.properties\nname=generic\nnumber=2\ncontainer_en.properties\nname=Ship\ntype=container\nvoid loadPod() {\nnew Locale.Builder()\n.setLanguage(\"en\")\n.setRegion(\"US\").build();\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}",
       "options": [
         {
           "letter": "A",
@@ -780,7 +780,7 @@
     },
     {
       "id": 26,
-      "question": "Given the two properties files from Question 24, what does the following method output?\nvoid loadControlPlane() {\nLocale.setDefault(new Locale(\"en_US\"));\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}Chapter 11 ■ Implementing Localization 363",
+      "question": "Given the two properties files from Question 24, what does the following method output?\nvoid loadControlPlane() {\nLocale.setDefault(new Locale(\"en_US\"));\nvar rb = ResourceBundle.getBundle(\"container\");\nString name = rb.getString(\"name\");\nString type = rb.getString(\"type\");\nSystem.out.print(name + \" \" + type);\n}",
       "options": [
         {
           "letter": "A",
@@ -868,7 +868,7 @@
         },
         {
           "letter": "F",
-          "text": "An exception is thrown at runtime.364 Chapter 11 ■ Implementing Localization"
+          "text": "An exception is thrown at runtime."
         }
       ],
       "correct": "A",

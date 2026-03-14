@@ -136,7 +136,7 @@
         },
         {
           "letter": "E",
-          "text": "None of the aboveChapter 10 ■ Accessing Databases Using JDBC 341"
+          "text": "None of the above"
         }
       ],
       "correct": "C",
@@ -232,7 +232,7 @@
     },
     {
       "id": 9,
-      "question": "Suppose the pandas table has one row with the name Mei Xiang and the location DC.\nWhat does the following code output?\nvar url = \"jdbc:hsqldb:file:mammals\";\nvar sql = \"SELECT name FROM pandas WHERE location = 'DC'\";\ntry (var conn = DriverManager.getConnection(url); // s1342 Chapter 10 ■ Accessing Databases Using JDBC\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getString(\"name\"));\nelse\nSystem.out.println(\"No match\");\n}",
+      "question": "Suppose the pandas table has one row with the name Mei Xiang and the location DC.\nWhat does the following code output?\nvar url = \"jdbc:hsqldb:file:mammals\";\nvar sql = \"SELECT name FROM pandas WHERE location = 'DC'\";\ntry (var conn = DriverManager.getConnection(url); // s1\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) {\nif (rs.next())\nSystem.out.println(rs.getString(\"name\"));\nelse\nSystem.out.println(\"No match\");\n}",
       "options": [
         {
           "letter": "A",
@@ -288,7 +288,7 @@
         },
         {
           "letter": "F",
-          "text": "The code throws an exception at runtime.Chapter 10 ■ Accessing Databases Using JDBC 343"
+          "text": "The code throws an exception at runtime."
         }
       ],
       "correct": "F",
@@ -324,7 +324,7 @@
     },
     {
       "id": 12,
-      "question": "Suppose cats is an empty table. Where can conn.rollback() be inserted so that the\ntable remains empty?\ntry (var conn = DriverManager.getConnection(url)) {\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert,\nResultSet.TYPE_FORWARD_ONLY,\nResultSet.CONCUR_READ_ONLY)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n// line x\n}\n// line y\nconn.commit();\n}344 Chapter 10 ■ Accessing Databases Using JDBC",
+      "question": "Suppose cats is an empty table. Where can conn.rollback() be inserted so that the\ntable remains empty?\ntry (var conn = DriverManager.getConnection(url)) {\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert,\nResultSet.TYPE_FORWARD_ONLY,\nResultSet.CONCUR_READ_ONLY)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n// line x\n}\n// line y\nconn.commit();\n}",
       "options": [
         {
           "letter": "A",
@@ -372,7 +372,7 @@
     },
     {
       "id": 14,
-      "question": "Given the books table in the previous question and the following code, which lines would\nyou add to successfully insert a row? (Choose two.)\nvar url = \"jdbc:hsqldb:file:library\";\nvar sql = \"INSERT INTO books (title,num_pages) VALUES(?,?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql,\nResultSet.TYPE_SCROLL_INSENSITIVE,\nResultSet.CONCUR_UPDATABLE)) {\n// INSERT CODE HERE\nstmt.executeUpdate();\n}Chapter 10 ■ Accessing Databases Using JDBC 345",
+      "question": "Given the books table in the previous question and the following code, which lines would\nyou add to successfully insert a row? (Choose two.)\nvar url = \"jdbc:hsqldb:file:library\";\nvar sql = \"INSERT INTO books (title,num_pages) VALUES(?,?)\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql,\nResultSet.TYPE_SCROLL_INSENSITIVE,\nResultSet.CONCUR_UPDATABLE)) {\n// INSERT CODE HERE\nstmt.executeUpdate();\n}",
       "options": [
         {
           "letter": "A",
@@ -440,7 +440,7 @@
         },
         {
           "letter": "E",
-          "text": "None of the above346 Chapter 10 ■ Accessing Databases Using JDBC"
+          "text": "None of the above"
         }
       ],
       "correct": "A",
@@ -476,7 +476,7 @@
     },
     {
       "id": 18,
-      "question": "Assuming the animals database exists and contains one empty table named names, what is\nthe output of the following?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT * FROM names\";\ntry (var conn = new Connection(url); // s1\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) { // s3\nif (rs.next())\nSystem.out.println(rs.getString(1));\n}\n}Chapter 10 ■ Accessing Databases Using JDBC 347",
+      "question": "Assuming the animals database exists and contains one empty table named names, what is\nthe output of the following?\nvar url = \"jdbc:hsqldb:file:animals\";\nvar sql = \"SELECT * FROM names\";\ntry (var conn = new Connection(url); // s1\nvar stmt = conn.prepareStatement(sql); // s2\nvar rs = stmt.executeQuery()) { // s3\nif (rs.next())\nSystem.out.println(rs.getString(1));\n}\n}",
       "options": [
         {
           "letter": "A",
@@ -564,7 +564,7 @@
     },
     {
       "id": 21,
-      "question": "Suppose we have a bunny table with two columns: name and color. What does the following\ncode output if the table is empty?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"SELECT count(*) FROM bunny WHERE color = ? and name = ?\";348 Chapter 10 ■ Accessing Databases Using JDBC\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"White\");\ntry (var rs = stmt.executeQuery()) { // s2\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n}",
+      "question": "Suppose we have a bunny table with two columns: name and color. What does the following\ncode output if the table is empty?\nvar url = \"jdbc:hsqldb:file:rabbits\";\nvar sql = \"SELECT count(*) FROM bunny WHERE color = ? and name = ?\";\ntry (var conn = DriverManager.getConnection(url);\nvar stmt = conn.prepareStatement(sql)) { // s1\nstmt.setString(1, \"White\");\ntry (var rs = stmt.executeQuery()) { // s2\nif (rs.next())\nSystem.out.println(rs.getInt(1));\n}\n}",
       "options": [
         {
           "letter": "A",
@@ -620,7 +620,7 @@
         },
         {
           "letter": "F",
-          "text": "The code throws an exception at runtime.Chapter 10 ■ Accessing Databases Using JDBC 349"
+          "text": "The code throws an exception at runtime."
         }
       ],
       "correct": "A",
@@ -680,7 +680,7 @@
         },
         {
           "letter": "E",
-          "text": "The code compiles but throws an exception at runtime on line r2.350 Chapter 10 ■ Accessing Databases Using JDBC"
+          "text": "The code compiles but throws an exception at runtime on line r2."
         }
       ],
       "correct": "A",
@@ -720,7 +720,7 @@
     },
     {
       "id": 26,
-      "question": "Suppose cats is an empty table. How many rows are in this table when the code\nhas completed?\ntry (var conn = DriverManager.getConnection(url)) {\nconn.setAutoCommit(false);\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n}\nvar sp = conn.setSavepoint();\nconn.rollback();\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 2);\nstmt.setString(2, \"Beverly\");\nstmt.executeUpdate();\n}\nconn.commit();\n}Chapter 10 ■ Accessing Databases Using JDBC 351",
+      "question": "Suppose cats is an empty table. How many rows are in this table when the code\nhas completed?\ntry (var conn = DriverManager.getConnection(url)) {\nconn.setAutoCommit(false);\nString insert = \"INSERT INTO cats VALUES (? ,?)\";\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 1);\nstmt.setString(2, \"Kitty\");\nstmt.executeUpdate();\n}\nvar sp = conn.setSavepoint();\nconn.rollback();\ntry (var stmt = conn.prepareStatement(insert)) {\nstmt.setInt(1, 2);\nstmt.setString(2, \"Beverly\");\nstmt.executeUpdate();\n}\nconn.commit();\n}",
       "options": [
         {
           "letter": "A",
@@ -832,7 +832,7 @@
         },
         {
           "letter": "F",
-          "text": "When not in autocommit mode, calling setAutoCommit(true) throws an exception.352 Chapter 10 ■ Accessing Databases Using JDBC"
+          "text": "When not in autocommit mode, calling setAutoCommit(true) throws an exception."
         }
       ],
       "correct": "B,C",

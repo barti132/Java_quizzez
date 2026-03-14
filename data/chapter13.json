@@ -68,7 +68,7 @@
         },
         {
           "letter": "G",
-          "text": "9 millionChapter 13 ■ Practice Exam 2 393"
+          "text": "9 million"
         }
       ],
       "correct": "A,D",
@@ -108,7 +108,7 @@
     },
     {
       "id": 4,
-      "question": "What is the output of the following?\n1: import static java.util.stream.Collectors.*;\n2: import java.util.*;\n3: public record Goat(String food) {\n4: public static void main(String[] args) {\n5: var goats = List.of(\n6: new Goat(\"can\"),\n7: new Goat(\"hay\"),\n8: new Goat(\"shorts\"),\n9: new Goat(\"hay\"));\n10:\n11: goats.stream()\n12: .collect(groupingBy(Goat::food))\n13: .entrySet()\n14: .stream()\n15: .filter(e -> e.getValue().size() == 2)\n16: .map(e -> e.getKey())\n17: .collect(partitioningBy(e -> e.isEmpty()))394 Chapter 13 ■ Practice Exam 2\n18: .get(false)\n19: .stream()\n20: .sorted()\n21: .forEach(System.out::print);\n22: } }",
+      "question": "What is the output of the following?\n1: import static java.util.stream.Collectors.*;\n2: import java.util.*;\n3: public record Goat(String food) {\n4: public static void main(String[] args) {\n5: var goats = List.of(\n6: new Goat(\"can\"),\n7: new Goat(\"hay\"),\n8: new Goat(\"shorts\"),\n9: new Goat(\"hay\"));\n10:\n11: goats.stream()\n12: .collect(groupingBy(Goat::food))\n13: .entrySet()\n14: .stream()\n15: .filter(e -> e.getValue().size() == 2)\n16: .map(e -> e.getKey())\n17: .collect(partitioningBy(e -> e.isEmpty()))\n18: .get(false)\n19: .stream()\n20: .sorted()\n21: .forEach(System.out::print);\n22: } }",
       "options": [
         {
           "letter": "A",
@@ -160,7 +160,7 @@
         },
         {
           "letter": "E",
-          "text": "The code does not compile for a different reason.Chapter 13 ■ Practice Exam 2 395"
+          "text": "The code does not compile for a different reason."
         }
       ],
       "correct": "D",
@@ -256,7 +256,7 @@
         },
         {
           "letter": "F",
-          "text": "None of the above.396 Chapter 13 ■ Practice Exam 2"
+          "text": "None of the above."
         }
       ],
       "correct": "E",
@@ -320,7 +320,7 @@
         },
         {
           "letter": "F",
-          "text": "The code compiles but throws an exception at runtime.Chapter 13 ■ Practice Exam 2 397"
+          "text": "The code compiles but throws an exception at runtime."
         }
       ],
       "correct": "F",
@@ -380,7 +380,7 @@
         },
         {
           "letter": "F",
-          "text": "The output is a ZIP file.398 Chapter 13 ■ Practice Exam 2"
+          "text": "The output is a ZIP file."
         }
       ],
       "correct": "B,E",
@@ -448,7 +448,7 @@
     },
     {
       "id": 15,
-      "question": "Which are equivalent to this switch statement that takes an int value for numEggs?\n(Choose two.)\nboolean hasEggs;\nswitch (numEggs) {\ncase 0 : hasEggs = true; break;\ndefault : hasEggs = false; break;\n}\nSystem.out.print(hasEggs);Chapter 13 ■ Practice Exam 2 399",
+      "question": "Which are equivalent to this switch statement that takes an int value for numEggs?\n(Choose two.)\nboolean hasEggs;\nswitch (numEggs) {\ncase 0 : hasEggs = true; break;\ndefault : hasEggs = false; break;\n}\nSystem.out.print(hasEggs);",
       "options": [
         {
           "letter": "A",
@@ -472,7 +472,7 @@
         },
         {
           "letter": "F",
-          "text": "boolean hasEggs = switch (numEggs) { case 0 -> {return true;} default -> {return false;} }; System.out.print(hasEggs);400 Chapter 13 ■ Practice Exam 2"
+          "text": "boolean hasEggs = switch (numEggs) { case 0 -> {return true;} default -> {return false;} }; System.out.print(hasEggs);"
         }
       ],
       "correct": "B,E",
@@ -544,7 +544,7 @@
     },
     {
       "id": 18,
-      "question": "What is true about the following?\nimport java.util.*;\npublic class Yellow {\npublic static void main(String[] args) {\nList list = Arrays.asList(\"Sunny\");\nmethod(list); // c1\n}Chapter 13 ■ Practice Exam 2 401\nprivate static void method(Collection<?> x) { // c2\nx.forEach(a -> {}); // c3\n} }",
+      "question": "What is true about the following?\nimport java.util.*;\npublic class Yellow {\npublic static void main(String[] args) {\nList list = Arrays.asList(\"Sunny\");\nmethod(list); // c1\n}\nprivate static void method(Collection<?> x) { // c2\nx.forEach(a -> {}); // c3\n} }",
       "options": [
         {
           "letter": "A",
@@ -600,7 +600,7 @@
     },
     {
       "id": 20,
-      "question": "Which message does the following application print?\npackage ranch;\npublic class Cowboy {\nprivate int space = 5;\nprivate double ship = space < 2 ? 3L : 10.0f; // g1\npublic void printMessage() {\nif(ship>1) {\nSystem.out.print(\"Goodbye!\");\n} if(ship<10 && space>=2) // g2\nSystem.out.print(\"Hello!\");\nelse System.out.print(\"See you again!\");\n}\npublic static final void main(String... stars) {\nnew Cowboy().printMessage();\n} }402 Chapter 13 ■ Practice Exam 2",
+      "question": "Which message does the following application print?\npackage ranch;\npublic class Cowboy {\nprivate int space = 5;\nprivate double ship = space < 2 ? 3L : 10.0f; // g1\npublic void printMessage() {\nif(ship>1) {\nSystem.out.print(\"Goodbye!\");\n} if(ship<10 && space>=2) // g2\nSystem.out.print(\"Hello!\");\nelse System.out.print(\"See you again!\");\n}\npublic static final void main(String... stars) {\nnew Cowboy().printMessage();\n} }",
       "options": [
         {
           "letter": "A",
@@ -656,7 +656,7 @@
         },
         {
           "letter": "F",
-          "text": "The code compiles but prints an exception at runtime.Chapter 13 ■ Practice Exam 2 403"
+          "text": "The code compiles but prints an exception at runtime."
         }
       ],
       "correct": "D",
@@ -696,7 +696,7 @@
     },
     {
       "id": 23,
-      "question": "What is the result of running the following program?\n1: package fun;\n2: public class Sudoku {\n3: static int[][] game;\n4: public static void main(String args[]) {\n5: game[3][3] = 6;\n6: Object[] obj = game;\n7: obj[3] = 'X';\n8: System.out.println(game[3][3]);\n9: } }404 Chapter 13 ■ Practice Exam 2",
+      "question": "What is the result of running the following program?\n1: package fun;\n2: public class Sudoku {\n3: static int[][] game;\n4: public static void main(String args[]) {\n5: game[3][3] = 6;\n6: Object[] obj = game;\n7: obj[3] = 'X';\n8: System.out.println(game[3][3]);\n9: } }",
       "options": [
         {
           "letter": "A",
@@ -784,7 +784,7 @@
         },
         {
           "letter": "F",
-          "text": "The class compiles but may throw an exception at runtime.Chapter 13 ■ Practice Exam 2 405"
+          "text": "The class compiles but may throw an exception at runtime."
         }
       ],
       "correct": "D",
@@ -824,7 +824,7 @@
     },
     {
       "id": 27,
-      "question": "What is the output of the following application?\npackage fly;\npublic class Helicopter {\npublic int adjustPropellers(int length, String[] type) {\nlength++;\ntype[0] = \"LONG\";\nreturn length;\n}\npublic static void main(String[] climb) {\nfinal var h = new Helicopter();\nvar length = 5;\nvar type = new String[1];\nlength = h.adjustPropellers(length, type);\nSystem.out.print(length + \",\" + type[0]);\n} }406 Chapter 13 ■ Practice Exam 2",
+      "question": "What is the output of the following application?\npackage fly;\npublic class Helicopter {\npublic int adjustPropellers(int length, String[] type) {\nlength++;\ntype[0] = \"LONG\";\nreturn length;\n}\npublic static void main(String[] climb) {\nfinal var h = new Helicopter();\nvar length = 5;\nvar type = new String[1];\nlength = h.adjustPropellers(length, type);\nSystem.out.print(length + \",\" + type[0]);\n} }",
       "options": [
         {
           "letter": "A",
@@ -936,7 +936,7 @@
         },
         {
           "letter": "F",
-          "text": "Including requires java.base is sometimes needed to change the meaning of a file.Chapter 13 ■ Practice Exam 2 407"
+          "text": "Including requires java.base is sometimes needed to change the meaning of a file."
         }
       ],
       "correct": "B,D",
@@ -1000,7 +1000,7 @@
         },
         {
           "letter": "F",
-          "text": "The code throws an exception at runtime.408 Chapter 13 ■ Practice Exam 2"
+          "text": "The code throws an exception at runtime."
         }
       ],
       "correct": "D",
@@ -1040,7 +1040,7 @@
     },
     {
       "id": 34,
-      "question": "Bill wants to create a program that reads all of the lines of all of his books using NIO.2.\nUnfortunately, Bill may have made a few mistakes writing his program. How many lines of\nthe following class contain compilation errors?\n1: package bookworm;\n2: import java.io.*;\n3: import java.nio.file.*;\n4: public class ReadEverything {\n5: public void readFile(Path p) {\n6: try {\n7: Files.readAllLines(p)\n8: .parallel()\n9: .forEach(System.out::println);\n10: } catch (Exception e) {}\n11: }\n12: public void read(Path directory) throws Exception {\n13: Files.walk(directory)\n14: .filter(p -> File.isRegularFile(p))\n15: .forEach(x -> readFile(x));\n16: }\n17: public static void main(String[] b) throws IOException {\n18: Path p = Path.get(\"collection\");\n19: new ReadEverything().read(p);\n20: } }Chapter 13 ■ Practice Exam 2 409",
+      "question": "Bill wants to create a program that reads all of the lines of all of his books using NIO.2.\nUnfortunately, Bill may have made a few mistakes writing his program. How many lines of\nthe following class contain compilation errors?\n1: package bookworm;\n2: import java.io.*;\n3: import java.nio.file.*;\n4: public class ReadEverything {\n5: public void readFile(Path p) {\n6: try {\n7: Files.readAllLines(p)\n8: .parallel()\n9: .forEach(System.out::println);\n10: } catch (Exception e) {}\n11: }\n12: public void read(Path directory) throws Exception {\n13: Files.walk(directory)\n14: .filter(p -> File.isRegularFile(p))\n15: .forEach(x -> readFile(x));\n16: }\n17: public static void main(String[] b) throws IOException {\n18: Path p = Path.get(\"collection\");\n19: new ReadEverything().read(p);\n20: } }",
       "options": [
         {
           "letter": "A",
@@ -1104,7 +1104,7 @@
     },
     {
       "id": 36,
-      "question": "What is the output of the following?\npublic class InitOrder {\n{ System.out.print(\"1\"); }\nstatic { System.out.print(\"2\"); }\npublic InitOrder() {\nSystem.out.print(\"3\");\n}\npublic static void callMe() {\nSystem.out.print(\"4\");\n}\npublic static void main(String[] args) {\ncallMe();\ncallMe();\nSystem.out.print(\"5\");\n} }410 Chapter 13 ■ Practice Exam 2",
+      "question": "What is the output of the following?\npublic class InitOrder {\n{ System.out.print(\"1\"); }\nstatic { System.out.print(\"2\"); }\npublic InitOrder() {\nSystem.out.print(\"3\");\n}\npublic static void callMe() {\nSystem.out.print(\"4\");\n}\npublic static void main(String[] args) {\ncallMe();\ncallMe();\nSystem.out.print(\"5\");\n} }",
       "options": [
         {
           "letter": "A",
@@ -1180,7 +1180,7 @@
         },
         {
           "letter": "C",
-          "text": "It does not compile because of line q1.Chapter 13 ■ Practice Exam 2 411"
+          "text": "It does not compile because of line q1."
         },
         {
           "letter": "D",
@@ -1300,7 +1300,7 @@
         },
         {
           "letter": "B",
-          "text": "All nested classes can contain constant variables.412 Chapter 13 ■ Practice Exam 2"
+          "text": "All nested classes can contain constant variables."
         },
         {
           "letter": "C",
@@ -1388,7 +1388,7 @@
     },
     {
       "id": 45,
-      "question": "What is the result of calling this method?\n16: void play() {\n17: record Toy(String name){ }\n18:\n19: var toys = Stream.of(\n20: new Toy(\"Jack in the Box\"),\n21: new Toy(\"Slinky\"),\n22: new Toy(\"Yo-Yo\"),\n23: new Toy(\"Rubik's Cube\"));Chapter 13 ■ Practice Exam 2 413\n24:\n25: var spliterator = toys.spliterator();\n26: var batch1 = spliterator.trySplit();\n27: var batch2 = spliterator.trySplit();\n28: var batch3 = spliterator.trySplit();\n29:\n30: batch1.forEachRemaining(System.out::print);\n31: }",
+      "question": "What is the result of calling this method?\n16: void play() {\n17: record Toy(String name){ }\n18:\n19: var toys = Stream.of(\n20: new Toy(\"Jack in the Box\"),\n21: new Toy(\"Slinky\"),\n22: new Toy(\"Yo-Yo\"),\n23: new Toy(\"Rubik's Cube\"));\n24:\n25: var spliterator = toys.spliterator();\n26: var batch1 = spliterator.trySplit();\n27: var batch2 = spliterator.trySplit();\n28: var batch3 = spliterator.trySplit();\n29:\n30: batch1.forEachRemaining(System.out::print);\n31: }",
       "options": [
         {
           "letter": "A",
@@ -1428,7 +1428,7 @@
     },
     {
       "id": 46,
-      "question": "How many lines of the following application need to be changed to make the code compile?\n1: package castles;\n2: import java.io.*;\n3: public class Palace {\n4: public void openDrawbridge() throws Exception {\n5: try {\n6: throw new Exception(\"Problem\");\n7: } catch (IOException e) {\n8: throw new IOException();\n9: } catch (FileNotFoundException e) {\n10: try {\n11: throw new IOException();\n12: } catch (Exception e) {\n13: } finally {\n14: System.out.println(\"Almost done\");\n15: }\n16: } finally {\n17: throw new RuntimeException(\"Unending problem\");\n18: } }\n19: public static void main(String[] moat)\n20: throws IllegalArgumentException {\n21: new Palace().openDrawbridge();\n22: } }414 Chapter 13 ■ Practice Exam 2",
+      "question": "How many lines of the following application need to be changed to make the code compile?\n1: package castles;\n2: import java.io.*;\n3: public class Palace {\n4: public void openDrawbridge() throws Exception {\n5: try {\n6: throw new Exception(\"Problem\");\n7: } catch (IOException e) {\n8: throw new IOException();\n9: } catch (FileNotFoundException e) {\n10: try {\n11: throw new IOException();\n12: } catch (Exception e) {\n13: } finally {\n14: System.out.println(\"Almost done\");\n15: }\n16: } finally {\n17: throw new RuntimeException(\"Unending problem\");\n18: } }\n19: public static void main(String[] moat)\n20: throws IllegalArgumentException {\n21: new Palace().openDrawbridge();\n22: } }",
       "options": [
         {
           "letter": "A",
@@ -1516,7 +1516,7 @@
         },
         {
           "letter": "G",
-          "text": "None. The code does not compile.Chapter 13 ■ Practice Exam 2 415"
+          "text": "None. The code does not compile."
         }
       ],
       "correct": "C",
