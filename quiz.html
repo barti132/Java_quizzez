@@ -432,8 +432,9 @@
             </div>
 
             <div class="score-info">
-                <span>Pytanie <span id="currentQuestion">1</span> z <span id="totalQuestions">0</span></span>
-                <span>Poprawne: <span id="correctCount">0</span>/<span id="totalQuestions">0</span></span>
+                <span>Pytanie <span id="currentQuestion">1</span> z <span id="totalQuestionsNav">0</span></span>
+                <span>⏱️ Czas: <span id="timerDisplay">00:00</span></span>
+                <span>Poprawne: <span id="correctCount">0</span>/<span id="totalQuestionsScore">0</span></span>
             </div>
 
             <div class="question-container">
@@ -471,6 +472,8 @@
         let correctCount = 0;
         let currentMode = null;
         let answeredCorrectly = {};
+        let startTime = null;
+        let timerInterval = null;
 
         // Inicjalizacja - pokaż menu
         function initMenu() {
@@ -492,7 +495,7 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 
-                quizData = data.questions;
+                quizData = shuffleArray(data.questions);
                 currentMode = 'chapter';
                 resetQuiz();
 
@@ -501,8 +504,10 @@
                 document.getElementById('summarySection').style.display = 'none';
                 document.getElementById('chapterTitle').textContent = data.chapter;
                 document.getElementById('chapterSubtitle').textContent = `${quizData.length} pytań`;
-                document.getElementById('totalQuestions').textContent = quizData.length;
+                document.getElementById('totalQuestionsNav').textContent = quizData.length;
+                document.getElementById('totalQuestionsScore').textContent = quizData.length;
 
+                startTimer();
                 displayQuestion();
             } catch (error) {
                 alert(`Błąd przy ładowaniu chapter: ${error.message}`);
@@ -535,8 +540,10 @@
                 document.getElementById('summarySection').style.display = 'none';
                 document.getElementById('chapterTitle').textContent = '🎲 Quiz Losowy';
                 document.getElementById('chapterSubtitle').textContent = `50 losowych pytań z całego materiału`;
-                document.getElementById('totalQuestions').textContent = quizData.length;
+                document.getElementById('totalQuestionsNav').textContent = quizData.length;
+                document.getElementById('totalQuestionsScore').textContent = quizData.length;
 
+                startTimer();
                 displayQuestion();
             } catch (error) {
                 alert(`Błąd przy ładowaniu losowych pytań: ${error.message}`);
@@ -552,12 +559,39 @@
             return shuffled;
         }
 
+        function startTimer() {
+            startTime = Date.now();
+            if (timerInterval) clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                const timeString = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                document.getElementById('timerDisplay').textContent = timeString;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer() {
+            stopTimer();
+            startTime = null;
+            document.getElementById('timerDisplay').textContent = '00:00';
+        }
+
         function resetQuiz() {
             currentQuestion = 0;
             userAnswers = {};
             correctCount = 0;
             answeredCorrectly = {};
             document.getElementById('correctCount').textContent = '0';
+            resetTimer();
         }
 
         function backToMenu() {
@@ -697,11 +731,13 @@
         }
 
         function showSummary() {
+            stopTimer();
             document.getElementById('summarySection').style.display = 'block';
             document.getElementById('questionContainer').style.display = 'none';
             document.querySelector('.buttons:not(.summary .buttons)').style.display = 'none';
 
             const percentage = Math.round((correctCount / quizData.length) * 100);
+            const timeString = document.getElementById('timerDisplay').textContent;
             document.getElementById('finalScore').textContent = `${correctCount}/${quizData.length} (${percentage}%)`;
 
             let message = '';
@@ -719,6 +755,7 @@
             document.getElementById('summaryDetails').innerHTML = `
                 <p><strong>Poprawne odpowiedzi:</strong> ${correctCount} z ${quizData.length}</p>
                 <p><strong>Procent:</strong> ${percentage}%</p>
+                <p><strong>Czas:</strong> ${timeString}</p>
                 <p><strong>Tryb:</strong> ${currentMode === 'random' ? '🎲 Quiz Losowy' : '📚 Quiz Rozdziałowy'}</p>
             `;
 
