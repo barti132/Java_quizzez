@@ -1024,8 +1024,8 @@
     },
     {
       "id": 34,
-      "options": [
       "question": "Given the original array, how many of the following for statements enter an infinite loop at\nruntime, assuming each is executed independently?\nvar original = new ArrayList<Integer>(List.of(1,2,3));\nvar copy1 = new ArrayList<Integer>(original);\nfor(Integer q : copy1)\ncopy1.add(1);\nvar copy2 = new CopyOnWriteArrayList<Integer>(original);\nfor(Integer q : copy2)\ncopy2.add(2);\nvar copy3 = new LinkedBlockingQueue<Integer>(original);\nfor(Integer q : copy3)\ncopy3.offer(3);\nvar copy4 = Collections.synchronizedList(original);\nfor(Integer q : copy4)\ncopy4.add(4);",
+      "options": [
         {
           "letter": "A",
           "text": "Zero"
