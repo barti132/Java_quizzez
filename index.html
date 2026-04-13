@@ -217,7 +217,7 @@
             background-color: #f9f9ff;
         }
 
-        .option input[type="radio"] {
+        .option input[type="checkbox"] {
             margin-right: 12px;
             margin-top: 3px;
             cursor: pointer;
@@ -639,15 +639,20 @@
                 }
 
                 optionDiv.innerHTML = `
-                    <input type="radio" id="option${option.letter}" name="answer" value="${option.letter}" 
+                    <input type="checkbox" id="option${option.letter}" name="answer" value="${option.letter}" 
                            ${userAnswers[currentQuestion] && userAnswers[currentQuestion].includes(option.letter) ? 'checked' : ''}>
                     <label for="option${option.letter}"><strong>${option.letter}.</strong> ${option.text}</label>
                 `;
 
+                const checkbox = optionDiv.querySelector('input[type="checkbox"]');
+                
                 optionDiv.addEventListener('click', () => {
-                    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-                    optionDiv.classList.add('selected');
-                    document.getElementById(`option${option.letter}`).checked = true;
+                    checkbox.checked = !checkbox.checked;
+                    if (checkbox.checked) {
+                        optionDiv.classList.add('selected');
+                    } else {
+                        optionDiv.classList.remove('selected');
+                    }
                 });
 
                 optionsContainer.appendChild(optionDiv);
@@ -727,6 +732,7 @@
             userAnswers[currentQuestion] = selectedAnswer;
 
             const isCorrect = selectedAnswer === question.correct;
+            const correctAnswers = question.correct.split(',');
 
             if (isCorrect) {
                 if (!answeredCorrectly[currentQuestion]) {
@@ -734,8 +740,8 @@
                     answeredCorrectly[currentQuestion] = true;
                 }
                 document.querySelectorAll('.option').forEach(option => {
-                    const radio = option.querySelector('input');
-                    if (radio.value === question.correct.split(',')[0]) {
+                    const checkbox = option.querySelector('input');
+                    if (correctAnswers.includes(checkbox.value)) {
                         option.classList.add('correct');
                     }
                     option.style.pointerEvents = 'none';
@@ -743,11 +749,10 @@
                 showFeedback(true, `Poprawnie! Odpowiedź to ${question.correct}`);
             } else {
                 document.querySelectorAll('.option').forEach(option => {
-                    const radio = option.querySelector('input');
-                    const values = question.correct.split(',');
-                    if (values.includes(radio.value)) {
+                    const checkbox = option.querySelector('input');
+                    if (correctAnswers.includes(checkbox.value)) {
                         option.classList.add('correct');
-                    } else if (radio.checked) {
+                    } else if (checkbox.checked) {
                         option.classList.add('incorrect');
                     }
                     option.style.pointerEvents = 'none';
